@@ -17,9 +17,9 @@
   <repository type="git">https://github.com/Aladdin-Wang/MicroBoot.git</repository>
 
 <releases>
-    <release version="0.9.6" date="2024-08-12">
-        <description>Latest stable release</description>
-    </release>
+    <release date="2024-08-12" version="0.9.6" tag="v0.9.6" >
+      - updates
+    </release>    
 </releases>
 
   <keywords>
