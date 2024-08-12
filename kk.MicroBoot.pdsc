@@ -17,7 +17,10 @@
   <repository type="git">https://github.com/Aladdin-Wang/MicroBoot.git</repository>
 
 <releases>
-    <release date="2024-08-12" version="0.9.6" tag="v0.9.6">
+    <release date="2024-08-12" version="0.9.7" tag="v0.9.7">
+      add word.
+    </release>
+    <release date="2024-08-11" version="0.9.6" tag="v0.9.6">
       Initial release of MicroBoot with updated features.
     </release>
 </releases>
