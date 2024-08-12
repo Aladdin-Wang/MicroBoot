@@ -18,7 +18,7 @@
 
 <releases>
     <release date="2024-08-12" version="0.9.6" tag="v0.9.6">
-      <description>Initial release of MicroBoot with updated features.</description>
+      Initial release of MicroBoot with updated features.
     </release>
 </releases>
 
