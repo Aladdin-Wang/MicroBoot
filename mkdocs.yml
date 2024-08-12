@@ -5,28 +5,30 @@ site_author: kk  # 文档作者
 
 # 导航栏
 nav:
-  - 简介: index.md
+  - 简介: installation.md
   - 快速移植:
-      - 基于 CMSIS-PACK 移植 : installation.md
-      - 基于 RT-Thread 软件包移植 : installation.md
-      - 基于源码移植: quick-start.md
+      - 基于 CMSIS-PACK 移植 : quick-start/cmsis-pack.md
+      - 基于 RT-Thread 软件包移植 : quick-start/RT-Thread.md
+      - 基于源码移植: quick-start/quick-start.md
   - 使用指南:
-      - 配置: config.md
-      - 使用方法: usage.md
+      - 配置: usage-guide/config.md
   - 必备知识: 
-      - 变参函数和可变参数宏: basic_knowledge/ParameterMacro.md
-      - 状态机: basic_knowledge/fsm.md    
-      - 状态机脚本语言: basic_knowledge/fsm.md        
-      - 线程安全和多实例: basic_knowledge/ThreadSafetyAndFunctionReentrancy.md
+      - 变参函数和可变参数宏: utilities/ParameterMacro.md      
+      - 线程安全和多实例: utilities/ThreadSafety.md
   - 组件介绍:
-        # - queue:    
-      - ymodem: ymodem/ymodem.md  
-      - 信号槽: signals_slots/signals_slots.md
-      - 发布订阅: subscribe_publish/subscribe_publish.md
-      - shell: shell/shell.md
+      - queue:  components/queue/queue.md
+      - ymodem: components/ymodem/ymodem.md  
+      - 信号槽: components/signals_slots/signals_slots.md
+      - 发布订阅: components/subscribe_publish/subscribe_publish.md
+      - shell: components/shell/shell.md
+  - 第三方库:   
+      - plooc: 3rd-party/plooc/plooc.md 
+      - fsm: 3rd-party/fsm/fsm.md       
+  - 开发神器:   
+      - daplink: tools/daplink/daplink.md  
   - 参与项目:
-      - 如何贡献代码: ARM-2D/ARM-2D.md
-      - 如何贡献文档: CherryUSB/CherryUSB.md    
+      - 如何贡献代码: contribute/code.md
+      - 如何贡献文档: contribute/document.md
   - About:
       - Overview: about/about.md
       - Team: about/team.md
