@@ -5,6 +5,7 @@ site_author: kk  # 文档作者
 
 # 导航栏
 nav:
+  - Home: index.md
   - 简介: installation.md
   - 快速移植:
       - 基于 CMSIS-PACK 移植 : quick-start/cmsis-pack.md
