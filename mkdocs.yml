@@ -1,0 +1,62 @@
+# 站点信息
+site_name: MicroBoot  # 文档站点名称
+site_description: A sample documentation site  # 文档站点描述
+site_author: kk  # 文档作者
+
+# 导航栏
+nav:
+  - Home: index.md
+  - 入门指南:
+      - 安装指南: installation.md
+      - 快速上手: quick-start.md
+  - 用户指南:
+      - 配置: config.md
+      - 使用方法: usage.md
+  - 基础知识: 
+      - 变参函数和可变参数宏: basic_knowledge/ParameterMacro.md
+      # - 面向对象脚本语言: 
+      - 状态机: basic_knowledge/fsm.md    
+      - 状态机脚本语言: basic_knowledge/fsm.md        
+      - 线程安全和多实例: basic_knowledge/ThreadSafetyAndFunctionReentrancy.md
+  - 模块:
+      - ymodem: ymodem/ymodem.md  
+      # - queue:    
+      - 信号槽: signals_slots/signals_slots.md
+      - 发布订阅: subscribe_publish/subscribe_publish.md
+      - shell: shell/shell.md
+  - 第三方库:
+      - ARM-2D: ARM-2D/ARM-2D.md
+      - CherryUSB: CherryUSB/CherryUSB.md    
+  - About:
+      - Overview: about/about.md
+      - Team: about/team.md
+
+# 主题配置
+theme:
+  name: material  # 使用 Material 主题
+  highlightjs: true  # 启用 Highlight.js
+  highlightjs_style: github  # 使用 GitHub 风格
+  features:
+    - navigation.tabs  # 启用选项卡导航
+    - navigation.indexes  # 启用索引导航
+  palette:
+    scheme: default
+    primary: indigo
+    accent: indigo
+    
+extra_css:
+  - css/custom.css
+
+extra_javascript:
+  - https://fonts.googleapis.com/css?family=Fira+Code&display=swap
+  
+plugins:
+  - search
+  - awesome-pages
+  
+# GitHub 仓库配置
+repo_name: Aladdin-Wang/MicroBoot  # GitHub 用户名和仓库名称
+repo_url: https://github.com/Aladdin-Wang/MicroBoot  # GitHub 仓库的 URL
+edit_uri: ""  # 如果您的文档在仓库的根目录，可以留空
+
+

@@ -1,0 +1,3 @@
+# The Team
+
+Meet the awesome team behind the project...
