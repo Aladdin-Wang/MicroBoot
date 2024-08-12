@@ -17,10 +17,11 @@
   <repository type="git">https://github.com/Aladdin-Wang/MicroBoot.git</repository>
 
 <releases>
-    <release date="2024-08-12" version="0.9.6" tag="v0.9.6" >
-      - updates
-    </release>    
+    <release date="2024-08-12" version="0.9.6" tag="v0.9.6">
+      <description>Initial release of MicroBoot with updated features.</description>
+    </release>
 </releases>
+
 
   <keywords>
     <!-- keywords for indexing -->
@@ -67,11 +68,11 @@
         
     </conditions>  
   <components>
-    <component Cclass="MicroBoot" Cversion="0.5.2" Csub="FlashDrv" Cgroup="components" Cvariant="STM32"  condition="FlashDrv">
+    <component Cclass="MicroBoot" Cversion="0.9.6" Csub="FlashDrv" Cgroup="components" Cvariant="STM32"  condition="FlashDrv">
         <description>MicroBoot flash drive</description>
         <files>
 			<file category="include" name="source/"/>			
-			<file category="header" name="template/user_app_cfg.h" version="0.5.2" attr="config"/> 
+			<file category="header" name="template/user_app_cfg.h" version="0.9.6" attr="config"/> 
 		    <file category="include" name="source/flash_blob/"/>	
 			<file category="sourceC" name="source/flash_blob/flash_blob.c"/>    
 			<file category="sourceC" name="source/flash_blob/flash/STM32_FLASH_DEV.c"/>        
@@ -81,11 +82,11 @@
 #define __USER_APP_CFG_H__ "user_app_cfg.h"
          </Pre_Include_Global_h>		
     </component>
-    <component Cclass="MicroBoot" Cversion="0.5.2" Csub="FlashDrv" Cgroup="components" Cvariant="GD32"  condition="FlashDrv">
+    <component Cclass="MicroBoot" Cversion="0.9.6" Csub="FlashDrv" Cgroup="components" Cvariant="GD32"  condition="FlashDrv">
         <description>MicroBoot flash drive</description>
         <files>
 			<file category="include" name="source/"/>			
-			<file category="header" name="template/user_app_cfg.h" version="0.5.2" attr="config"/> 
+			<file category="header" name="template/user_app_cfg.h" version="0.9.6" attr="config"/> 
 		    <file category="include" name="source/flash_blob/"/>
 			<file category="sourceC" name="source/flash_blob/flash_blob.c"/>    
 			<file category="sourceC" name="source/flash_blob/flash/GD32_FLASH_DEV.c"/>        
@@ -95,11 +96,11 @@
 #define __USER_APP_CFG_H__ "user_app_cfg.h"
          </Pre_Include_Global_h>			
     </component>	
-    <component Cclass="MicroBoot" Cversion="0.5.2" Csub="ymodem" Cgroup="components" condition="ymodem">
+    <component Cclass="MicroBoot" Cversion="0.9.6" Csub="ymodem" Cgroup="components" condition="ymodem">
         <description>MicroBoot ymodem</description>
         <files>
 			<file category="include" name="source/"/>			
-			<file category="header" name="template/user_app_cfg.h" version="0.5.2" attr="config"/> 
+			<file category="header" name="template/user_app_cfg.h" version="0.9.6" attr="config"/> 
 		    <file category="include" name="source/communication/ymodem/"/>
             <file category="sourceC" name="source/communication/ymodem/ymodem.c"/>  
         </files>
@@ -107,11 +108,11 @@
 #define __USER_APP_CFG_H__ "user_app_cfg.h"
          </Pre_Include_Global_h>			
     </component>	
-    <component Cclass="MicroBoot" Cversion="0.5.2" Csub="queue" Cgroup="components" condition="queue">
+    <component Cclass="MicroBoot" Cversion="0.9.6" Csub="queue" Cgroup="components" condition="queue">
         <description>MicroBoot queue</description>
         <files>
 			<file category="include" name="source/"/>			
-			<file category="header" name="template/user_app_cfg.h" version="0.5.2" attr="config"/> 		
+			<file category="header" name="template/user_app_cfg.h" version="0.9.6" attr="config"/> 		
 		    <file category="include" name="source/generic/queue/"/>
             <file category="sourceC" name="source/generic/queue/ring_queue.c"/>  
         </files>
@@ -119,11 +120,11 @@
 #define __USER_APP_CFG_H__ "user_app_cfg.h"
          </Pre_Include_Global_h>			
     </component>
-    <component Cclass="MicroBoot" Cversion="0.5.2" Csub="signals_slots" Cgroup="components" condition="signals_slots">
+    <component Cclass="MicroBoot" Cversion="0.9.6" Csub="signals_slots" Cgroup="components" condition="signals_slots">
         <description>MicroBoot signals_slots</description>
         <files>
 			<file category="include" name="source/"/>			
-			<file category="header" name="template/user_app_cfg.h" version="0.5.2" attr="config"/> 		
+			<file category="header" name="template/user_app_cfg.h" version="0.9.6" attr="config"/> 		
 		    <file category="include" name="source/communication/signals_slots/"/>
             <file category="sourceC" name="source/communication/signals_slots/signals_slots.c"/> 
         </files>
@@ -131,11 +132,11 @@
 #define __USER_APP_CFG_H__ "user_app_cfg.h"
          </Pre_Include_Global_h>			
     </component>	
-    <component Cclass="MicroBoot" Cversion="0.5.2" Csub="shell" Cgroup="components" condition="shell">
+    <component Cclass="MicroBoot" Cversion="0.9.6" Csub="shell" Cgroup="components" condition="shell">
         <description>MicroBoot shell</description>
         <files>
 			<file category="include" name="source/"/>			
-			<file category="header" name="template/user_app_cfg.h" version="0.5.2" attr="config"/> 		
+			<file category="header" name="template/user_app_cfg.h" version="0.9.6" attr="config"/> 		
 		    <file category="include" name="source/communication/shell/"/>
             <file category="sourceC" name="source/communication/shell/micro_shell.c"/> 
 			<file category="sourceC" name="source/communication/msg_map/msg_check_arg.c"/>
@@ -146,11 +147,11 @@
 #define __USER_APP_CFG_H__ "user_app_cfg.h"
          </Pre_Include_Global_h>			
     </component>	
-    <component Cclass="MicroBoot" Cversion="0.5.2" Csub="subscribe_publish" Cgroup="components" condition="subscribe_publish">
+    <component Cclass="MicroBoot" Cversion="0.9.6" Csub="subscribe_publish" Cgroup="components" condition="subscribe_publish">
         <description>MicroBoot subscribe_publish</description>
         <files>
 			<file category="include" name="source/"/>			
-			<file category="header" name="template/user_app_cfg.h" version="0.5.2" attr="config"/> 		
+			<file category="header" name="template/user_app_cfg.h" version="0.9.6" attr="config"/> 		
 		    <file category="include" name="source/communication/subscribe_publish/"/>
             <file category="sourceC" name="source/communication/subscribe_publish/subscribe_publish.c"/>
 			<file category="sourceC" name="source/communication/msg_map/msg_check_arg.c"/>
@@ -161,11 +162,11 @@
 #define __USER_APP_CFG_H__ "user_app_cfg.h"
          </Pre_Include_Global_h>			
     </component>		
-    <component Cclass="MicroBoot" Cversion="0.5.2" Csub="Bootloader" Cgroup="components" condition="Bootloader">
+    <component Cclass="MicroBoot" Cversion="0.9.6" Csub="Bootloader" Cgroup="components" condition="Bootloader">
         <description>MicroBoot bootloader</description>
         <files>
 			<file category="include" name="source/"/>			
-			<file category="header" name="template/user_app_cfg.h" version="0.5.2" attr="config"/> 		
+			<file category="header" name="template/user_app_cfg.h" version="0.9.6" attr="config"/> 		
 		    <file category="include" name="source/bootloader/"/>
             <file category="sourceC" name="source/bootloader/bootloader.c"/>
         </files>
@@ -173,11 +174,11 @@
 #define __USER_APP_CFG_H__ "user_app_cfg.h"
          </Pre_Include_Global_h>			
     </component>	
-    <component Cclass="MicroBoot" Cversion="0.5.2" Csub="check_agent_engine" Cgroup="components" condition="check_agent_engine">
+    <component Cclass="MicroBoot" Cversion="0.9.6" Csub="check_agent_engine" Cgroup="components" condition="check_agent_engine">
         <description>MicroBoot check_agent_engine</description>
         <files>
 			<file category="include" name="source/"/>			
-			<file category="header" name="template/user_app_cfg.h" version="0.5.2" attr="config"/> 		
+			<file category="header" name="template/user_app_cfg.h" version="0.9.6" attr="config"/> 		
 		    <file category="include" name="source/check_agent_engine/"/>
             <file category="sourceC" name="source/check_agent_engine/check_agent_engine.c"/> 
         </files>
@@ -186,28 +187,28 @@
          </Pre_Include_Global_h>			
     </component>	
 	
-    <component Cclass="MicroBoot" Cversion="0.5.2" Csub="ymodem_ota" Cgroup="example" condition="ymodem_ota">
+    <component Cclass="MicroBoot" Cversion="0.9.6" Csub="ymodem_ota" Cgroup="example" condition="ymodem_ota">
         <description>MicroBoot check_agent_engine</description>
         <files>
 		    <file category="include" name="example/ymodem/intelhex/"/>
 			<file category="include" name="example/ymodem/"/>
-            <file category="sourceC" name="example/ymodem/ymodem_ota.c" attr="config" version="0.5.2"/>
-			<file category="header" name="example/ymodem/ymodem_ota.h" attr="config" version="0.5.2"/>
+            <file category="sourceC" name="example/ymodem/ymodem_ota.c" attr="config" version="0.9.6"/>
+			<file category="header" name="example/ymodem/ymodem_ota.h" attr="config" version="0.9.6"/>
 			<file category="sourceC" name="example/ymodem/intelhex/intelhex.c"/>
         </files>			
     </component>
-    <component Cclass="MicroBoot" Cversion="0.5.2" Csub="ymodem_receive" Cgroup="example" condition="ymodem">
+    <component Cclass="MicroBoot" Cversion="0.9.6" Csub="ymodem_receive" Cgroup="example" condition="ymodem">
         <description>MicroBoot check_agent_engine</description>
         <files>
-            <file category="sourceC" name="example/ymodem/ymodem_receive.c" attr="config" version="0.5.2"/>
-			<file category="header" name="example/ymodem/ymodem_receive.h" attr="config" version="0.5.2"/>
+            <file category="sourceC" name="example/ymodem/ymodem_receive.c" attr="config" version="0.9.6"/>
+			<file category="header" name="example/ymodem/ymodem_receive.h" attr="config" version="0.9.6"/>
         </files>
     </component>
-    <component Cclass="MicroBoot" Cversion="0.5.2" Csub="ymodem_send" Cgroup="example" condition="ymodem">
+    <component Cclass="MicroBoot" Cversion="0.9.6" Csub="ymodem_send" Cgroup="example" condition="ymodem">
         <description>MicroBoot check_agent_engine</description>
         <files>
-            <file category="sourceC" name="example/ymodem/ymodem_send.c" attr="config" version="0.5.2"/>
-			<file category="header" name="example/ymodem/ymodem_send.h" attr="config" version="0.5.2"/>
+            <file category="sourceC" name="example/ymodem/ymodem_send.c" attr="config" version="0.9.6"/>
+			<file category="header" name="example/ymodem/ymodem_send.h" attr="config" version="0.9.6"/>
         </files>
     </component>	
   </components>
