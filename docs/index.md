@@ -1,15 +1,15 @@
-# Welcome to MkDocs
+# MicorBoot简介
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+MicroBoot 是一个轻量级框架，旨在简化和加速嵌入式单片机程序的启动和开发过程。
 
-## Commands
+## 引言
 
 * `mkdocs new [dir-name]` - Create a new project.
 * `mkdocs serve` - Start the live-reloading docs server.
 * `mkdocs build` - Build the documentation site.
 * `mkdocs -h` - Print help message and exit.
 
-## Project layout
+## MicorBoot的架构
 
     mkdocs.yml    # The configuration file.
     docs/

@@ -5,28 +5,28 @@ site_author: kk  # 文档作者
 
 # 导航栏
 nav:
-  - Home: index.md
-  - 入门指南:
-      - 安装指南: installation.md
-      - 快速上手: quick-start.md
-  - 用户指南:
+  - 简介: index.md
+  - 快速移植:
+      - 基于 CMSIS-PACK 移植 : installation.md
+      - 基于 RT-Thread 软件包移植 : installation.md
+      - 基于源码移植: quick-start.md
+  - 使用指南:
       - 配置: config.md
       - 使用方法: usage.md
-  - 基础知识: 
+  - 必备知识: 
       - 变参函数和可变参数宏: basic_knowledge/ParameterMacro.md
-      # - 面向对象脚本语言: 
       - 状态机: basic_knowledge/fsm.md    
       - 状态机脚本语言: basic_knowledge/fsm.md        
       - 线程安全和多实例: basic_knowledge/ThreadSafetyAndFunctionReentrancy.md
-  - 模块:
+  - 组件介绍:
+        # - queue:    
       - ymodem: ymodem/ymodem.md  
-      # - queue:    
       - 信号槽: signals_slots/signals_slots.md
       - 发布订阅: subscribe_publish/subscribe_publish.md
       - shell: shell/shell.md
-  - 第三方库:
-      - ARM-2D: ARM-2D/ARM-2D.md
-      - CherryUSB: CherryUSB/CherryUSB.md    
+  - 参与项目:
+      - 如何贡献代码: ARM-2D/ARM-2D.md
+      - 如何贡献文档: CherryUSB/CherryUSB.md    
   - About:
       - Overview: about/about.md
       - Team: about/team.md
