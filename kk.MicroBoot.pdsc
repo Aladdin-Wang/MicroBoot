@@ -17,11 +17,10 @@
   <repository type="git">https://github.com/Aladdin-Wang/MicroBoot.git</repository>
 
 <releases>
-    <release date="2024-08-12" version="0.5.2" tag="v0.5.2" >
-      - Latest stable release
-    </release>    
+    <release version="0.9.6" date="2024-08-12">
+        <description>Latest stable release</description>
+    </release>
 </releases>
-
 
   <keywords>
     <!-- keywords for indexing -->
