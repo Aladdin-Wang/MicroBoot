@@ -37,7 +37,6 @@ nav:
 # 主题配置
 theme:
   name: material  # 使用 Material 主题
-  highlightjs: true  # 启用 Highlight.js
   highlightjs_style: github  # 使用 GitHub 风格
   features:
     - navigation.tabs  # 启用选项卡导航
@@ -56,7 +55,23 @@ extra_javascript:
 plugins:
   - search
   - awesome-pages
-  
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - footnotes
+  - def_list
+  - admonition
+  - codehilite:
+      linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.critic
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      
 # GitHub 仓库配置
 repo_name: Aladdin-Wang/MicroBoot  # GitHub 用户名和仓库名称
 repo_url: https://github.com/Aladdin-Wang/MicroBoot  # GitHub 仓库的 URL
