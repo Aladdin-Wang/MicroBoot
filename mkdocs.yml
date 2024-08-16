@@ -24,11 +24,13 @@ nav:
   - 第三方库:   
       - plooc: 3rd-party/plooc/plooc.md 
       - fsm: 3rd-party/fsm/fsm.md       
-  - 开发神器:   
-      - daplink: tools/daplink/daplink.md  
   - 参与项目:
       - 如何贡献代码: contribute/code.md
       - 如何贡献文档: contribute/document.md
+  - 开发神器:   
+      - daplink: tools/daplink/daplink.md        
+  - 私人订制:   
+      - BootLoader: bootloader/BootLoader.md        
   - About:
       - Overview: about/about.md
       - Team: about/team.md
