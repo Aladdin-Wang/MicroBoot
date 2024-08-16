@@ -28,7 +28,7 @@ nav:
       - 如何贡献代码: contribute/code.md
       - 如何贡献文档: contribute/document.md
   - 开发神器:   
-      - daplink: tools/daplink/daplink.md        
+      - microlink: tools/microlink/microlink.md        
   - 私人订制:   
       - BootLoader: bootloader/BootLoader.md        
   - About:
