@@ -13,9 +13,11 @@ nav:
   - 使用指南:
       - 配置: usage-guide/config.md
   - 必备知识: 
-      - 变参函数和可变参数宏: utilities/ParameterMacro.md      
-      - 线程安全和多实例: utilities/ThreadSafety.md
+      - 变参函数和可变参数宏: utilities/ParameterMacro.md
+      - Flash下载算法制作: utilities/FLM.md
   - 组件介绍:
+      - FlashBlob:  components/flash_blob/flash_blob.md
+      - BootLoader: components/bootloader/bootloader.md
       - queue:  components/queue/queue.md
       - ymodem: components/ymodem/ymodem.md  
       - 信号槽: components/signals_slots/signals_slots.md
