@@ -12,7 +12,7 @@
 
 - 高速SWD
 
-  ![](..\..\img\microlink\10M.png)
+  ![](../../images/microlink/10M.png)
 
 - 高速JTAG
 
