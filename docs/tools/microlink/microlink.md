@@ -39,7 +39,15 @@ MicroLink基于标准的CMSIS-DAP在线调试下载协议，针对传统DAPLink�
 
 与目前市面上最新的J-LINK-V12速度对比，目标芯片使用STM32H743，开发环境MDK V5.39，分别使用**MicroLink**和**Jlink V12**将**2558KB**的HEX文件下载到内部FLASH中。使用逻辑分析仪测试时钟引脚，计算出擦除，编程，校验全过程的时间，MicroLink使用时间为**24.205秒**，Jlink V12使用时间为**33.439秒**，测试数据如下图：
 
-![](../../images/microlink/MicroLink_Jlink.jpg)
+**Jlink V12测试结果：**
+
+![](../../images/microlink/JLINK_Download.jpg)
+
+**MicroLink测试结果：**
+
+![](../../images/microlink/MicroLink_Download.jpg)
+
+**测试结果对比：**
 
 | 调试器        | 总耗时（擦除，编程，校验） |
 | ------------- | :------------------------: |
