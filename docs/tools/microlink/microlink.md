@@ -27,15 +27,40 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 ### 1、DAPLink 在线下载和调试
 
-MicroLink基于标准的CMSIS-DAP在线调试下载协议，针对传统DAPLink工具下载和调试速度缓慢的问题进行了全面优化。除了在软件上对DAPLink代码进行了深度优化，MicroLink在硬件上采用了先辑半导体的高性能芯片HPM5301，该芯片主频高达480MHz，内置PHY的高速USB接口，不仅提升了传输速率，还大幅缩短了下载和调试的时间，使其能够胜任更大规模和更复杂的嵌入式应用项目。
+MicroLink基于标准的CMSIS-DAP在线调试下载协议，针对传统DAPLink工具下载和调试速度缓慢的问题进行了全面优化。除了在软件上对DAPLink代码进行了深度优化，并且在硬件上采用了先辑半导体的高性能芯片HPM5301，该芯片主频高达480MHz，内置PHY的高速USB接口，不仅提升了传输速率，还大幅缩短了下载和调试的时间，使其能够胜任更大规模和更复杂的嵌入式应用项目。
 
-- 高速SWD：支持高达10MHz的稳定时钟频率，为资源有限的嵌入式设备提供快速、可靠的单线调试和下载体验。
+高速SWD支持高达10MHz的稳定时钟频率，为资源有限的嵌入式设备提供快速、可靠的单线调试和下载体验。
 
-  ![](../../images/microlink/10M.png)
-
-
+![](../../images/microlink/10M.png)
 
 
+
+- **下载速度对比测试**
+
+与目前市面上最新的J-LINK-V12速度对比，目标芯片使用STM32H743，开发环境MDK V5.39，分别使用**MicroLink**和**Jlink V12**将**2558KB**的HEX文件下载到内部FLASH中。使用逻辑分析仪测试时钟引脚，计算出擦除，编程，校验全过程的时间，MicroLink使用时间为**24.205秒**，Jlink V12使用时间为**33.439秒**，测试数据如下图：
+
+![](../../images/microlink/MicroLink_Jlink.jpg)
+
+| 调试器        | 总耗时（擦除，编程，校验） |
+| ------------- | :------------------------: |
+| **MicroLink** |        **24.205秒**        |
+| J-LINK V12    |          33.439秒          |
+
+- **使用步骤**
+
+  兼容各种DAP-LINK，支持Keil、基于OpenOCD的STM32CubeIDE、CLion等各种IDE，以Keil为例：
+
+  1、在DEBUG栏中选择CMSIS-DAP Debugger
+
+  ![](../../images/microlink/DEBUG.png)
+
+  2、选择MICROLINK CMSIS-DAP，Max Clock下载时钟频率选择10MHz
+
+  ![](../../images/microlink/MAX_Clock.jpg)
+
+  3、勾选自动复位选项，添加下载算法
+
+  ![](../../images/microlink/XZSF.jpg)
 
 ### 2、USB转串口或485
 
