@@ -9,6 +9,7 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 ### 1、产品特点
 
 - 支持SWD/JTAG接口，下载速度超越JLINK V12（时钟10Mhz）
+- 支持使用OpenOCD调试的IDE调试ARM/RISC-V等芯片
 - 支持USB转串口，最大10M波特率无丢包
 - 支持大量Cortex-M系列芯片U盘拖拽下载，内置大量下载算法，自动识别目标芯片
 - 支持大量Cortex-M系列芯片脱机下载，自动识别目标芯片，自动触发下载
@@ -25,6 +26,42 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 ![](../../images/microlink/MicroLink.jpg)
 
 结合以上产品特点，为开发者提供了下载调试，批量生产，售后维护，固件升级等一站式解决方案。
+
+### 2、使用说明
+
+#### 2.1、系统文件说明
+
+- DETAILS.TXT
+
+
+
+- MBED.HTM
+
+  
+
+#### 2.2、引脚说明
+
+
+
+#### 2.3、操作说明
+
+- 以Keil为例
+
+1、在DEBUG栏中选择CMSIS-DAP Debugger
+
+![](../../images/microlink/DEBUG.png)
+
+2、选择MICROLINK CMSIS-DAP，Max Clock下载时钟频率选择10MHz
+
+![](../../images/microlink/MAX_Clock.jpg)
+
+3、勾选自动复位选项，添加下载算法
+
+![](../../images/microlink/XZSF.jpg)
+
+- 以SES为例
+
+
 
 ## 二、功能介绍
 
@@ -56,22 +93,6 @@ MicroLink基于标准的CMSIS-DAP在线调试下载协议，针对传统DAPLink�
 | ------------- | :------------------------: |
 | **MicroLink** |        **24.205秒**        |
 | J-LINK V12    |          33.439秒          |
-
-- **使用步骤**
-
-  兼容各种DAP-LINK，支持Keil、基于OpenOCD的STM32CubeIDE、CLion等各种IDE，以Keil为例：
-
-  1、在DEBUG栏中选择CMSIS-DAP Debugger
-
-  ![](../../images/microlink/DEBUG.png)
-
-  2、选择MICROLINK CMSIS-DAP，Max Clock下载时钟频率选择10MHz
-
-  ![](../../images/microlink/MAX_Clock.jpg)
-
-  3、勾选自动复位选项，添加下载算法
-
-  ![](../../images/microlink/XZSF.jpg)
 
 ### 2、USB转串口或485
 
