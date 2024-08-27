@@ -23,9 +23,10 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 
 
-<div style="text-align: center;">
-  <img src="../../images/microlink/MicroLink.jpg" style="display: block; margin: 0 auto;" />
-</div>
+![示例图片](../../images/microlink/MicroLink.jpg)
+
+
+
 
 结合以上产品特点，为开发者提供了下载调试，批量生产，售后维护，固件升级等一站式解决方案。
 
@@ -120,10 +121,8 @@ MicroLink支持U盘拖拽下载功能，使固件更新变得像复制文件一�
 
 MicroLink内置Ymodem协议，支持通过串口进行可靠的文件传输。Ymodem协议在多次重传时仍能保持数据的完整性，适用于嵌入式系统的固件更新和调试中需要高可靠性传输的场景。
 
-<video controls width="600" height="400">
-  <source src="../../images/microlink/ymodem.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<iframe src="https://player.bilibili.com/player.html?bvid=BV1CcsWeoE5o" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
+
 
 ### 5、固件升级
 
