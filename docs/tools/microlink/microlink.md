@@ -4,7 +4,7 @@
 
 ## 一、产品概述
 
-MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为加速和简化开发者在**研发、调试、量产和售后服务**各阶段的工作流程而设计。不同于传统的开发工具链，MicroLink将**调试器**、**USB转串口**、**离线下载器**和**固件升级工具**等多种功能集成到一个设备中，为开发者提供一站式解决方案。无论您是开发新产品、调试代码、批量生产还是售后维护，MicroLink都能满足您的需求，大大提升开发效率，减少工具切换带来的时间和财务成本。
+MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为加速和简化开发者在**研发、调试、量产和售后服务**各阶段的工作流程而设计。不同于传统的开发工具链，MicroLink在DAPLink的基础上将**调试器**、**USB转串口**、**离线下载器**和**固件升级工具**等多种功能集成到一个设备中，为开发者提供一站式解决方案。无论您是开发新产品、调试代码、批量生产还是售后维护，MicroLink都能满足您的需求，大大提升开发效率，减少工具切换带来的时间和财务成本。
 
 ### 1、产品特点
 
@@ -23,19 +23,25 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 
 
-![](../../images/microlink/MicroLink.jpg)
+<div style="text-align: center;">
+  <img src="../../images/microlink/MicroLink.jpg" style="display: block; margin: 0 auto;" />
+</div>
 
 结合以上产品特点，为开发者提供了下载调试，批量生产，售后维护，固件升级等一站式解决方案。
 
 ### 2、使用说明
 
-#### 2.1、系统文件说明
+#### 2.1、U盘文件说明
 
 - DETAILS.TXT
 
 
 
 - MBED.HTM
+
+
+
+- FAIL.TXT
 
   
 
@@ -113,6 +119,11 @@ MicroLink支持U盘拖拽下载功能，使固件更新变得像复制文件一�
 ### 4、内置Ymodem协议
 
 MicroLink内置Ymodem协议，支持通过串口进行可靠的文件传输。Ymodem协议在多次重传时仍能保持数据的完整性，适用于嵌入式系统的固件更新和调试中需要高可靠性传输的场景。
+
+<video controls width="600" height="400">
+  <source src="../../images/microlink/ymodem.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ### 5、固件升级
 
