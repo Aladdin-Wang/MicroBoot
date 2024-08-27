@@ -66,9 +66,19 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 ![](../../images/microlink/XZSF.jpg)
 
-- 以SES为例
+- 以SEGGER Embedded Studio为例
 
+1、点击工程， 右击选择“options” ， 在弹出的对话框中点击Debugger,然后选择GDB Server  
 
+![](../../images/microlink/SES1.jpg)
+
+2、点击GDB Server,在GDB Server Command Line中查看openocd配置文件,更改此配置文件为 cmsis-dap.cfg
+
+![](../../images/microlink/SES2.jpg)
+
+3、点击Target,连接connect GDB Server在GDB Server Command Line中查看openocd配置文件,更改此配置文件为 cmsis-dap.cfg
+
+![](../../images/microlink/SES3.jpg)
 
 ## 二、功能介绍
 
