@@ -27,8 +27,9 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 
 
-
 结合以上产品特点，为开发者提供了下载调试，批量生产，售后维护，固件升级等一站式解决方案。
+
+
 
 ## 二、功能介绍
 
@@ -79,7 +80,7 @@ ARM官方DAPLINK的拖拽烧录只能针对某一个型号单片机，要想支�
 
 MicroLink为了让U盘拖拽下载功能真正走进千家万户，对Cortex-M系列的大量芯片做了适配工作，其中意法半导体STM32，国产芯片兆易创新GD32基本都以适配完成。
 
-U盘拖拽下载支持HEX文件和BIN文件，HEX文件自带地址信息，自动根据HEX中的地址选择烧录的位置，BIN文件默认下载的地址为0x08000000，以下演示视频是将HEX文件复制到U盘中，完成固件下载。
+U盘拖拽下载支持HEX文件和BIN文件，HEX文件自带地址信息，自动根据HEX中的地址选择烧录的位置，BIN文件默认下载的地址为0x08000000，以下演示视频是将HEX文件复制到U盘中，完成固件下载：
 
 <iframe src="https://player.bilibili.com/player.html?bvid=BV14HsKeJEQ1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
 
@@ -91,7 +92,13 @@ MicorBoot简介：https://microboot.readthedocs.io/zh-cn/latest/
 
 MicorBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
+简化接线图：
 
+
+
+**注：当SWD接口连接到板子时，U盘拖拽下载默认使用SWD接口，当只有串口连接时，才自动切换到ymodem协议下载。**
+
+ymodem协议支持传输任意文件，配合MicorBoot可以用来升级固件或者传输音视频等文件到目标设备，以下演示视频是将bin文件复制到U盘中，完成ymodem的文件传输。传输过程中，可以打开串口助手，连接MicroLink的虚拟串口，选择波特率，MicroLink将以串口设定的波特率传输数据，并实时显示ymodem传输的数据。
 
 <iframe src="https://player.bilibili.com/player.html?bvid=BV1CcsWeoE5o" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
 
@@ -101,6 +108,8 @@ MicorBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 MicroLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，升级完成可以查看DETAILS.TXT文件，了解升级后的新功能。
 
 升级包下载地址：
+
+
 
 ## 三、使用说明
 
@@ -130,13 +139,14 @@ MBED.HTM是一个在线文档的网址链接，双击该文件即可访问在线
 | -------- | ----------------------------------- |
 | 5V       | 5V电源输出                          |
 | 3.3V     | 3.3V电源输出                        |
-| GND      | GND公共低                           |
+| GND      | GND公共地                           |
 | DIO/TMS  | SWD接口数据信号，或JTAG接口模式选择 |
 | CLK/TCK  | SWD接口时钟信号，或JTAG接口时钟     |
 | TDO      | JTAG接口数据输出                    |
 | TDI      | JTAG接口数据输入                    |
 | RX/A     | 串口数据接收，或者485接口A          |
 | TX/B     | 串口数据发生，或者485接口B          |
+| RST      | 复位脚输出                          |
 
 SWD简化接线图：
 
