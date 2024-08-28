@@ -6,7 +6,7 @@
 
 MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为加速和简化开发者在**研发、调试、量产和售后服务**各阶段的工作流程而设计。不同于传统的开发工具链，MicroLink在DAPLink的基础上将**调试器**、**USB转串口**、**离线下载器**和**固件升级工具**等多种功能集成到一个设备中，为开发者提供一站式解决方案。无论您是开发新产品、调试代码、批量生产还是售后维护，MicroLink都能满足您的需求，大大提升开发效率，减少工具切换带来的时间和财务成本。
 
-### 1、产品特点
+### 产品特点
 
 - 支持SWD/JTAG接口，下载速度超越JLINK V12（时钟10Mhz）
 - 支持使用OpenOCD调试的IDE调试ARM/RISC-V等芯片
@@ -29,62 +29,6 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 
 结合以上产品特点，为开发者提供了下载调试，批量生产，售后维护，固件升级等一站式解决方案。
-
-### 2、使用说明
-
-#### 2.1、U盘文件说明
-
-- DETAILS.TXT
-
-DETAILS.TXT记录了MicroLink软硬件版本和每次版本更新的内容。
-
-![](../../images/microlink/DETAILS.jpg)
-
-- MBED.HTM
-
-MBED.HTM是一个在线文档的网址链接，双击该文件即可访问在线文档，进一步了解更多的功能。
-
-网址链接：https://microboot.readthedocs.io/zh-cn/latest/tools/microlink/microlink/
-
-![](../../images/microlink/readdocs.png)
-
-- FAIL.TXT
-
-  FAIL.TXT文件只有在U盘拖拽下载失败时，会自动生成，记录了下载失败的原因，如果下载成功，会自动重启U盘，不会生成新的提示文件。
-  
-  ![](../../images/microlink/FAIL.png)
-
-
-
-#### 2.2、操作说明
-
-- 以Keil为例
-
-1、在DEBUG栏中选择CMSIS-DAP Debugger
-
-![](../../images/microlink/DEBUG.png)
-
-2、与设备连接好SWD引脚，选择MICROLINK CMSIS-DAP，Max Clock下载时钟频率选择10MHz
-
-![](../../images/microlink/MAX_Clock.jpg)
-
-3、勾选自动复位选项，添加下载算法
-
-![](../../images/microlink/XZSF.jpg)
-
-- 以SEGGER Embedded Studio为例
-
-1、点击工程， 右击选择“options” ， 在弹出的对话框中点击Debugger,然后选择GDB Server  
-
-![](../../images/microlink/SES1.jpg)
-
-2、点击GDB Server,在GDB Server Command Line中查看openocd配置文件,更改此配置文件为 cmsis-dap.cfg
-
-![](../../images/microlink/SES2.jpg)
-
-3、与设备连接好JTAG引脚，点击Target,连接connect GDB Server在GDB Server Command Line中查看openocd配置文件,更改此配置文件为 cmsis-dap.cfg
-
-![](../../images/microlink/SES3.jpg)
 
 ## 二、功能介绍
 
@@ -158,4 +102,76 @@ MicroLink支持系统固件升级，可以为后续添加更多的功能，升�
 
 升级包下载地址：
 
-## 三、常见问题
+## 三、使用说明
+
+### 1、U盘文件说明
+
+- DETAILS.TXT
+
+DETAILS.TXT记录了MicroLink软硬件版本和每次版本更新的内容。
+
+![](../../images/microlink/DETAILS.jpg)
+
+- MBED.HTM
+
+MBED.HTM是一个在线文档的网址链接，双击该文件即可访问在线文档，进一步了解更多的功能。
+
+![](../../images/microlink/readdocs.png)
+
+- FAIL.TXT
+
+  FAIL.TXT文件只有在U盘拖拽下载失败时，会自动生成，记录了下载失败的原因，如果下载成功，会自动重启U盘，不会生成新的提示文件。
+
+  ![](../../images/microlink/FAIL.png)
+
+### 2、引脚说明
+
+| 引脚名称 | 功能                                |
+| -------- | ----------------------------------- |
+| 5V       | 5V电源输出                          |
+| 3.3V     | 3.3V电源输出                        |
+| GND      | GND公共低                           |
+| DIO/TMS  | SWD接口数据信号，或JTAG接口模式选择 |
+| CLK/TCK  | SWD接口时钟信号，或JTAG接口时钟     |
+| TDO      | JTAG接口数据输出                    |
+| TDI      | JTAG接口数据输入                    |
+| RX/A     | 串口数据接收，或者485接口A          |
+| TX/B     | 串口数据发生，或者485接口B          |
+
+SWD简化接线图：
+
+
+
+JTAG简化接线图：
+
+
+
+### 3、操作说明
+
+- 以Keil为例
+
+1、在DEBUG栏中选择CMSIS-DAP Debugger
+
+![](../../images/microlink/DEBUG.png)
+
+2、与设备连接好SWD引脚，选择MICROLINK CMSIS-DAP，Max Clock下载时钟频率选择10MHz
+
+![](../../images/microlink/MAX_Clock.jpg)
+
+3、勾选自动复位选项，添加下载算法
+
+![](../../images/microlink/XZSF.jpg)
+
+- 以SEGGER Embedded Studio为例
+
+1、点击工程， 右击选择“options” ， 在弹出的对话框中点击Debugger,然后选择GDB Server  
+
+![](../../images/microlink/SES1.jpg)
+
+2、点击GDB Server,在GDB Server Command Line中查看openocd配置文件,更改此配置文件为 cmsis-dap.cfg
+
+![](../../images/microlink/SES2.jpg)
+
+3、与设备连接好JTAG引脚，点击Target,连接connect GDB Server在GDB Server Command Line中查看openocd配置文件,更改此配置文件为 cmsis-dap.cfg
+
+![](../../images/microlink/SES3.jpg)
