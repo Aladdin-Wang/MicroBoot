@@ -36,21 +36,27 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 - DETAILS.TXT
 
+DETAILS.TXT记录了MicroLink软硬件版本和每次版本更新的内容。
 
+![](../../images/microlink/DETAILS.jpg)
 
 - MBED.HTM
 
+MBED.HTM是一个在线文档的网址链接，双击该文件即可访问在线文档，进一步了解更多的功能。
 
+网址链接：https://microboot.readthedocs.io/zh-cn/latest/tools/microlink/microlink/
+
+![](../../images/microlink/readdocs.png)
 
 - FAIL.TXT
 
+  FAIL.TXT文件只有在U盘拖拽下载失败时，会自动生成，记录了下载失败的原因，如果下载成功，会自动重启U盘，不会生成新的提示文件。
   
-
-#### 2.2、引脚说明
-
+  ![](../../images/microlink/FAIL.png)
 
 
-#### 2.3、操作说明
+
+#### 2.2、操作说明
 
 - 以Keil为例
 
@@ -58,7 +64,7 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 ![](../../images/microlink/DEBUG.png)
 
-2、选择MICROLINK CMSIS-DAP，Max Clock下载时钟频率选择10MHz
+2、与设备连接好SWD引脚，选择MICROLINK CMSIS-DAP，Max Clock下载时钟频率选择10MHz
 
 ![](../../images/microlink/MAX_Clock.jpg)
 
@@ -76,7 +82,7 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 ![](../../images/microlink/SES2.jpg)
 
-3、点击Target,连接connect GDB Server在GDB Server Command Line中查看openocd配置文件,更改此配置文件为 cmsis-dap.cfg
+3、与设备连接好JTAG引脚，点击Target,连接connect GDB Server在GDB Server Command Line中查看openocd配置文件,更改此配置文件为 cmsis-dap.cfg
 
 ![](../../images/microlink/SES3.jpg)
 
@@ -123,19 +129,33 @@ MicroLink内置USB转串口功能，支持常见的串口和485通信，串口�
 
 ### 3、U盘拖拽下载
 
-MicroLink支持U盘拖拽下载功能，使固件更新变得像复制文件一样简单。用户只需将固件文件拖放到虚拟U盘中，MicroLink便能自动完成下载，无需复杂的配置和指令，极大地降低了操作门槛。
+MicroLink支持U盘拖拽下载功能，使固件更新变得像复制文件一样简单。用户只需将固件文件拖放到虚拟U盘中，MicroLink便能自动完成下载，摆脱对上位机的依赖，极大地降低了操作门槛。
 
+ARM官方DAPLINK的拖拽烧录只能针对某一个型号单片机，要想支持其他单片机必须更新调试器的固件，对使用者门槛较高，导致这么方便的功能食之无味弃之可惜。
 
+MicroLink为了让U盘拖拽下载功能真正走进千家万户，对Cortex-M系列的大量芯片做了适配工作，其中意法半导体STM32，国产芯片兆易创新GD32基本都以适配完成。
+
+U盘拖拽下载支持HEX文件和BIN文件，HEX文件自带地址信息，自动根据HEX中的地址选择烧录的位置，BIN文件默认下载的地址为0x08000000，以下演示视频是将HEX文件复制到U盘中，完成固件下载。
+
+<iframe src="https://player.bilibili.com/player.html?bvid=BV14HsKeJEQ1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
 
 ### 4、内置Ymodem协议
 
 MicroLink内置Ymodem协议，支持通过串口进行可靠的文件传输。Ymodem协议在多次重传时仍能保持数据的完整性，适用于嵌入式系统的固件更新和调试中需要高可靠性传输的场景。
+
+MicorBoot简介：https://microboot.readthedocs.io/zh-cn/latest/
+
+MicorBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
+
+
 
 <iframe src="https://player.bilibili.com/player.html?bvid=BV1CcsWeoE5o" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
 
 
 ### 5、固件升级
 
+MicroLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，升级完成可以查看DETAILS.TXT文件，了解升级后的新功能。
 
+升级包下载地址：
 
 ## 三、常见问题
