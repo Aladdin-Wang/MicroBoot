@@ -90,25 +90,25 @@ MicroLink为了让U盘拖拽下载功能真正走进千家万户，对Cortex-M�
 U盘拖拽下载支持HEX文件和BIN文件，HEX文件自带地址信息，自动根据HEX中的地址选择烧录的位置，BIN文件默认下载的地址为0x08000000，以下演示视频是将HEX文件复制到U盘中，完成固件下载：
 
 <iframe src="https://player.bilibili.com/player.html?bvid=BV14HsKeJEQ1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
-
 ### 4、内置Ymodem协议
 
 MicroLink内置Ymodem协议，支持通过串口进行可靠的文件传输。Ymodem协议在多次重传时仍能保持数据的完整性，适用于嵌入式系统的固件更新和调试中需要高可靠性传输的场景。
+
+使用内置的ymodem协议发送文件，首先需要目标设备支持ymodem协议接收文件，MicorBoot开源框架集成了ymodem模块，可以方便用户直接安装使用，具体使用方法请看MicorBoot简介。
 
 MicorBoot简介：https://microboot.readthedocs.io/zh-cn/latest/
 
 MicorBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
-简化接线图：
+数据流图：
 
-
+![](../../images/microlink/data_flow.jpg)
 
 **注：当SWD接口连接到板子时，U盘拖拽下载默认使用SWD接口，当只有串口连接时，才自动切换到ymodem协议下载。**
 
 ymodem协议支持传输任意文件，配合MicorBoot可以用来升级固件或者传输音视频等文件到目标设备，以下演示视频是将bin文件复制到U盘中，完成ymodem的文件传输。传输过程中，可以打开串口助手，连接MicroLink的虚拟串口，选择波特率，MicroLink将以串口设定的波特率传输数据，并实时显示ymodem传输的数据。
 
 <iframe src="https://player.bilibili.com/player.html?bvid=BV1CcsWeoE5o" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
-
 
 ### 5、固件升级
 
@@ -157,11 +157,11 @@ MBED.HTM是一个在线文档的网址链接，双击该文件即可访问在线
 
 SWD简化接线图：
 
-
+![](../../images/microlink/SWD.jpg)
 
 JTAG简化接线图：
 
-
+![](../../images/microlink/JTAG.jpg)
 
 ### 3、操作说明
 
