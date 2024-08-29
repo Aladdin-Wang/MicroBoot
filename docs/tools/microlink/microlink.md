@@ -202,6 +202,6 @@ JTAG简化接线图：
 
 ![](../../images/microlink/SES2.jpg)
 
-3、与设备连接好JTAG引脚，点击Target,连接connect GDB Server在GDB Server Command Line中查看openocd配置文件,更改此配置文件为 cmsis-dap.cfg
+3、与设备连接好JTAG引脚，点击Target,连接connect GDB Server，连接成功后Output窗口如图所示
 
 ![](../../images/microlink/SES3.jpg)
