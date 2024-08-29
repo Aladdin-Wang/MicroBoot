@@ -8,18 +8,20 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 ### 产品特点
 
-- 支持SWD/JTAG接口，下载速度超越JLINK V12（时钟10Mhz）
-- 支持使用OpenOCD的IDE调试ARM/RISC-V等芯片
-- 支持USB转串口，最大10M波特率无丢包
-- 支持大量Cortex-M系列芯片U盘拖拽下载，内置大量下载算法，自动识别目标芯片
-- 支持大量Cortex-M系列芯片脱机下载，自动识别目标芯片，自动触发下载
-- 内置ymodem协议栈，U盘拖拽文件自动触发ymodem通过串口传输文件到目标设备（需配合带ymodem协议的[bootloader](https://github.com/Aladdin-Wang/MicroBoot)）
-- 支持读取目标芯片固件
-- 支持通过串口读取目标芯片任意文件（需定制）
-- 支持系统固件升级，为后续添加更多功能
-- 采用winusb对window10免驱，即插即用
-- 支持3V3/5V大电流输出电源
-- 内置防倒灌和过流保护，外部电流无法反向流入USB口，防止损坏USB
+- [x] 支持SWD/JTAG接口，下载调试速度超越JLINK V12（时钟10Mhz）
+- [x] 支持使用OpenOCD的IDE下载调试ARM/RISC-V等芯片
+- [x] 支持USB转串口，最大10M波特率无丢包
+- [x] 支持大量Cortex-M系列芯片U盘拖拽下载，内置大量下载算法，自动识别目标芯片
+- [x] 内置ymodem协议栈，U盘拖拽文件自动触发ymodem通过串口传输文件到目标设备（需配合带ymodem协议的[bootloader](https://github.com/Aladdin-Wang/MicroBoot)）
+- [x] 支持系统固件升级，为后续添加更多功能
+- [x] 采用winusb对window10免驱，即插即用
+- [x] 支持3V3/5V大电流输出电源
+- [x] 内置防倒灌和过流保护，外部电流无法反向流入USB口，防止损坏USB
+- [ ] 支持通过U盘读取目标芯片固件
+- [ ] 支持通过U盘读取目标芯片任意文件
+- [ ] 支持Cortex-M系列芯片脱机下载，自动识别目标芯片，自动触发下载
+- [ ] 支持RISC-V系列芯片U盘拖拽下载，内置大量下载算法，自动识别目标芯片
+- [ ] 支持RISC-V系列芯片脱机下载，自动识别目标芯片，自动触发下载
 
 
 
@@ -29,7 +31,19 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 结合以上产品特点，为开发者提供了下载调试，批量生产，售后维护，固件升级等一站式解决方案。
 
+### 购买地址
 
+淘宝链接：https://item.taobao.com/item.htm?ft=t&id=826800975011
+
+![](../../images/microlink/TB.png)
+
+手机淘宝扫码入口
+
+![](../../images/microlink/SJTB.png)
+
+### 更多技术支持
+
+![](../../images/microlink/WX.jpg)
 
 ## 二、功能介绍
 
