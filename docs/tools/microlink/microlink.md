@@ -9,11 +9,11 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 ### 产品特点
 
 - 支持SWD/JTAG接口，下载速度超越JLINK V12（时钟10Mhz）
-- 支持使用OpenOCD调试的IDE调试ARM/RISC-V等芯片
+- 支持使用OpenOCD的IDE调试ARM/RISC-V等芯片
 - 支持USB转串口，最大10M波特率无丢包
 - 支持大量Cortex-M系列芯片U盘拖拽下载，内置大量下载算法，自动识别目标芯片
 - 支持大量Cortex-M系列芯片脱机下载，自动识别目标芯片，自动触发下载
-- 内置ymodem协议栈，U盘拖拽文件（hex、bin）自动触发ymodem通过串口升级目标芯片固件（需配合带ymodem协议的[bootloader](https://github.com/Aladdin-Wang/MicroBoot)）
+- 内置ymodem协议栈，U盘拖拽文件自动触发ymodem通过串口传输文件到目标设备（需配合带ymodem协议的[bootloader](https://github.com/Aladdin-Wang/MicroBoot)）
 - 支持读取目标芯片固件
 - 支持通过串口读取目标芯片任意文件（需定制）
 - 支持系统固件升级，为后续添加更多功能
@@ -35,7 +35,7 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 ### 1、DAPLink 在线下载和调试
 
-MicroLink基于标准的CMSIS-DAP在线调试下载协议，针对传统DAPLink工具下载和调试速度缓慢的问题进行了全面优化。除了在软件上对DAPLink代码进行了深度优化，并且在硬件上采用了先辑半导体的高性能芯片HPM5301，该芯片主频高达480MHz，内置PHY的高速USB接口，不仅提升了传输速率，还大幅缩短了下载和调试的时间，使其能够胜任更大规模和更复杂的嵌入式应用项目。
+MicroLink基于标准的CMSIS-DAP在线调试下载协议，针对传统DAPLink工具下载和调试速度缓慢的问题进行了全面优化。除了在软件上对[ARMmbed DAPLink](https://github.com/ARMmbed/DAPLink)代码进行了深度优化，增加了大量的下载算法，还替换了传输速度更快的[CherryUSB](https://github.com/cherry-embedded/CherryUSB)协议栈，并且在硬件上采用了先辑半导体的高性能芯片HPM5301，该芯片主频高达480MHz，内置PHY的高速USB接口，不仅提升了传输速率，还大幅缩短了下载和调试的时间，使其能够胜任更大规模和更复杂的嵌入式应用项目。
 
 高速SWD支持高达10MHz的稳定时钟频率，为资源有限的嵌入式设备提供快速、可靠的单线调试和下载体验。
 
