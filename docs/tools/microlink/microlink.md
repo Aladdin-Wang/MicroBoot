@@ -33,13 +33,9 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 ### 购买地址
 
-淘宝链接：https://item.taobao.com/item.htm?ft=t&id=826800975011
+![](../../images/microlink/TB.jpg)
 
-![](../../images/microlink/TB.png)
 
-手机淘宝扫码入口
-
-![](../../images/microlink/SJTB.png)
 
 ### 更多技术支持
 
@@ -123,7 +119,6 @@ MicorBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 ymodem协议支持传输任意文件，配合MicorBoot可以用来升级固件或者传输音视频等文件到目标设备，以下演示视频是将bin文件复制到U盘中，完成ymodem的文件传输。传输过程中，可以打开串口助手，连接MicroLink的虚拟串口，选择波特率，MicroLink将以串口设定的波特率传输数据，并实时显示ymodem传输的数据。
 
 <iframe src="https://player.bilibili.com/player.html?bvid=BV1CcsWeoE5o" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
-
 ### 5、固件升级
 
 MicroLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，升级完成可以查看DETAILS.TXT文件，了解升级后的新功能。
