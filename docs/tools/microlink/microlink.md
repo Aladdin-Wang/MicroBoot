@@ -96,10 +96,10 @@ MicroLink为了让U盘拖拽下载功能真正走进千家万户，对Cortex-M�
 
 支持的型号：
 
-| 厂商               | 型号                                                         |
-| ------------------ | ------------------------------------------------------------ |
-| ST意法半导体STM32  | STM32F0XX,STM32F10X,STM32F2XX,STM32F3xx,STM32F4xx,STM32F7xx,<br />STM32H7x,STM32L0xx,STM32L1xx,STM32L4xx,STM32L5xx,STM32G0xx,<br />STM32G4xx |
-| GigaDevice兆易创新 | GD32E50X，                                                   |
+| 厂商               | 型号                                               |
+| ------------------ | -------------------------------------------------- |
+| ST意法半导体STM32  | STM32F0XX,STM32F10X,,STM32F4xx,STM32F7xx,STM32G4xx |
+| GigaDevice兆易创新 | GD32E50X，                                         |
 
 U盘拖拽下载支持HEX文件和BIN文件，HEX文件自带地址信息，自动根据HEX中的地址选择烧录的位置，BIN文件默认下载的地址为0x08000000，以下演示视频是将HEX文件复制到U盘中，完成固件下载：
 
