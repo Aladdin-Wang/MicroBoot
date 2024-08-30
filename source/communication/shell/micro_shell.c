@@ -28,7 +28,7 @@
 #define this        (*ptThis)
 
 static void shell_push_history(wl_shell_t *ptObj);
-static void wl_shell_echo(wl_shell_t *ptObj, uint8_t *pchData, uint16_t hwLength);
+static void shell_echo(wl_shell_t *ptObj, uint8_t *pchData, uint16_t hwLength);
 
 __attribute__((weak))
 int64_t get_system_time_ms(void)
@@ -42,10 +42,10 @@ static fsm_rt_t shell_read_with_timeout(shell_read_timeout_t *ptThis, uint8_t* p
 {
     /* Macro to reset the finite state machine (FSM) */
 #define SHELL_READ_TIMEOUT_RESET_FSM() do { this.chState = 0; } while(0)
-    assert(NULL != ptThis);
+
     wl_shell_t *ptObj = container_of(ptThis, wl_shell_t, tReadDataTimeout);
     /* Enum defining FSM states for receiving a Ymodem packet */
-    enum { START, READ_DOING, IS_TIMEOUT, RESET_TIME};
+    enum { START, READ_DOING, IS_TIMEOUT};
 
     /* Processing states using a switch-case statement */
     switch(this.chState) {
@@ -93,12 +93,11 @@ static fsm_rt_t shell_read_with_timeout(shell_read_timeout_t *ptThis, uint8_t* p
  * @param pchData Pointer to the input data
  * @param hwLength Length of the input data
  */
-static fsm_rt_t wl_shell_readline(wl_shell_t *ptObj)
+static fsm_rt_t shell_readline(wl_shell_t *ptObj)
 {
     wl_shell_t *(ptThis) = (wl_shell_t *)ptObj;
-    assert(NULL != ptObj);
 
-    fsm_rt_t tFsm = shell_read_with_timeout(&ptObj->tReadDataTimeout, &this.chDate, 1, 10);
+    fsm_rt_t tFsm = shell_read_with_timeout(&ptObj->tReadDataTimeout, &this.chDate, 1, 3);
 
     if(fsm_rt_cpl == tFsm) {
         if (this.chDate == '\r' || this.chDate  == '\n') {
@@ -110,6 +109,8 @@ static fsm_rt_t wl_shell_readline(wl_shell_t *ptObj)
 
             memset(this.chLineBuf, 0, sizeof(this.chLineBuf));
             this.hwLinePosition = 0;
+            shell_echo(ptObj, &this.chDate, 1);
+            return fsm_rt_cpl;
         } else if(this.chDate == 0x7f || this.chDate == 0x08 ) { /* handle backspace key */
             if (this.hwLinePosition != 0) {
                 this.chLineBuf[--this.hwLinePosition] = 0;
@@ -130,8 +131,7 @@ static fsm_rt_t wl_shell_readline(wl_shell_t *ptObj)
             }
         }
     } else if(fsm_rt_user_req_timeout == tFsm) {
-        wl_shell_echo(ptObj, &this.chDate, 1);
-        return fsm_rt_cpl;
+        shell_echo(ptObj, &this.chDate, 1);
     }
 
     return fsm_rt_on_going;
@@ -143,24 +143,23 @@ static fsm_rt_t wl_shell_readline(wl_shell_t *ptObj)
  * @param pchData Pointer to the input data
  * @param hwLength Length of the input data
  */
-static void wl_shell_echo(wl_shell_t *ptObj, uint8_t *pchData, uint16_t hwLength)
+static void shell_echo(wl_shell_t *ptObj, uint8_t *pchData, uint16_t hwLength)
 {
     wl_shell_t *(ptThis) = ptObj;
-    assert(NULL != ptObj);
 
     for(uint16_t i = 0; i < hwLength; i++) {
         if (isalpha(this.chDate) || isspace(this.chDate) || this.chDate == '_' || this.chDate == 0x7f || this.chDate == 0x08 ) {
             if (pchData[i] == '\r' || pchData[i]  == '\n') {
                 this.hwCurposPosition = 0;
-                printf("\r\nkk@shell >");
+                enqueue(&this.tByteOutQueue, "\r\nkk@shell >");
             } else if(pchData[i] == 0x7f || pchData[i] == 0x08 ) { /* handle backspace key */
                 if(this.hwCurposPosition != 0) {
                     this.hwCurposPosition--;
-                    printf("\b \b");
+                    enqueue(&this.tByteOutQueue, "\b \b");
                 }
             } else {
                 this.hwCurposPosition++;
-                printf("%c", pchData[i]);
+                enqueue(&this.tByteOutQueue, pchData[i]);
             }
 
             this.chDate = 0;
@@ -168,16 +167,20 @@ static void wl_shell_echo(wl_shell_t *ptObj, uint8_t *pchData, uint16_t hwLength
     }
 }
 
+int msh_exec(char *cmd, size_t length)
+{
+
+    return 0;
+}
 /**
  * @brief Execute shell commands
  *
  * @param ptObj Pointer to the wl_shell_t object
  */
-fsm_rt_t wl_shell_exec(wl_shell_t *ptObj)
+static fsm_rt_t shell_agent_exec(wl_shell_t *ptObj)
 {
     uint8_t chByte;
     wl_shell_t *(ptThis) = ptObj;
-    assert(NULL != ptObj);
 
     fsm_rt_t tFsm = call_fsm( search_msg_map,  &this.fsmSearchMsgMap );
 
@@ -193,7 +196,7 @@ fsm_rt_t wl_shell_exec(wl_shell_t *ptObj)
         reset_peek(&this.tByteInQueue);
     }
 
-    return wl_shell_readline(ptObj);
+    return shell_readline(ptObj);
 }
 
 static uint16_t get_byte (get_byte_t *ptThis, uint8_t *pchByte, uint16_t hwLength)
@@ -207,19 +210,20 @@ static uint16_t get_byte (get_byte_t *ptThis, uint8_t *pchByte, uint16_t hwLengt
  * @param ptObj Pointer to the wl_shell_t object
  * @return wl_shell_t* Pointer to the initialized wl_shell_t object
  */
-check_shell_t *wl_shell_init(check_shell_t *ptObj, shell_ops_t *ptOps)
+check_shell_t *shell_init(check_shell_t *ptObj, shell_ops_t *ptOps)
 {
     check_shell_t *(ptThis) = ptObj;
     assert(NULL != ptOps);
     assert(NULL != ptObj);
     this.tCheckAgent.pAgent = &this.tshell;
-    this.tCheckAgent.fnCheck = (check_hanlder_t *)wl_shell_exec;
+    this.tCheckAgent.fnCheck = (check_hanlder_t *)shell_agent_exec;
     this.tCheckAgent.ptNext = NULL;
     this.tCheckAgent.hwPeekStatus = 0;
     this.tCheckAgent.bIsKeepingContext = true;
 
     memcpy(&this.tshell.tOps, ptOps, sizeof(this.tshell.tOps));
-    queue_init(&this.tshell.tByteInQueue, this.tshell.chQueueBuf, sizeof(this.tshell.chQueueBuf), true);
+    queue_init(&this.tshell.tByteInQueue, this.tshell.chQueueInBuf, sizeof(this.tshell.chQueueInBuf), true);
+    queue_init(&this.tshell.tByteOutQueue, this.tshell.chQueueOutBuf, sizeof(this.tshell.chQueueOutBuf), true);
     this.tshell.tGetByte.pTarget = (void *)(&this.tshell.tByteInQueue);
     this.tshell.tGetByte.fnGetByte = get_byte;
     #ifdef __ARMCC_VERSION
@@ -258,7 +262,6 @@ check_shell_t *wl_shell_init(check_shell_t *ptObj, shell_ops_t *ptOps)
 static void shell_push_history(wl_shell_t *ptObj)
 {
     wl_shell_t *(ptThis) = ptObj;
-    assert(NULL != ptObj);
 
     if (this.hwLinePosition != 0) {
         /* push history */
