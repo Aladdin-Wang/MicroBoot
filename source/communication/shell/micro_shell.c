@@ -93,7 +93,7 @@ static fsm_rt_t shell_read_with_timeout(shell_read_timeout_t *ptThis, uint8_t* p
  * @param pchData Pointer to the input data
  * @param hwLength Length of the input data
  */
-static void shell_readline(wl_shell_t *ptObj)
+static bool shell_readline(wl_shell_t *ptObj)
 {
     wl_shell_t *(ptThis) = (wl_shell_t *)ptObj;
 
@@ -116,7 +116,7 @@ static void shell_readline(wl_shell_t *ptObj)
             }
 
         } else {
-            if (isalpha(this.chDate) || isspace(this.chDate) || this.chDate == '_') {
+            if (isdigit(this.chDate) || isalpha(this.chDate) || isspace(this.chDate) || this.chDate == '_') {
                 if (this.hwLinePosition < (MSG_ARG_LEN - 1)) {
                     this.chLineBuf[this.hwLinePosition++] = this.chDate;
                     this.hwLineLen = this.hwLinePosition;
@@ -124,11 +124,15 @@ static void shell_readline(wl_shell_t *ptObj)
                     this.hwLinePosition = 0;
                     this.hwLineLen = this.hwLinePosition;
                 }
+            } else {
+                return false;
             }
         }
     } else if(fsm_rt_user_req_timeout == tFsm) {
         shell_echo(ptObj, &this.chDate, 1);
     }
+
+    return true;
 }
 /**
  * @brief Echo shell input
@@ -140,20 +144,21 @@ static void shell_readline(wl_shell_t *ptObj)
 static void shell_echo(wl_shell_t *ptObj, uint8_t *pchData, uint16_t hwLength)
 {
     wl_shell_t *(ptThis) = ptObj;
-
+    static char chByte = 0;
     for(uint16_t i = 0; i < hwLength; i++) {
-        if (isalpha(this.chDate) || isspace(this.chDate) || this.chDate == '_' || this.chDate == 0x7f || this.chDate == 0x08 ) {
+        if (isdigit(this.chDate) || isalpha(this.chDate) || isspace(this.chDate) || this.chDate == '_' || this.chDate == 0x7f || this.chDate == 0x08 ) {
             if (pchData[i] == '\r' || pchData[i]  == '\n') {
                 this.hwCurposPosition = 0;
-                enqueue(&this.tByteOutQueue, "\r\nkk@shell >");
+                printf("\r\nkk@shell >");
             } else if(pchData[i] == 0x7f || pchData[i] == 0x08 ) { /* handle backspace key */
                 if(this.hwCurposPosition != 0) {
                     this.hwCurposPosition--;
-                    enqueue(&this.tByteOutQueue, "\b \b");
+                    printf("\b \b");
                 }
             } else {
                 this.hwCurposPosition++;
-                enqueue(&this.tByteOutQueue, pchData[i]);
+							  chByte = pchData[i];
+                printf("%c", chByte);
             }
 
             this.chDate = 0;
@@ -175,9 +180,11 @@ static fsm_rt_t shell_agent_exec(wl_shell_t *ptObj)
 {
     uint8_t chByte;
     wl_shell_t *(ptThis) = ptObj;
-	
-    shell_readline(ptObj);
-	
+
+    if (false == shell_readline(ptObj)) {
+        return fsm_rt_user_req_drop;
+    }
+
     fsm_rt_t tFsm = call_fsm( search_msg_map,  &this.fsmSearchMsgMap );
 
     if(fsm_rt_cpl == tFsm) {
