@@ -93,7 +93,7 @@ static fsm_rt_t shell_read_with_timeout(shell_read_timeout_t *ptThis, uint8_t* p
  * @param pchData Pointer to the input data
  * @param hwLength Length of the input data
  */
-static fsm_rt_t shell_readline(wl_shell_t *ptObj)
+static void shell_readline(wl_shell_t *ptObj)
 {
     wl_shell_t *(ptThis) = (wl_shell_t *)ptObj;
 
@@ -109,8 +109,6 @@ static fsm_rt_t shell_readline(wl_shell_t *ptObj)
 
             memset(this.chLineBuf, 0, sizeof(this.chLineBuf));
             this.hwLinePosition = 0;
-            shell_echo(ptObj, &this.chDate, 1);
-            return fsm_rt_cpl;
         } else if(this.chDate == 0x7f || this.chDate == 0x08 ) { /* handle backspace key */
             if (this.hwLinePosition != 0) {
                 this.chLineBuf[--this.hwLinePosition] = 0;
@@ -126,15 +124,11 @@ static fsm_rt_t shell_readline(wl_shell_t *ptObj)
                     this.hwLinePosition = 0;
                     this.hwLineLen = this.hwLinePosition;
                 }
-            } else {
-                return fsm_rt_user_req_drop;
             }
         }
     } else if(fsm_rt_user_req_timeout == tFsm) {
         shell_echo(ptObj, &this.chDate, 1);
     }
-
-    return fsm_rt_on_going;
 }
 /**
  * @brief Echo shell input
@@ -181,7 +175,9 @@ static fsm_rt_t shell_agent_exec(wl_shell_t *ptObj)
 {
     uint8_t chByte;
     wl_shell_t *(ptThis) = ptObj;
-
+	
+    shell_readline(ptObj);
+	
     fsm_rt_t tFsm = call_fsm( search_msg_map,  &this.fsmSearchMsgMap );
 
     if(fsm_rt_cpl == tFsm) {
@@ -196,7 +192,7 @@ static fsm_rt_t shell_agent_exec(wl_shell_t *ptObj)
         reset_peek(&this.tByteInQueue);
     }
 
-    return shell_readline(ptObj);
+    return tFsm;
 }
 
 static uint16_t get_byte (get_byte_t *ptThis, uint8_t *pchByte, uint16_t hwLength)
