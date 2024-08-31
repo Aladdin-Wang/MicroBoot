@@ -144,7 +144,6 @@ static bool shell_readline(wl_shell_t *ptObj)
 static void shell_echo(wl_shell_t *ptObj, uint8_t *pchData, uint16_t hwLength)
 {
     wl_shell_t *(ptThis) = ptObj;
-    static char chByte = 0;
     for(uint16_t i = 0; i < hwLength; i++) {
         if (isdigit(this.chDate) || isalpha(this.chDate) || isspace(this.chDate) || this.chDate == '_' || this.chDate == 0x7f || this.chDate == 0x08 ) {
             if (pchData[i] == '\r' || pchData[i]  == '\n') {
@@ -157,8 +156,7 @@ static void shell_echo(wl_shell_t *ptObj, uint8_t *pchData, uint16_t hwLength)
                 }
             } else {
                 this.hwCurposPosition++;
-							  chByte = pchData[i];
-                printf("%c", chByte);
+                printf("%c",(char) pchData[i]);
             }
 
             this.chDate = 0;

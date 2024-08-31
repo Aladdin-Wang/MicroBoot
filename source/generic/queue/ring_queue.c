@@ -617,8 +617,9 @@ bool restore_peek_status(byte_queue_t *ptObj, uint16_t hwCount)
         } else{
             this.hwPeek =  hwCount - (this.hwSize - this.hwHead);
         }
-
-        this.hwPeekLength = this.hwPeekLength - hwCount;
+        if(this.hwPeekLength > hwCount){
+            this.hwPeekLength = this.hwPeekLength - hwCount;
+        }
     }
     return true;
 }
