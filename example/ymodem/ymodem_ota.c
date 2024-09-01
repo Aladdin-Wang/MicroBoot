@@ -112,9 +112,11 @@ fsm_rt_t ymodem_ota_receive(ymodem_t *ptObj)
 {
     ymodem_state_t tState = ymodem_receive(ptObj);
 
-    if(tState == STATE_ON_GOING || tState ==  STATE_TIMEOUT) {
+    if(tState == STATE_ON_GOING) {
         return fsm_rt_on_going;
-    } else if(tState == STATE_INCORRECT_NBlk || tState == STATE_INCORRECT_CHAR) {
+    }else if(tState == STATE_TIMEOUT) {
+        return fsm_rt_user_req_timeout;
+    }else if(tState == STATE_INCORRECT_NBlk || tState == STATE_INCORRECT_CHAR) {
         return fsm_rt_user_req_drop;
     } else {
         return fsm_rt_cpl;

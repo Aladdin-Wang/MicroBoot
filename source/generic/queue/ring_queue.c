@@ -319,7 +319,7 @@ uint16_t dequeue_bytes_setup(byte_queue_t *ptObj, uint8_t **pchBuffer, uint16_t 
         }
 
         do{
-					  *pchBuffer = &this.pchBuffer[this.hwHead];
+            *pchBuffer = &this.pchBuffer[this.hwHead];
             if(hwLength < (this.hwSize - this.hwHead)) {
                 break;
             }
@@ -617,8 +617,10 @@ bool restore_peek_status(byte_queue_t *ptObj, uint16_t hwCount)
         } else{
             this.hwPeek =  hwCount - (this.hwSize - this.hwHead);
         }
-        if(this.hwPeekLength > hwCount){
+        if(this.hwPeekLength >= hwCount){
             this.hwPeekLength = this.hwPeekLength - hwCount;
+        }else{
+            this.hwPeekLength = 0;        
         }
     }
     return true;
