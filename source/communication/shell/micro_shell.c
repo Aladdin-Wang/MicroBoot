@@ -128,7 +128,7 @@ static fsm_rt_t shell_readline(wl_shell_t *ptObj)
         }
     } else if(fsm_rt_user_req_timeout == tFsm) {
         shell_echo(ptObj, &this.chDate, 1);
-        return fsm_rt_user_req_timeout;        
+        return fsm_rt_user_req_drop;        
     }
 
     return fsm_rt_on_going;

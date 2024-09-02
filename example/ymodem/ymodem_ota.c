@@ -33,7 +33,7 @@ static uint16_t ymodem_recv_file_name(ymodem_t *ptObj, uint8_t *pchBuffer, uint1
     if(chIsFlashInit == 0){
         target_flash_init(APP_PART_ADDR);
         chIsFlashInit = 1;
-    }
+		}
     uint32_t wEraseSize = target_flash_erase(APP_PART_ADDR, this.wFileSize);
 
     if( wEraseSize < this.wFileSize) {
@@ -84,7 +84,7 @@ static uint16_t ymodem_recv_file_data(ymodem_t *ptObj, uint8_t *pchBuffer, uint1
 
     if(this.wOffSet == this.wFileSize) {
         finalize_download();
-        target_flash_uninit(APP_PART_ADDR);
+			  target_flash_uninit(APP_PART_ADDR);
         chIsFlashInit = 0;			
         printf("Download firmware to flash success.\n");
     }
@@ -118,9 +118,7 @@ fsm_rt_t ymodem_ota_receive(ymodem_t *ptObj)
 
     if(tState == STATE_ON_GOING) {
         return fsm_rt_on_going;
-    }else if(tState == STATE_TIMEOUT) {
-        return fsm_rt_user_req_timeout;
-    }else if(tState == STATE_INCORRECT_NBlk || tState == STATE_INCORRECT_CHAR) {
+    }else if(tState == STATE_INCORRECT_NBlk || tState == STATE_INCORRECT_CHAR || tState == STATE_TIMEOUT) {
         return fsm_rt_user_req_drop;
     } else {
         return fsm_rt_cpl;
