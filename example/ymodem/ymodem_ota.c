@@ -6,7 +6,7 @@
 
 __attribute__((aligned(32)))
 uint8_t s_chQueueBuffer[1024] ;
-
+static uint8_t chIsFlashInit = 0;
 static uint16_t ymodem_recv_file_name(ymodem_t *ptObj, uint8_t *pchBuffer, uint16_t hwSize)
 {
     ymodem_receive_t *(ptThis) = (ymodem_receive_t *)ptObj;
@@ -30,7 +30,10 @@ static uint16_t ymodem_recv_file_name(ymodem_t *ptObj, uint8_t *pchBuffer, uint1
         printf("file size outrange flash size. \r\n");
         return 0;
     }
-    target_flash_init(APP_PART_ADDR);
+    if(chIsFlashInit == 0){
+        target_flash_init(APP_PART_ADDR);
+        chIsFlashInit = 1;
+    }
     uint32_t wEraseSize = target_flash_erase(APP_PART_ADDR, this.wFileSize);
 
     if( wEraseSize < this.wFileSize) {
@@ -81,7 +84,8 @@ static uint16_t ymodem_recv_file_data(ymodem_t *ptObj, uint8_t *pchBuffer, uint1
 
     if(this.wOffSet == this.wFileSize) {
         finalize_download();
-			  target_flash_uninit(APP_PART_ADDR);
+        target_flash_uninit(APP_PART_ADDR);
+        chIsFlashInit = 0;			
         printf("Download firmware to flash success.\n");
     }
     
