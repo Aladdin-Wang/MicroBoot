@@ -120,9 +120,9 @@ fsm_rt_t ymodem_ota_receive(ymodem_t *ptObj)
         return fsm_rt_on_going;
     }else if(tState == STATE_INCORRECT_NBlk || tState == STATE_INCORRECT_CHAR) {
         return fsm_rt_user_req_drop;
-    }}else if(tState == STATE_TIMEOUT) {
+    }else if(tState == STATE_TIMEOUT) {
         return fsm_rt_user_req_timeout;
-    } else {
+    }else {
         return fsm_rt_cpl;
     }
 }
