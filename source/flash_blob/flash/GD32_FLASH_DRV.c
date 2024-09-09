@@ -75,12 +75,12 @@ static int32_t ProgramPage(uint32_t addr, uint32_t sz, uint8_t* buf)
     return result;
 }
 
-const  flash_fal_t  onchip_flash_device = {
-    .tFlashops.Init = Init,  
-    .tFlashops.UnInit = UnInit,  
-    .tFlashops.EraseChip = EraseChip,  
-    .tFlashops.EraseSector = EraseSector,  
-    .tFlashops.Program = ProgramPage,  
+const  flash_blob_t  onchip_flash_device = {
+    .tFlashops.Init = Init,
+    .tFlashops.UnInit = UnInit,
+    .tFlashops.EraseChip = EraseChip,
+    .tFlashops.EraseSector = EraseSector,
+    .tFlashops.Program = ProgramPage,
     .tFlashops.Read = NULL,
     .ptFlashDev = &FlashDevice,
 };
