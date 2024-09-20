@@ -140,12 +140,12 @@ uint16_t enqueue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
     class_internal(ptObj, ptThis, byte_queue_t);		
     bool bEarlyReturn = false;      
     safe_atom_code() {
-		    if(!this.bMutex){
-				    this.bMutex  = true;
-		    }else{
+        if(!this.bMutex){
+            this.bMutex  = true;
+        }else{
             bEarlyReturn = true;
-				}					
-		}
+        }					
+    }
     if(bEarlyReturn){
         return 0;
     }	
@@ -154,7 +154,7 @@ uint16_t enqueue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
     uint16_t	hwPeekLength = this.hwPeekLength;
     uint16_t	hwHead = this.hwHead;	
     uint16_t	hwTail = this.hwTail;		
-    uint8_t  *pchByte = pDate;
+    uint8_t     *pchByte = pDate;
     do{
         if(hwDataLength > this.hwSize){
             hwDataLength = this.hwSize;
@@ -164,7 +164,7 @@ uint16_t enqueue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
             if(this.bIsCover == false){
                 /* queue is full */
                 hwDataLength = 0;
-                break;
+                return 0;
             }else{
                  /* overwrite */
                 if(hwDataLength < (this.hwSize - this.hwHead)) {
@@ -195,19 +195,19 @@ uint16_t enqueue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
             }
         }
 
+        if(hwDataLength < (this.hwSize - this.hwTail)) {
+            memcpy(&this.pchBuffer[this.hwTail], pchByte, hwDataLength);
+            hwTail += hwDataLength;
+            break;
+        }
 
-				if(hwDataLength < (this.hwSize - this.hwTail)) {
-						memcpy(&this.pchBuffer[this.hwTail], pchByte, hwDataLength);
-						hwTail += hwDataLength;
-						break;
-				}
-
-				memcpy(&this.pchBuffer[this.hwTail], &pchByte[0], this.hwSize - this.hwTail);
-				memcpy(&this.pchBuffer[0], &pchByte[this.hwSize - this.hwTail], hwDataLength - (this.hwSize - this.hwTail));
-				hwTail = hwDataLength - (this.hwSize - this.hwTail);
+        memcpy(&this.pchBuffer[this.hwTail], &pchByte[0], this.hwSize - this.hwTail);
+        memcpy(&this.pchBuffer[0], &pchByte[this.hwSize - this.hwTail], hwDataLength - (this.hwSize - this.hwTail));
+        hwTail = hwDataLength - (this.hwSize - this.hwTail);
     } while(0);
 		
-    safe_atom_code() {				
+    safe_atom_code() {	
+        this.bMutex = false;	
         this.hwLength = hwLength;
         this.hwPeek = hwPeek;
         this.hwPeekLength = hwPeekLength;
@@ -276,12 +276,12 @@ uint16_t dequeue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
     class_internal(ptObj, ptThis, byte_queue_t);
     bool bEarlyReturn = false;
     safe_atom_code() {
-		    if(!this.bMutex){
-				    this.bMutex  = true;
-		    }else{
+        if(!this.bMutex){
+            this.bMutex  = true;
+        }else{
             bEarlyReturn = true;
-				}					
-		}
+        }					
+    }
     if(bEarlyReturn){
         return 0;
     }	
@@ -292,20 +292,20 @@ uint16_t dequeue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
            0 == this.hwLength ){
             /* queue is empty */
             hwDataLength = 0;
-            break;
+            return 0;
         }
         if(hwDataLength > this.hwLength){
             /* less data */
             hwDataLength = this.hwLength;
         }
-				if(hwDataLength < (this.hwSize - this.hwHead)) {
-						memcpy(pchByte, &this.pchBuffer[this.hwHead], hwDataLength);
-						hwHead += hwDataLength;
-						break;
-				}
-				memcpy(&pchByte[0], &this.pchBuffer[this.hwHead], this.hwSize - this.hwHead);
-				memcpy(&pchByte[this.hwSize - this.hwHead], &this.pchBuffer[0], hwDataLength - (this.hwSize - this.hwHead));
-				hwHead = hwDataLength - (this.hwSize - this.hwHead);
+        if(hwDataLength < (this.hwSize - this.hwHead)) {
+            memcpy(pchByte, &this.pchBuffer[this.hwHead], hwDataLength);
+            hwHead += hwDataLength;
+            break;
+        }
+        memcpy(&pchByte[0], &this.pchBuffer[this.hwHead], this.hwSize - this.hwHead);
+        memcpy(&pchByte[this.hwSize - this.hwHead], &this.pchBuffer[0], hwDataLength - (this.hwSize - this.hwHead));
+        hwHead = hwDataLength - (this.hwSize - this.hwHead);
     } while(0);
 		
     safe_atom_code() {
@@ -527,15 +527,25 @@ uint16_t peek_bytes_queue(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLengt
 
     /* initialise "this" (i.e. ptThis) to access class members */
     class_internal(ptObj, ptThis, byte_queue_t);
-
-    uint8_t *pchByte = pDate;
-
+    bool bEarlyReturn = false;
     safe_atom_code() {
+        if(!this.bMutex){
+            this.bMutex  = true;
+        }else{
+            bEarlyReturn = true;
+        }					
+    }
+    if(bEarlyReturn){
+        return 0;
+    }
+    uint8_t *pchByte = pDate;
+    uint16_t hwPeek = this.hwPeek;
+    do{
         if(this.hwPeek == this.hwTail &&
            0 == this.hwPeekLength ){
             /* empty */
             hwDataLength = 0;
-            continue;
+            return 0;
         }
 
         if(hwDataLength > this.hwPeekLength){
@@ -543,18 +553,19 @@ uint16_t peek_bytes_queue(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLengt
             hwDataLength = this.hwPeekLength;
         }
 
-        do{
-            if(hwDataLength < (this.hwSize - this.hwPeek)) {
-                memcpy(pchByte, &this.pchBuffer[this.hwPeek], hwDataLength);
-                this.hwPeek += hwDataLength;
-                break;
-            }
+        if(hwDataLength < (this.hwSize - this.hwPeek)) {
+            memcpy(pchByte, &this.pchBuffer[this.hwPeek], hwDataLength);
+            hwPeek += hwDataLength;
+            break;
+        }
 
-            memcpy(&pchByte[0], &this.pchBuffer[this.hwPeek], this.hwSize - this.hwPeek);
-            memcpy(&pchByte[this.hwSize - this.hwPeek], &this.pchBuffer[0], hwDataLength - (this.hwSize - this.hwPeek));
-            this.hwPeek = hwDataLength - (this.hwSize - this.hwPeek);
-        } while(0);
-
+        memcpy(&pchByte[0], &this.pchBuffer[this.hwPeek], this.hwSize - this.hwPeek);
+        memcpy(&pchByte[this.hwSize - this.hwPeek], &this.pchBuffer[0], hwDataLength - (this.hwSize - this.hwPeek));
+        hwPeek = hwDataLength - (this.hwSize - this.hwPeek);
+    } while(0);
+    safe_atom_code() {
+        this.bMutex = false;		
+        this.hwPeek = hwPeek;
         this.hwPeekLength -= hwDataLength;
     }
     return hwDataLength;
