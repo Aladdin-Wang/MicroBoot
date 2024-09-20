@@ -275,6 +275,7 @@ def_class(byte_queue_t,
               uint16_t hwLength;
               uint16_t hwPeek;
               uint16_t hwPeekLength;
+							bool bMutex;
               bool bIsCover;
           )
          )
@@ -291,13 +292,13 @@ extern
 bool enqueue_byte(byte_queue_t *ptQueue, uint8_t chByte);
 
 extern
-uint16_t enqueue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwLength);
+uint16_t enqueue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength);
 
 extern
 bool dequeue_byte(byte_queue_t *ptQueue, uint8_t *pchByte);
 
 extern
-uint16_t dequeue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwLength);
+uint16_t dequeue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength);
 
 extern
 bool is_queue_empty(byte_queue_t *ptQueue);
@@ -309,7 +310,7 @@ extern
 bool peek_byte_queue(byte_queue_t *ptQueue, uint8_t *pchByte);
 
 extern
-uint16_t peek_bytes_queue(byte_queue_t *ptObj, void *pDate, uint16_t hwLength);
+uint16_t peek_bytes_queue(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength);
 
 extern
 bool reset_peek(byte_queue_t *ptQueue);

@@ -51,6 +51,7 @@ byte_queue_t * queue_init_byte(byte_queue_t *ptObj, void *pBuffer, uint16_t hwIt
         this.hwPeek = this.hwHead;
         this.hwPeekLength = 0;
         this.bIsCover = bIsCover;
+        this.bMutex = 0;
     }
     return ptObj;
 }
@@ -69,6 +70,7 @@ bool reset_queue(byte_queue_t *ptObj)
 
     safe_atom_code() {
         this.hwHead = 0;
+        this.bMutex = 0;
         this.hwTail = 0;
         this.hwLength = 0;
         this.hwPeek = this.hwHead;
@@ -130,70 +132,91 @@ bool enqueue_byte(byte_queue_t *ptObj, uint8_t chByte)
 * Returns: Number of bytes actually enqueued.                             *
 ****************************************************************************/
 
-uint16_t enqueue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwLength)
+uint16_t enqueue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
 {
     assert(NULL != ptObj);
     assert(NULL != pDate);
     /* initialise "this" (i.e. ptThis) to access class members */
-    class_internal(ptObj, ptThis, byte_queue_t);
-
-    uint8_t *pchByte = pDate;
+    class_internal(ptObj, ptThis, byte_queue_t);		
+    bool bEarlyReturn = false;      
     safe_atom_code() {
-        if(hwLength > this.hwSize){
-            hwLength = this.hwSize;
+		    if(!this.bMutex){
+				    this.bMutex  = true;
+		    }else{
+            bEarlyReturn = true;
+				}					
+		}
+    if(bEarlyReturn){
+        return 0;
+    }	
+    uint16_t	hwLength = this.hwLength;
+    uint16_t	hwPeek = this.hwPeek;
+    uint16_t	hwPeekLength = this.hwPeekLength;
+    uint16_t	hwHead = this.hwHead;	
+    uint16_t	hwTail = this.hwTail;		
+    uint8_t  *pchByte = pDate;
+    do{
+        if(hwDataLength > this.hwSize){
+            hwDataLength = this.hwSize;
         }
         if(this.hwHead == this.hwTail &&
            0 != this.hwLength ){
             if(this.bIsCover == false){
                 /* queue is full */
-                hwLength = 0;
-                continue;
+                hwDataLength = 0;
+                break;
             }else{
                  /* overwrite */
-                if(hwLength < (this.hwSize - this.hwHead)) {
-                    this.hwHead += hwLength;
+                if(hwDataLength < (this.hwSize - this.hwHead)) {
+                    hwHead += hwDataLength;
                 }else{
-                    this.hwHead = hwLength - (this.hwSize - this.hwHead);
+                    hwHead = hwDataLength - (this.hwSize - this.hwHead);
                 } 
-                this.hwLength -= hwLength;
-                this.hwPeek = this.hwHead;
-                this.hwPeekLength = this.hwLength;                                  
+                hwLength -= hwDataLength;
+                hwPeek = this.hwHead;
+                hwPeekLength = this.hwLength;                                  
             }
         }
-        if(hwLength > (this.hwSize - this.hwLength)){
+        if(hwDataLength > (this.hwSize - this.hwLength)){
             if(this.bIsCover == false){
                 /* drop some data */
-                hwLength = this.hwSize - this.hwLength;
+                hwDataLength = this.hwSize - this.hwLength;
             }else{
                 /* overwrite some data */ 
-                uint16_t hwOverLength = hwLength - ((this.hwSize - this.hwLength));
+                uint16_t hwOverLength = hwDataLength - ((this.hwSize - this.hwLength));
                 if(hwOverLength < (this.hwSize - this.hwHead)) {
-                    this.hwHead += hwOverLength;
+                    hwHead += hwOverLength;
                 }else{
-                    this.hwHead = hwLength - (this.hwSize - this.hwHead);
+                    hwHead = hwDataLength - (this.hwSize - this.hwHead);
                 } 
-                this.hwLength -= hwOverLength;
-                this.hwPeek = this.hwHead;
-                this.hwPeekLength = this.hwLength;                                         
+                hwLength -= hwOverLength;
+                hwPeek = this.hwHead;
+                hwPeekLength = this.hwLength;                                         
             }
         }
 
-        do{
-            if(hwLength < (this.hwSize - this.hwTail)) {
-                memcpy(&this.pchBuffer[this.hwTail], pchByte, hwLength);
-                this.hwTail += hwLength;
-                break;
-            }
 
-            memcpy(&this.pchBuffer[this.hwTail], &pchByte[0], this.hwSize - this.hwTail);
-            memcpy(&this.pchBuffer[0], &pchByte[this.hwSize - this.hwTail], hwLength - (this.hwSize - this.hwTail));
-            this.hwTail = hwLength - (this.hwSize - this.hwTail);
-        } while(0);
+				if(hwDataLength < (this.hwSize - this.hwTail)) {
+						memcpy(&this.pchBuffer[this.hwTail], pchByte, hwDataLength);
+						hwTail += hwDataLength;
+						break;
+				}
 
-        this.hwLength += hwLength;
-        this.hwPeekLength += hwLength;
+				memcpy(&this.pchBuffer[this.hwTail], &pchByte[0], this.hwSize - this.hwTail);
+				memcpy(&this.pchBuffer[0], &pchByte[this.hwSize - this.hwTail], hwDataLength - (this.hwSize - this.hwTail));
+				hwTail = hwDataLength - (this.hwSize - this.hwTail);
+    } while(0);
+		
+    safe_atom_code() {				
+        this.hwLength = hwLength;
+        this.hwPeek = hwPeek;
+        this.hwPeekLength = hwPeekLength;
+        this.hwHead = hwHead;	
+        this.hwTail = hwTail;
+        this.hwLength += hwDataLength;
+        this.hwPeekLength += hwDataLength;
     }
-    return hwLength;
+    return hwDataLength;
 }
 
 /****************************************************************************
@@ -244,46 +267,55 @@ bool dequeue_byte(byte_queue_t *ptObj, uint8_t *pchByte)
 * Returns: Number of bytes actually dequeued.                             *
 ****************************************************************************/
 
-uint16_t dequeue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwLength)
+uint16_t dequeue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
 {
     assert(NULL != ptObj);
     assert(NULL != pDate);
 
     /* initialise "this" (i.e. ptThis) to access class members */
     class_internal(ptObj, ptThis, byte_queue_t);
-
-    uint8_t *pchByte = pDate;
+    bool bEarlyReturn = false;
     safe_atom_code() {
-
+		    if(!this.bMutex){
+				    this.bMutex  = true;
+		    }else{
+            bEarlyReturn = true;
+				}					
+		}
+    if(bEarlyReturn){
+        return 0;
+    }	
+    uint16_t hwHead = this.hwHead;	
+    uint8_t *pchByte = pDate;		
+    do{			
         if(this.hwHead == this.hwTail &&
            0 == this.hwLength ){
             /* queue is empty */
-            hwLength = 0;
-            continue;
+            hwDataLength = 0;
+            break;
         }
-
-        if(hwLength > this.hwLength){
+        if(hwDataLength > this.hwLength){
             /* less data */
-            hwLength = this.hwLength;
+            hwDataLength = this.hwLength;
         }
-
-        do{
-            if(hwLength < (this.hwSize - this.hwHead)) {
-                memcpy(pchByte, &this.pchBuffer[this.hwHead], hwLength);
-                this.hwHead += hwLength;
-                break;
-            }
-
-            memcpy(&pchByte[0], &this.pchBuffer[this.hwHead], this.hwSize - this.hwHead);
-            memcpy(&pchByte[this.hwSize - this.hwHead], &this.pchBuffer[0], hwLength - (this.hwSize - this.hwHead));
-            this.hwHead = hwLength - (this.hwSize - this.hwHead);
-        } while(0);
-
-        this.hwLength -= hwLength;
+				if(hwDataLength < (this.hwSize - this.hwHead)) {
+						memcpy(pchByte, &this.pchBuffer[this.hwHead], hwDataLength);
+						hwHead += hwDataLength;
+						break;
+				}
+				memcpy(&pchByte[0], &this.pchBuffer[this.hwHead], this.hwSize - this.hwHead);
+				memcpy(&pchByte[this.hwSize - this.hwHead], &this.pchBuffer[0], hwDataLength - (this.hwSize - this.hwHead));
+				hwHead = hwDataLength - (this.hwSize - this.hwHead);
+    } while(0);
+		
+    safe_atom_code() {
+        this.bMutex = false;			
+        this.hwHead = hwHead;
+        this.hwLength -= hwDataLength;
         this.hwPeek = this.hwHead;
         this.hwPeekLength = this.hwLength;
     }
-    return hwLength;
+    return hwDataLength;
 }
 
 /****************************************************************************
@@ -488,7 +520,7 @@ bool peek_byte_queue(byte_queue_t *ptObj, uint8_t *pchByte)
 * Returns: Number of bytes actually peeked.                               *
 ****************************************************************************/
 
-uint16_t peek_bytes_queue(byte_queue_t *ptObj, void *pDate, uint16_t hwLength)
+uint16_t peek_bytes_queue(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
 {
     assert(NULL != ptObj);
     assert(NULL != pDate);
@@ -502,30 +534,30 @@ uint16_t peek_bytes_queue(byte_queue_t *ptObj, void *pDate, uint16_t hwLength)
         if(this.hwPeek == this.hwTail &&
            0 == this.hwPeekLength ){
             /* empty */
-            hwLength = 0;
+            hwDataLength = 0;
             continue;
         }
 
-        if(hwLength > this.hwPeekLength){
+        if(hwDataLength > this.hwPeekLength){
             /* less data */
-            hwLength = this.hwPeekLength;
+            hwDataLength = this.hwPeekLength;
         }
 
         do{
-            if(hwLength < (this.hwSize - this.hwPeek)) {
-                memcpy(pchByte, &this.pchBuffer[this.hwPeek], hwLength);
-                this.hwPeek += hwLength;
+            if(hwDataLength < (this.hwSize - this.hwPeek)) {
+                memcpy(pchByte, &this.pchBuffer[this.hwPeek], hwDataLength);
+                this.hwPeek += hwDataLength;
                 break;
             }
 
             memcpy(&pchByte[0], &this.pchBuffer[this.hwPeek], this.hwSize - this.hwPeek);
-            memcpy(&pchByte[this.hwSize - this.hwPeek], &this.pchBuffer[0], hwLength - (this.hwSize - this.hwPeek));
-            this.hwPeek = hwLength - (this.hwSize - this.hwPeek);
+            memcpy(&pchByte[this.hwSize - this.hwPeek], &this.pchBuffer[0], hwDataLength - (this.hwSize - this.hwPeek));
+            this.hwPeek = hwDataLength - (this.hwSize - this.hwPeek);
         } while(0);
 
-        this.hwPeekLength -= hwLength;
+        this.hwPeekLength -= hwDataLength;
     }
-    return hwLength;
+    return hwDataLength;
 }
 
 /****************************************************************************
