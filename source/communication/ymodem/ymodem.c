@@ -903,7 +903,7 @@ ymodem_state_t ymodem_send(ymodem_t *ptThis)
             if(STATE_PACKET_CPL == tFsm) {
                 if(this.chByte == CRC_C) {
                     /* Validate received CRC_C before proceeding to send packet data */
-                    uint16_t hwNextPartData = __file_data(ptThis, __get_buffer_addr(ptThis), __get_size(ptThis));
+                    uint16_t hwNextPartData = __file_data(ptThis, __get_buffer_addr(ptThis), MODEM_1K_DATA_BUFFER_SIZE);
 
                     /* Prepare and process file data for transmission */
                     if(hwNextPartData <= MODEM_DATA_BUFFER_SIZE) {
@@ -972,7 +972,7 @@ ymodem_state_t ymodem_send(ymodem_t *ptThis)
                     this.chPacketNum++; // Prepare the next packet
 
                     /* Call the callback to fill buffer with next part of data */
-                    uint16_t hwNextPartData = __file_data(ptThis, __get_buffer_addr(ptThis), __get_size(ptThis));
+                    uint16_t hwNextPartData = __file_data(ptThis, __get_buffer_addr(ptThis), MODEM_1K_DATA_BUFFER_SIZE);
 
                     /* Prepare and process file data for transmission */
                     if(hwNextPartData == 0) {

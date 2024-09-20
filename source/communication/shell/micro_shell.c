@@ -20,8 +20,6 @@
 #if defined(WL_USING_SHELL)
 #include <stdio.h>
 #include <string.h>
-#include <assert.h>
-#include <stdio.h>
 #include <ctype.h>
 
 #undef this
@@ -97,7 +95,7 @@ static fsm_rt_t shell_readline(wl_shell_t *ptObj)
 {
     wl_shell_t *(ptThis) = (wl_shell_t *)ptObj;
 
-    fsm_rt_t tFsm = shell_read_with_timeout(&ptObj->tReadDataTimeout, &this.chDate, 1, 3);
+    fsm_rt_t tFsm = shell_read_with_timeout(&ptObj->tReadDataTimeout, &this.chDate, 1, 10);
 
     if(fsm_rt_cpl == tFsm) {
         if (this.chDate == '\r' || this.chDate  == '\n') {
@@ -114,7 +112,7 @@ static fsm_rt_t shell_readline(wl_shell_t *ptObj)
                 this.hwLineLen = this.hwLinePosition;
             }
         } else {
-            if (isdigit(this.chDate) || isalpha(this.chDate) || isspace(this.chDate) || this.chDate == '_') {
+            if (isdigit(this.chDate) || isalpha(this.chDate) || isspace(this.chDate) || this.chDate == '_' || this.chDate == '.'|| this.chDate == '-') {
                 if (this.hwLinePosition < (MSG_ARG_LEN - 1)) {
                     this.chLineBuf[this.hwLinePosition++] = this.chDate;
                     this.hwLineLen = this.hwLinePosition;
@@ -144,18 +142,19 @@ static void shell_echo(wl_shell_t *ptObj, uint8_t *pchData, uint16_t hwLength)
 {
     wl_shell_t *(ptThis) = ptObj;
     for(uint16_t i = 0; i < hwLength; i++) {
-        if (isdigit(this.chDate) || isalpha(this.chDate) || isspace(this.chDate) || this.chDate == '_' || this.chDate == 0x7f || this.chDate == 0x08 ) {
+        if (isdigit(this.chDate) || isalpha(this.chDate) || isspace(this.chDate) || this.chDate == '_' || this.chDate == '.'|| this.chDate == '-'
+					|| this.chDate == 0x7f || this.chDate == 0x08 ) {
             if (pchData[i] == '\r' || pchData[i]  == '\n') {
                 this.hwCurposPosition = 0;
-                printf("\r\nkk@shell >");
+                log_raw("\r\nkk@shell >");
             } else if(pchData[i] == 0x7f || pchData[i] == 0x08 ) { /* handle backspace key */
                 if(this.hwCurposPosition != 0) {
                     this.hwCurposPosition--;
-                    printf("\b \b");
+                    log_raw("\b \b");
                 }
             } else {
                 this.hwCurposPosition++;
-                printf("%c",(char) pchData[i]);
+                log_raw("%c",(char) pchData[i]);
             }
 
             this.chDate = 0;
@@ -249,7 +248,7 @@ check_shell_t *shell_init(check_shell_t *ptObj, shell_ops_t *ptOps)
     #endif
 
 
-    printf("\r\nkk@shell >");
+    log_raw("\r\nkk@shell >");
 
     return ptObj;
 }
@@ -297,26 +296,26 @@ static int msh_help(int argc, char **argv)
     #ifdef __ARMCC_VERSION
     extern const int FSymTab$$Base;
     extern const int FSymTab$$Limit;
-    printf("\r\nshell commands:\r\n");
+    log_raw("\r\nshell commands:\r\n");
     {
         msg_t *ptMsgTableBase = (msg_t *)&FSymTab$$Base;
         msg_t *ptMsgTableLimit = (msg_t *)&FSymTab$$Limit;
 
         for (uint32_t i = 0; &ptMsgTableBase[i] != ptMsgTableLimit; i++) {
-            printf("%-16s - %s\r\n", ptMsgTableBase[i].pchMessage, ptMsgTableBase[i].pchDesc);
+            log_raw("%-16s - %s\r\n", ptMsgTableBase[i].pchMessage, ptMsgTableBase[i].pchDesc);
         }
     }
     #elif defined (__GNUC__) || defined(__TI_COMPILER_VERSION__) || defined(__TASKING__)
     /* GNU GCC Compiler and TI CCS */
     extern const int __fsymtab_start;
     extern const int __fsymtab_end;
-    printf("\r\nshell commands:\r\n");
+    log_raw("\r\nshell commands:\r\n");
     {
         msg_t *ptMsgTableBase = (msg_t *)&__fsymtab_start;
         msg_t *ptMsgTableLimit = (msg_t *)&__fsymtab_end;
 
         for (uint32_t i = 0; &ptMsgTableBase[i] != ptMsgTableLimit; i++) {
-            printf("%-16s - %s\r\n", ptMsgTableBase[i].pchMessage, ptMsgTableBase[i].pchDesc);
+            log_raw("%-16s - %s\r\n", ptMsgTableBase[i].pchMessage, ptMsgTableBase[i].pchDesc);
         }
     }
     #endif

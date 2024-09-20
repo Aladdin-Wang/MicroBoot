@@ -32,3 +32,25 @@
 #define MSH_CMD_EXPORT_ALIAS(command, alias, desc)  \
     MSH_FUNCTION_EXPORT_CMD(command, alias, desc)
 	
+/**
+ * @ingroup finsh
+ *
+ * This macro exports a system function to finsh shell.
+ *
+ * @param name the name of function.
+ * @param desc the description of function, which will show in help.
+ */
+#define FINSH_FUNCTION_EXPORT(name, desc)	
+
+/**
+ * @ingroup finsh
+ *
+ * This macro exports a system function with an alias name to finsh shell.
+ *
+ * @param name the name of function.
+ * @param alias the alias name of function.
+ * @param desc the description of function, which will show in help.
+ */
+#define FINSH_FUNCTION_EXPORT_ALIAS(name, alias, desc)
+
+
