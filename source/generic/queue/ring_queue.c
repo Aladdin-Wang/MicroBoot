@@ -238,6 +238,12 @@ bool dequeue_byte(byte_queue_t *ptObj, uint8_t *pchByte)
 
     bool bEarlyReturn = false;      
     safe_atom_code() {
+        if(this.hwHead == this.hwTail &&
+           0 == this.hwLength ){
+            /* queue is empty */
+            bEarlyReturn = true;				 
+            continue;
+        }			
         if(!this.bMutex){
             this.bMutex  = true;
         }else{
@@ -247,12 +253,7 @@ bool dequeue_byte(byte_queue_t *ptObj, uint8_t *pchByte)
     if(bEarlyReturn){
         return false;
     }	
-    if(this.hwHead == this.hwTail &&
-       0 == this.hwLength ){
-        /* queue is empty */
-        this.bMutex = false;				 
-        return false;
-    }
+
 
    *pchByte = this.pchBuffer[this.hwHead++];
 
@@ -287,6 +288,12 @@ uint16_t dequeue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
     class_internal(ptObj, ptThis, byte_queue_t);
     bool bEarlyReturn = false;
     safe_atom_code() {
+        if(this.hwHead == this.hwTail &&
+           0 == this.hwLength ){
+            /* queue is empty */
+            bEarlyReturn = true;						 
+            continue;
+        }			
         if(!this.bMutex){
             this.bMutex  = true;
         }else{
@@ -298,12 +305,7 @@ uint16_t dequeue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
     }	
     uint8_t *pchByte = pDate;		
     do{			
-        if(this.hwHead == this.hwTail &&
-           0 == this.hwLength ){
-            /* queue is empty */
-            this.bMutex = false;						 
-            return 0;
-        }
+
         if(hwDataLength > this.hwLength){
             /* less data */
             hwDataLength = this.hwLength;
@@ -345,6 +347,12 @@ uint16_t dequeue_bytes_setup(byte_queue_t *ptObj, uint8_t **pchBuffer, uint16_t 
     class_internal(ptObj, ptThis, byte_queue_t);
     bool bEarlyReturn = false;      
     safe_atom_code() {
+        if(this.hwHead == this.hwTail &&
+           0 == this.hwLength ){
+            /* queue is empty */
+            bEarlyReturn = true;				 
+            continue;
+        }			
         if(!this.bMutex){
             this.bMutex  = true;
         }else{
@@ -352,13 +360,6 @@ uint16_t dequeue_bytes_setup(byte_queue_t *ptObj, uint8_t **pchBuffer, uint16_t 
         }					
     }
     if(bEarlyReturn){
-        return 0;
-    }
-		
-    if(this.hwHead == this.hwTail &&
-       0 == this.hwLength ){
-        /* queue is empty */
-        this.bMutex = false;				 
         return 0;
     }
 
@@ -394,6 +395,12 @@ uint16_t dequeue_bytes_down(byte_queue_t *ptObj, uint16_t hwLength)
     class_internal(ptObj, ptThis, byte_queue_t);
     bool bEarlyReturn = false;      
     safe_atom_code() {
+        if(this.hwHead == this.hwTail &&
+           0 == this.hwLength ){
+            /* queue is empty */
+            bEarlyReturn = true;			 
+            continue;
+        }			
         if(!this.bMutex){
             this.bMutex  = true;
         }else{
@@ -401,13 +408,6 @@ uint16_t dequeue_bytes_down(byte_queue_t *ptObj, uint16_t hwLength)
         }					
     }
     if(bEarlyReturn){
-        return 0;
-    }
-
-    if(this.hwHead == this.hwTail &&
-       0 == this.hwLength ){
-        /* queue is empty */
-        this.bMutex = false;				 
         return 0;
     }
 
@@ -517,6 +517,12 @@ bool peek_byte_queue(byte_queue_t *ptObj, uint8_t *pchByte)
     class_internal(ptObj, ptThis, byte_queue_t);
     bool bEarlyReturn = false;      
     safe_atom_code() {
+        if(this.hwPeek == this.hwTail &&
+           0 == this.hwPeekLength ){
+            /* empty */
+            bEarlyReturn = true;
+            continue;
+        }			
         if(!this.bMutex){
             this.bMutex  = true;
         }else{
@@ -524,12 +530,6 @@ bool peek_byte_queue(byte_queue_t *ptObj, uint8_t *pchByte)
         }					
     }
     if(bEarlyReturn){
-        return false;
-    }
-    if(this.hwPeek == this.hwTail &&
-           0 == this.hwPeekLength ){
-            /* empty */
-        this.bMutex = false;
         return false;
     }
 
@@ -563,6 +563,12 @@ uint16_t peek_bytes_queue(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLengt
     class_internal(ptObj, ptThis, byte_queue_t);
     bool bEarlyReturn = false;
     safe_atom_code() {
+        if(this.hwPeek == this.hwTail &&
+           0 == this.hwPeekLength ){
+            /* empty */
+            bEarlyReturn = true;
+            continue;
+        }			
         if(!this.bMutex){
             this.bMutex  = true;
         }else{
@@ -575,12 +581,6 @@ uint16_t peek_bytes_queue(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLengt
     uint8_t *pchByte = pDate;
 
     do{
-        if(this.hwPeek == this.hwTail &&
-           0 == this.hwPeekLength ){
-            /* empty */
-            this.bMutex = false;
-            return 0;
-        }
 
         if(hwDataLength > this.hwPeekLength){
             /* less data */
@@ -638,21 +638,10 @@ bool get_all_peeked(byte_queue_t *ptObj)
     assert(NULL != ptObj);
     /* initialise "this" (i.e. ptThis) to access class members */
     class_internal(ptObj, ptThis, byte_queue_t);
-    bool bEarlyReturn = false;
     safe_atom_code() {
-        if(!this.bMutex){
-            this.bMutex  = true;
-        }else{
-            bEarlyReturn = true;
-        }					
-    }
-    if(bEarlyReturn){
-        return false;
-    }
-
-    this.hwHead = this.hwPeek;
-    this.hwLength = this.hwPeekLength;
-    this.bMutex = false;
+        this.hwHead = this.hwPeek;
+        this.hwLength = this.hwPeekLength;
+		}
     return true;
 }
 
