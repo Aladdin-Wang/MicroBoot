@@ -51,8 +51,7 @@ typedef struct shell_read_timeout_t {
 typedef struct wl_shell_t {
     uint8_t                   chState;
     fsm(search_msg_map)       fsmSearchMsgMap;
-    byte_queue_t              tByteInQueue;
-    byte_queue_t              tByteOutQueue;		
+    byte_queue_t              tByteInQueue;		
     get_byte_t                tGetByte;
 	  shell_read_timeout_t      tReadDataTimeout;
     shell_ops_t               tOps;
@@ -62,7 +61,6 @@ typedef struct wl_shell_t {
     uint16_t                  hwCurrenthistory;
     uint16_t                  hwHistoryCount;
     uint8_t                   chDate;
-		char                      chQueueOutBuf[MSG_ARG_LEN];
 	  char                      chQueueInBuf[MSG_ARG_LEN];
     char                      chLineBuf[MSG_ARG_LEN];
     char                      cHistoryCmdBuf[SHELL_HISTORY_LINES][MSG_ARG_LEN];

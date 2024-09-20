@@ -218,7 +218,6 @@ check_shell_t *shell_init(check_shell_t *ptObj, shell_ops_t *ptOps)
 
     memcpy(&this.tshell.tOps, ptOps, sizeof(this.tshell.tOps));
     queue_init(&this.tshell.tByteInQueue, this.tshell.chQueueInBuf, sizeof(this.tshell.chQueueInBuf), true);
-    queue_init(&this.tshell.tByteOutQueue, this.tshell.chQueueOutBuf, sizeof(this.tshell.chQueueOutBuf), true);
     this.tshell.tGetByte.pTarget = (void *)(&this.tshell.tByteInQueue);
     this.tshell.tGetByte.fnGetByte = get_byte;
     #ifdef __ARMCC_VERSION
