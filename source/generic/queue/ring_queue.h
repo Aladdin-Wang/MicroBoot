@@ -313,16 +313,16 @@ extern
 uint16_t peek_bytes_queue(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength);
 
 extern
-bool reset_peek(byte_queue_t *ptQueue);
+void reset_peek(byte_queue_t *ptQueue);
 
 extern
-bool get_all_peeked(byte_queue_t *ptQueue);
+void get_all_peeked(byte_queue_t *ptQueue);
 
 extern
 uint16_t get_peek_status(byte_queue_t *ptQueue);
 
 extern
-bool restore_peek_status(byte_queue_t *ptQueue, uint16_t hwCount);
+void restore_peek_status(byte_queue_t *ptQueue, uint16_t hwCount);
 
 extern
 uint16_t get_queue_count(byte_queue_t *ptObj);
@@ -330,11 +330,6 @@ uint16_t get_queue_count(byte_queue_t *ptObj);
 extern
 uint16_t get_queue_available_count(byte_queue_t *ptObj);
 
-extern
-uint16_t dequeue_bytes_setup(byte_queue_t *ptObj, uint8_t **pchBuffer, uint16_t hwLength);
-
-extern
-uint16_t dequeue_bytes_down(byte_queue_t *ptObj, uint16_t hwLength);
 
 #undef __BYTE_QUEUE_CLASS_INHERIT__
 #undef __BYTE_QUEUE_CLASS_IMPLEMENT__
