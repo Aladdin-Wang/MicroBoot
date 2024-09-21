@@ -98,11 +98,11 @@ bool enqueue_byte(byte_queue_t *ptObj, uint8_t chByte)
     safe_atom_code() {
         if(this.hwHead == this.hwTail &&
            0 != this.hwLength ){
-					/* queue is full */
+            /* queue is full */
             if(this.bIsCover == false){
                bEarlyReturn = true;			 
                continue;
-						}
+            }
         }			
         if(!this.bMutex){
             this.bMutex  = true;
@@ -117,7 +117,7 @@ bool enqueue_byte(byte_queue_t *ptObj, uint8_t chByte)
     safe_atom_code() {
         if(this.hwHead == this.hwTail &&
            0 != this.hwLength ){
-					/* queue is full */
+            /* queue is full */
             if(this.bIsCover != false){
                /*  overwrite */
                 this.hwHead++;
@@ -126,8 +126,7 @@ bool enqueue_byte(byte_queue_t *ptObj, uint8_t chByte)
                 }
                 this.hwLength--;
                 this.hwPeek = this.hwHead;
-                this.hwPeekLength = this.hwLength;
-						}
+            }
         }				
         this.hwTail++;
         if(this.hwTail >= this.hwSize){
@@ -161,7 +160,7 @@ uint16_t enqueue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
     safe_atom_code() {
         if(this.hwHead == this.hwTail &&
            0 != this.hwLength ){
-						/* queue is full */
+           /* queue is full */
             if(this.bIsCover == false){
                 bEarlyReturn = true;							
                 continue;
@@ -204,16 +203,16 @@ uint16_t enqueue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
         }else{
             this.hwTail = hwDataLength - (this.hwSize - this.hwTail);
         }
-		    this.hwLength += hwDataLength;
-		    this.hwPeekLength += hwDataLength;
-	  } 
+		this.hwLength += hwDataLength;
+		this.hwPeekLength += hwDataLength;
+	} 
     if(hwDataLength <= (this.hwSize - hwTail)) {
         memcpy(&this.pchBuffer[hwTail], pchByte, hwDataLength);
     }else{
         memcpy(&this.pchBuffer[hwTail], &pchByte[0], this.hwSize - hwTail);
         memcpy(&this.pchBuffer[0], &pchByte[this.hwSize - hwTail], hwDataLength - (this.hwSize - hwTail));
 	  }
-		this.bMutex = false;
+    this.bMutex = false;
     return hwDataLength;
 }
 
@@ -251,14 +250,14 @@ bool dequeue_byte(byte_queue_t *ptObj, uint8_t *pchByte)
         return false;
     }	
     safe_atom_code() {
-			  this.hwHead++;
+        this.hwHead++;
         if(this.hwHead >= this.hwSize){
             this.hwHead = 0;
         }
         this.hwLength--;
         this.hwPeek = this.hwHead;
         this.hwPeekLength = this.hwLength;			
-		}
+    }
    *pchByte = this.pchBuffer[hwHead];
     this.bMutex = false;
     return true;
@@ -305,18 +304,21 @@ uint16_t dequeue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
             /* less data */
             hwDataLength = this.hwLength;
         }			
-        if(hwDataLength > (this.hwSize - this.hwHead)) {
-           hwDataLength =  this.hwSize - this.hwHead;         
-        }
-				this.hwHead += hwDataLength;
-        if(this.hwHead >= this.hwSize){
-            this.hwHead = 0;
-        }				
+        if(hwDataLength < (this.hwSize - this.hwHead)) {
+            this.hwHead += hwDataLength;
+        }else{
+            this.hwHead = hwDataLength - (this.hwSize - this.hwHead);
+        }					
         this.hwLength -= hwDataLength;
         this.hwPeek = this.hwHead;
         this.hwPeekLength = this.hwLength;        
-		}			
-    memcpy(pchByte, &this.pchBuffer[hwHead], hwDataLength);
+		}	
+    if(hwDataLength <= (this.hwSize - hwHead)) {
+        memcpy(pchByte, &this.pchBuffer[hwHead], hwDataLength);
+    }else{
+        memcpy(&pchByte[0], &this.pchBuffer[hwHead], this.hwSize - hwHead);
+        memcpy(&pchByte[this.hwSize - hwHead], &this.pchBuffer[0], hwDataLength - (this.hwSize - hwHead));
+    }			
     this.bMutex = false;			
     return hwDataLength;
 }
@@ -438,7 +440,7 @@ bool peek_byte_queue(byte_queue_t *ptObj, uint8_t *pchByte)
             this.hwPeek = 0;
         }
         this.hwPeekLength--;			
-		}
+    }
     *pchByte = this.pchBuffer[hwPeek];
     this.bMutex = false;
     return true;
@@ -486,16 +488,19 @@ uint16_t peek_bytes_queue(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLengt
             /* less data */
             hwDataLength = this.hwPeekLength;
         }			
-        if(hwDataLength > (this.hwSize - this.hwPeek)) {
-            hwDataLength = this.hwSize - this.hwPeek;            
-        }	
-        this.hwPeek += hwDataLength; 
-        if(this.hwPeek >= this.hwSize){
-            this.hwPeek = 0;
+        if(hwDataLength < (this.hwSize - this.hwPeek)) {
+            this.hwPeek += hwDataLength;
+        }else{
+            this.hwPeek = hwDataLength - (this.hwSize - this.hwPeek);					
         }
         this.hwPeekLength -= hwDataLength;       				
     }
-    memcpy(pchByte, &this.pchBuffer[hwPeek], hwDataLength);		
+    if(hwDataLength <= (this.hwSize - hwPeek)) {
+        memcpy(pchByte, &this.pchBuffer[hwPeek], hwDataLength);
+    }else{
+        memcpy(&pchByte[0], &this.pchBuffer[hwPeek], this.hwSize - hwPeek);
+        memcpy(&pchByte[this.hwSize - hwPeek], &this.pchBuffer[0], hwDataLength - (this.hwSize - hwPeek));				
+    }		
     this.bMutex = false;	
     return hwDataLength;
 }
@@ -534,7 +539,7 @@ void get_all_peeked(byte_queue_t *ptObj)
     safe_atom_code() {
         this.hwHead = this.hwPeek;
         this.hwLength = this.hwPeekLength;
-		}
+    }
 }
 
 /****************************************************************************
