@@ -26,7 +26,7 @@
 #define this        (*ptThis)
 
 static void shell_push_history(wl_shell_t *ptObj);
-static void shell_echo(wl_shell_t *ptObj, uint8_t *pchData, uint16_t hwLength);
+static void shell_echo(wl_shell_t *ptObj, char *pchData, uint16_t hwLength);
 
 __attribute__((weak))
 int64_t get_system_time_ms(void)
@@ -36,7 +36,7 @@ int64_t get_system_time_ms(void)
     return wTimeCount;
 }
 
-static fsm_rt_t shell_read_with_timeout(shell_read_timeout_t *ptThis, uint8_t* pchByte, uint16_t hwSize, uint16_t hwTimeout)
+static fsm_rt_t shell_read_with_timeout(shell_read_timeout_t *ptThis, char* pchByte, uint16_t hwSize, uint16_t hwTimeout)
 {
     /* Macro to reset the finite state machine (FSM) */
 #define SHELL_READ_TIMEOUT_RESET_FSM() do { this.chState = 0; } while(0)
@@ -138,7 +138,7 @@ static fsm_rt_t shell_readline(wl_shell_t *ptObj)
  * @param pchData Pointer to the input data
  * @param hwLength Length of the input data
  */
-static void shell_echo(wl_shell_t *ptObj, uint8_t *pchData, uint16_t hwLength)
+static void shell_echo(wl_shell_t *ptObj, char *pchData, uint16_t hwLength)
 {
     wl_shell_t *(ptThis) = ptObj;
     for(uint16_t i = 0; i < hwLength; i++) {
@@ -146,15 +146,15 @@ static void shell_echo(wl_shell_t *ptObj, uint8_t *pchData, uint16_t hwLength)
 					|| this.chDate == 0x7f || this.chDate == 0x08 ) {
             if (pchData[i] == '\r' || pchData[i]  == '\n') {
                 this.hwCurposPosition = 0;
-                log_raw("\r\nkk@shell >");
+                __shell_write_data(ptObj,"\r\nkk@shell >",strlen("\r\nkk@shell >"));
             } else if(pchData[i] == 0x7f || pchData[i] == 0x08 ) { /* handle backspace key */
                 if(this.hwCurposPosition != 0) {
                     this.hwCurposPosition--;
-                    log_raw("\b \b");
+                    __shell_write_data(ptObj,"\b \b",strlen("\b \b"));
                 }
             } else {
                 this.hwCurposPosition++;
-                log_raw("%c",(char) pchData[i]);
+                __shell_write_data(ptObj,&pchData[i],1);
             }
 
             this.chDate = 0;
@@ -247,7 +247,7 @@ check_shell_t *shell_init(check_shell_t *ptObj, shell_ops_t *ptOps)
     #endif
 
 
-    log_raw("\r\nkk@shell >");
+    __shell_write_data(&this.tshell,"\r\nkk@shell >",strlen("\r\nkk@shell >"));
 
     return ptObj;
 }
@@ -289,39 +289,5 @@ static void shell_push_history(wl_shell_t *ptObj)
 
     this.hwCurrenthistory = this.hwHistoryCount;
 }
-
-static int msh_help(int argc, char **argv)
-{
-    #ifdef __ARMCC_VERSION
-    extern const int FSymTab$$Base;
-    extern const int FSymTab$$Limit;
-    log_raw("\r\nshell commands:\r\n");
-    {
-        msg_t *ptMsgTableBase = (msg_t *)&FSymTab$$Base;
-        msg_t *ptMsgTableLimit = (msg_t *)&FSymTab$$Limit;
-
-        for (uint32_t i = 0; &ptMsgTableBase[i] != ptMsgTableLimit; i++) {
-            log_raw("%-16s - %s\r\n", ptMsgTableBase[i].pchMessage, ptMsgTableBase[i].pchDesc);
-        }
-    }
-    #elif defined (__GNUC__) || defined(__TI_COMPILER_VERSION__) || defined(__TASKING__)
-    /* GNU GCC Compiler and TI CCS */
-    extern const int __fsymtab_start;
-    extern const int __fsymtab_end;
-    log_raw("\r\nshell commands:\r\n");
-    {
-        msg_t *ptMsgTableBase = (msg_t *)&__fsymtab_start;
-        msg_t *ptMsgTableLimit = (msg_t *)&__fsymtab_end;
-
-        for (uint32_t i = 0; &ptMsgTableBase[i] != ptMsgTableLimit; i++) {
-            log_raw("%-16s - %s\r\n", ptMsgTableBase[i].pchMessage, ptMsgTableBase[i].pchDesc);
-        }
-    }
-    #endif
-
-    return 0;
-}
-MSH_FUNCTION_EXPORT_CMD(msh_help, help, shell help);
-
 
 #endif

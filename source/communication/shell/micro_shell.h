@@ -33,12 +33,12 @@
 
 typedef struct wl_shell_t wl_shell_t;		
 /* Callback type definitions for various shell operations */
-typedef uint16_t (shell_call_back)(wl_shell_t *ptObj, uint8_t *pchBuffer, uint16_t hwSize);
-
+typedef uint16_t (shell_write_call_back)(wl_shell_t *ptObj, const char* pchBuffer, uint16_t hwSize);
+typedef uint16_t (shell_read_call_back)(wl_shell_t *ptObj,  char* pchBuffer, uint16_t hwSize);
 /* virtual function table for encapsulating shell operation functions */
 typedef struct shell_ops_t {
-    shell_call_back           *fnReadData; /* Callback for reading data */
-    shell_call_back           *fnWriteData; /* Callback for writing data */
+    shell_read_call_back           *fnReadData; /* Callback for reading data */
+    shell_write_call_back          *fnWriteData; /* Callback for writing data */
 } shell_ops_t;
 
 typedef struct shell_read_timeout_t {
@@ -53,15 +53,15 @@ typedef struct wl_shell_t {
     fsm(search_msg_map)       fsmSearchMsgMap;
     byte_queue_t              tByteInQueue;		
     get_byte_t                tGetByte;
-	  shell_read_timeout_t      tReadDataTimeout;
+    shell_read_timeout_t      tReadDataTimeout;
     shell_ops_t               tOps;
     uint16_t                  hwLineLen;
     uint16_t                  hwLinePosition;
     uint16_t                  hwCurposPosition;
     uint16_t                  hwCurrenthistory;
     uint16_t                  hwHistoryCount;
-    uint8_t                   chDate;
-	  char                      chQueueInBuf[MSG_ARG_LEN];
+    char                      chDate;
+    char                      chQueueInBuf[MSG_ARG_LEN];
     char                      chLineBuf[MSG_ARG_LEN];
     char                      cHistoryCmdBuf[SHELL_HISTORY_LINES][MSG_ARG_LEN];
 } wl_shell_t;
@@ -71,13 +71,19 @@ typedef struct check_shell_t {
     wl_shell_t    tshell;
 } check_shell_t;
 
-static inline uint16_t __shell_read_data_timeout(wl_shell_t *ptObj, uint8_t* pchByte, uint16_t hwSize)
+static inline uint16_t __shell_read_data_timeout(wl_shell_t *ptObj, char* pchByte, uint16_t hwSize)
 {
+    if(*ptObj->tOps.fnReadData == NULL){
+        return 0;
+    }
     return (*ptObj->tOps.fnReadData)(ptObj, pchByte, hwSize);
 }
 
-static inline uint16_t __shell_write_data(wl_shell_t *ptObj, uint8_t* pchByte, uint16_t hwSize)
+static inline uint16_t __shell_write_data(wl_shell_t *ptObj, const char* pchByte, uint16_t hwSize)
 {
+    if(*ptObj->tOps.fnWriteData == NULL){
+        return 0;
+    }	
     return (*ptObj->tOps.fnWriteData)(ptObj, pchByte, hwSize);
 }
 

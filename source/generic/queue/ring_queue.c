@@ -203,15 +203,15 @@ uint16_t enqueue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
         }else{
             this.hwTail = hwDataLength - (this.hwSize - this.hwTail);
         }
-		this.hwLength += hwDataLength;
-		this.hwPeekLength += hwDataLength;
-	} 
+        this.hwLength += hwDataLength;
+        this.hwPeekLength += hwDataLength;
+    } 
     if(hwDataLength <= (this.hwSize - hwTail)) {
         memcpy(&this.pchBuffer[hwTail], pchByte, hwDataLength);
     }else{
         memcpy(&this.pchBuffer[hwTail], &pchByte[0], this.hwSize - hwTail);
         memcpy(&this.pchBuffer[0], &pchByte[this.hwSize - hwTail], hwDataLength - (this.hwSize - hwTail));
-	  }
+    }
     this.bMutex = false;
     return hwDataLength;
 }
@@ -312,7 +312,7 @@ uint16_t dequeue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
         this.hwLength -= hwDataLength;
         this.hwPeek = this.hwHead;
         this.hwPeekLength = this.hwLength;        
-		}	
+    }	
     if(hwDataLength <= (this.hwSize - hwHead)) {
         memcpy(pchByte, &this.pchBuffer[hwHead], hwDataLength);
     }else{
