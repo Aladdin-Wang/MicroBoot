@@ -62,7 +62,8 @@ typedef struct wl_shell_t {
     uint16_t                  hwHistoryCount;
     char                      chDate;
     char                      chQueueInBuf[MSG_ARG_LEN];
-    char                      chLineBuf[MSG_ARG_LEN];
+    char                      chReadLineBuf[MSG_ARG_LEN];
+    char                      chWriteLineBuf[MSG_ARG_LEN];	
     char                      cHistoryCmdBuf[SHELL_HISTORY_LINES][MSG_ARG_LEN];
 } wl_shell_t;
 
@@ -88,5 +89,8 @@ static inline uint16_t __shell_write_data(wl_shell_t *ptObj, const char* pchByte
 }
 
 extern check_shell_t *shell_init(check_shell_t *ptObj, shell_ops_t *ptOps);
+extern wl_shell_t *shell_console_get(void);
+extern void shell_console_set(wl_shell_t *ptConsoleShell);
+extern void shell_printf(const char *format, ...);
 #endif
 #endif /* APPLICATIONS_CHECK_AGENT_XMODEM_H_ */

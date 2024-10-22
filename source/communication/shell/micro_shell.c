@@ -24,7 +24,7 @@
 
 #undef this
 #define this        (*ptThis)
-
+static  wl_shell_t *s_ptConsoleShell = NULL;
 static void shell_push_history(wl_shell_t *ptObj);
 static void shell_echo(wl_shell_t *ptObj, char *pchData, uint16_t hwLength);
 
@@ -34,6 +34,16 @@ int64_t get_system_time_ms(void)
     static int64_t wTimeCount = 0;
     wTimeCount ++;
     return wTimeCount;
+}
+
+wl_shell_t *shell_console_get(void)
+{
+    return s_ptConsoleShell;
+}
+
+void shell_console_set(wl_shell_t *ptConsoleShell)
+{
+    s_ptConsoleShell = ptConsoleShell;
 }
 
 static fsm_rt_t shell_read_with_timeout(shell_read_timeout_t *ptThis, char* pchByte, uint16_t hwSize, uint16_t hwTimeout)
@@ -99,22 +109,22 @@ static fsm_rt_t shell_readline(wl_shell_t *ptObj)
 
     if(fsm_rt_cpl == tFsm) {
         if (this.chDate == '\r' || this.chDate  == '\n') {
-            if(this.hwLinePosition  == strlen(this.chLineBuf) && this.hwLinePosition != 0) {
+            if(this.hwLinePosition  == strlen(this.chReadLineBuf) && this.hwLinePosition != 0) {
                 shell_push_history(ptObj);
-                this.chLineBuf[this.hwLinePosition++] = this.chDate;
-                enqueue(&this.tByteInQueue, this.chLineBuf, this.hwLinePosition );
+                this.chReadLineBuf[this.hwLinePosition++] = this.chDate;
+                enqueue(&this.tByteInQueue, this.chReadLineBuf, this.hwLinePosition );
             }
-            memset(this.chLineBuf, 0, sizeof(this.chLineBuf));
+            memset(this.chReadLineBuf, 0, sizeof(this.chReadLineBuf));
             this.hwLinePosition = 0;
         } else if(this.chDate == 0x7f || this.chDate == 0x08 ) { /* handle backspace key */
             if (this.hwLinePosition != 0) {
-                this.chLineBuf[--this.hwLinePosition] = 0;
+                this.chReadLineBuf[--this.hwLinePosition] = 0;
                 this.hwLineLen = this.hwLinePosition;
             }
         } else {
             if (isdigit(this.chDate) || isalpha(this.chDate) || isspace(this.chDate) || this.chDate == '_' || this.chDate == '.'|| this.chDate == '-') {
                 if (this.hwLinePosition < (MSG_ARG_LEN - 1)) {
-                    this.chLineBuf[this.hwLinePosition++] = this.chDate;
+                    this.chReadLineBuf[this.hwLinePosition++] = this.chDate;
                     this.hwLineLen = this.hwLinePosition;
                 } else {
                     this.hwLinePosition = 0;
@@ -246,9 +256,8 @@ check_shell_t *shell_init(check_shell_t *ptObj, shell_ops_t *ptOps)
     init_fsm(search_msg_map, &this.fsmSearchMsgMap, args((msg_t *)ptr_begin, (msg_t *)ptr_end, &this.tByteInQueue, true));
     #endif
 
-
-    __shell_write_data(&this.tshell,"\r\nkk@shell >",strlen("\r\nkk@shell >"));
-
+    shell_console_set(&this.tshell);
+    shell_printf("\r\nkk@shell >");
     return ptObj;
 }
 
@@ -261,7 +270,7 @@ static void shell_push_history(wl_shell_t *ptObj)
         /* push history */
         if (this.hwHistoryCount >= SHELL_HISTORY_LINES) {
             /* if current cmd is same as last cmd, don't push */
-            if (memcmp(&this.cHistoryCmdBuf[SHELL_HISTORY_LINES - 1], this.chLineBuf, MSG_ARG_LEN)) {
+            if (memcmp(&this.cHistoryCmdBuf[SHELL_HISTORY_LINES - 1], this.chReadLineBuf, MSG_ARG_LEN)) {
                 /* move history */
                 int index;
 
@@ -271,16 +280,16 @@ static void shell_push_history(wl_shell_t *ptObj)
                 }
 
                 memset(&this.cHistoryCmdBuf[index][0], 0, MSG_ARG_LEN);
-                memcpy(&this.cHistoryCmdBuf[index][0], this.chLineBuf, this.hwLinePosition);
+                memcpy(&this.cHistoryCmdBuf[index][0], this.chReadLineBuf, this.hwLinePosition);
                 /* it's the maximum history */
                 this.hwHistoryCount = SHELL_HISTORY_LINES;
             }
         } else {
             /* if current cmd is same as last cmd, don't push */
-            if (this.hwHistoryCount == 0 || memcmp(&this.cHistoryCmdBuf[this.hwHistoryCount - 1], this.chLineBuf, MSG_ARG_LEN)) {
+            if (this.hwHistoryCount == 0 || memcmp(&this.cHistoryCmdBuf[this.hwHistoryCount - 1], this.chReadLineBuf, MSG_ARG_LEN)) {
                 this.hwCurrenthistory = this.hwHistoryCount;
                 memset(&this.cHistoryCmdBuf[this.hwHistoryCount][0], 0, MSG_ARG_LEN);
-                memcpy(&this.cHistoryCmdBuf[this.hwHistoryCount][0], this.chLineBuf, this.hwLinePosition);
+                memcpy(&this.cHistoryCmdBuf[this.hwHistoryCount][0], this.chReadLineBuf, this.hwLinePosition);
                 /* increase count and set current history position */
                 this.hwHistoryCount ++;
             }
