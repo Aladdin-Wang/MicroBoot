@@ -29,7 +29,59 @@
 #define container_of(ptr, type, member) \
     ((type *)((char *)(ptr) - (unsigned long)(&((type *)0)->member)))
 #endif
-		
+#undef __CONNECT2
+#undef CONNECT2
+#undef __CONNECT3
+#undef CONNECT3
+
+#define __CONNECT3(__A, __B, __C)         __A##__B##__C
+#define __CONNECT2(__A, __B)              __A##__B
+
+#define CONNECT3(__A, __B, __C)           __CONNECT3(__A, __B, __C)
+#define CONNECT2(__A, __B)                __CONNECT2(__A, __B)
+
+#ifndef SAFE_NAME
+#define SAFE_NAME(__NAME)   CONNECT3(__,__NAME,__LINE__)
+#endif
+
+#ifndef safe_atom_code
+#ifdef __riscv
+#define MSTATUS_MIE (1 << 3U)
+#define MSTATUS_MPIE (1 << 7U)
+static inline uint32_t read_mstatus(void) {
+    uint32_t value;
+    __asm volatile("csrr %0, mstatus" : "=r"(value));
+    return value;
+}
+static inline void write_mstatus(uint32_t value) {
+    __asm volatile("csrw mstatus, %0" ::"r"(value));
+}
+static inline uint32_t __get_mstatus_and_disable_irq(void) {
+    uint32_t mstatus = 0;
+    mstatus = read_mstatus();
+    write_mstatus(mstatus & ~MSTATUS_MIE);
+    return mstatus;
+}
+static inline void __set_mstatus(uint32_t mstatus) {
+    write_mstatus(mstatus);
+}
+#define safe_atom_code()\
+  for(uint32_t SAFE_NAME(temp) = __get_mstatus_and_disable_irq(),\
+     *SAFE_NAME(temp3) = NULL ;\
+       SAFE_NAME(temp3)++ == NULL;\
+       __set_mstatus(SAFE_NAME(temp)))
+
+#else
+#include "cmsis_compiler.h"
+#define safe_atom_code()                                            \
+        for(  uint32_t SAFE_NAME(temp) =                             \
+            ({uint32_t SAFE_NAME(temp2)=__get_PRIMASK();       \
+                __disable_irq();                                 \
+                  SAFE_NAME(temp2);}),*SAFE_NAME(temp3) = NULL;    \
+                    SAFE_NAME(temp3)++ == NULL;                      \
+                     __set_PRIMASK(SAFE_NAME(temp)))
+#endif
+#endif		
 
 typedef struct wl_shell_t wl_shell_t;		
 /* Callback type definitions for various shell operations */
@@ -60,6 +112,7 @@ typedef struct wl_shell_t {
     uint16_t                  hwCurposPosition;
     uint16_t                  hwCurrenthistory;
     uint16_t                  hwHistoryCount;
+    bool                      bMutex;
     char                      chDate;
     char                      chQueueInBuf[MSG_ARG_LEN];
     char                      chReadLineBuf[MSG_ARG_LEN];
