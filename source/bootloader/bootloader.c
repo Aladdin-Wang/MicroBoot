@@ -133,17 +133,11 @@ static const boot_ops_t tBootOps  __attribute__ ((section(".ARM.__at_0x08001000"
  */
 void enter_bootloader(uint8_t *pchDate, uint16_t hwLength)
 {
-	  uint32_t wData = 0;
+    uint32_t wData = 0;
     target_flash_init(APP_PART_ADDR);
     target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - (USER_DATA_SIZE)), pchDate, USER_DATA_SIZE);
     target_flash_write((APP_PART_ADDR + APP_PART_SIZE - MARK_SIZE), (const uint8_t *)&wData, sizeof(wData));
     target_flash_uninit(APP_PART_ADDR);
-}
-
-
-void reset_bootloader(void)
-{
-    target_flash_erase(APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE), 3*MARK_SIZE);
 }
 
 /**
@@ -183,6 +177,13 @@ void finalize_download(void)
 }
 
 
+__attribute__((weak))
+bool user_enter_bootloader(void)
+{
+
+	return false;
+}
+
 /**
  * @brief Entry point for application mode.
  * 
@@ -194,6 +195,10 @@ __attribute__((constructor))
 static void enter_application(void)
 {
     do {
+		if(user_enter_bootloader()){
+            target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
+            break;			
+		}
         // Read the magic values from flash memory to determine the next action
         target_flash_read((APP_PART_ADDR + APP_PART_SIZE - 3 * MARK_SIZE), chBootMagic[0], 3 * MARK_SIZE);
 

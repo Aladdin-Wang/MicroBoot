@@ -275,7 +275,7 @@ def_class(byte_queue_t,
               uint16_t hwLength;
               uint16_t hwPeek;
               uint16_t hwPeekLength;
-							bool bMutex;
+              bool bMutex;
               bool bIsCover;
           )
          )

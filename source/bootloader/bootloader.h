@@ -26,7 +26,6 @@ extern user_data_t tUserData;
 extern void enter_bootloader(uint8_t *pchDate, uint16_t hwLength);
 extern void begin_download(void);
 extern void finalize_download(void);
-extern void reset_bootloader(void);
 
 #endif
 
