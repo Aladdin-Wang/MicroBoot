@@ -289,13 +289,7 @@ extern
 bool reset_queue(byte_queue_t *ptObj);
 
 extern
-bool enqueue_byte(byte_queue_t *ptQueue, uint8_t chByte);
-
-extern
 uint16_t enqueue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength);
-
-extern
-bool dequeue_byte(byte_queue_t *ptQueue, uint8_t *pchByte);
 
 extern
 uint16_t dequeue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength);
@@ -306,9 +300,6 @@ bool is_queue_empty(byte_queue_t *ptQueue);
 extern
 bool is_peek_empty(byte_queue_t *ptObj);
 	
-extern
-bool peek_byte_queue(byte_queue_t *ptQueue, uint8_t *pchByte);
-
 extern
 uint16_t peek_bytes_queue(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength);
 

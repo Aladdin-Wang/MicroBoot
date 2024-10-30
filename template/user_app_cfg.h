@@ -100,6 +100,10 @@
 //  <i>Default: 0X60000
 //  <i>Must align with flash sector size
 #define APP_PART_SIZE             0x60000
+// <o>The Boot Flash Ops Addr
+//  <i>Default: 0x08001000
+//  <i>Must align with flash sector size
+#define BOOT_FLASH_OPS_ADDR       0x08001000
 // </e>
 
 // <<< end of configuration section >>>

@@ -92,8 +92,10 @@ typedef struct {
  * The __attribute__((used)) ensures that the compiler does not optimize away this variable, and 
  * the __attribute__((section(".ARM.__at_0x08001000"))) places it at the specified memory address.
  */
+#define __ARM_AT(x) ".ARM.__at_"#x
+#define ARM_AT(x) __ARM_AT(x)
 __attribute__((used))
-static const boot_ops_t tBootOps  __attribute__ ((section(".ARM.__at_0x08001000"))) = {
+static const boot_ops_t tBootOps  __attribute__ ((section(ARM_AT(BOOT_FLASH_OPS_ADDR)))) = {
     .fnEnterBootloaderMode = enter_bootloader,
     .target_flash_init = target_flash_init,
     .target_flash_erase = target_flash_erase,

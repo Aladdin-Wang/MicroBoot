@@ -80,64 +80,6 @@ bool reset_queue(byte_queue_t *ptObj)
     return true;  // Return success
 }
 
-/****************************************************************************
-* Function: enqueue_byte                                                  *
-* Description: Enqueues a single byte into the byte queue.               *
-* Parameters:                                                             *
-*   - ptObj: Pointer to the byte_queue_t object.                         *
-*   - chByte: Byte to be enqueued.                                       *
-* Returns: True if the enqueue is successful, false otherwise.           *
-* Notes:                                                                   *
-*   - Uses bEarlyReturn to manage multiple thread access.                 *
-****************************************************************************/
-bool enqueue_byte(byte_queue_t *ptObj, uint8_t chByte)
-{
-    assert(NULL != ptObj);  // Ensure ptObj is not NULL
-    /* initialise "this" (i.e. ptThis) to access class members */
-    class_internal(ptObj, ptThis, byte_queue_t);  
-
-    bool bEarlyReturn = false;  // Initialize early return flag
-    safe_atom_code() {  // Start atomic section for thread safety
-        if(this.hwHead == this.hwTail && this.hwLength != 0) {  // Check if queue is full
-            if(!this.bIsCover) {  // If not allowed to overwrite
-                bEarlyReturn = true; // Set early return flag
-                continue;  // Exit atomic block
-            }
-        }
-        if(!this.bMutex) {  // Check if mutex is free
-            this.bMutex = true; // Lock the queue for thread safety
-        } else {
-            bEarlyReturn = true; // Another thread is modifying the queue
-        }					
-    }
-    if(bEarlyReturn) {
-        return false; // Return if queue is full or accessed by another thread
-    }
-    
-    // Proceed with enqueuing the byte
-    uint16_t hwTail = this.hwTail;  // Store current tail index
-    safe_atom_code() {  // Start atomic section for thread safety
-        if(this.hwHead == this.hwTail && this.hwLength != 0) {  // Check if queue is full
-            if(this.bIsCover) {  // If overwriting is allowed
-                this.hwHead++;  // Move head forward
-                if(this.hwHead >= this.hwSize) {  // Wrap around if needed
-                    this.hwHead = 0; 
-                }
-                this.hwLength--;  // Decrease length
-                this.hwPeek = this.hwHead;  // Update peek index
-            }
-        }
-        this.hwTail++;  // Move tail forward
-        if(this.hwTail >= this.hwSize) {  // Wrap around if needed
-            this.hwTail = 0; 
-        }
-        this.hwLength++;  // Increase queue length
-        this.hwPeekLength++;  // Increase peek length
-    }
-    this.pchBuffer[hwTail] = chByte; // Store the byte in the buffer
-    this.bMutex = false; // Unlock the queue
-    return true;  // Return success
-}
 
 /****************************************************************************
 * Function: enqueue_bytes                                                 *
@@ -210,49 +152,6 @@ uint16_t enqueue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
     return hwDataLength;  // Return number of bytes enqueued
 }
 
-/****************************************************************************
-* Function: dequeue_byte                                                  *
-* Description: Dequeues a single byte from the byte queue.               *
-* Parameters:                                                             *
-*   - ptObj: Pointer to the byte_queue_t object.                         *
-*   - pchByte: Pointer to store the dequeued byte.                       *
-* Returns: True if the dequeue is successful, false otherwise.           *
-****************************************************************************/
-bool dequeue_byte(byte_queue_t *ptObj, uint8_t *pchByte)
-{
-    assert(NULL != ptObj);  // Ensure ptObj is not NULL
-    assert(NULL != pchByte);  // Ensure pchByte is not NULL
-    /* initialise "this" (i.e. ptThis) to access class members */
-    class_internal(ptObj, ptThis, byte_queue_t);
-    uint16_t hwHead = this.hwHead;  // Store current head index
-    bool bEarlyReturn = false;  // Initialize early return flag
-    safe_atom_code() {  // Start atomic section for thread safety
-        if(this.hwHead == this.hwTail && 0 == this.hwLength) {  // Check if queue is empty
-            bEarlyReturn = true;  // Set early return flag
-            continue;  // Exit atomic block
-        }			
-        if(!this.bMutex) {  // Check if mutex is free
-            this.bMutex  = true;  // Lock the queue for thread safety
-        } else {
-            bEarlyReturn = true;  // Another thread is modifying the queue
-        }					
-    }
-    if(bEarlyReturn) {
-        return false;  // Return false if queue is empty or accessed by another thread
-    }	
-    safe_atom_code() {  // Start atomic section for thread safety
-        this.hwHead++;  // Move head forward
-        if(this.hwHead >= this.hwSize) {
-            this.hwHead = 0;  // Wrap around if needed
-        }
-        this.hwLength--;  // Decrease queue length
-        this.hwPeek = this.hwHead;  // Update peek index
-        this.hwPeekLength = this.hwLength;  // Update peek length
-    }
-    *pchByte = this.pchBuffer[hwHead];  // Retrieve byte from buffer
-    this.bMutex = false;  // Unlock the queue
-    return true;  // Return success
-}
 
 /****************************************************************************
 * Function: dequeue_bytes                                                 *
@@ -380,49 +279,6 @@ bool is_peek_empty(byte_queue_t *ptObj)
     }
 
     return false;  // Return false if not empty
-}
-
-/****************************************************************************
-* Function: peek_byte_queue                                               *
-* Description: Peeks a single byte from the byte queue without dequeuing. *
-* Parameters:                                                             *
-*   - ptObj: Pointer to the byte_queue_t object.                         *
-*   - pchByte: Pointer to store the peeked byte.                         *
-* Returns: True if peek is successful, false otherwise.                  *
-****************************************************************************/
-bool peek_byte_queue(byte_queue_t *ptObj, uint8_t *pchByte)
-{
-    assert(NULL != ptObj);  // Ensure ptObj is not NULL
-    assert(NULL != pchByte);  // Ensure pchByte is not NULL
-
-    /* initialise "this" (i.e. ptThis) to access class members */
-    class_internal(ptObj, ptThis, byte_queue_t);
-    uint16_t hwPeek = this.hwPeek;  // Store current peek index
-    bool bEarlyReturn = false;  // Initialize early return flag
-    safe_atom_code() {  // Start atomic section for thread safety
-        if(this.hwPeek == this.hwTail && 0 == this.hwPeekLength) {  // Check if peek buffer is empty
-            bEarlyReturn = true;  // Set early return flag
-            continue;  // Exit atomic block
-        }			
-        if(!this.bMutex) {  // Check if mutex is free
-            this.bMutex  = true;  // Lock the queue for thread safety
-        } else {
-            bEarlyReturn = true;  // Another thread is modifying the queue
-        }					
-    }
-    if(bEarlyReturn) {
-        return false;  // Return false if peek buffer is empty or accessed by another thread
-    }
-    safe_atom_code() {  // Start atomic section for thread safety
-        this.hwPeek++;  // Move peek index forward
-        if(this.hwPeek >= this.hwSize) {
-            this.hwPeek = 0;  // Wrap around if needed
-        }
-        this.hwPeekLength--;  // Decrease peek length
-    }
-    *pchByte = this.pchBuffer[hwPeek];  // Retrieve byte from buffer
-    this.bMutex = false;  // Unlock the queue
-    return true;  // Return success
 }
 
 /****************************************************************************
