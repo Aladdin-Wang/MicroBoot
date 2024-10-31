@@ -20,7 +20,7 @@ static uint16_t ymodem_recv_file_name(ymodem_t *ptObj, uint8_t *pchBuffer, uint1
     printf("Ymodem file_size:%d \r\n", this.wFileSize);
 
     if(strlen(tUserData.msg_data.sig.chProjectName) > 0) {
-        if(strcmp(tUserData.msg_data.sig.chProjectName, this.chFileName) != 0 ) {
+        if(strstr(this.chFileName,tUserData.msg_data.sig.chProjectName) == NULL ) {
             printf("Firmware Name Check failure.");
             return 0;
         }

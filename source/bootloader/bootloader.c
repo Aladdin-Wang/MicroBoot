@@ -196,6 +196,7 @@ bool user_enter_bootloader(void)
 __attribute__((constructor))
 static void enter_application(void)
 {
+    target_flash_init(APP_PART_ADDR);	
     do {
 		if(user_enter_bootloader()){
             target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
@@ -215,21 +216,18 @@ static void enter_application(void)
             target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - 2 * USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
             break;
         }
-
+		
         // Check if the value at the address (APP_PART_ADDR + 4) has the expected application identifier
-        if (((*(volatile uint32_t *)(APP_PART_ADDR + 4)) & 0xff000000) != 0x08000000) {
+        if (((*(volatile uint32_t *)(APP_PART_ADDR + 4)) & 0xff000000) != (APP_PART_ADDR & 0xff000000)) {
             break;
         }
-
-        // Check if the value at the address APP_PART_ADDR has the expected stack pointer identifier
-        if (((*(volatile uint32_t *)APP_PART_ADDR) & 0x20000000) != 0x20000000) {
-            break;
-        }
+		
         // If all checks are passed, modify the stack pointer and start the application
         modify_stack_pointer_and_start_app(*(volatile uint32_t *)APP_PART_ADDR,
                                            (*(volatile uint32_t *)(APP_PART_ADDR + 4)));
 
     } while(0);
+    target_flash_uninit(APP_PART_ADDR);		
 }
 
 

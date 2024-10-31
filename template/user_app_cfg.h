@@ -95,7 +95,7 @@
 // <o>The starting address of the app
 //  <i>Default: 0x8020000
 //  <i>Must align with flash sector size
-#define APP_PART_ADDR             0x8020000
+#define APP_PART_ADDR             0x08020000
 // <o>The app size
 //  <i>Default: 0X60000
 //  <i>Must align with flash sector size

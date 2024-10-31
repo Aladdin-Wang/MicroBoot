@@ -262,7 +262,6 @@ static ymodem_state_t ymodem_receive_package(ymodem_package_t *ptThis, uint8_t c
                 /* Inverse packet number read, check if it correctly complements the packet number. */
                 if(0xFF != (this.chBlk ^ this.chNBlk)) {
                     /* Packet validation failure due to mismatch in packet numbers, requiring FSM reset. */
-                    PRINT_ERROR("incorrect NBlk");
                     YMODEM_RECEIVE_PACKAGE_RESET_FSM();
                     return STATE_INCORRECT_NBlk;
                 }
@@ -517,8 +516,8 @@ ymodem_state_t ymodem_receive(ymodem_t *ptThis)
                     return STATE_INCORRECT_CHAR;
 
                 case STATE_INCORRECT_NBlk:
-                    return STATE_INCORRECT_NBlk;
-
+					return STATE_INCORRECT_NBlk;
+				
                 case STATE_INCORRECT_PACKET_NUMBER:
                 case STATE_INCORRECT_CHECKOUT:
                 case STATE_TIMEOUT:
