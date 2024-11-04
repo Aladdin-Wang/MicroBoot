@@ -28,7 +28,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#define PRINT_ERROR(message) printf("\nError: %s in file %s at line %d\n", message, __FILE__, __LINE__)
+
+#ifndef ERROR_YMODEM_PRINTF
+#define ERROR_YMODEM_PRINTF(message) printf("\nError: %s in file %s at line %d\n", message, __FILE__, __LINE__)
+#endif
 
 #ifndef container_of
 #define container_of(ptr, type, member) \

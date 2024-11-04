@@ -10,7 +10,7 @@
 
 static int32_t Init(uint32_t adr, uint32_t clk, uint32_t fnc)
 {
-    fmc_unlock();
+
     return (0);
 }
 
@@ -22,7 +22,7 @@ static int32_t Init(uint32_t adr, uint32_t clk, uint32_t fnc)
 
 static int32_t UnInit(uint32_t fnc)
 {
-    fmc_lock();
+
     return (0);
 }
 
@@ -33,7 +33,9 @@ static int32_t UnInit(uint32_t fnc)
 
 static int32_t EraseChip(void)
 {
+	fmc_unlock();
     fmc_mass_erase();
+    fmc_lock();	
     return (0);
 }
 
@@ -44,7 +46,9 @@ static int32_t EraseChip(void)
  */
 static int32_t EraseSector(uint32_t adr)
 {
+	fmc_unlock();	
     fmc_page_erase(adr);
+    fmc_lock();		
     return (0);
 }
 
@@ -58,6 +62,7 @@ static int32_t EraseSector(uint32_t adr)
 static int32_t ProgramPage(uint32_t addr, uint32_t sz, uint8_t* buf)
 {
     int32_t result = 0;
+    fmc_unlock();
     uint32_t end_addr = addr + sz;
     while (addr < end_addr) {
         if (fmc_word_program(addr, *((uint32_t *)buf)) == FMC_READY) {
@@ -72,6 +77,7 @@ static int32_t ProgramPage(uint32_t addr, uint32_t sz, uint8_t* buf)
             break;
         }
     }
+    fmc_lock();	
     return result;
 }
 

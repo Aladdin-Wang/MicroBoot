@@ -10,7 +10,7 @@
 
 static int32_t Init(uint32_t adr, uint32_t clk, uint32_t fnc)
 {
-    EFM_FWMC_Cmd(ENABLE);
+
     return (0);
 }
 
@@ -22,7 +22,7 @@ static int32_t Init(uint32_t adr, uint32_t clk, uint32_t fnc)
 
 static int32_t UnInit(uint32_t fnc)
 {
-    EFM_FWMC_Cmd(DISABLE);
+
     return (0);
 }
 
@@ -33,7 +33,9 @@ static int32_t UnInit(uint32_t fnc)
 
 static int32_t EraseChip(void)
 {
+    EFM_FWMC_Cmd(ENABLE);	
     EFM_ChipErase(EFM_CHIP_ALL);
+    EFM_FWMC_Cmd(DISABLE);	
     return (0);
 }
 
@@ -44,7 +46,9 @@ static int32_t EraseChip(void)
  */
 static int32_t EraseSector(uint32_t adr)
 {
+    EFM_FWMC_Cmd(ENABLE);		
     EFM_SectorErase(adr);
+    EFM_FWMC_Cmd(DISABLE);		
     return (0);
 }
 
@@ -58,11 +62,13 @@ static int32_t EraseSector(uint32_t adr)
 static int32_t ProgramPage(uint32_t addr, uint32_t sz, uint8_t* buf)
 {
     int32_t result = 0;
+    EFM_FWMC_Cmd(ENABLE);		
 	 /* program */
 	if (LL_OK != EFM_Program(addr, buf, sz))
 	{
 		result = 1;
 	}
+    EFM_FWMC_Cmd(DISABLE);	
     return result;
 }
 
@@ -76,11 +82,13 @@ static int32_t ProgramPage(uint32_t addr, uint32_t sz, uint8_t* buf)
 static int32_t ReadPage(uint32_t addr, uint32_t sz, uint8_t* buf)
 {
     int32_t result = 0;
-	 /* program */
+    EFM_FWMC_Cmd(ENABLE);		
+	 /* read */
 	if (LL_OK != EFM_ReadByte(addr, buf, sz))
 	{
 		result = 1;
 	}
+    EFM_FWMC_Cmd(DISABLE);	
     return result;
 }
 

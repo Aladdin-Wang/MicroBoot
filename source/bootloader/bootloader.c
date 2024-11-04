@@ -61,6 +61,12 @@ void modify_stack_pointer_and_start_app(uint32_t r0_sp, uint32_t r1_pc)
  */
 user_data_t  tUserData;
 
+__attribute__((weak))
+bool user_enter_bootloader(void)
+{
+
+	return false;
+}
 /**
  * @brief Array to hold magic values for bootloader operations.
  * 
@@ -136,10 +142,8 @@ static const boot_ops_t tBootOps  __attribute__ ((section(ARM_AT(BOOT_FLASH_OPS_
 void enter_bootloader(uint8_t *pchDate, uint16_t hwLength)
 {
     uint32_t wData = 0;
-    target_flash_init(APP_PART_ADDR);
     target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - (USER_DATA_SIZE)), pchDate, USER_DATA_SIZE);
     target_flash_write((APP_PART_ADDR + APP_PART_SIZE - MARK_SIZE), (const uint8_t *)&wData, sizeof(wData));
-    target_flash_uninit(APP_PART_ADDR);
 }
 
 /**
@@ -178,14 +182,6 @@ void finalize_download(void)
     target_flash_write((APP_PART_ADDR + APP_PART_SIZE - 3*MARK_SIZE), chBootMagic[0], MARK_SIZE);
 }
 
-
-__attribute__((weak))
-bool user_enter_bootloader(void)
-{
-
-	return false;
-}
-
 /**
  * @brief Entry point for application mode.
  * 
@@ -196,8 +192,8 @@ bool user_enter_bootloader(void)
 __attribute__((constructor))
 static void enter_application(void)
 {
-    target_flash_init(APP_PART_ADDR);	
     do {
+		// User-defined conditions for entering the bootloader
 		if(user_enter_bootloader()){
             target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
             break;			
@@ -226,8 +222,7 @@ static void enter_application(void)
         modify_stack_pointer_and_start_app(*(volatile uint32_t *)APP_PART_ADDR,
                                            (*(volatile uint32_t *)(APP_PART_ADDR + 4)));
 
-    } while(0);
-    target_flash_uninit(APP_PART_ADDR);		
+    } while(0);	
 }
 
 

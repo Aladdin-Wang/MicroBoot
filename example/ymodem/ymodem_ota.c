@@ -6,7 +6,7 @@
 
 __attribute__((aligned(32)))
 uint8_t s_chQueueBuffer[1024] ;
-static uint8_t chIsFlashInit = 0;
+
 static uint16_t ymodem_recv_file_name(ymodem_t *ptObj, uint8_t *pchBuffer, uint16_t hwSize)
 {
     ymodem_receive_t *(ptThis) = (ymodem_receive_t *)ptObj;
@@ -19,21 +19,11 @@ static uint16_t ymodem_recv_file_name(ymodem_t *ptObj, uint8_t *pchBuffer, uint1
     printf("Ymodem file_name:%s \r\n", this.chFileName);
     printf("Ymodem file_size:%d \r\n", this.wFileSize);
 
-    if(strlen(tUserData.msg_data.sig.chProjectName) > 0) {
-        if(strstr(this.chFileName,tUserData.msg_data.sig.chProjectName) == NULL ) {
-            printf("Firmware Name Check failure.");
-            return 0;
-        }
-    }
-
     if( APP_PART_SIZE  < this.wFileSize) {
         printf("file size outrange flash size. \r\n");
         return 0;
     }
-    if(chIsFlashInit == 0){
-        target_flash_init(APP_PART_ADDR);
-        chIsFlashInit = 1;
-		}
+
     uint32_t wEraseSize = target_flash_erase(APP_PART_ADDR, this.wFileSize);
 
     if( wEraseSize < this.wFileSize) {
@@ -83,9 +73,7 @@ static uint16_t ymodem_recv_file_data(ymodem_t *ptObj, uint8_t *pchBuffer, uint1
     this.wOffSet += wWriteLen;
 
     if(this.wOffSet == this.wFileSize) {
-        finalize_download();
-			  target_flash_uninit(APP_PART_ADDR);
-        chIsFlashInit = 0;			
+        finalize_download();			
         printf("Download firmware to flash success.\n");
     }
     
@@ -122,7 +110,11 @@ fsm_rt_t ymodem_ota_receive(ymodem_t *ptObj)
         return fsm_rt_user_req_drop;
     }else if(tState == STATE_TIMEOUT) {
         return fsm_rt_user_req_timeout;
-    }else {
+    }else if(tState == STATE_FINSH ){
+		extern int reboot(void);
+		reboot();
+		return fsm_rt_cpl;
+	}else {
         return fsm_rt_cpl;
     }
 }
