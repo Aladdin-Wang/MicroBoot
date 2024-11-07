@@ -13,7 +13,7 @@
 
 下载结束后双击文件进行安装,一路 Next 安装即可
 
-![cmsis_pack](..\images\quick-start\cmsis_pack.png)
+![cmsis_pack](./../images/quick-start/cmsis_pack.png)
 
 ## 3.添加MicroBoot到工程
 
@@ -21,23 +21,23 @@
 
 在 MDK 工程中通过工具栏的快捷按钮，来打开 RTE 配置窗口：
 
-![cmsis_pack_2](..\images\quick-start\cmsis_pack_2.png)
+![cmsis_pack_2](./../images/quick-start/cmsis_pack_2.png)
 
 在 Manage Rum-Time Environment 里 "Software Component" 栏找到 MicroBoot，并将其展开：
 
 如果只想使用MicroBoot的ota功能，可以勾选ymodem_ota，如下图所示，你会发现在窗口中看到橙色的警告：
 
-![cmsis_pack_3](..\images\quick-start\cmsis_pack_4.jpg)
+![cmsis_pack_3](./../images/quick-start/cmsis_pack_4.jpg)
 
 这里警告的含义是说：**ymodem_ota**依赖了其他模块，但你没有勾选它们。简单的单击左下角的 Resolve 按钮，RTE会自动帮你勾选上所依赖的模块。
 
-![cmsis_pack_3](..\images\quick-start\cmsis_pack_3.jpg)
+![cmsis_pack_3](./../images/quick-start/cmsis_pack_3.jpg)
 
 单击“OK” 按钮完成组件的添加。
 
 根据芯片类型选择FLASH的驱动程序：
 
-![cmsis_pack_5](..\images\quick-start\cmsis_pack_5.jpg)
+![cmsis_pack_5](./../images/quick-start/cmsis_pack_5.jpg)
 
 **步骤二：配置编译环境**
 
@@ -49,7 +49,7 @@
 
 在工程管理器中展开 **MicroBoot**，并找到新加入的用户适配器文件（**user_app_cfg.h**)，双击打开后，在编辑器的左下角选择 **Configuration Wizard**，进入图形配置界面：
 
-![cmsis_pack_7](..\images\quick-start\cmsis_pack_7.jpg)
+![cmsis_pack_7](./../images/quick-start/cmsis_pack_7.jpg)
 
 配置bootloader的参数：
 
@@ -61,23 +61,23 @@
 
 假设你以串口（其他串行外设方法类似）的方式传输数据，在usart.h中，添加信号：
 
-![cmsis_pack_8](..\images\quick-start\cmsis_pack_8.png)
+![cmsis_pack_8](./../images/quick-start/cmsis_pack_8.png)
 
 在usart.c中，添加data_msg_t的定义
 
-![cmsis_pack_9](..\images\quick-start\cmsis_pack_9.png)
+![cmsis_pack_9](./../images/quick-start/cmsis_pack_9.png)
 
 打开串口接收数据中断
 
-![cmsis_pack_10](..\images\quick-start\cmsis_pack_10.jpg)
+![cmsis_pack_10](./../images/quick-start/cmsis_pack_10.jpg)
 
 在中断接收回调函数中，发射信号：
 
-![cmsis_pack_11](..\images\quick-start\cmsis_pack_11.jpg)
+![cmsis_pack_11](./../images/quick-start/cmsis_pack_11.jpg)
 
 实现一个串口发送接口：
 
-![cmsis_pack_12](..\images\quick-start\cmsis_pack_12.jpg)
+![cmsis_pack_12](./../images/quick-start/cmsis_pack_12.jpg)
 
 
 
@@ -154,19 +154,19 @@ int main(void)
 
 以上就完成了对 **MicroBoot** 模块基本功能的配置，编译下载，如果一切顺利，你应该可以在串口助手中看的3秒钟打印一个字母“C”。
 
-![cmsis_pack_13](..\images\quick-start\cmsis_pack_13.png)
+![cmsis_pack_13](./../images/quick-start/cmsis_pack_13.png)
 
 
 
 使用 Xshell等带有Ymodem协议的串口助手，来下载文件：
 
-![cmsis_pack_14](..\images\quick-start\cmsis_pack_14.jpg)
+![cmsis_pack_14](./../images/quick-start/cmsis_pack_14.jpg)
 
-![cmsis_pack_15](..\images\quick-start\cmsis_pack_15.jpg)
+![cmsis_pack_15](./../images/quick-start/cmsis_pack_15.jpg)
 
 或者直接使用MicroLink进行下载，MicroLink内置Ymodem协议，将需要升级的bin文件，直接拷贝到虚拟U盘中，即可自动完成下载。
 
-![cmsis_pack_16](..\images\quick-start\cmsis_pack_16.png)
+![cmsis_pack_16](./../images/quick-start/cmsis_pack_16.png)
 
 
 
