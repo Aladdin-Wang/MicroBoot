@@ -223,9 +223,9 @@ __PLOOC_VA_NUM_ARGS的返回值是5，从左往右数，第十八个参数，正
 
 CONNECT2会根据\__PLOOC_VA_NUM_ARGS返回的数量，与\_\_ENQUEUE\_进行连接,
 
- - \__PLOOC_VA_NUM_ARGS返回的数量如果为0，调用\_\_ENQUEUE_0(\_\_queue,(\_\_addr),##\_\_VA_ARGS__)；
- - \__PLOOC_VA_NUM_ARGS返回的数量如果为1，调用\_\_ENQUEUE_1(\_\_queue,(\_\_addr),##\_\_VA_ARGS__)；
- - \__PLOOC_VA_NUM_ARGS返回的数量如果为2，调用\_\_ENQUEUE_2(\_\_queue,(\_\_addr),##\_\_VA_ARGS__)；
+ - \_\_PLOOC_VA_NUM_ARGS返回的数量如果为0，调用\_\_ENQUEUE_0(\_\_queue,(\_\_addr),##\_\_VA_ARGS__)；
+ - \_\_PLOOC_VA_NUM_ARGS返回的数量如果为1，调用\_\_ENQUEUE_1(\_\_queue,(\_\_addr),##\_\_VA_ARGS__)；
+ - \_\_PLOOC_VA_NUM_ARGS返回的数量如果为2，调用\_\_ENQUEUE_2(\_\_queue,(\_\_addr),##\_\_VA_ARGS__)；
 
 举个例子：
 
@@ -251,30 +251,31 @@ enqueue_bytes(&my_queue,&data1,1)
 ```c
 bool enqueue_bytes(...)
 {
-	bool bEarlyReturn = false;
-	safe_atom_code(){
-		if (!this.bMutex){
-		    this.bMutex= true;
-	    } else {
-		    bEarlyReturn = true;
-		}
-	}
-	if (bEarlyReturn){
-	    return false;
-	}
-	safe_atom_code(){
-		/*队列指针操作 */
-		...
-	}
-	/* 数据操作*/
-	memcpy(...);
-	...
-	this.bMutex = false;
-	return true;
+    bool bEarlyReturn = false;
+    safe_atom_code(){
+        if (!this.bMutex){
+            this.bMutex= true;
+        } else {
+            bEarlyReturn = true;
+        }
+    }
+    if (bEarlyReturn){
+         return false;
+    }
+    safe_atom_code(){
+        /*队列指针操作 */
+       ...
+    }
+    /* 数据操作*/
+    memcpy(...);
+    ...
+    this.bMutex = false;
+    return true;
 }
 ```
 
 **原子宏safe_atom_code()的实现：**
+
 前边的例子中，我们实现了一个SAFE_ATOM_CODE的原子宏，唯一的问题是，这样的写法，在调试时完全没法在用户代码处添加断点（编译器会认为宏内所有的内容都写在了同一行），这是大多数人不喜欢使用宏来封装代码结构的最大原因。
 
 接下来我们用另一种实现方式来解决这个问题,代码如下：

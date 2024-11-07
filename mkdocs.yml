@@ -16,9 +16,9 @@ nav:
       - 变参函数和可变参数宏: utilities/ParameterMacro.md
       - Flash下载算法制作: utilities/FLM.md
   - 组件介绍:
-      - FlashBlob:  components/flash_blob/flash_blob.md
+      - queue:  components/queue/queue.md      
       - BootLoader: components/bootloader/bootloader.md
-      - queue:  components/queue/queue.md
+      - FlashBlob:  components/flash_blob/flash_blob.md
       - ymodem: components/ymodem/ymodem.md  
       - 信号槽: components/signals_slots/signals_slots.md
       - 发布订阅: components/subscribe_publish/subscribe_publish.md
