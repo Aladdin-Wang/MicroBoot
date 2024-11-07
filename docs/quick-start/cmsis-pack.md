@@ -2,12 +2,11 @@
 
 ## 1.准备工作
 
-- 准备一份基础的裸机源码 (可通过 STM32CubeMx 可视化软件创建也可按照工程项目所需文档手动创建) 工程，如一份 stm32 包含一个支持 **printf 的串口初始化**代码。
-- 在 KEIL 上安装 MicroBoot Pack。
+准备一份基础的裸机源码 (可通过 STM32CubeMx 可视化软件创建也可按照工程项目所需文档手动创建) 工程，如一份 stm32 包含一个支持 **printf 的串口初始化**代码。
 
 ## 2.安装Pack包
 
-在 **MDK** 中部署 **MicroBoot **的第一步是获取对应的 **cmsis-pack**，对于可以流畅访问 Github 的朋友来说，通过下面的网址直接找到最新的 .pack 文件是最直接的方式。
+在 **MDK** 中部署 **MicroBoot **的第一步是获取对应的 **cmsis-pack**，对于可以流畅访问 Github 的朋友来说，通过下面的网址直接找到最新的 .pack 文件。
 
 [https://github.com/Aladdin-Wang/MicroBoot/releases](https://github.com/Aladdin-Wang/MicroBoot/releases)
 
@@ -43,7 +42,7 @@
 
 如果你使用**Arm Compiler 6（armclang）**，则需要打开对**C11**和**GNU扩展**的支持，即直接在"Language C"中选择“**gnu11**”：
 
-![cmsis_pack_6](..\images\quick-start\cmsis_pack_6.jpg)
+![cmsis_pack_6](./../images/quick-start/cmsis_pack_6.jpg)
 
 **步骤三：模块配置**
 
@@ -55,7 +54,7 @@
 
 - The starting address of the app：从bootloader跳转到APP的地址；
 - The app size：APP占用FLASH的大小，必须对扇区对齐；
-- The Boot Flash Ops Addr：对flash进行擦写函数的地址；
+- The Boot Flash Ops Addr：对flash进行擦写函数的地址，使用默认值；
 
 **步骤四：添加代码**
 
@@ -123,7 +122,6 @@ int main(void)
 
     /* Initialize all configured peripherals */
     MX_GPIO_Init();
-    MX_USART1_UART_Init();
     MX_USART6_UART_Init();
     /* USER CODE BEGIN 2 */
     queue_init(&s_tCheckUsePeekQueue, s_chBuffer, sizeof(s_chBuffer));
@@ -152,7 +150,7 @@ int main(void)
 
 **步骤五：验证升级功能**
 
-以上就完成了对 **MicroBoot** 模块基本功能的配置，编译下载，如果一切顺利，你应该可以在串口助手中看的3秒钟打印一个字母“C”。
+以上就完成了对 **MicroBoot** 模块基本功能的配置，编译下载，如果一切顺利，你应该可以在串口助手中看到3秒钟打印一个字母“C”。
 
 ![cmsis_pack_13](./../images/quick-start/cmsis_pack_13.png)
 
