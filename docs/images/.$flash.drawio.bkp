@@ -1,0 +1,64 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.17 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.17">
+  <diagram name="第 1 页" id="AFk8mZvPw1UH6bTbIOK2">
+    <mxGraphModel dx="1929" dy="810" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="RSgdlJm6spRMBpsDEhko-2" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;0XFFFFFFFF&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;gradientDirection=north;" vertex="1" parent="1">
+          <mxGeometry x="200" y="190" width="110" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="RSgdlJm6spRMBpsDEhko-3" value="&lt;span style=&quot;font-size: 16px;&quot;&gt;0XFFFFFFFF&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;gradientDirection=north;" vertex="1" parent="1">
+          <mxGeometry x="200" y="330" width="110" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="RSgdlJm6spRMBpsDEhko-4" value="&lt;span style=&quot;font-size: 16px;&quot;&gt;0XFFFFFFFF&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;gradientColor=#b3b3b3;gradientDirection=north;" vertex="1" parent="1">
+          <mxGeometry x="200" y="470" width="110" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="RSgdlJm6spRMBpsDEhko-5" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" target="RSgdlJm6spRMBpsDEhko-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="190" as="sourcePoint" />
+            <mxPoint x="120" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RSgdlJm6spRMBpsDEhko-6" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;APP_PART_ADDR+APP_PART_SIZE&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-75" y="580" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RSgdlJm6spRMBpsDEhko-7" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="609" as="sourcePoint" />
+            <mxPoint x="200" y="609" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RSgdlJm6spRMBpsDEhko-8" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;APP_PART_ADDR+APP_PART_SIZE - 64&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-90" y="440" width="290" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RSgdlJm6spRMBpsDEhko-9" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="470" as="sourcePoint" />
+            <mxPoint x="200" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RSgdlJm6spRMBpsDEhko-10" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="330" as="sourcePoint" />
+            <mxPoint x="200" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RSgdlJm6spRMBpsDEhko-11" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;APP_PART_ADDR+APP_PART_SIZE - 128&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-95" y="300" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RSgdlJm6spRMBpsDEhko-12" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;APP_PART_ADDR+APP_PART_SIZE - 192&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-95" y="160" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RSgdlJm6spRMBpsDEhko-15" value="&lt;font color=&quot;#ffffff&quot; style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;Magic1&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="225" y="190" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RSgdlJm6spRMBpsDEhko-17" value="&lt;font color=&quot;#ffffff&quot; style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;Magic2&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="225" y="330" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RSgdlJm6spRMBpsDEhko-18" value="&lt;font color=&quot;#ffffff&quot; style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;Magic3&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="220" y="470" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
