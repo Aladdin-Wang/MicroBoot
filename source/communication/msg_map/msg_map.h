@@ -56,24 +56,24 @@ declare_simple_fsm(search_msg_map);
 extern_fsm_implementation(search_msg_map);
 extern_fsm_initialiser( search_msg_map,
         args(
-		    msg_t *ptMsgTableBase,
-		    msg_t *ptMsgTableLimit,
-		    get_byte_t *ptGetByte,
-		    bool bArgIsString
+                msg_t *ptMsgTableBase,
+                msg_t *ptMsgTableLimit,
+                get_byte_t *ptGetByte,
+                bool bArgIsString
         ))
 extern_simple_fsm(search_msg_map,
     def_params(
-			fsm(check_string)  fsmCheckStr;
-			fsm(check_arg)     fsmCheckArg;
-			msg_t              *ptMsgTableBase;
-			msg_t              *ptMsgTableLimit;
-            get_byte_t         *ptGetByte;				
-            uint8_t            chByte;            
-			uint16_t           hwIndex;
-			bool               bArgIsString;
-			bool               bIsRequestDrop;
-			char               *argv[MSG_ARG_MAX];
-			int                argc;
+                fsm(check_string)  fsmCheckStr;
+                fsm(check_arg)     fsmCheckArg;
+                msg_t              *ptMsgTableBase;
+                msg_t              *ptMsgTableLimit;
+                get_byte_t         *ptGetByte;				
+                uint8_t            chByte;            
+                uint16_t           hwIndex;
+                bool               bArgIsString;
+                bool               bIsRequestDrop;
+                char               *argv[MSG_ARG_MAX];
+                int                argc;
     )
 )
 
