@@ -79,30 +79,118 @@ Magic Flag在FLASH中的位置，以及变化过程如下图所示：
 标志的使用阶段
 
 1. **进入Bootloader（enter_bootloader）**
+
    - 对于全片擦除过的单片机，此时**Magic1**和**Magic2**的值为`0xFFFFFFFF`，表示还未开始下载过程，**Magic3**被设置为`0x00000000`，表明这是一个等待升级程序的状态。
+
+   ```c
+   void enter_bootloader(void)
+   {
+       uint32_t wData = 0;
+       target_flash_write((APP_PART_ADDR + APP_PART_SIZE - MARK_SIZE), (const uint8_t *)&wData, sizeof(wData));
+   }
+   ```
+
+   
+
 2. **开始下载（begin_download）**
+
    - 当固件下载开始时，MicroBoot会首先对**Magic**所在的扇区擦除，然后将**Magic2**的值设置为`0x00000000`。
+
    - 此时，**Magic1**为`0xFFFFFFFF`，**Magic3**也保持为`0xFFFFFFFF`，这些状态便于系统在出现中断时判断下载是否已部分完成，从而支持断电续传。
+
+   ```c
+   void begin_download(void)
+   {
+       memset(chBootMagic, 0, sizeof(chBootMagic));
+       target_flash_erase(APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE), 3*MARK_SIZE);
+       target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (2*MARK_SIZE)), chBootMagic[1], MARK_SIZE);
+   }
+   ```
+
+   
+
 3. **完成下载（finalize_download）**
+
    - 当固件下载完成且数据写入成功后，MicroBoot会将**Magic1**的值设置为`0x00000000`，标志着下载过程已顺利完成。
+
    - 此时，**Magic2**的值仍为`0x00000000`，而**Magic3**的值保持为`0xFFFFFFFF`，从而标识此阶段为下载完成、准备进入应用程序的状态。
+
+   ```c
+   void finalize_download(void)
+   {
+       memset(chBootMagic, 0X00, sizeof(chBootMagic));
+       target_flash_write((APP_PART_ADDR + APP_PART_SIZE - 3*MARK_SIZE), chBootMagic[0], MARK_SIZE);
+   }
+   ```
+
+   
+
 4. **重新进入Bootloader并跳转到APP**
+
    - 在系统完成固件升级后，MicroBoot会执行软复位，系统重新进入bootloader。
+
    - bootloader在检查到**Magic1**和**Magic2**均为`0x00000000`，而**Magic3**为`0xFFFFFFFF`时，就会识别到这是一个升级完成的状态。
+
    - 这时，MicroBoot无需对外设进行反初始化，而是直接跳转到APP，从而为应用程序提供一个干净的外设环境。
+
+     
+
 5. **从APP再次进入Bootloader**
+
    - 在APP正常运行后，如果想再次进入bootloader进行升级，调用MicroBoot提供的进入bootloader的接口，将会把**Magic3**设置为`0x00000000`，复位后，将会再次回到步骤1，。
+
    - 当下次进入bootloader时，看到**Magic1**、**Magic2**和**Magic3**均为`0x00000000`。
 
 
 
-程序复位执行流程如下图所示：
+**程序复位执行流程如下图所示：**
 
 ![NewUpada](./images/NewUpada.png)
 
 
 
-程序升级执行流程如下图所示：
+**对应的代码：**
+
+```c
+__attribute__((constructor))
+static void enter_application(void)
+{
+    do {
+		// User-defined conditions for entering the bootloader
+		if(user_enter_bootloader()){
+            break;			
+		}
+        // Read the magic values from flash memory to determine the next action
+        target_flash_read((APP_PART_ADDR + APP_PART_SIZE - 3 * MARK_SIZE), chBootMagic[0], 3 * MARK_SIZE);
+
+        // Check if Magic3 is 0x00, indicating to read user data from a specific location
+        if ((0 == *(uint32_t *)&chBootMagic[2])) {
+            break;
+        }
+
+        // Check if Magic2 is 0x00 and Magic1 is 0xFFFFFFFF, indicating to read user data from a different location
+        if ((0 == *(uint32_t *)&chBootMagic[1]) && (0XFFFFFFFF == *(uint32_t *)&chBootMagic[0])) {
+            break;
+        }
+		
+        // Check if the value at the address (APP_PART_ADDR + 4) has the expected application identifier
+        if (((*(volatile uint32_t *)(APP_PART_ADDR + 4)) & 0xff000000) != (APP_PART_ADDR & 0xff000000)) {
+            break;
+        }
+		
+        // If all checks are passed, modify the stack pointer and start the application
+        modify_stack_pointer_and_start_app(*(volatile uint32_t *)APP_PART_ADDR,
+                                           (*(volatile uint32_t *)(APP_PART_ADDR + 4)));
+
+    } while(0);	
+}
+```
+
+函数修饰符 `__attribute__((constructor))`告诉编译器在程序启动时自动调用这个函数。即在主程序的 `main()` 函数之前执行，它的主要功能是检查系统当前的状态，并根据状态决定是进入APP还是停留在bootloader。代码中增加了**用户自定义的进入bootloader条件**，代码通过调用`user_enter_bootloader()`检查用户是否指定了进入bootloader模式。这个检查是为了给用户留出手动控制的空间，比如通过外部按键强制进入bootloader。如果返回值为`true`，则直接退出函数，保持在bootloader中。。
+
+
+
+**程序升级执行流程如下图所示：**
 
 ![NewUpada1](./images/NewUpada1.png)
 
@@ -196,7 +284,7 @@ void modify_stack_pointer_and_start_app(uint32_t r0_sp, uint32_t r1_pc)
 
 - 环形队列
 
-[一个用C语言编写支持的多类型、函数重载与线程安全的环形队列]: ./components/queue/queue.md
+[队列]: ./components/queue/queue.md	"一个用C语言编写支持的多类型、函数重载与线程安全的环形队列"
 
 - 信号槽
 
