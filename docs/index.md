@@ -86,7 +86,7 @@ Magic Flag在FLASH中的位置，以及变化过程如下图所示：
 void enter_bootloader(void)
 {
     uint32_t wData = 0;
-    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - MARK_SIZE), (const uint8_t *)&wData, sizeof(wData));
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - 64), (const uint8_t *)&wData, sizeof(wData));
 }
 ```
 
@@ -96,14 +96,14 @@ void enter_bootloader(void)
 
 - 当固件下载开始时，MicroBoot会首先对**Magic**所在的扇区擦除，然后将**Magic2**的值设置为`0x00000000`。
 
-- 此时，**Magic1**为`0xFFFFFFFF`，**Magic3**也保持为`0xFFFFFFFF`，这些状态便于系统在出现中断时判断下载是否已部分完成，从而支持断电续传。
+- 此时，**Magic1**为`0xFFFFFFFF`，**Magic3**也保持为`0xFFFFFFFF`，这些状态便于系统在出现断电时判断下载是否已部分完成，从而支持断电续传。
 
 ```c
 void begin_download(void)
 {
     memset(chBootMagic, 0, sizeof(chBootMagic));
-    target_flash_erase(APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE), 3*MARK_SIZE);
-    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (2*MARK_SIZE)), chBootMagic[1], MARK_SIZE);
+    target_flash_erase(APP_PART_ADDR + APP_PART_SIZE - (192), 3*MARK_SIZE);
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (128)), chBootMagic[1], MARK_SIZE);
 }
 ```
 
@@ -119,7 +119,7 @@ void begin_download(void)
 void finalize_download(void)
 {
     memset(chBootMagic, 0X00, sizeof(chBootMagic));
-    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - 3*MARK_SIZE), chBootMagic[0], MARK_SIZE);
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - 192), chBootMagic[0], MARK_SIZE);
 }
 ```
 
@@ -194,21 +194,257 @@ static void enter_application(void)
 
 
 
-**问题2：** 产品升级接口不固定，波特率不固定
+**问题2：** 产品升级接口不固定，波特率不固定，需要APP给bootloader传递一定的信息。
+
+**解决方案：**
+
+有了以上在flash中设置标志的思路，那就顺水推舟，再增加两个用户区的空间，给bootloader和app一个沟通数据的桥梁。
+
+更新后的FLASH空间如下：
+
+| 描述                  | 用户数据备份区（192 字节） | 用户数据区（192字节） | Magic1 （64字节） | Magic2 （64字节） | Magic3 （64字节） |
+| --------------------- | -------------------------- | --------------------- | ----------------- | ----------------- | ----------------- |
+| **enter_bootloader**  | 0XFFFFFFFF...              | **user_data**         | 0XFFFFFFFF        | 0XFFFFFFFF        | 0x00000000        |
+| **begin_download**    | **user_data**              | 0XFFFFFFFF...         | 0XFFFFFFFF        | 0x00000000        | 0XFFFFFFFF        |
+| **finalize_download** | **user_data**              | 0XFFFFFFFF...         | 0x00000000        | 0x00000000        | 0XFFFFFFFF        |
+
+用户数据在FLASH中的位置，以及变化过程如下图所示：
+
+![flash_user](./images/flash_user.png)
+
+修改相应的代码：
+
+**阶段1：进入Bootloader（enter_bootloader）**
+
+- 对于全片擦除过的单片机，此时user data的值为`0xFFFFFFFF`，当APP调用`enter_bootloader`接口，将会把app传递进来的数据写进用户区。
+
+```c
+void enter_bootloader(uint8_t *pchDate, uint16_t hwLength)
+{
+    uint32_t wData = 0;
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - (USER_DATA_SIZE)), pchDate, USER_DATA_SIZE);
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - MARK_SIZE), (const uint8_t *)&wData, sizeof(wData));
+}
+```
 
 
 
-| 描述          | 用户数据备份区（192 字节） | 用户数据区（192字节） | Magic1 （64字节） | Magic2 （64字节） | Magic3 （64字节） |
-| ------------- | -------------------------- | --------------------- | ----------------- | ----------------- | ----------------- |
-| 进入bootloade | 0XFFFFFFFF...              | **user_data**         | 0XFFFFFFFF        | 0XFFFFFFFF        | 0x00000000        |
-| 开始下载固件  | **user_data**              | 0XFFFFFFFF...         | 0XFFFFFFFF        | 0x00000000        | 0XFFFFFFFF        |
-| 固件下载完成  | **user_data**              | 0XFFFFFFFF...         | 0x00000000        | 0x00000000        | 0XFFFFFFFF        |
+**阶段2：开始下载（begin_download）**
+
+- 当固件下载开始时，MicroBoot会首先对**Magic**所在的扇区擦除，然后将**用户区**的数据重新写到**用户数据备份区**。
+
+- 此时，**用户区**为`0xFFFFFFFF`，如果断电重启，系统将从**用户数据备份区**获取数据。
+
+```c
+void begin_download(void)
+{
+    memset(chBootMagic, 0, sizeof(chBootMagic));
+    target_flash_erase(APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE), 3*MARK_SIZE);
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - 2 * (USER_DATA_SIZE)), tUserData.msg_data.B, USER_DATA_SIZE);
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (2*MARK_SIZE)), chBootMagic[1], MARK_SIZE);
+}
+```
+
+------
+
+**BootLoader程序复位执行的代码也要做相应的改变：**
+
+```c
+__attribute__((constructor))
+static void enter_application(void)
+{
+    do {
+		// User-defined conditions for entering the bootloader
+		if(user_enter_bootloader()){
+            target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
+            break;			
+		}
+        // Read the magic values from flash memory to determine the next action
+        target_flash_read((APP_PART_ADDR + APP_PART_SIZE - 3 * MARK_SIZE), chBootMagic[0], 3 * MARK_SIZE);
+
+        // Check if Magic3 is 0x00, indicating to read user data from a specific location
+        if ((0 == *(uint32_t *)&chBootMagic[2])) {
+            target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
+            break;
+        }
+
+        // Check if Magic2 is 0x00 and Magic1 is 0xFFFFFFFF, indicating to read user data from a different location
+        if ((0 == *(uint32_t *)&chBootMagic[1]) && (0XFFFFFFFF == *(uint32_t *)&chBootMagic[0])) {
+            target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - 2 * USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
+            break;
+        }
+		
+        // Check if the value at the address (APP_PART_ADDR + 4) has the expected application identifier
+        if (((*(volatile uint32_t *)(APP_PART_ADDR + 4)) & 0xff000000) != (APP_PART_ADDR & 0xff000000)) {
+            break;
+        }
+		
+        // If all checks are passed, modify the stack pointer and start the application
+        modify_stack_pointer_and_start_app(*(volatile uint32_t *)APP_PART_ADDR,
+                                           (*(volatile uint32_t *)(APP_PART_ADDR + 4)));
+
+    } while(0);	
+}
+```
+
+**BootLoader定义了一个默认的用户数据结构体，一共192个字节，APP可以在192个字节内随意向bootloader传递数据：**
+
+```c
+// <o>The user data size
+//  <i>Default: 192
+#define USER_DATA_SIZE            192
+
+typedef struct {
+    char chProjectName[16];
+    char chHardWareVersion[16];
+    char chSoftBootVersion[16];
+    char chSoftAppVersion[16];
+} msgSig_t;
+typedef struct {
+    union {
+        msgSig_t sig;
+        uint8_t B[USER_DATA_SIZE];
+    } msg_data;
+} user_data_t;
+```
+
+**BootLoader为了方便App操作进入bootloader，并正确的传递数据，定义好了进入bootloader的接口，和操作Flash的函数，并将接口位置固定到0x08001000地址，这样APP就可以方便的操作Flash了**
+
+```c
+typedef struct {
+    void (*fnEnterBootloaderMode)(uint8_t *pchDate, uint16_t hwLength);
+    bool (*target_flash_init)(uint32_t addr); 
+    bool (*target_flash_uninit)(uint32_t addr);
+    int  (*target_flash_read)(uint32_t addr, uint8_t *buf, size_t size); 
+    int  (*target_flash_write)(uint32_t addr, const uint8_t *buf, size_t size); 
+    int  (*target_flash_erase)(uint32_t addr, size_t size); 
+} boot_ops_t;
+
+__attribute__((used))
+static const boot_ops_t tBootOps  __attribute__ ((section(__ARM_AT(0x08001000)))) = {
+    .fnEnterBootloaderMode = enter_bootloader,
+    .target_flash_init = target_flash_init,
+    .target_flash_erase = target_flash_erase,
+    .target_flash_write = target_flash_write,
+    .target_flash_read = target_flash_read,
+    .target_flash_uninit = target_flash_uninit
+};
+```
 
 
 
-**问题3：** APP单独运行没有问题，通过Bootloader跳转到APP运行莫名死机
+------
+
+**APP区代码：**
+
+APP需要重新定义用户数据，添加需要向bootloader传递的数据。
+
+```c
+typedef struct {
+    char chProjectName[16];
+    char chHardWareVersion[16];
+    char chSoftBootVersion[16];
+    char chSoftAppVersion[16];
+
+    /*添加用户数据*/
+    char chPort1Name[16];
+    int wPort1Baudrate;
+    char chPort2Name[16];
+    int wPort2Baudrate;
+    char chPort3Name[16];
+    int wPort3Baudrate;
+
+} msgSig_t;
+typedef struct {
+    union {
+        msgSig_t sig;
+        char B[sizeof(msgSig_t)];
+    } msg_data;
+} user_data_t;
+
+user_data_t  tUserData = {
+    .msg_data.sig.chProjectName = "project",
+    .msg_data.sig.chHardWareVersion = HARDWARE_VERSION,
+    .msg_data.sig.chSoftBootVersion = BOOTWARE_VERSION,
+    .msg_data.sig.chSoftAppVersion =  SOFTWARE_VERSION,
+};
+
+typedef struct {
+    void (*fnGoToBoot)(uint8_t *pchDate, uint16_t hwLength);
+    bool (*target_flash_init)(uint32_t addr);
+    bool (*target_flash_uninit)(uint32_t addr);
+    int  (*target_flash_read)(uint32_t addr, uint8_t *buf, size_t size);
+    int  (*target_flash_write)(uint32_t addr, const uint8_t *buf, size_t size);
+    int  (*target_flash_erase)(uint32_t addr, size_t size);
+} boot_ops_t;
+```
+
+比如通过CAN接口来升级程序，就可以这样做：
+
+```c
+void can_boot()
+{
+    rt_memcpy(tUserData.msg_data.sig.chPort1Name, "CAN1", rt_strlen("CAN1"));
+    tUserData.msg_data.sig.wPort1Baudrate = 500000;
+    boot_ops_t *ptBootOps = (boot_ops_t *) 0x08001000;
+    ptBootOps->fnGoToBoot((uint8_t *)tUserData.msg_data.B, sizeof(tUserData));
+    rt_hw_cpu_reset();
+}
+MSH_CMD_EXPORT(can_boot, go to bootloader);
+```
+
+比如通过UART接口来升级程序，就可以这样做：
+
+```c
+void uart_boot()
+{
+    rt_memcpy(tUserData.msg_data.sig.chPort1Name, "UART1", rt_strlen("UART1"));
+    tUserData.msg_data.sig.wPort1Baudrate = 115200;
+    boot_ops_t *ptBootOps = (boot_ops_t *) 0x08001000;
+    ptBootOps->fnGoToBoot((uint8_t *)tUserData.msg_data.B, sizeof(tUserData));
+    rt_hw_cpu_reset();
+}
+MSH_CMD_EXPORT(uart_boot, go to bootloader);
+```
 
 
+
+**问题3：** APP单独运行没有问题，通过Bootloader跳转到APP运行莫名死机。
+
+在近几年的嵌入式社区中，流传着不少关于面相**Cortex-M**的**Bootloader**科普文章，借助这些文章，一些较为经典的代码片断和技巧得到了广泛的传播。
+
+在从**Bootloader**跳转到用户**APP**的过程中，使用函数指针而非传统的汇编代码则成了一个家喻户晓的小技巧。相信类似下面 **JumpToApp()** 函数，你一定不会感到陌生：
+
+```c
+typedef  void (*pFunction)(void);
+
+void JumpToApp(uint32_t addr)
+{
+  pFunction Jump_To_Application;
+
+  __IO uint32_t StackAddr;
+  __IO uint32_t ResetVector;
+  __IO uint32_t JumpMask;
+
+  JumpMask = ~((MCU_SIZE-1)|0xD000FFFF);
+
+  if (((*(__IO uint32_t *)addr) & JumpMask ) == 0x20000000) //�ж�SPָ��λ��
+  {
+    StackAddr = *(__IO uint32_t*)addr;
+    ResetVector = *(__IO uint32_t *)(addr + 4);
+
+    __set_MSP(StackAddr); 
+    Jump_To_Application = (pFunction)ResetVector;
+    Jump_To_Application(); 
+  }
+}
+```
+
+但是这段家喻户晓，被世人奉为真理的代码，却隐藏着很深的BUG，相信很多小伙伴都遇到过通过Bootloader跳转到APP后，程序时好时坏的灵异事件，具体详情请看这篇文章：[震惊！这个隐藏的Bootloader漏洞究竟有多少人中招？](https://mp.weixin.qq.com/s/uVktPkcbh2XAVo2QAluxnA)
+
+**解决方案：**
+
+完全用汇编来处理从**Bootloader**到**App**的最后步骤，是最稳定可靠的方案：
 
 ```c
 #if defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
@@ -246,13 +482,21 @@ void modify_stack_pointer_and_start_app(uint32_t r0_sp, uint32_t r1_pc)
 
 
 
-**问题4：** 升级一半突然断电或者通讯收到干扰中断
+**问题4：** 上位机太复杂客户不会用，总是升级中断。
+
+**解决方案：**
+
+使用我专门为产品升级量身定制的MicroLink工具，MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为加速和简化开发者在**研发、调试、量产和售后服务**各阶段的工作流程而设计。
+
+**使用MicroLink配合MicroBoot来升级产品的固件，将变得极其简单，只需将升级固件往虚拟U盘拖一下，就能立即完成产品的升级。**
+
+演示适配如下：
+
+<iframe src="https://player.bilibili.com/player.html?bvid=BV1CcsWeoE5o" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
 
 
 
-
-
-**问题5：** 上位机太复杂客户不会用
+![MicroLink](./images/microlink/MicroLink.jpg)
 
 
 
@@ -274,7 +518,7 @@ void modify_stack_pointer_and_start_app(uint32_t r0_sp, uint32_t r1_pc)
 
 - ymodem
 
-
+[一个使用状态机编写的ymodem协议](./components/ymodem/ymodem.md)
 
 - 通用Flash驱动
 
@@ -286,7 +530,7 @@ void modify_stack_pointer_and_start_app(uint32_t r0_sp, uint32_t r1_pc)
 
 - 信号槽
 
-
+[一个用C语言模拟QT的信号槽的功能](./components/signals_slots/signals_slots.md)
 
 - 发布订阅
 
@@ -300,9 +544,8 @@ void modify_stack_pointer_and_start_app(uint32_t r0_sp, uint32_t r1_pc)
 
 
 
+## 4、MicorBoot移植教程
 
-
-
-
-
-
+- [基于 CMSIS-PACK 移植](./quick-start/cmsis-pack.md)
+- [基于源码移植](./quick-start/quick-start.md)
+- [基于rtthread软件包移植](./quick-start/RT-Thread.md)
