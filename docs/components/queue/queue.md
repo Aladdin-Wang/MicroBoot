@@ -398,6 +398,7 @@ uint16_t get_queue_available_count(byte_queue_t *ptObj);
 queue_init(__queue,__buffer,__size ,... )
 ```
 参数说明：
+
 | 参数名        | 描述             |
 | ------------- | ---------------- |
 | __QUEUE       | 队列的地址       |

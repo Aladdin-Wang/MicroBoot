@@ -67,8 +67,8 @@ extern_simple_fsm(search_msg_map,
 			fsm(check_arg)     fsmCheckArg;
 			msg_t              *ptMsgTableBase;
 			msg_t              *ptMsgTableLimit;
-      get_byte_t         *ptGetByte;				
-      uint8_t            chByte;            
+            get_byte_t         *ptGetByte;				
+            uint8_t            chByte;            
 			uint16_t           hwIndex;
 			bool               bArgIsString;
 			bool               bIsRequestDrop;
