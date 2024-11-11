@@ -10,7 +10,7 @@
     #define M16(adr) (*((vu16 *) (adr)))
     #define M32(adr) (*((vu32 *) (adr)))
     // FLASH BANK size
-    #define BANK1_SIZE      0x00080000      // Bank1 Size = 512kB
+    #define BANK1_SIZE      0x08080000      // Bank1 Size = 512kB
 
     // Flash Control Register definitions
     #define FLASH_PG        0x00000001
@@ -26,7 +26,7 @@
     #define FLASH_PGERR     0x00000004
     #define FLASH_WRPRTERR  0x00000010
     #define FLASH_EOP       0x00000020
-    unsigned long base_adr;
+
 #endif
 #if defined(STM32F303x8)
     typedef volatile unsigned short   vu16;
@@ -279,7 +279,6 @@ static void flash_unlock()
     flashSize = ((*((u32 *)FLASHSIZE_BASE)) & 0x0000FFFF) << 10;
     flashBankSize = flashSize >> 1;
     #elif defined (STM32F103xB) || defined (STM32F103xE) || defined(STM32F105xC)
-    base_adr = adr & ~(BANK1_SIZE - 1);          // Align to Size Boundary
     // Unlock Flash
     FLASH->KEYR  = FLASH_KEY1;
     FLASH->KEYR  = FLASH_KEY2;
@@ -419,7 +418,7 @@ static int32_t EraseSector(uint32_t adr)
     #if  defined (STM32F103xB) || defined(STM32F105xC) || defined(STM32F103xE)
     #ifdef STM32F10x_1024
 
-    if (adr < (base_adr + BANK1_SIZE)) {          // Flash bank 2
+    if (adr < (BANK1_SIZE)) {          // Flash bank 2
     #endif
         FLASH->CR  |=  FLASH_PER;                   // Page Erase Enabled
         FLASH->AR   =  adr;                         // Page Address
@@ -544,7 +543,7 @@ static int32_t ProgramPage(uint32_t addr, uint32_t sz, uint8_t* buf)
 
     #ifdef STM32F10x_1024
 
-    if (adr < (base_adr + BANK1_SIZE)) {          // Flash bank 2
+    if (adr < (BANK1_SIZE)) {          // Flash bank 2
     #endif
         while (sz) {
 
