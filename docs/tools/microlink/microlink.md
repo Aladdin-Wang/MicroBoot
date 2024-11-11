@@ -45,9 +45,15 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 淘宝链接：https://item.taobao.com/item.htm?ft=t&id=826800975011
 
-
+![SJTB](E:\Project\MicroBoot\docs\images\microlink\SJTB.png)
 
 ### 更多技术支持
+
+手机扫码添加微信备注**加群**
+
+![](../../images/microlink/weixin.jpg)
+
+关注公众号及时获得最新文章
 
 ![](../../images/microlink/WX.jpg)
 
@@ -55,7 +61,7 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 ### 1、DAPLink 在线下载和调试
 
-MicroLink基于标准的CMSIS-DAP在线调试下载协议，针对传统DAPLink工具下载和调试速度缓慢的问题进行了全面优化。除了在软件上对[ARMmbed DAPLink](https://github.com/ARMmbed/DAPLink)代码进行了深度优化，增加了大量的下载算法，还替换了传输速度更快的[CherryUSB](https://github.com/cherry-embedded/CherryUSB)协议栈，并且在硬件上采用了先辑半导体的高性能芯片HPM5301，该芯片主频高达480MHz，内置PHY的高速USB接口，不仅提升了传输速率，还大幅缩短了下载和调试的时间，使其能够胜任更大规模和更复杂的嵌入式应用项目。
+MicroLink基于标准的CMSIS-DAP在线调试下载协议，针对传统DAPLink工具下载和调试速度缓慢的问题进行了全面优化。为了弥补DAPLINK性能上的不足，硬件方面，采用了**先辑半导体**的高性能**HPM5301**芯片，该芯片主频高达480MHz，内置PHY的高速USB接口；软件方面，将USB协议替换为传输速度更快的**CherryUSB**协议栈，并且对DAPLink固件中的数据处理和通信代码进行了深度优化，减少了内部延迟和等待时间，将SWD时钟速度提升至10MHz。
 
 高速SWD支持高达10MHz的稳定时钟频率，为资源有限的嵌入式设备提供快速、可靠的单线调试和下载体验。
 
