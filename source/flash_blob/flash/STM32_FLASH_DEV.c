@@ -162,7 +162,7 @@ static struct FlashDevice const FlashDevice  =  {
 };
 #endif
 
-#ifdef STM32F407xx
+#ifdef STM32F4xx_1024
 #include "stm32f4xx.h"
 static struct FlashDevice const FlashDevice  =  {
    FLASH_DRV_VERS,             // Driver Version, do not modify!
