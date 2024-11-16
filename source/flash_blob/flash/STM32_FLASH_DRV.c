@@ -58,13 +58,8 @@
 #if defined(STM32G431xx)
 typedef volatile unsigned long    vu32;
 typedef          unsigned long     u32;
-
 #define M32(adr) (*((vu32 *) (adr)))
 #define FLASH_SR_MISSERR        ((u32)(  1U <<  8))
-u32 flashBase;                   /* Flash base address */
-u32 flashSize;                   /* Flash size in bytes */
-u32 flashBankSize;               /* Flash bank size in bytes */
-u32 flashPageSize;               /* Flash page size in bytes */
 static void DSB(void)
 {
     __asm("DSB");
@@ -122,13 +117,15 @@ static u32 GetFlashBankMode (void)
 }
 static u32 GetFlashBankNum(u32 adr)
 {
-    u32 flashBankNum;
-
+	
+    u32 flashBankNum,flashSize,flashBankSize;
+	flashSize = ((*((u32 *)FLASHSIZE_BASE)) & 0x0000FFFF) << 10;
+    flashBankSize = flashSize >> 1;
     if (GetFlashType() == 1U) {
         /* Dual-Bank Flash */
         if (GetFlashBankMode() == 1U) {
             /* Dual-Bank Flash configured as Dual-Bank */
-            if (adr >= (flashBase + flashBankSize)) {
+            if (adr >= (FLASH_BASE + flashBankSize)) {
                 flashBankNum = 1U;
             } else {
                 flashBankNum = 0U;
@@ -275,9 +272,7 @@ static void flash_unlock()
     /* Wait until the flash is ready */
     while (FLASH->SR & FLASH_SR_BSY);
 
-    flashBase = adr;
-    flashSize = ((*((u32 *)FLASHSIZE_BASE)) & 0x0000FFFF) << 10;
-    flashBankSize = flashSize >> 1;
+
     #elif defined (STM32F103xB) || defined (STM32F103xE) || defined(STM32F105xC)
     // Unlock Flash
     FLASH->KEYR  = FLASH_KEY1;
