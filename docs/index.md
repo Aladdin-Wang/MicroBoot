@@ -3,6 +3,12 @@
 
   MicroBoot 是一个由模块化代码组成的框架，旨在简化和加速嵌入式单片机程序的升级和开发过程。
 
+开源地址：
+
+github：[https://github.com/Aladdin-Wang/MicroBoot](https://github.com/Aladdin-Wang/MicroBoot)
+
+gitee：[https://gitee.com/Aladdin-Wang/MicroBoot](https://gitee.com/Aladdin-Wang/MicroBoot)
+
 ## 1、引言
 
 那些让人崩溃的BootLoader升级灾难

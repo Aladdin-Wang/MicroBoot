@@ -4,6 +4,12 @@
 
 准备一份基础的裸机源码 (可通过 STM32CubeMx 可视化软件创建也可按照工程项目所需文档手动创建) 工程，如一份 stm32 包含一个支持 **printf 的串口初始化**代码。
 
+基于CMSIS-PACK移植的DEMO例程地址：
+
+github：[https://github.com/Aladdin-Wang/MicroBoot_Demo](https://github.com/Aladdin-Wang/MicroBoot_Demo)
+
+gitee：[https://gitee.com/Aladdin-Wang/MicroBoot_Demo](https://gitee.com/Aladdin-Wang/MicroBoot_Demo)
+
 ## 2.安装Pack包
 
 在 **MDK** 中部署 **MicroBoot **的第一步是获取对应的 **cmsis-pack**，对于可以流畅访问 Github 的朋友来说，通过下面的网址直接找到最新的 .pack 文件。
@@ -84,6 +90,17 @@
 
 ```c
 #include "ymodem_ota.h"
+#include "check_agent_engine.h"
+```
+
+添加对象
+
+```c
+__attribute__((aligned(32)))
+uint8_t s_chBuffer[2048] ;
+static byte_queue_t                  s_tCheckUsePeekQueue;
+static fsm(check_use_peek)           s_fsmCheckUsePeek;
+static ymodem_ota_recive_t           s_tYmodemOtaReceive;
 ```
 
 实现一个获取系统运行时间的函数：
@@ -98,6 +115,7 @@ int64_t get_system_time_ms(void)
 在**main()** 函数中加入代码：
 
 ```c
+
 int main(void)
 {
     /* USER CODE BEGIN 1 */
@@ -169,3 +187,49 @@ int main(void)
 
 
 ## 4.添加shell命令行工具到工程
+
+添加shell组件：
+
+![cmsis_pack_17](./../images/quick-start/cmsis_pack_17.png)
+
+在main.c中添加头文件：
+
+```c
+#include "micro_shell.h"
+
+```
+
+添加micro_shell的对象，并实现shell读写数据的函数
+
+```c
+static check_shell_t                 s_tShellObj;
+uint16_t shell_read_data(wl_shell_t *ptObj, char *pchBuffer, uint16_t hwSize)
+{
+    peek_byte_t *ptReadByte = get_read_byte_interface(&s_fsmCheckUsePeek);
+    return ptReadByte->fnGetByte(ptReadByte, (uint8_t *)pchBuffer, hwSize);
+}
+
+uint16_t shell_write_data(wl_shell_t *ptObj, const char *pchBuffer, uint16_t hwSize)
+{
+	HAL_UART_Transmit(&huart6, (uint8_t *)pchBuffer, hwSize, 100);
+	return hwSize;
+}
+```
+
+在main函数中注册shell
+
+```c
+    shell_ops_t s_tOps = {
+        .fnReadData = shell_read_data,
+		.fnWriteData = shell_write_data,
+    };
+    shell_init(&s_tShellObj,&s_tOps);
+	agent_register(&s_fsmCheckUsePeek, &s_tShellObj.tCheckAgent);
+```
+
+完成以上，下载后便可使用命令行功能
+
+![cmsis_pack_18](./../images/quick-start/cmsis_pack_18.jpg)
+
+
+
