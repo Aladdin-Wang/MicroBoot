@@ -189,7 +189,12 @@ void finalize_download(void)
  * whether to enter the application or stay in bootloader mode. Depending on the values read from flash, 
  * it may load user data into a specific buffer or modify the stack pointer and start the application.
  */
+
+#if defined(__IS_COMPILER_IAR__)
 __attribute__((constructor))
+#else
+__attribute__((constructor(255)))
+#endif
 static void enter_application(void)
 {
     do {
