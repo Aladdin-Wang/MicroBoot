@@ -1,2 +1,2 @@
-# 完爆各种printf形式——DAPLink说我也可以
+# 超越JLINK？这是DAPLink的最后一块拼图
 
