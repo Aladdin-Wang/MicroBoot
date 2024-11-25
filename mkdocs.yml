@@ -25,8 +25,8 @@ nav:
       - BootLoader: components/bootloader/bootloader.mds
       - FlashBlob:  components/flash_blob/flash_blob.md
   - 第三方库:   
-      - PLOOC: 3rd-party/PLOOC/plooc.md 
-      - FSM: 3rd-party/FSM/fsm.md   
+      - PLOOC: 3rd-party/plooc/plooc.md 
+      - FSM: 3rd-party/fsm/fsm.md   
       - Arm-2D: 3rd-party/Arm-2D/arm_2d.md        
   - 参与项目:
       - 如何贡献代码: contribute/code.md
