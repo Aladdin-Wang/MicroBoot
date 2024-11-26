@@ -19,7 +19,7 @@
 
 
 
-在我发布的文章[正版Jlink速度很牛么？中国工程师用开源轻松拿捏](https://mp.weixin.qq.com/s/ocaBIDV0DxBJwXpgW1X7OQ)中，使用开源的DAPLink替代Jlink，虽然我已经实现了很多JLINK都没有的功能：
+在我之前的文章 [正版 J-Link 速度很牛么？中国工程师用开源轻松拿捏](https://mp.weixin.qq.com/s/ocaBIDV0DxBJwXpgW1X7OQ) 中，使用开源的 DAPLink 替代 J-Link，我已经实现了许多 J-Link 不具备的功能：
 
 ### 功能特点
 
@@ -41,7 +41,7 @@
 
 
 
-虽然DAPLINK可以实现的功能很多，但是看评论区，依然是替代不了有些人**“爱不释手”**的只有Jlink才配拥有的RTTView和J-Scope功能。
+尽管 DAPLink 已经实现了许多强大的功能，但评论区仍有不少用户表示无法替代 J-Link 的 “**RTTView** 和 **J-Scope** 功能”：
 
 ![jscope](../.././images/microlink/jscope.jpg)
 
@@ -57,7 +57,7 @@
 
 **RTTView**
 
-RTT的实现原理很简单，**SEGGER_RTT**的代码定义了一个SEGGER_RTT_CB结构体，通过RTT打印和接收的数据，都存储到了\_SEGGER_RTT结构体变量中，我们只需要通过上位机和调试器对\_SEGGER_RTT结构体变量进行读写，即可实现RTTView的效果。
+RTT 的原理很简单，**SEGGER_RTT** 定义了一个 `SEGGER_RTT_CB` 结构体，通过 RTT 打印和接收的数据会存储在 `_SEGGER_RTT` 变量中。上位机通过调试器读写 `_SEGGER_RTT` 的内容，即可实现 RTTView 功能。
 
 SEGGER_RTT_CB代码结构体如下：
 
@@ -138,7 +138,7 @@ int main(void)
 }
 ```
 
-RTTView显示效果如下;
+移植成功后，RTTView 可以显示 shell 的输出效果：
 
 ![RTTView_CMD](../.././images/microlink/RTTView_CMD.jpg)
 
@@ -148,7 +148,7 @@ RTTView显示效果如下;
 
 ### 波形显示功能
 
-MCU编写一个输出sin波形的代码：
+为了展示波形数据，我们可以通过 MCU 输出一个正弦波形作为示例。以下是相关代码：
 
 ```c
 __USED uint32_t approx_t = 0; 
@@ -176,11 +176,17 @@ int main(void)
 }
 ```
 
-在map文件中可以查看到sine_var的地址在0x24001a68
+在编译生成的 `.map` 文件中，可以看到 `sine_var` 的地址，例如地址为 `0x24001A68`：
 
 ![sine](../.././images/microlink/sine.jpg)
 
-打开RTTView，加载map文件，选择需要显现波形的变量，比如：`sine_var`变量：
+**配置 RTTView 显示波形**
+
+- 打开 RTTView，加载 `.map` 文件。
+
+- 选择需要显示波形的变量（如 `sine_var`）。
+
+- 勾选波形显示。
 
 ![sine_add](../.././images/microlink/sine_add.jpg)
 
@@ -204,17 +210,19 @@ int main(void)
 
 **步骤一：RTE配置**
 
-依次通过菜单 Project->Manage->Run-Time Environment 打开RTE配置窗口，找到并展开**CMSIS-Compiler**选项卡，勾选**CORE**，展开 **STDOUT(API)** 下的 **I/O** ，勾选 **Event Recorder** 。如果此前没有勾选过**CMSIS-View**下的**EventRecorder**，**RTE**会出现黄色的警告，此时，只要简单的单机窗口左下角的**Resolve**的按钮就可以解决。
+1. 打开 **RTE 配置**窗口（菜单：`Project -> Manage -> Run-Time Environment`）。
+2. 勾选以下选项：
+   - 在 **CMSIS-Compiler** 下勾选 **CORE**；
+   - 在 **STDOUT(API)** 下勾选 **I/O**；
+   - 如果未勾选过 **CMSIS-View -> EventRecorder**，系统会提示警告，单击 **Resolve** 自动修复。
 
 ![EventRE](../.././images/microlink/EventRE.jpg)
 
-单击确定后，我们会在工程管理器中看到以下的内容：
+完成后，工程管理器中会新增相关文件：
 
 ![EventRE1](../.././images/microlink/EventRE1.jpg)
 
 至此，所需的工具都已经成功地加入到工程中了。
-
-
 
 如果你在**RTE**中找不到 **CMSIS-Compiler** 和 **CMSIS-View**，说明你的**MDK**版本较低——如果不想升级**MDK**，则可以通过下面的链接从官方直接下载对应的**cmsis-pack**：
 
@@ -316,8 +324,8 @@ int stdout_putchar(int ch)
 
 
 
-**如果你的产品不方便外接下载口，但是又有调试的需求**，最有用的还是移植一个**shell命令行**模块，可以对接到任意的调试接口，比如uart、can等外设，这样既可以在不影响程序正常时序情况下通过外设异步输出，又可以将日志记录到flash中，方便事后分析问题。
+**如果你的产品不方便外接下载口，但是又有调试的需求**，建议移植一个轻量级的 shell 命令行工具（如对接 UART、CAN 等外设）。这样既能在不影响程序正常运行的情况下实现异步输出，还能记录日志到 Flash 中，方便问题分析。
 
 
 
-下篇文章将手把手带你写一个轻量级的命令行工具。
+**敬请期待下一篇文章：手把手教你实现轻量级命令行工具！**
