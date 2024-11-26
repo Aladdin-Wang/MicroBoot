@@ -19,7 +19,7 @@
 
 
 
-在我发布的文章[正版Jlink速度很牛么？中国工程师用开源轻松拿捏](https://mp.weixin.qq.com/s/ocaBIDV0DxBJwXpgW1X7OQ)中，使用开源的DAPLink替代Jlink，实现了以下功能：
+在我发布的文章[正版Jlink速度很牛么？中国工程师用开源轻松拿捏](https://mp.weixin.qq.com/s/ocaBIDV0DxBJwXpgW1X7OQ)中，使用开源的DAPLink替代Jlink，虽然我已经实现了很多JLINK都没有的功能：
 
 ### 功能特点
 
@@ -37,17 +37,17 @@
 
 淘宝链接：https://item.taobao.com/item.htm?ft=t&id=826800975011
 
-![SJTB](E:/software/MicroBoot/docs/images/microlink/SJTB.png)
+![SJTB](../.././images/microlink/SJTB.png)
 
-### 
 
-虽然DAPLINK可以实现的功能很多，但是看评论区，依然是替代不了有些人**“爱不释手”**的只有Jlink才有的RTTView和J-Scope功能。
+
+虽然DAPLINK可以实现的功能很多，但是看评论区，依然是替代不了有些人**“爱不释手”**的只有Jlink才配拥有的RTTView和J-Scope功能。
 
 ![jscope](../.././images/microlink/jscope.jpg)
 
 如果我告诉你，其实开源社区早就已经开发了支持DAPLINK的RTTView和J-Scope波形显示功能，你是否心动呢？
 
-**开源地址：**https://github.com/XIVN1987/RTTView，作者为**XIVN1987**
+**RTTView开源地址：**https://github.com/XIVN1987/RTTView，作者为**XIVN1987**
 
 **百度云下载链接**：https://pan.baidu.com/s/1IoWHLUBfUtZa_lgp0Gt6rw?pwd=2jtt 
 
@@ -87,7 +87,7 @@ RTTView的上位机就是通过调试器读写单片机内存中\_SEGGER_RTT结�
 
 波形显示的原理与RTTView显示的原理类似，上位机通过加载MDK编译生成的.map文件，来获取全局变量的RAM位置， 然后通过调试器读取用户想要显示波形的变量地址，然后绘制波形。
 
-### RTTView
+### RTTView功能
 
 **MCU移植RTT：**
 
@@ -146,7 +146,7 @@ RTTView显示效果如下;
 
 
 
-### 波形显示
+### 波形显示功能
 
 MCU编写一个输出sin波形的代码：
 
