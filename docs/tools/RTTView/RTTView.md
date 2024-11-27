@@ -200,10 +200,13 @@ int main(void)
 
 **步骤一：RTE配置**
 
-1. 打开 **RTE 配置**窗口（菜单：`Project -> Manage -> Run-Time Environment`）。
-2. 勾选以下选项：
-   - 在 **CMSIS-Compiler** 下勾选 **CORE**；
-   - 在 **STDOUT(API)** 下勾选 **Custom**；
+- 打开 **RTE 配置**窗口（菜单：`Project -> Manage -> Run-Time Environment`）。
+
+- 勾选以下选项：
+
+​           在 **CMSIS-Compiler** 下勾选 **CORE**；
+
+​           在 **STDOUT(API)** 下勾选 **Custom**；
 
 ![EventRE](../.././images/microlink/EventRE.png)
 
@@ -217,7 +220,7 @@ int main(void)
 
 或者老版本的**cmsis-pack**中，找到**Compiler**：
 
-![EventRE1](E:\software\MicroBoot\docs\images\microlink\EventRE1.png)
+![EventRE1](../.././images/microlink/EventRE1.png)
 
 **步骤二：添加stdout_putchar()**
 
@@ -236,7 +239,3 @@ int stdout_putchar(int ch)
 ### 结语
 
 **如果你的产品不方便外接下载口，但是又有调试的需求**，建议移植一个轻量级的 shell 命令行工具（如对接 UART、CAN 等外设）。这样既能在不影响程序正常运行的情况下实现异步输出，还能记录日志到 Flash 中，方便问题分析。
-
-
-
-**敬请期待下一篇文章：手把手教你实现一个轻量级命令行工具！**
