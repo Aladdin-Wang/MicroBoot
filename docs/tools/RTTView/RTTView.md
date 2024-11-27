@@ -196,33 +196,18 @@ int main(void)
 
 
 
-## MDK下的类似功能
-
-**其实MDK中内置了一种非常简单廉价的方式，可以让你实现类似的功能**，并具有以下特点：
-
-- **支持所有的调试仿真器**
-- **MDK原生功能，连CMSIS-Pack都不用安装**
-- **点几下鼠标就可以通过RTE完成部署**
-- **除了简单的初始化函数外，无需手动插入代码**
-- **可以将你的printf输出直接打印在MDK的Debug (printf) View窗口中**
-
-
+## MDK下将RTTView重定向到printf
 
 **步骤一：RTE配置**
 
 1. 打开 **RTE 配置**窗口（菜单：`Project -> Manage -> Run-Time Environment`）。
 2. 勾选以下选项：
    - 在 **CMSIS-Compiler** 下勾选 **CORE**；
-   - 在 **STDOUT(API)** 下勾选 **I/O**；
-   - 如果未勾选过 **CMSIS-View -> EventRecorder**，系统会提示警告，单击 **Resolve** 自动修复。
+   - 在 **STDOUT(API)** 下勾选 **Custom**；
 
-![EventRE](../.././images/microlink/EventRE.jpg)
+![EventRE](../.././images/microlink/EventRE.png)
 
-完成后，工程管理器中会新增相关文件：
 
-![EventRE1](../.././images/microlink/EventRE1.jpg)
-
-至此，所需的工具都已经成功地加入到工程中了。
 
 如果你在**RTE**中找不到 **CMSIS-Compiler** 和 **CMSIS-View**，说明你的**MDK**版本较低——如果不想升级**MDK**，则可以通过下面的链接从官方直接下载对应的**cmsis-pack**：
 
@@ -230,102 +215,28 @@ int main(void)
 
 **https://www.keil.arm.com/packs/cmsis-view-arm/**
 
-**步骤二：添加noinit段**
+或者老版本的**cmsis-pack**中，找到**Compiler**：
 
-打开工程配置窗口“**Options for Target**”，切换到“**Linker**”选项卡：
+![EventRE1](E:\software\MicroBoot\docs\images\microlink\EventRE1.png)
 
-![sct](../.././images/microlink/sct.jpg)
+**步骤二：添加stdout_putchar()**
 
-打开**.sct**，在 **RW_IRAM1** 后面追加如下的代码：
-
-```c
-    ZI_RAM_UNINIT +0 UNINIT {
-        .ANY (.bss.noinit)
-    }
-```
-
-效果大约类似这样：
-
-![sct1](../.././images/microlink/sct1.jpg)
-
- **EventRecorder** 有一段数据放置在了 “**.bss.noinit**” section中——以求芯片复位后不会破坏其中原有的内容。
-
-这里步骤的核心思想是在 **scatter script** 内紧接着为 **RW**和**ZI**的 **execution region**为 **.bss.noinit** 提供一个属性为**UNINIT**的专属**execution region**。
-
-**步骤三：服务初始化**
-
-在包含 **main()** 函数的C代码文件中，按照如下的格式添加对头文件的包含：
+实现 **stdout_putchar()** 函数——用它来把RTTView重定向到printf：
 
 ```c
-
-#include <RTE_Components.h>
-
-#undef __USE_EVENT_RECORDER__
-#if defined(RTE_Compiler_EventRecorder) || defined(RTE_CMSIS_View_EventRecorder)
-#   define __USE_EVENT_RECORDER__  1
-#endif
-
-#if __USE_EVENT_RECORDER__
-#   include <EventRecorder.h>
-#   include "EventRecorderConf.h"
-#endif
-```
-
-在 **main()** 函数中添加对**EventRecorder**服务的初始化：
-
-```c
-void main(void)
-{
-    ...
-#if __USE_EVENT_RECORDER__
-    EventRecorderInitialize(0, 1);
-#endif
-    printf(""hello world\r\n"");
-    ...
-}
-```
-
-如果你从未使用过**EventRecorder**也不必惊慌，这段代码的主要作用是为**printf**专门开启一个数据通道。
-
-理论上，到这里，我们就已经完成了部署，可以在进入调试模式后，通过**MDK**的 **Debug (printf) View**窗口来观察 **printf** 的输出结果了。
-
-编译，一切顺利的话，进入调试模式后通过菜单 **View->Serial Windows->Debug (printf) View** 打开窗口：
-
-![EventDebug](../.././images/microlink/EventDebug.jpg)
-
-运行后，可以在 **Debug (printf) View**窗口中看到如下的结果：
-
-![EventPrint](../.././images/microlink/EventPrint.png)
-
-### 结语
-
-**不管RTTView还是EventRecorder，只在调试阶段有意义**，如果我们需要在产品的正常工作模式下使用 **printf**，还是老老实实在 **CMSIS-Compiler->STDOUT(API)** 中勾选 **Custom**：
-
-![printf](../.././images/microlink/printf.png)
-
-实现 **stdout_putchar()** 函数——用它来发送字符到具体的外设吧，比如：
-
-```c
-
 int stdout_putchar(int ch)
 {
-    if ('\n' == ch) {
-        int temp = '\r';
-        while(Driver_USART0.Send(&temp, 1) != ARM_DRIVER_OK);
-    }
-    
-    if (Driver_USART0.Send(&ch, 1) == ARM_DRIVER_OK) {
-        return ch;
-    }
-    
-    return -1;
+	SEGGER_RTT_PutChar(0, ch);
+    return ch;
 }
 ```
 
 
+
+### 结语
 
 **如果你的产品不方便外接下载口，但是又有调试的需求**，建议移植一个轻量级的 shell 命令行工具（如对接 UART、CAN 等外设）。这样既能在不影响程序正常运行的情况下实现异步输出，还能记录日志到 Flash 中，方便问题分析。
 
 
 
-**敬请期待下一篇文章：手把手教你实现轻量级命令行工具！**
+**敬请期待下一篇文章：手把手教你实现一个轻量级命令行工具！**
