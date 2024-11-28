@@ -21,7 +21,8 @@ static struct FlashDevice const FlashDevice  =  {
 #endif
 
 #ifdef STM32F10x_512
-struct FlashDevice const FlashDevice  =  {
+#include "stm32f1xx.h"
+static struct FlashDevice const FlashDevice  =  {
    FLASH_DRV_VERS,             // Driver Version, do not modify!
    "STM32F10x High-density Flash",// Device Name (512kB/384kB/256kB)
    ONCHIP,                     // Device Type
@@ -104,7 +105,8 @@ static struct FlashDevice const FlashDevice  =  {
 #endif
 
 #if defined STM32F4xx_1024dual
-  struct FlashDevice const FlashDevice  =  {
+#include "stm32f4xx.h"
+static struct FlashDevice const FlashDevice  =  {
     FLASH_DRV_VERS,             // Driver Version, do not modify!
     "STM32F4xx 1MB dual bank Flash",     // Device Name
     ONCHIP,                     // Device Type
@@ -127,7 +129,8 @@ static struct FlashDevice const FlashDevice  =  {
 #endif // STM32F7x_1024dual
 
 #ifdef STM32F4xx_1536
-  struct FlashDevice const FlashDevice  =  {
+#include "stm32f4xx.h"
+static struct FlashDevice const FlashDevice  =  {
     FLASH_DRV_VERS,             // Driver Version, do not modify!
     "STM32F4xx 1.5MB Flash",      // Device Name (1024kB/1536kB)
     ONCHIP,                     // Device Type
@@ -147,7 +150,8 @@ static struct FlashDevice const FlashDevice  =  {
 #endif // STM32F2xx_1536
 
 #ifdef STM32F4xx_2048
-  struct FlashDevice const FlashDevice  =  {
+#include "stm32f4xx.h"
+static struct FlashDevice const FlashDevice  =  {
     FLASH_DRV_VERS,             // Driver Version, do not modify!
     "STM32F4xx 2MB Flash",      // Device Name (2048kB)
     ONCHIP,                     // Device Type
