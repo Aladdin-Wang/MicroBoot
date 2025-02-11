@@ -18,7 +18,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "bootloader.h"
-#include "flash_algo.h"
+#include "../flash_algo/flash_algo.h"
 
 #if defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
 /* Avoids the semihosting issue */

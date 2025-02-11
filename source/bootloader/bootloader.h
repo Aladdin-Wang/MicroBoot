@@ -1,7 +1,6 @@
 #ifndef BOOTLOADER_H_
 #define BOOTLOADER_H_
 #include ".\app_cfg.h"
-#include "../flash_algo/flash_algo.h"
 #include <stdint.h>
 #include <stdbool.h>
 

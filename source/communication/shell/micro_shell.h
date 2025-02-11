@@ -22,7 +22,7 @@
 
 #include "../signals_slots/signals_slots.h"
 #include "../../generic/queue/ring_queue.h"
-#include "check_agent_engine.h"
+#include "../../check_agent_engine/check_agent_engine.h"
 #include "finsh.h"
 
 #ifndef container_of

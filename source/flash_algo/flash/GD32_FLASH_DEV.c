@@ -1,4 +1,4 @@
-#include "../flash_blob.h" 
+#include "../flash_algo.h" 
 #ifdef GD32E50X
 #include "gd32e50x_fmc.h"
 static  flash_dev_t const FlashDevice  =  {
