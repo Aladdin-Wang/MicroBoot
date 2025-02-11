@@ -98,10 +98,16 @@ typedef struct {
  */
 
 
-#if defined(__CC_ARM) || defined(__ARMCC_VERSION)  // Keil / Arm Compiler
-#define BOOT_FLASH_SECTION __attribute__((at(BOOT_FLASH_OPS_ADDR)))
+#define __ARM_AT(x) ".ARM.__at_"#x
+#define ARM_AT(x) __ARM_AT(x)
+#if defined(__CC_ARM)  // ARM Compiler 5 (AC5)
+    #define BOOT_FLASH_SECTION __attribute__((at(BOOT_FLASH_OPS_ADDR)))
+#elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)  // ARM Compiler 6 (AC6)
+    #define BOOT_FLASH_SECTION __attribute__((section(ARM_AT(BOOT_FLASH_OPS_ADDR))))
 #elif defined(__GNUC__)  // GCC
-#define BOOT_FLASH_SECTION __attribute__((section(".boot_flash_ops"), used, aligned(4)))
+    #define BOOT_FLASH_SECTION __attribute__((section(".boot_flash_ops"), used, aligned(4)))
+#else
+    #define BOOT_FLASH_SECTION
 #endif
 
 static volatile const boot_ops_t tBootOps BOOT_FLASH_SECTION = {
@@ -112,6 +118,7 @@ static volatile const boot_ops_t tBootOps BOOT_FLASH_SECTION = {
     .target_flash_read = target_flash_read,
     .target_flash_uninit = target_flash_uninit
 };
+
 
 
 /**********************************************************************************************************

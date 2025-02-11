@@ -1,4 +1,4 @@
-#include "../flash_blob.h"
+#include "../flash_algo.h"
 #include "STM32_FLASH_DEV.c"
 
 typedef volatile unsigned char    vu8;
@@ -771,7 +771,7 @@ static int32_t ProgramPage(uint32_t addr, uint32_t sz, uint8_t* buf)
     return (result);
 }
 
-const  flash_blob_t  onchip_flash_device = {
+const  flash_algo_t  onchip_flash_device = {
     .tFlashops.Init = Init,
     .tFlashops.UnInit = UnInit,
     .tFlashops.EraseChip = EraseChip,
