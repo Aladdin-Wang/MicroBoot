@@ -3,7 +3,7 @@
 #include ".\app_cfg.h"
 #include <stdint.h>
 #include <stdbool.h>
-
+#include "../flash_algo/flash_algo.h"
 // <o>The user data size
 //  <i>Default: 192
 #define USER_DATA_SIZE            192
