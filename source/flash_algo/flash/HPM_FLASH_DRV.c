@@ -1,5 +1,7 @@
-#include "../flash_blob.h"
-#include "GD32_FLASH_DEV.c"
+#include "HPM_FLASH_DEV.c"
+#include "hpm_romapi.h"
+#include "board.h"
+static xpi_nor_config_t s_xpi_nor_config;
 /*
  *  Initialize Flash Programming Functions
  *    Parameter:      adr:  Device Base Address
@@ -10,7 +12,11 @@
 
 static int32_t Init(uint32_t adr, uint32_t clk, uint32_t fnc)
 {
-
+    xpi_nor_config_option_t option;
+    option.header.U = BOARD_APP_XPI_NOR_CFG_OPT_HDR;
+    option.option0.U = BOARD_APP_XPI_NOR_CFG_OPT_OPT0;
+    option.option1.U = BOARD_APP_XPI_NOR_CFG_OPT_OPT1;
+    rom_xpi_nor_auto_config(BOARD_APP_XPI_NOR_XPI_BASE, &s_xpi_nor_config, &option);
     return (0);
 }
 
@@ -33,9 +39,7 @@ static int32_t UnInit(uint32_t fnc)
 
 static int32_t EraseChip(void)
 {
-	fmc_unlock();
-    fmc_mass_erase();
-    fmc_lock();	
+
     return (0);
 }
 
@@ -46,9 +50,7 @@ static int32_t EraseChip(void)
  */
 static int32_t EraseSector(uint32_t adr)
 {
-	fmc_unlock();	
-    fmc_page_erase(adr);
-    fmc_lock();		
+    rom_xpi_nor_erase_sector(BOARD_APP_XPI_NOR_XPI_BASE, xpi_xfer_channel_auto, &s_xpi_nor_config,  (adr - 0x80000000));
     return (0);
 }
 
@@ -62,32 +64,25 @@ static int32_t EraseSector(uint32_t adr)
 static int32_t ProgramPage(uint32_t addr, uint32_t sz, uint8_t* buf)
 {
     int32_t result = 0;
-    fmc_unlock();
-    uint32_t end_addr = addr + sz;
-    while (addr < end_addr) {
-        if (fmc_word_program(addr, *((uint32_t *)buf)) == FMC_READY) {
-            if (*(uint32_t *)addr != *(uint32_t *)buf) {
-                result = 1;
-                break;
-            }
-            addr += 4;
-            buf  += 4;
-        } else {
-            result = 1;
-            break;
-        }
-    }
-    fmc_lock();	
+    rom_xpi_nor_program(BOARD_APP_XPI_NOR_XPI_BASE, xpi_xfer_channel_auto, &s_xpi_nor_config,
+        (uint32_t*)buf, (addr - 0x80000000), sz);
     return result;
 }
 
-const  flash_blob_t  onchip_flash_device = {
-    .tFlashops.Init = Init,
-    .tFlashops.UnInit = UnInit,
-    .tFlashops.EraseChip = EraseChip,
-    .tFlashops.EraseSector = EraseSector,
-    .tFlashops.Program = ProgramPage,
-    .tFlashops.Read = NULL,
+int32_t ReadData(uint32_t adr, uint32_t sz, uint8_t* buf)
+{
+    int32_t result = 0;
+    rom_xpi_nor_read(BOARD_APP_XPI_NOR_XPI_BASE, xpi_xfer_channel_auto, &s_xpi_nor_config, (uint32_t *)buf, (adr - 0x80000000), sz);    
+    return result;
+}
+
+const  flash_algo_t  onchip_flash_device = {
+    .tFlashops.Init = Init,  
+    .tFlashops.UnInit = UnInit,  
+    .tFlashops.EraseChip = EraseChip,  
+    .tFlashops.EraseSector = EraseSector,  
+    .tFlashops.Program = ProgramPage,  
+    .tFlashops.Read = ReadData,
     .ptFlashDev = &FlashDevice,
 };
 

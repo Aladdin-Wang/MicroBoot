@@ -15,13 +15,14 @@
 *                                                                           *
 ****************************************************************************/
 
-#ifndef FLASH_BLOB_H
-#define FLASH_BLOB_H
+#ifndef FLASH_ALGO_H
+#define FLASH_ALGO_H
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
 #include <string.h>
 #include "./app_cfg.h"
+
 
 #undef __CONNECT2
 #undef CONNECT2
@@ -38,17 +39,46 @@
     #define SAFE_NAME(__NAME)   CONNECT3(__,__NAME,__LINE__)
 #endif
 #ifndef safe_atom_code
-    #include "cmsis_compiler.h"	
-    #define safe_atom_code()                                         \
-            for(  uint32_t SAFE_NAME(temp) =                          \
-					({uint32_t SAFE_NAME(temp2)=__get_PRIMASK();       \
-                    __disable_irq();                                 \
-                     SAFE_NAME(temp2);}),*SAFE_NAME(temp3) = NULL;    \
-                     SAFE_NAME(temp3)++ == NULL;                      \
-                    __set_PRIMASK(SAFE_NAME(temp)))
+  #ifdef __riscv
+    #define MSTATUS_MIE (1 << 3U)
+    #define MSTATUS_MPIE (1 << 7U)
+    static inline uint32_t read_mstatus(void) {
+        uint32_t value;
+        __asm volatile("csrr %0, mstatus" : "=r"(value));
+        return value;
+    }
+    static inline void write_mstatus(uint32_t value) {
+        __asm volatile("csrw mstatus, %0" ::"r"(value));
+    }
+    static inline uint32_t __get_mstatus_and_disable_irq(void) {
+        uint32_t mstatus = 0;
+        mstatus = read_mstatus();
+        write_mstatus(mstatus & ~MSTATUS_MIE);
+        return mstatus;
+    }
+    static inline void __set_mstatus(uint32_t mstatus) {
+        write_mstatus(mstatus);
+    }
+    #define safe_atom_code()\
+      for(uint32_t SAFE_NAME(temp) = __get_mstatus_and_disable_irq(),\
+         *SAFE_NAME(temp3) = NULL ;\
+           SAFE_NAME(temp3)++ == NULL;\
+           __set_mstatus(SAFE_NAME(temp)))
+
+  #else
+      #include "cmsis_compiler.h"	
+      #define safe_atom_code()                                         \
+              for(  uint32_t SAFE_NAME(temp) =                          \
+  					({uint32_t SAFE_NAME(temp2)=__get_PRIMASK();       \
+                      __disable_irq();                                 \
+                       SAFE_NAME(temp2);}),*SAFE_NAME(temp3) = NULL;    \
+                       SAFE_NAME(temp3)++ == NULL;                      \
+                      __set_PRIMASK(SAFE_NAME(temp)))
 						 
 							
+  #endif
 #endif
+
 
 
 #define VERS       1           // Interface Version 1.01
@@ -73,7 +103,7 @@ struct FlashSectors  {
 
 typedef struct FlashDevice  {
     unsigned short  Vers;       // Version Number and Architecture
-    char            DevName[32];// Device Name and Description
+    char            DevName[128];// Device Name and Description
     unsigned short  DevType;    // Device Type: ONCHIP, EXT8BIT, EXT16BIT, ...
     unsigned long   DevAdr;    // Default Device Start Address
     unsigned long   szDev;    // Total Size of Device
@@ -96,12 +126,12 @@ typedef struct {
     int32_t (*Read)(uint32_t adr, uint32_t sz, uint8_t* buf);
 } flash_ops_t;
 
-typedef struct flash_blob_t{
+typedef struct flash_algo_t{
     flash_dev_t const *ptFlashDev;
     flash_ops_t tFlashops;
-} flash_blob_t;
+} flash_algo_t;
 
-extern void flash_dev_register(flash_blob_t *ptFlashDevice);
+extern void flash_dev_register(flash_algo_t *ptFlashDevice);
 extern uint32_t get_flash_sector(uint32_t Address);
 extern uint32_t get_flash_sector_size(uint32_t Address);
 extern bool target_flash_init(uint32_t addr);

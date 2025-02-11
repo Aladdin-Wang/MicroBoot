@@ -14,10 +14,10 @@
 *  limitations under the License.                                           *
 *                                                                           *
 ****************************************************************************/
-#include "flash_blob.h"
+#include "flash_algo.h"
 
 /* Array containing flash devices and their configurations */
-static const flash_blob_t * const flash_table[] = FLASH_DEV_TABLE;
+static const flash_algo_t * const flash_table[] = FLASH_DEV_TABLE;
 
 /* Length of the flash_table array */
 static const size_t flash_table_len = sizeof(flash_table) / sizeof(flash_table[0]);
@@ -29,7 +29,7 @@ static const size_t flash_table_len = sizeof(flash_table) / sizeof(flash_table[0
  *   - addr: Flash memory address to find.
  * Returns: Pointer to the flash_fal_t structure if found, NULL otherwise.
  */
-static const flash_blob_t *  flash_dev_find(uint32_t addr)
+static const flash_algo_t *  flash_dev_find(uint32_t addr)
 {
     for (uint16_t i = 0; i < flash_table_len; i++) {
         if(addr >= flash_table[i]->ptFlashDev->DevAdr &&
@@ -48,7 +48,7 @@ static const flash_blob_t *  flash_dev_find(uint32_t addr)
 uint32_t get_flash_sector(uint32_t Address)
 {
     uint32_t wSector = 0;
-    const flash_blob_t *ptFlashDevice = flash_dev_find(Address);
+    const flash_algo_t *ptFlashDevice = flash_dev_find(Address);
     uint8_t chPartitionIndex = 0;
 
     uint32_t wSectorEnd = ptFlashDevice->ptFlashDev->sectors[chPartitionIndex + 1].AddrSector;
@@ -88,7 +88,7 @@ uint32_t get_flash_sector(uint32_t Address)
 uint32_t get_flash_sector_size(uint32_t Address)
 {
     uint32_t wSector = 0;
-    const flash_blob_t *ptFlashDevice = flash_dev_find(Address);
+    const flash_algo_t *ptFlashDevice = flash_dev_find(Address);
     uint8_t chPartitionIndex = 0;
 
     uint32_t wSectorEnd = ptFlashDevice->ptFlashDev->sectors[chPartitionIndex + 1].AddrSector;
@@ -134,7 +134,7 @@ bool target_flash_init(uint32_t addr)
         return false;
     }
 
-    const flash_blob_t *ptFlashDevice = flash_dev_find(addr);
+    const flash_algo_t *ptFlashDevice = flash_dev_find(addr);
 
     if(ptFlashDevice != NULL) {
         ptFlashDevice->tFlashops.Init(addr, 0, 0);
@@ -152,7 +152,7 @@ bool target_flash_init(uint32_t addr)
  */
 bool target_flash_uninit(uint32_t addr)
 {
-    const flash_blob_t *ptFlashDevice = flash_dev_find(addr);
+    const flash_algo_t *ptFlashDevice = flash_dev_find(addr);
 
     if(ptFlashDevice != NULL) {
         ptFlashDevice->tFlashops.UnInit(addr);
@@ -172,7 +172,7 @@ bool target_flash_uninit(uint32_t addr)
  */
 int target_flash_write(uint32_t addr, const uint8_t *buf, size_t size)
 {
-    const flash_blob_t *ptFlashDevice = flash_dev_find(addr);
+    const flash_algo_t *ptFlashDevice = flash_dev_find(addr);
 
     safe_atom_code() {
         if(ptFlashDevice != NULL) {
@@ -214,7 +214,7 @@ int target_flash_write(uint32_t addr, const uint8_t *buf, size_t size)
  */
 int target_flash_read(uint32_t addr, uint8_t *buf, size_t size)
 {
-    const flash_blob_t *ptFlashDevice = flash_dev_find(addr);
+    const flash_algo_t *ptFlashDevice = flash_dev_find(addr);
 
     safe_atom_code() {
         if(ptFlashDevice != NULL) {
@@ -259,7 +259,7 @@ int target_flash_erase(uint32_t addr, size_t size)
 {
     size_t wSector = 0;
     size_t wEraseSize = 0;
-    const flash_blob_t *ptFlashDevice = flash_dev_find(addr);
+    const flash_algo_t *ptFlashDevice = flash_dev_find(addr);
 
     if(ptFlashDevice != NULL) {
         safe_atom_code() {

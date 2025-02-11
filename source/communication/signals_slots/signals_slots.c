@@ -71,6 +71,7 @@ bool direct_connect(sig_slot_t *ptSender, const char *pchSignal, void *pReceiver
             /* Check for duplicate connections */
             if(strcmp(ptMetaObj->pchSignal, pchSignal) == 0 && ptMetaObj->pReceiver == pReceiver &&
                ptMetaObj->pMethod == pMethod) {
+                free(ptNewSender);
                 return false;
             }
 
@@ -81,6 +82,7 @@ bool direct_connect(sig_slot_t *ptSender, const char *pchSignal, void *pReceiver
                 /* Check for duplicate connections */
                 if(strcmp(ptMetaObj->pchSignal, pchSignal) == 0 && ptMetaObj->pReceiver == pReceiver &&
                    ptMetaObj->pMethod == pMethod) {
+                    free(ptNewSender);
                     return false;
                 }
             }
@@ -94,7 +96,8 @@ bool direct_connect(sig_slot_t *ptSender, const char *pchSignal, void *pReceiver
         /* Set the method, receiver, and signal for the current metadata object */
         ptMetaObj->pMethod = pMethod;
         ptMetaObj->pReceiver = pReceiver;
-        memcpy(ptMetaObj->pchSignal, pchSignal, strlen(pchSignal));
+        strncpy(ptMetaObj->pchSignal, pchSignal, sizeof(ptMetaObj->pchSignal) - 1);
+        ptMetaObj->pchSignal[sizeof(ptMetaObj->pchSignal) - 1] = '\0'; // 确保字符串终止
 
     } while (0);
 
@@ -137,13 +140,9 @@ void auto_disconnect(sig_slot_t *ptSender, const char *pchSignal, void *pReceive
                 if (ptMetaObj->ptNext != NULL) {
                     ptMetaObj->ptNext->ptPrev = ptMetaObj->ptPrev;
                 }
-
-                memset(ptMetaObj, 0, sizeof(struct sig_slot_t));
                 free(ptMetaObj);
-                /* Exit the loop */
-                break;
+                return;
             }
-
             /* Move to the next metadata object in the list */
             ptMetaObj = ptMetaObj->ptNext;
         }

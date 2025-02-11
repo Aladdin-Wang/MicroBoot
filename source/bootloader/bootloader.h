@@ -1,7 +1,7 @@
 #ifndef BOOTLOADER_H_
 #define BOOTLOADER_H_
 #include ".\app_cfg.h"
-#include "../flash_blob/flash_blob.h"
+#include "../flash_algo/flash_algo.h"
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -14,6 +14,7 @@ typedef struct {
     char chHardWareVersion[16];
     char chSoftBootVersion[16];
     char chSoftAppVersion[16];
+    char chReceive[128];	
 } msgSig_t;
 typedef struct {
     union {

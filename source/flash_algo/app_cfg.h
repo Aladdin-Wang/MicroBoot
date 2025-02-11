@@ -5,8 +5,8 @@
 #define __FLASH_BLOB_CFG_H__
 
 /* ===================== Flash device Configuration ========================= */ 
-typedef struct flash_blob_t flash_blob_t;
-extern const  flash_blob_t  onchip_flash_device;
+typedef struct flash_algo_t flash_algo_t;
+extern const  flash_algo_t  onchip_flash_device;
 /* flash device table */
 #ifndef FLASH_DEV_TABLE
     #define FLASH_DEV_TABLE                                          \
