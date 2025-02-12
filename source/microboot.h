@@ -13,8 +13,6 @@ extern "C" {
 #include "communication/ymodem/ymodem.h"
 
 
-
-
 #ifdef __cplusplus
 }
 #endif

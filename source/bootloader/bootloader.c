@@ -217,7 +217,7 @@ bool user_enter_bootloader(void)
 #if defined(__IS_COMPILER_IAR__)
 __attribute__((constructor))
 #else
-//__attribute__((constructor(255)))
+__attribute__((constructor(255)))
 #endif
 static void enter_application(void)
 {
