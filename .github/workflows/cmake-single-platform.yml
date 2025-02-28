@@ -12,7 +12,7 @@ on:
 jobs:
   pack:
     name: Generate Pack
-    runs-on: ubuntu-latest  # 升级到最新的 Ubuntu 版本
+    runs-on: ubuntu-latest  # 使用最新的 Ubuntu 版本
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4  # 使用最新的 v4 版本
@@ -27,6 +27,11 @@ jobs:
         uses: actions/setup-node@v4  # 使用最新的 v4 版本
         with:
           node-version: '20'
+
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen
 
       - name: Make gen_pack.sh executable
         run: chmod +x ./gen_pack.sh
