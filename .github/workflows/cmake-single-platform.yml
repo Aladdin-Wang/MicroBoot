@@ -40,7 +40,10 @@ jobs:
 
       - name: Setup Doxygen symlink
         run: |
-          sudo ln -s /opt/doxygen-1.9.2/bin/doxygen /usr/local/bin/doxygen
+          if [ ! -f /usr/local/bin/doxygen ]; then
+            sudo ln -s /opt/doxygen-1.9.2/bin/doxygen /usr/local/bin/doxygen
+          fi
+          doxygen --version
 
       - name: Make gen_pack.sh executable
         run: chmod +x ./gen_pack.sh
