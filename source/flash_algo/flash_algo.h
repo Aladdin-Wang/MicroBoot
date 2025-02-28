@@ -131,7 +131,6 @@ typedef struct flash_algo_t{
     flash_ops_t tFlashops;
 } flash_algo_t;
 
-extern void flash_dev_register(flash_algo_t *ptFlashDevice);
 extern uint32_t get_flash_sector(uint32_t Address);
 extern uint32_t get_flash_sector_size(uint32_t Address);
 extern bool target_flash_init(uint32_t addr);

@@ -112,6 +112,18 @@
 		 <Pre_Include_Global_h>
 #define __USER_APP_CFG_H__ "user_app_cfg.h"
          </Pre_Include_Global_h>			
+    </component>	
+    <component Cclass="MicroBoot" Cversion="0.9.6" Csub="FlashDrv" Cgroup="components" Cvariant="custom"  condition="FlashDrv">
+        <description>MicroBoot flash drive</description>
+        <files>
+			<file category="include" name="source/"/>			
+			<file category="header" name="template/user_app_cfg.h" version="0.9.6" attr="config"/> 
+		    <file category="include" name="source/flash_algo/"/>
+			<file category="sourceC" name="source/flash_algo/flash_algo.c"/>    
+        </files>
+		 <Pre_Include_Global_h>
+#define __USER_APP_CFG_H__ "user_app_cfg.h"
+         </Pre_Include_Global_h>			
     </component>		
     <component Cclass="MicroBoot" Cversion="0.9.6" Csub="ymodem" Cgroup="components" condition="ymodem">
         <description>MicroBoot ymodem</description>
