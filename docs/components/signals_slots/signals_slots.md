@@ -1,25 +1,59 @@
-﻿# C语言模拟QT的信号与槽功能
+﻿# 用C宏打造一个轻量级信号与槽机制
 
 ---
 
-## 前言
-使用过QT的朋友，应该都对QT的信号与槽机制深有体会，它可以非常方便的实现类与类之间的解耦合、实现对象与对象之间的解耦合、实现两个cpp文件之间的解耦合。
+## 一、引言
+信号与槽机制源自Qt 框架，它是一种强大而优雅的事件驱动模型，旨在促进组件之间的松散耦合通信。该模式允许对象之间无需直接相互引用即可响应彼此的状态变更，从而极大地提高了系统的可扩展性和可维护性。
 
-既然信号槽如此好用，嵌入式开发也想拥有，下边就开始用C语言一步步实现它吧...
+### 1.1 传统事件处理的局限性
 
----
+在早期 C++ 程序中，事件处理通常通过回调函数或观察者模式来实现，但这些方法存在一些问题：
+
+- **强耦合**：回调函数需要提前注册到特定对象中，导致调用方与被调用方紧密耦合，不利于模块化和重用。
+
+- **代码复杂度高**：实现和维护复杂的事件处理逻辑较为困难，尤其是在多个对象之间需要进行交互时。
+
+- **类型检查不足**：回调函数的接口不够灵活，容易引发编译期或运行时错误。
+- **`this` 指针的绑定问题**：C++ 成员函数需要显式绑定到对象实例（`this`），导致回调机制实现复杂且易出错。
+
+### 1.2 信号与槽机制的优势
+
+信号与槽机制提供了一种声明式的方式来描述组件之间的关系，代码更加直观、易读和易维护，降低了程序的复杂度。例如：
+
+```c++
+connect(sender, &Sender::signal, receiver, &Receiver::slot);
+```
+
+这一语句清晰地表明了信号与槽之间的关系。
+
+信号与槽机制通过 `connect` 函数将事件的发出者和处理者连接起来，实现了组件间的解耦，简化了事件驱动编程。
+
+### 1.3 嵌入式 C 编程中的信号与槽的优势
+
+虽然信号与槽机制主要源于面向对象语言（如 C++ 和 Qt 框架），但它的思想同样可以借鉴到嵌入式 C 编程中，用于解决某些事件通信和模块解耦问题。
+
+- **模块解耦**：信号与槽机制允许模块之间通过事件（信号）进行通信，而无需直接调用对方的接口，降低模块间的耦合度。
+- **简化事件处理**：使用信号与槽，可以轻松管理事件的分发和处理逻辑，而不需要手动维护复杂的回调函数或状态机。
+- **动态性和灵活性**：可以在运行时动态注册或解除信号与槽的绑定，支持灵活的模块间通信。
+- **易于扩展**：新模块可以通过注册信号与槽轻松加入系统，无需修改现有模块的实现。
+- **提升代码可读性与可维护性**：信号与槽机制的代码逻辑清晰，描述事件触发和响应关系的方式更直观。
+- **线程安全**：如果设计得当，信号与槽机制可以用于不同任务（或线程）之间的安全通信，避免复杂的同步机制。
 
 
-## 一、Qt信号与槽的实现机理
-在Qt中实现信号与槽最重要的就是通过元对象系统(MOS)的元对象编译器(MOC)将我们定义的需要使用到信号与槽的类中的信号及信号调用槽函数的方法进行定义（这一步就会生成与源文件对应的moc_xx.cpp文件），然后通过系统提供的关联方法(connect)将信号与槽建立一一对应关系，当发射信号（其实就是调用信号函数）时就会通过信号与槽的对应关系找到对应槽函数进行调用。
 
-这样的好处就是对于使用者而言不必去关心函数指针回调函数这些对于初学者比较不太容易搞清晰的东西，简化了使用者的操作。当然就像我们在享受幸福生活的时候，就一定有人在我们背后默默付出砥砺前行！这里也一样，对于我们使用者简化了操作，那为了实现这样的效果就需要在后台提供更多的支持。
+**既然信号槽有如此多的优点，嵌入式开发也想拥有，下边就开始用C语言一步步实现它吧...**
 
-QT Creator官方帮助文档对信号槽使用方法做了详细的介绍，接下来我们就依照官方的使用方法，依葫芦画瓢，用C语言的宏模拟出山寨版的信号和槽。
+## 二、用C宏打造一个轻量级信号与槽机制
+### 2.1 前景回顾
 
-## 二、简化后的实现步骤
-## 1. 定义一些必要的宏
-先无脑定义一些与QT中一模一样的宏，然后再思考如何实现它的功能。
+如果说上一篇文章通过[队列](..\queue\queue.md)的实现只是“浅尝辄止”，让我们领略了宏在代码简化和重用上的基本功，那么这篇文章，我们可以更进一步，将目光投向更复杂、更具挑战性的场景。通过深入挖掘宏的强大能力，我们不仅要展示它的“锦上添花”，更要看到它在解决复杂问题时“化繁为简”的真正价值。
+
+### 2.2 基本功能封装
+
+信号与槽机制的核心在于**信号与槽的动态连接与断开**，以及**通过信号调用槽函数完成事件通知**。
+
+为此，我们先无脑定义一些与 Qt 中接口相同的宏，为后续的功能实现奠定基础：
+
 ```c
 
 #define signals //定义信号
@@ -30,42 +64,66 @@ QT Creator官方帮助文档对信号槽使用方法做了详细的介绍，接�
 
 #define connect //链接信号与槽
 
-#define SIGNAL(x) 
-
-#define SLOT(x) 
+#define disconnect //断开信号与槽
 
 
 ```
 
-信号槽的核心机制是**当发射信号时会通过信号与槽的对应关系找到对应槽函数进行调用。** 
-我们所要模拟的正是这个核心机制。任务明确了，就开始实现这些宏吧！
+信号槽机制的本质是**发射信号时，通过信号与槽的对应关系找到槽函数并调用它**。我们需要实现的，正是这个机制。
 
-###  2. 实现声明信号的宏
-QT中定义信号是在类中使用signals声明一个函数，不需要自己实现信号函数，在生成的moc文件中，代替你实现了你声明的信号函数，所以**发射信号的本质就是通过调用信号函数，再调用槽函数**。
+###  2.3 实现声明信号的宏
+在 C 语言中，信号本质上是一个函数，其触发的行为是调用与之绑定的槽函数。因此，我们需要通过 `signals` 宏声明信号的函数类型。
 
-既然调用发射信号，就是调用槽函数，那么理论上，只需要把槽函数的地址赋值给一个发射信号的函数指针，就完成偷梁换柱了。
+**实现逻辑**：
 
-想要定义函数指针，首先需要知道函数类型，那么使用signals宏声明信号，就可以用来声明一个函数类型，然后用这个函数类型，去定义函数指针。
+- `signals` 宏通过 `typedef` 声明信号函数类型。
+- 发射信号时，会通过调用该函数类型的函数指针，执行槽函数。
 
-实现定义信号的宏:
+**实现代码**：
+
 ```c
 #define signals(__NAME,...)               \
           typedef void __NAME( __VA_ARGS__);
 ```
-###  3. 实现发射信号的宏
-发射信号就是，利用声明好的函数类型，定义一个函数指针，然后把槽函数地址赋给这个函数指针，然后执行这个函数指针的一段代码：
-```c
-#define emit(__NAME,__OBJ,...)                     \
-           do{                                          \
-               sig_slot_t *ptObj = &((__OBJ)->tObject);                \
-		       __NAME *__RecFun = ptObj->ptRecFun;   \
-		      执行__RecFun((__OBJ)->ptRecObj,__ARG1,__ARG2, __ARG3,...) \
-           }while(0)              \
-```
-其中__NAME是信号名称，__OBJ是信号所在对象的地址，...是可变参数。
-这里重点来了，由于执行__RecFun这个函数的时候，我们并不知道有多少个参数，所以无法直接如上边代码那样带入参数，我们必须知道...代表的是几个参数，那么就可以知道使用几个__ARG了。
+**示例**：
 
-这个时候，如果看过上篇文章[C语言变参函数和可变参数宏](https://blog.csdn.net/sinat_31039061/article/details/128338331?spm=1001.2014.3001.5502)，应该就能立马想到我们其实已经实现了一个可以获得可变参数宏中参数数量的宏了：`#define VA_NUM_ARGS(...)` ，利用它，宏的重载就可以信手捏来了。先来它8个参数的，应该够用了
+```c
+signals(my_signal, int value, const char *message);
+```
+
+上述代码将定义一个信号 `my_signal`，它可以传递一个 `int` 和一个 `const char *` 参数。
+
+###  2.4 实现发射信号的宏
+
+发射信号的本质是通过函数指针调用槽函数。在实现发射信号的宏时，我们需要处理以下情况：
+
+- 动态调用与信号绑定的槽函数。
+
+- 支持不定长参数传递。
+
+**实现步骤**：
+
+1. 通过信号的函数指针调用槽函数。
+2. 利用参数宏解析 `...` 的参数数量，从而正确调用不同参数数量的槽函数。
+
+**实现代码**：
+
+```c
+#define __emit(__OBJ,...) \
+           __PLOOC_EVAL(__RecFun_,##__VA_ARGS__) ((__OBJ)->ptRecObj,##__VA_ARGS__); 
+
+#define emit(__NAME,__OBJ,...)                     \
+           do {                                      \
+               sig_slot_t *ptObj = &((__OBJ)->tObject); \
+               __NAME *__RecFun = ptObj->ptRecFun;     \
+               __emit(ptObj, __VA_ARGS__)              \
+           } while(0)
+```
+在这里：
+
+- `__PLOOC_EVAL` 是一个辅助宏，根据参数数量自动选择对应的 `__RecFun_N` 宏。
+- `__RecFun_N` 定义了多种参数调用的槽函数适配逻辑。
+
 ```c
 #define __RecFun_0(__OBJ)                                     \
             __RecFun((__OBJ))
@@ -94,252 +152,108 @@ QT中定义信号是在类中使用signals声明一个函数，不需要自己�
 #define __RecFun_8(__OBJ, __ARG1, __ARG2, __ARG3, __ARG4, __ARG5, __ARG6, __ARG7, __ARG8)                 \
             __RecFun((__OBJ),(__ARG1), (__ARG2), (__ARG3), (__ARG4), (__ARG5), (__ARG6), (__ARG7), (__ARG8)) 
  
-```
-直接使用开源的面向对象模块PLOOC中已经封装好的__PLOOC_EVAL，来自动选择正确的函数即可，重新实现emit
-```c
-#define __emit(__OBJ,...) \
-   		   __PLOOC_EVAL(__RecFun_,##__VA_ARGS__)              \
-                   ((__OBJ)->ptRecObj,##__VA_ARGS__); 
 
-#define emit(__NAME,__OBJ,...)                     \
-           do{                                          \
-               sig_slot_t *ptObj = &((__OBJ)->tObject);                \
-		       __NAME *__RecFun = ptObj->ptRecFun;   \
-		      __emit(ptObj, __VA_ARGS__) \
-           }while(0)  
-           
 ```
-这样发射信号的时候，执行的就是槽函数了，槽函数的第一个参数始终为槽所在的对象地址，从而就完成了对象与对象之间的解耦。
-###  4. 取代QObject类
-实现发射信号的宏时候，我们需要知道槽函数的地址，和槽函数所在对象的地址，我们定义一个类：
+
+
+
+###  2.5 取代QObject类
+为了在结构体中存储信号与槽的元信息，我们定义一个 `sig_slot_t` 结构体，用于管理信号与槽的动态连接。
 
 ```c
 typedef struct sig_slot_t sig_slot_t;
-typedef struct sig_slot_t{
-	char   chSenderName[SIG_NAME_MAX];//信号名称
-    void * ptSenderObj;  //信号所在对象的地址
-	void * ptRecObj;    //槽所在对象的地址
-	void * ptRecFun;   //槽函数的地址
-}sig_slot_t;
-```
-然后重新定义一个宏，来取代QObject的地位：
+typedef struct sig_slot_t {
+    char   chSenderName[SIG_NAME_MAX]; // 信号名称
+    void  *ptSenderObj;               // 信号所在对象地址
+    void  *ptRecObj;                  // 槽所在对象地址
+    void  *ptRecFun;                  // 槽函数的地址
+} sig_slot_t;
 
-```c
 #define SIG_SLOT_OBJ  sig_slot_t tObject;
+
 ```
-然后用法就和QT中一样了，在需要信号的地方，给结构体中，加入SIG_SLOT_OBJ  。
-###  5. 实现connect函数
-接下来就只剩一个把信号和槽连接起来的宏了
+在需要信号支持的结构体中，添加 `SIG_SLOT_OBJ` 即可。
+
+**示例**：
 
 ```c
-void connect(void *SenderObj, const char *ptSender,void *RecObj,void *RecFun)
-{
-    if(SenderObj == NULL || ptSender == NULL || RecObj == NULL || RecFun == NULL){
+typedef struct {
+    SIG_SLOT_OBJ
+} my_signal_object_t;
+```
+
+###  2.6 实现connect函数
+`connect` 宏用于动态建立信号与槽的连接关系。
+核心逻辑包括：
+
+- 检查参数有效性。
+
+- 将信号的函数地址与槽函数地址绑定。
+
+```c
+void connect(void *SenderObj, const char *ptSender, void *RecObj, void *RecFun) {
+    if (SenderObj == NULL || ptSender == NULL || RecObj == NULL || RecFun == NULL) {
         return;
     }
-    sig_slot_t * ptMetaObj = SenderObj;
+    sig_slot_t *ptMetaObj = SenderObj;
     ptMetaObj->ptRecFun = RecFun;
     ptMetaObj->ptRecObj = RecObj;
-    memcpy(ptMetaObj->chSenderName,ptSender,strlen(ptSender));          
-    }while(0);
+    memcpy(ptMetaObj->chSenderName, ptSender, strlen(ptSender));
 }
 ```
-###  6. 可有可无的slots
-因为槽函数实际上就只是个函数而已，为了与信号遥相呼应，也实现一下：
-```c
+###  2.7 可选的 slots 宏
+虽然槽函数在本质上是普通函数，但为了和 `signals` 宏对应，我们可以通过 `slots` 宏为槽函数提供一个语法糖，方便统一管理。
+
+**实现代码**：
+
+```
 #define __slots(__NAME,...)             \
             void __NAME(__VA_ARGS__);
             
 #define slots(__NAME,__OBJ,...)  \
             __slots(__NAME,_args(__OBJ,##__VA_ARGS__))
 ```
+
+**示例**：
+
+```
+slots(my_slot, void *obj, int value, const char *message);
+```
+
+### **2.8 设计总结**
+
+到此为止，我们实现了信号与槽的以下核心功能：
+
+- **信号声明**：通过 `signals` 宏定义信号函数类型。
+
+- **信号发射**：通过 `emit` 宏调用信号对应的槽函数。
+
+- **动态连接**：通过 `connect` 宏在运行时动态绑定信号与槽。
+
+- **统一语法**：使用 `slots` 宏声明槽函数，与信号配合使用。
+
+在这一机制下，C 语言通过宏实现了类似 Qt 的信号与槽机制，为模块化和解耦设计提供了强大的工具支持。
+
 ## 三、完整的代码实现
-以上代码只是展示核心部分，并且仅实现了一个信号对应一个槽，不能一个信号对应多个信号和槽，还有诸多类型检查，空指针检查等需要优化的地方，以下是完整的代码实现：
 
-signals_slots.h文件
-```c
-#ifndef __SIGNALS_SLOTS_H_
-#define __SIGNALS_SLOTS_H_
-#include ".\app_cfg.h"
-#if USE_SERVICE_SIGNALS_SLOTS == ENABLED
-#include <stdint.h>
-#include <string.h>
-#include <stdbool.h>
+以上代码只是展示核心部分，并且仅实现了一个信号对应一个槽，不能一个信号对应多个信号和槽，还有诸多类型检查，空指针检查等需要优化的地方，完整的代码开源链接：https://github.com/Aladdin-Wang/signals_slots
 
-#define __PLOOC_CLASS_USE_STRICT_TEMPLATE__
+完整代码信号与槽具备以下核心特征：
 
-#if     defined(__SIGNALS_SLOTS_CLASS_IMPLEMENT__)
-    #define __PLOOC_CLASS_IMPLEMENT__
-#elif   defined(__SIGNALS_SLOTS_CLASS_INHERIT__)
-    #define __PLOOC_CLASS_INHERIT__
-#endif
+- **不定长参数支持**：信号和槽函数可携带任意参数；
 
-#include "plooc_class.h"
+- **多路复用能力**：支持一对多、多对多的灵活连接；
+- **连接与断开机制**：运行时动态连接和断开信号与槽；
 
-#define SIG_NAME_MAX 20
-
-#define SIGNAL(x) "sig_"#x
-
-#define SLOT(x) x
-
-#define SIG_SLOT_OBJ  sig_slot_t tObject;
+- **类型安全与检查**：防止重复连接或非法操作；
+- **链表结构**：高效管理信号与槽的关系；
+- **宏封装**：简化信号与槽的定义和操作，提升代码可读性和可维护性。
 
 
-#define  args(...)            ,__VA_ARGS__
 
-#define _args(...)            __VA_ARGS__
-
-#define __RecFun_0(__OBJ)                                     \
-            __RecFun((__OBJ))
-
-#define __RecFun_1(__OBJ, __ARG1)                         \
-            __RecFun((__OBJ),(__ARG1))
-
-#define __RecFun_2(__OBJ, __ARG1, __ARG2)                         \
-            __RecFun((__OBJ),(__ARG1), (__ARG2))
-
-#define __RecFun_3(__OBJ, __ARG1, __ARG2, __ARG3)                 \
-            __RecFun((__OBJ),(__ARG1), (__ARG2), (__ARG3))                         
-
-#define __RecFun_4(__OBJ, __ARG1, __ARG2, __ARG3, __ARG4)                 \
-            __RecFun((__OBJ),(__ARG1), (__ARG2), (__ARG3), (__ARG4))    
-            
-#define __RecFun_5(__OBJ, __ARG1, __ARG2, __ARG3, __ARG4, __ARG5)                 \
-            __RecFun((__OBJ),(__ARG1), (__ARG2), (__ARG3), (__ARG4), (__ARG5))  
-
-#define __RecFun_6(__OBJ, __ARG1, __ARG2, __ARG3, __ARG4, __ARG5, __ARG6)                 \
-            __RecFun((__OBJ),(__ARG1), (__ARG2), (__ARG3), (__ARG4), (__ARG5), (__ARG6)) 
-
-#define __RecFun_7(__OBJ, __ARG1, __ARG2, __ARG3, __ARG4, __ARG5, __ARG6, __ARG7)                 \
-            __RecFun((__OBJ),(__ARG1), (__ARG2), (__ARG3), (__ARG4), (__ARG5), (__ARG6), (__ARG7)) 
-
-#define __RecFun_8(__OBJ, __ARG1, __ARG2, __ARG3, __ARG4, __ARG5, __ARG6, __ARG7, __ARG8)                 \
-            __RecFun((__OBJ),(__ARG1), (__ARG2), (__ARG3), (__ARG4), (__ARG5), (__ARG6), (__ARG7), (__ARG8)) 
- 
-            
-#define __signals(__NAME,...)                                    \
-             typedef void PLOOC_CONNECT2(__NAME,_fun_t)( __VA_ARGS__);  
-
-#define signals(__NAME,__OBJ,...)               \
-          __signals(__NAME,_args(__OBJ __VA_ARGS__))
-
-#define __emit(__OBJ,...) \
-   		   __PLOOC_EVAL(__RecFun_,##__VA_ARGS__)              \
-                   ((__OBJ)->ptRecObj,##__VA_ARGS__); 
-
-#define emit(__NAME,__OBJ,...)                     \
-           do {sig_slot_t *ptObj = &((__OBJ)->tObject);                \
-               do{if(__OBJ == NULL || ptObj == NULL ) break;              \
-		           PLOOC_CONNECT2(__NAME,_fun_t) *__RecFun = ptObj->ptRecFun;   \
-                   if(__RecFun != NULL) __emit(ptObj __VA_ARGS__);                           \
-                   ptObj = ptObj->ptNext;             \
-               }while(ptObj != NULL);              \
-           }while(0)
-
-#define __slots(__NAME,...)             \
-            void __NAME(__VA_ARGS__);
-            
-#define slots(__NAME,__OBJ,...)  \
-            __slots(__NAME,_args(__OBJ,##__VA_ARGS__))
-
-#define connect(__SIG_OBJ,__SIG_NAME,__SLOT_OBJ,__SLOT_FUN)    \
-            direct_connect(__SIG_OBJ.tObject,__SIG_NAME,__SLOT_OBJ,__SLOT_FUN)
-
-#define disconnect(__SIG_OBJ,__SIG_NAME)    \
-            auto_disconnect(__SIG_OBJ.tObject,__SIG_NAME)
-
-
-typedef struct sig_slot_t sig_slot_t;
-typedef struct sig_slot_t{
-	char   chSenderName[SIG_NAME_MAX];
-    void * ptSenderObj;  
-	void * ptRecObj;
-	void * ptRecFun;
-    sig_slot_t *ptNext;
-    sig_slot_t *ptPrev;
-}sig_slot_t;
-
-void direct_connect(sig_slot_t *ptSenderObj, const char *ptSender,void *ptRecObj,void *ptRecFun);
-void auto_disconnect(sig_slot_t *ptSenderObj, const char *ptSender);
-
-
-#undef __SIGNALS_SLOTS_CLASS_INHERIT__
-#undef __SIGNALS_SLOTS_CLASS_IMPLEMENT__
-
-#endif
-#endif /* QUEUE_QUEUE_H_ */
-
-```
-signals_slots.c文件
-```c
-#include "signals_slots.h"
-
-void direct_connect(sig_slot_t *SenderObj, const char *ptSender,void *RecObj,void *RecFun)
-{
-    if(SenderObj == NULL || ptSender == NULL || RecObj == NULL || RecFun == NULL){
-        return;
-    }
-    sig_slot_t * ptMetaObj = SenderObj;
-    do{
-        if(strstr(RecFun,"sig_")){
-            memcpy(ptMetaObj->chSenderName,ptSender,strlen(ptSender)); 
-            while(ptMetaObj->ptNext != NULL){
-                ptMetaObj = ptMetaObj->ptNext;
-            }
-            ptMetaObj->ptNext = RecObj; 
-            ptMetaObj->ptNext->ptPrev = ptMetaObj;          
-            ptMetaObj = ptMetaObj->ptNext;
-           
-            memcpy(ptMetaObj->chSenderName,RecFun,strlen(RecFun));  
-            break;            
-        }
-        
-        if(strcmp(ptMetaObj->chSenderName,ptSender) == 0){
-           sig_slot_t * ptSenderObj = malloc(sizeof(sig_slot_t));
-           while(ptMetaObj->ptNext != NULL){
-               ptMetaObj = ptMetaObj->ptNext;
-           }
-           ptMetaObj->ptNext = ptSenderObj;
-           ptMetaObj->ptNext->ptPrev = ptMetaObj;  
-           ptMetaObj = ptMetaObj->ptNext;
-        }
-        ptMetaObj->ptRecFun = RecFun;
-        ptMetaObj->ptRecObj = RecObj;
-        memcpy(ptMetaObj->chSenderName,ptSender,strlen(ptSender));  
-        
-    }while(0);
-}
-
-void auto_disconnect(sig_slot_t *ptSenderObj, const char *ptSender)
-{
-    if(ptSenderObj == NULL || ptSender == NULL){
-        return;
-    }
-    sig_slot_t * ptMetaObj = ptSenderObj;
-	if(strcmp(ptMetaObj->chSenderName,ptSender) == 0){
-
-	   while(ptMetaObj->ptNext != NULL){
-		   ptMetaObj = ptMetaObj->ptNext;
-	   }
- 
-       while(ptMetaObj != NULL){
-           ptMetaObj->ptNext = NULL;
-           memset(ptMetaObj->chSenderName,0,sizeof(ptMetaObj->chSenderName));
-           if(ptMetaObj->ptRecFun != NULL){
-               ptMetaObj->ptRecObj = NULL;
-               ptMetaObj->ptRecFun = NULL;
-               sig_slot_t * ptObj = ptMetaObj;
-               free(ptObj);
-           }
-           ptMetaObj = ptMetaObj->ptPrev;
-       }
-	}
-}
-
-
-```
 ## 四、使用方法与QT中的区别
-##  1. SIG_SLOT_OBJ取代QObject
+
+###  1. SIG_SLOT_OBJ取代QObject
  SIG_SLOT_OBJ取代QObject，且只需要在信号所在的类中定义。
 
 ###  2. 定义信号不同
@@ -376,8 +290,7 @@ emit宏的括号内需要指定信号名称，信号所在的对象地址，和�
          ));
 ```
 ###  5. 连接信号与槽
-与QT一样一个信号可以连接多个信号或者槽，但是QT支持五种连接属性，目前仅实现了其中的Qt::DirectConnection属性，也就是同步调用方式，异步方式正在持续完善中。
-![](../img/signals_slots.png)
+与QT一样一个信号可以连接多个信号或者槽
 
 ```c
 #define connect(__SIG_OBJ,__SIG_NAME,__SLOT_OBJ,__SLOT_FUN)    \
@@ -391,17 +304,30 @@ emit宏的括号内需要指定信号名称，信号所在的对象地址，和�
   example：
   connect(&tCanMsgObj,SIGNAL(send_sig));
 ```
-## 五、信号与槽使用示例
-玩信号与槽，少不了要与面向对象打交道，众所周知，C语言不是面向对象的语言，对于面向对象的特性不是很友好，不过不用担心，福利来了，裸机思维公众号作者开源了一套面向对象的C语言框架，可以轻松助你在C语言中零代价的愉快玩耍面向对象。
+信号与槽的链接关系是同步调用的关系，不同于发布订阅系统的异步调用。
 
-信号与槽的实现正是依赖了PLOOC中诸多的宏，所以首先需要下载安装PLOOC，具体方法参考：[OOPC开发从未如此简单](https://mp.weixin.qq.com/s/fjYfCysv12q-q0N_SiXDzw)
+**同步调用的特点：**
+
+- 当一个信号发出时，如果有多个槽连接到该信号，所有槽函数会按顺序被调用。
+- 槽函数在信号发出时会立即执行，且不会返回控制权给发出信号的对象，直到所有槽函数执行完毕才会返回。
+- 这种调用是同步的，因为发出信号时会等待槽函数的执行完成后才继续进行其他操作。
+
+**与发布-订阅模式的区别：**
+
+发布-订阅模式通常是基于异步通信的，其中发布者发送消息后，不会阻塞等待订阅者的处理结果。订阅者会异步地处理这些消息，并可能在处理完后通过回调等机制通知发布者。
+
+**下一篇将结合队列，实现一个异步调用的发布-订阅模式，敬请期待。**
+
+## 五、信号与槽使用示例
+
+信号与槽模块作为我开源代码[MicroBoot](..\..\index.md)的核心机制，不仅提升了代码的可维护性和灵活性，还带来了更好的开发体验。
 
 接下来实现一个将CAN接收的数据，存储到环形队列ringbuf的例子：
 
 can.h文件
 
 ```c
-#include "signals_slots/signals_slots.h"
+#include "signals_slots.h"
 typedef struct
 {
     SIG_SLOT_OBJ;
@@ -456,7 +382,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 main.c文件
 
 ```c
-#include "./signals_slots/signals_slots.h"
+#include "signals_slots.h"
 #include "can.h"
 
 static uint8_t s_cFIFOinBuffer[1024];

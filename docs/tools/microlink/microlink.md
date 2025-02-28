@@ -45,7 +45,7 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 淘宝链接：https://item.taobao.com/item.htm?ft=t&id=826800975011
 
-![SJTB](E:\Project\MicroBoot\docs\images\microlink\SJTB.png)
+![SJTB](../../images/microlink/SJTB.png)
 
 ### 更多技术支持
 
@@ -139,8 +139,11 @@ ymodem协议支持传输任意文件，配合MicorBoot可以用来升级固件�
 
 MicroLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，升级完成可以查看DETAILS.TXT文件，了解升级后的新功能。
 
-升级包下载地址：https://pan.baidu.com/s/1rBDE9_qOrqtNULkzzsm2Rg?pwd=jmfn 
-![](../../images/microlink/microlink.v1.0.0.png)
+升级包下载地址：https://pan.baidu.com/s/1Dr8Ss16cBRWXtQpyOGrROg?pwd=zyo0 
+
+
+
+![](../../images/microlink/microlink.pack.png)
 
 ## 三、使用说明
 

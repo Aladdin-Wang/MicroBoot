@@ -238,9 +238,9 @@ check_shell_t *shell_init(check_shell_t *ptObj, shell_ops_t *ptOps)
     /* GNU GCC Compiler and TI CCS */
     extern const int __fsymtab_start;
     extern const int __fsymtab_end;
-    init_fsm(search_msg_map, &this.fsmSearchMsgMap, args((msg_t *)&__fsymtab_start, (msg_t *)&__fsymtab_end, &this.tByteInQueue, true));
+    init_fsm(search_msg_map, &this.tshell.fsmSearchMsgMap, args((msg_t *)&__fsymtab_start, (msg_t *)&__fsymtab_end, &this.tshell.tGetByte, true));
     #elif defined(__ADSPBLACKFIN__) /* for VisualDSP++ Compiler */
-    init_fsm(search_msg_map, &this.fsmSearchMsgMap, args((msg_t *)&__fsymtab_start, (msg_t *)&__fsymtab_end, &this.tByteInQueue, true));
+    init_fsm(search_msg_map, &this.tshell.fsmSearchMsgMap, args((msg_t *)&__fsymtab_start, (msg_t *)&__fsymtab_end, &this.tshell.tGetByte, true));
     #elif defined(_MSC_VER)
     unsigned int *ptr_begin, *ptr_end;
     ptr_begin = (unsigned int *)&__fsym_begin;

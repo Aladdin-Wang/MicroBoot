@@ -16,21 +16,24 @@ nav:
       - 变参函数和可变参数宏: utilities/ParameterMacro.md
       - Flash下载算法制作: utilities/FLM.md
   - 组件介绍:
-      - queue:  components/queue/queue.md      
-      - BootLoader: components/bootloader/bootloader.md
-      - FlashBlob:  components/flash_blob/flash_blob.md
-      - ymodem: components/ymodem/ymodem.md  
+      - queue:  components/queue/queue.md
       - 信号槽: components/signals_slots/signals_slots.md
       - 发布订阅: components/subscribe_publish/subscribe_publish.md
+      - 消息地图: components/msg_map/msg_map.md
       - shell: components/shell/shell.md
+      - ymodem: components/ymodem/ymodem.md
+      - BootLoader: components/bootloader/bootloader.mds
+      - FlashBlob:  components/flash_blob/flash_blob.md
   - 第三方库:   
-      - plooc: 3rd-party/plooc/plooc.md 
-      - fsm: 3rd-party/fsm/fsm.md       
+      - PLOOC: 3rd-party/plooc/plooc.md
+      - FSM: 3rd-party/fsm/fsm.md
+      - Arm-2D: 3rd-party/Arm-2D/arm_2d.md
   - 参与项目:
       - 如何贡献代码: contribute/code.md
       - 如何贡献文档: contribute/document.md
   - 开发神器:   
-      - microlink: tools/microlink/microlink.md        
+      - microlink: tools/microlink/microlink.md     
+      - RTTView:   tools/RTTView/RTTView.md    
   - 私人订制:   
       - BootLoader: bootloader/BootLoader.md        
   - About:
