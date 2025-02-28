@@ -1,14 +1,3 @@
-name: Build documentation and pack
-
-on:
-  workflow_dispatch:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  release:
-    types: [published]
-
 jobs:
   pack:
     name: Generate pack
@@ -23,14 +12,21 @@ jobs:
         if: ${{ github.event_name == 'release' }}
         run: |
           git fetch --tags --force
-          
+
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '20'   
-          
-      - name: Install libclang
-        run: sudo apt-get update && sudo apt-get install -y libclang-9-dev
+
+      - name: Install required dependencies
+        run: sudo apt-get update && sudo apt-get install -y clang-9 libclang-common-9-dev
+
+      - name: Fix missing libclang-cpp.so.9
+        run: |
+          sudo ln -s /usr/lib/llvm-9/lib/libclang-cpp.so.9 /usr/lib/libclang-cpp.so.9
+
+      - name: Set LD_LIBRARY_PATH
+        run: echo "LD_LIBRARY_PATH=/usr/lib/llvm-9/lib:$LD_LIBRARY_PATH" >> $GITHUB_ENV
 
       - name: Make gen_pack.sh executable
         run: chmod +x ./gen_pack.sh
