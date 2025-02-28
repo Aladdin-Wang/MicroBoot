@@ -28,7 +28,20 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '20'   
-          
+
+      - name: Install dependencies for doxygen
+        run: |
+          sudo apt update
+          sudo apt install -y libclang-9-dev doxygen
+
+      - name: Remove existing doxygen symlink if it exists
+        run: |
+          sudo rm -f /usr/local/bin/doxygen
+
+      - name: Setup Doxygen symlink
+        run: |
+          sudo ln -s /opt/doxygen-1.9.2/bin/doxygen /usr/local/bin/doxygen
+
       - name: Make gen_pack.sh executable
         run: chmod +x ./gen_pack.sh
 
