@@ -1,3 +1,14 @@
+name: Build documentation and pack
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [published]
+
 jobs:
   pack:
     name: Generate pack
