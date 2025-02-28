@@ -35,7 +35,7 @@ jobs:
       - name: Generate Pack
         uses: Open-CMSIS-Pack/gen-pack-action@main
         with:
-          doxygen-version: 1.9.2
+          doxygen-version: 1.9.5
           packchk-version: 1.3.96
           gen-pack-script: ./gen_pack.sh
           gen-pack-output: ./output
