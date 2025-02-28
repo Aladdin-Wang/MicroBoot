@@ -100,18 +100,10 @@
 //  <i>Default: 0x8020000
 //  <i>Must align with flash sector size
 #define APP_PART_ADDR             0x8020000
-// <o>The reset vector offset in the application
-//  <i>Default: 0x4
-//  <i>The offset of the reset vector from the application start
-#define APP_PART_OFFSET             0x4
 // <o>The app size
 //  <i>Default: 0X60000
 //  <i>Must align with flash sector size
 #define APP_PART_SIZE             0x60000
-// <o>The Boot Flash Ops Addr
-//  <i>Default: 0x08001000
-//  <i>Must align with flash sector size
-#define BOOT_FLASH_OPS_ADDR       0x08001000
 // </e>
 
 // <<< end of configuration section >>>

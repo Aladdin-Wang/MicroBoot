@@ -15,9 +15,11 @@
 *                                                                           *
 ****************************************************************************/
 
+#include "./app_cfg.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include "bootloader.h"
+
 
 #if defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
 /* Avoids the semihosting issue */
@@ -27,18 +29,7 @@ __asm("  .global __ARM_use_no_argv\n");
 void __libc_init_array (void) {}
 #endif
 
-#ifdef __riscv
-void modify_stack_pointer_and_start_app( uint32_t r1_pc) {
-    __asm volatile (
-        "mv a0, %0\n\t"  
-        "jr a0"         
-        :
-        : "r" (r1_pc)    
-        : "a0"           
-    );
-}
-
-#elif defined(__CC_ARM)
+#if defined(__CC_ARM)
 __asm void modify_stack_pointer_and_start_app(uint32_t r0_sp, uint32_t r1_pc)
 {
     MOV SP, R0
@@ -63,7 +54,19 @@ void modify_stack_pointer_and_start_app(uint32_t r0_sp, uint32_t r1_pc)
 #endif
 
 #define MARK_SIZE                 64
+/**
+ * @brief User data structure.
+ * 
+ * This structure holds the user data that will be manipulated and stored in flash memory.
+ */
+user_data_t  tUserData;
 
+__attribute__((weak))
+bool user_enter_bootloader(void)
+{
+
+	return false;
+}
 /**
  * @brief Array to hold magic values for bootloader operations.
  * 
@@ -95,21 +98,10 @@ typedef struct {
  * The __attribute__((used)) ensures that the compiler does not optimize away this variable, and 
  * the __attribute__((section(".ARM.__at_0x08001000"))) places it at the specified memory address.
  */
-
-
 #define __ARM_AT(x) ".ARM.__at_"#x
 #define ARM_AT(x) __ARM_AT(x)
-#if defined(__CC_ARM)  // ARM Compiler 5 (AC5)
-    #define BOOT_FLASH_SECTION __attribute__((at(BOOT_FLASH_OPS_ADDR)))
-#elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)  // ARM Compiler 6 (AC6)
-    #define BOOT_FLASH_SECTION __attribute__((section(ARM_AT(BOOT_FLASH_OPS_ADDR))))
-#elif defined(__GNUC__)  // GCC
-    #define BOOT_FLASH_SECTION __attribute__((section(".boot_flash_ops"), used, aligned(4)))
-#else
-    #define BOOT_FLASH_SECTION
-#endif
-
-static volatile const boot_ops_t tBootOps BOOT_FLASH_SECTION = {
+__attribute__((used))
+static const boot_ops_t tBootOps  __attribute__ ((section(ARM_AT(BOOT_FLASH_OPS_ADDR)))) = {
     .fnEnterBootloaderMode = enter_bootloader,
     .target_flash_init = target_flash_init,
     .target_flash_erase = target_flash_erase,
@@ -117,7 +109,6 @@ static volatile const boot_ops_t tBootOps BOOT_FLASH_SECTION = {
     .target_flash_read = target_flash_read,
     .target_flash_uninit = target_flash_uninit
 };
-
 
 
 /**********************************************************************************************************
@@ -148,12 +139,11 @@ static volatile const boot_ops_t tBootOps BOOT_FLASH_SECTION = {
  * @param pchDate Pointer to the data to be written to flash.
  * @param hwLength Length of the data to be written.
  */
- __attribute__((weak))
 void enter_bootloader(uint8_t *pchDate, uint16_t hwLength)
 {
     uint32_t wData = 0;
-    tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - (USER_DATA_SIZE)), pchDate, USER_DATA_SIZE);
-    tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - MARK_SIZE), (const uint8_t *)&wData,  sizeof(wData));
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - (USER_DATA_SIZE)), pchDate, USER_DATA_SIZE);
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - MARK_SIZE), (const uint8_t *)&wData, sizeof(wData));
 }
 
 /**
@@ -167,13 +157,12 @@ void enter_bootloader(uint8_t *pchDate, uint16_t hwLength)
  * |--------------------|-----------------------|-----------------------|-----------|-----------|-----------|
  * | begin_download     |      user_data...     |      0xFF, 0XFF...    |   0XFF    |   0X00    |    0xFF   |
  */
- __attribute__((weak))
 void begin_download(void)
 {
     memset(chBootMagic, 0, sizeof(chBootMagic));
-    tBootOps.target_flash_erase(APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE), 3*MARK_SIZE);
-    tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - 2 * (USER_DATA_SIZE)), tUserData.msg_data.B, USER_DATA_SIZE);
-    tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (2*MARK_SIZE)), chBootMagic[1], MARK_SIZE);
+    target_flash_erase(APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE), 3*MARK_SIZE);
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - 2 * (USER_DATA_SIZE)), tUserData.msg_data.B, USER_DATA_SIZE);
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (2*MARK_SIZE)), chBootMagic[1], MARK_SIZE);
 }
 
 /**
@@ -187,25 +176,12 @@ void begin_download(void)
  * |--------------------|-----------------------|-----------------------|-----------|-----------|-----------|
  * | finalize_download  |      user_data...     |      0xFF, 0XFF...    |   0X00    |   0X00    |    0xFF   |
  */
- __attribute__((weak))
 void finalize_download(void)
 {
     memset(chBootMagic, 0X00, sizeof(chBootMagic));
-    tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - 3*MARK_SIZE), chBootMagic[0], MARK_SIZE);
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - 3*MARK_SIZE), chBootMagic[0], MARK_SIZE);
 }
-/**
- * @brief User data structure.
- * 
- * This structure holds the user data that will be manipulated and stored in flash memory.
- */
-user_data_t  tUserData;
 
-__attribute__((weak))
-bool user_enter_bootloader(void)
-{
-
-    return false;
-}
 /**
  * @brief Entry point for application mode.
  * 
@@ -213,50 +189,39 @@ bool user_enter_bootloader(void)
  * whether to enter the application or stay in bootloader mode. Depending on the values read from flash, 
  * it may load user data into a specific buffer or modify the stack pointer and start the application.
  */
-
-#if defined(__IS_COMPILER_IAR__)
 __attribute__((constructor))
-#else
-__attribute__((constructor(255)))
-#endif
 static void enter_application(void)
 {
     do {
-        tBootOps.target_flash_init(APP_PART_ADDR);
-        // User-defined conditions for entering the bootloader
-        if(user_enter_bootloader()){
-            tBootOps.target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
+		// User-defined conditions for entering the bootloader
+		if(user_enter_bootloader()){
+            target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
             break;			
-        }
+		}
         // Read the magic values from flash memory to determine the next action
-        tBootOps.target_flash_read((APP_PART_ADDR + APP_PART_SIZE - 3 * MARK_SIZE), chBootMagic[0], 3 * MARK_SIZE);
+        target_flash_read((APP_PART_ADDR + APP_PART_SIZE - 3 * MARK_SIZE), chBootMagic[0], 3 * MARK_SIZE);
 
         // Check if Magic3 is 0x00, indicating to read user data from a specific location
         if ((0 == *(uint32_t *)&chBootMagic[2])) {
-            tBootOps.target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
+            target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
             break;
         }
 
         // Check if Magic2 is 0x00 and Magic1 is 0xFFFFFFFF, indicating to read user data from a different location
         if ((0 == *(uint32_t *)&chBootMagic[1]) && (0XFFFFFFFF == *(uint32_t *)&chBootMagic[0])) {
-            tBootOps.target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - 2 * USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
+            target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - 2 * USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
             break;
         }
-         		
-        //Check if the value at the address (APP_PART_ADDR + 4) has the expected application identifier
-        uint32_t wValue = 0;
-        tBootOps.target_flash_read((APP_PART_ADDR + APP_PART_OFFSET), (uint8_t *)&wValue, 4);
-        if ((wValue) == (0xffffffff) || (wValue) == (0) ) {
+		
+        // Check if the value at the address (APP_PART_ADDR + 4) has the expected application identifier
+        if (((*(volatile uint32_t *)(APP_PART_ADDR + 4)) & 0xff000000) != (APP_PART_ADDR & 0xff000000)) {
             break;
         }
-        tBootOps.target_flash_uninit(APP_PART_ADDR);		
+		
         // If all checks are passed, modify the stack pointer and start the application
-        #ifdef __riscv
-        modify_stack_pointer_and_start_app((APP_PART_ADDR + APP_PART_OFFSET));
-        #else
         modify_stack_pointer_and_start_app(*(volatile uint32_t *)APP_PART_ADDR,
-                                           (*(volatile uint32_t *)(APP_PART_ADDR + APP_PART_OFFSET)));
-        #endif
+                                           (*(volatile uint32_t *)(APP_PART_ADDR + 4)));
+
     } while(0);	
 }
 

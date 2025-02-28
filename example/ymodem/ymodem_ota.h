@@ -1,6 +1,10 @@
 #ifndef APPLICATIONS_CHECK_AGENT_YMODEM_RECEIVE_H_
 #define APPLICATIONS_CHECK_AGENT_YMODEM_RECEIVE_H_
-#include "microboot.h"
+#include "ymodem.h"
+#include "intelhex.h"
+#include "signals_slots.h"
+#include "check_agent_engine.h"
+#include "bootloader.h"
 
 typedef struct ymodem_receive_t {
     ymodem_t      parent;

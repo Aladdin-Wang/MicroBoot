@@ -3,42 +3,32 @@ name: Build documentation and pack
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
   release:
     types: [published]
 
 jobs:
   pack:
-    name: Generate Pack
-    runs-on: ubuntu-latest  # 使用最新的 Ubuntu 版本
+    name: Generate pack
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  # 使用最新的 v4 版本
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Fetch tags (only for release)
-        if: github.event_name == 'release'
-        run: git fetch --tags --force
-
+      - name: Fetch tags
+        if: ${{ github.event_name == 'release' }}
+        run: |
+          git fetch --tags --force
+          
       - name: Setup Node.js
-        uses: actions/setup-node@v4  # 使用最新的 v4 版本
+        uses: actions/setup-node@v2
         with:
-          node-version: '20'
-
-    - name: Install Doxygen
-      run: |
-        wget -O doxygen.tgz https://downloads.sourceforge.net/project/doxygen/rel-1.9.2/doxygen-1.9.2.linux.bin.tar.gz
-        tar -xzf doxygen.tgz
-        sudo mv doxygen-1.9.2 /opt/doxygen-1.9.2
-
-    - name: Add Doxygen to PATH
-      run: echo "/opt/doxygen-1.9.2/bin" >> $GITHUB_PATH
-
-
-
+          node-version: '20'   
+          
       - name: Make gen_pack.sh executable
         run: chmod +x ./gen_pack.sh
 
