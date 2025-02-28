@@ -1,4 +1,4 @@
-#include "../flash_algo.h" 
+#include "flash_algo.h" 
 
 static  flash_dev_t const FlashDevice  =  {
     FLASH_DRV_VERS,             // Driver Version, do not modify!

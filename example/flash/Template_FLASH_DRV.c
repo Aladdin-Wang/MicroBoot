@@ -1,4 +1,4 @@
-#include "../flash_algo.h"
+#include "flash_algo.h"
 #include "Template_FLASH_DEV.c"
 /*
  *  Initialize Flash Programming Functions
