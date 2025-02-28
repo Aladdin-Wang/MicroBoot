@@ -28,10 +28,16 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Doxygen
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y doxygen
+    - name: Install Doxygen
+      run: |
+        wget -O doxygen.tgz https://downloads.sourceforge.net/project/doxygen/rel-1.9.2/doxygen-1.9.2.linux.bin.tar.gz
+        tar -xzf doxygen.tgz
+        sudo mv doxygen-1.9.2 /opt/doxygen-1.9.2
+
+    - name: Add Doxygen to PATH
+      run: echo "/opt/doxygen-1.9.2/bin" >> $GITHUB_PATH
+
+
 
       - name: Make gen_pack.sh executable
         run: chmod +x ./gen_pack.sh
