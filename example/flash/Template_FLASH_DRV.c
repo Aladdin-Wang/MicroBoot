@@ -1,5 +1,5 @@
 #include "../flash_algo.h"
-#include "GD32_FLASH_DEV.c"
+#include "Template_FLASH_DEV.c"
 /*
  *  Initialize Flash Programming Functions
  *    Parameter:      adr:  Device Base Address
@@ -33,9 +33,7 @@ static int32_t UnInit(uint32_t fnc)
 
 static int32_t EraseChip(void)
 {
-	fmc_unlock();
-    fmc_mass_erase();
-    fmc_lock();	
+
     return (0);
 }
 
@@ -46,9 +44,7 @@ static int32_t EraseChip(void)
  */
 static int32_t EraseSector(uint32_t adr)
 {
-	fmc_unlock();	
-    fmc_page_erase(adr);
-    fmc_lock();		
+	
     return (0);
 }
 
@@ -62,22 +58,7 @@ static int32_t EraseSector(uint32_t adr)
 static int32_t ProgramPage(uint32_t addr, uint32_t sz, uint8_t* buf)
 {
     int32_t result = 0;
-    fmc_unlock();
-    uint32_t end_addr = addr + sz;
-    while (addr < end_addr) {
-        if (fmc_word_program(addr, *((uint32_t *)buf)) == FMC_READY) {
-            if (*(uint32_t *)addr != *(uint32_t *)buf) {
-                result = 1;
-                break;
-            }
-            addr += 4;
-            buf  += 4;
-        } else {
-            result = 1;
-            break;
-        }
-    }
-    fmc_lock();	
+
     return result;
 }
 
