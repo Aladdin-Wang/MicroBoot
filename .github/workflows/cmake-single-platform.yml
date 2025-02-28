@@ -29,6 +29,9 @@ jobs:
         with:
           node-version: '20'   
           
+      - name: Install libclang
+        run: sudo apt-get update && sudo apt-get install -y libclang-9-dev
+
       - name: Make gen_pack.sh executable
         run: chmod +x ./gen_pack.sh
 
