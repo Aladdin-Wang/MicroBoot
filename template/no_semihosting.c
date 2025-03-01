@@ -81,6 +81,7 @@ void _ttywrch(int ch)
 }
 #endif
 
+
 /* 当使用 AC6 开启 MicroLIB 时，若有使用 assert() 的需求，需要自己实现 __aeabi_assert() */
 #if __IS_COMPILER_ARM_COMPILER_6__ && defined(__MICROLIB)
 void __aeabi_assert(const char *chCond, const char *chLine, int wErrCode) 
@@ -89,8 +90,7 @@ void __aeabi_assert(const char *chCond, const char *chLine, int wErrCode)
     (void)chLine;
     (void)wErrCode;
     
-    while(1) {
-        __NOP();
-    }
+    for (;;);
 }
+#endif
 #endif

@@ -49,6 +49,9 @@
 		</condition> 	
 		<condition id="queue">
 		  <description>MicroBoot queue</description>
+		</condition> 		
+		<condition id="no_semihosting">
+		  <description>no semihosting</description>
 		</condition> 
 		<condition id="signals_slots">
 		  <description>MicroBoot signals_slots</description>
@@ -218,7 +221,15 @@
 #define __USER_APP_CFG_H__ "user_app_cfg.h"
          </Pre_Include_Global_h>			
     </component>	
-	
+    <component Cclass="MicroBoot" Cversion="0.9.6" Csub="no_semihosting" Cgroup="components" condition="no_semihosting">
+        <description>MicroBoot no semihosting</description>
+        <files>		
+			<file category="sourceC" name="template/no_semihosting.c" version="0.9.6" attr="config"/> 		
+        </files>
+		 <Pre_Include_Global_h>
+#define __USER_APP_CFG_H__ "user_app_cfg.h"
+         </Pre_Include_Global_h>			
+    </component>	
     <component Cclass="MicroBoot" Cversion="0.9.6" Csub="ymodem_ota" Cgroup="example" condition="ymodem_ota">
         <description>MicroBoot check_agent_engine</description>
         <files>
