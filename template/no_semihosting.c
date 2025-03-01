@@ -92,3 +92,33 @@ void __aeabi_assert(const char *chCond, const char *chLine, int wErrCode)
     for (;;);
 }
 #endif
+
+
+/* 当用户没有使用printf时，通过添加如下的代码来让编译器避免报错 */
+#if __IS_COMPILER_ARM_COMPILER_6__
+#include "RTE_Components.h "
+#   ifdef __MICROLIB
+#include <stdio.h>
+#if (!defined(RTE_CMSIS_Compiler_STDOUT) && !defined(RTE_Compiler_IO_STDOUT))
+int fputc(int ch, FILE *f)
+{
+    (void) f;
+    (void) ch;
+    
+    return ch;
+}
+#endif
+#   else 
+#include <rt_sys.h>
+#if (!defined(RTE_CMSIS_Compiler_STDOUT) && !defined(RTE_Compiler_IO_STDOUT))
+FILEHANDLE $Sub$$_sys_open(const char *name, int openmode)
+{
+    (void) name;
+    (void) openmode;
+    return 0;
+}
+#endif
+#   endif
+
+#endif
+
