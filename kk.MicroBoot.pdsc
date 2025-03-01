@@ -224,7 +224,7 @@
     <component Cclass="MicroBoot" Cversion="0.9.6" Csub="no_semihosting" Cgroup="components" condition="no_semihosting">
         <description>MicroBoot no semihosting</description>
         <files>		
-			<file category="sourceC" name="template/no_semihosting.c"/> 		
+			<file category="sourceC" name="template/no_semihosting.c" attr="config" version="0.9.6/> 		
         </files>
 		 <Pre_Include_Global_h>
 #define __USER_APP_CFG_H__ "user_app_cfg.h"
