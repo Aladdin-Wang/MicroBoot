@@ -1,5 +1,5 @@
 
-# MicorBoot简介
+# MicroBoot简介
 
   MicroBoot 是一个由模块化代码组成的框架，旨在简化和加速嵌入式单片机程序的升级和开发过程。
 
@@ -539,7 +539,7 @@ MicroLink 是一款多功能嵌入式系统开发工具，专为加速和简化�
 
 
 
-## 3、MicorBoot架构
+## 3、MicroBoot架构
 
 ### 3.1 层次框架
 
@@ -583,9 +583,9 @@ MicroLink 是一款多功能嵌入式系统开发工具，专为加速和简化�
 
 
 
-## 4、MicorBoot移植教程
+## 4、MicroBoot移植教程
 
 - [基于 CMSIS-PACK 移植](./quick-start/cmsis-pack.md)
 - [基于源码移植](./quick-start/quick-start.md)
 - [基于rtthread软件包移植](./quick-start/RT-Thread.md)
-- [移植常见问题](./troubleshooting.md)
+- [移植常见问题](./quick-start/troubleshooting.md)
