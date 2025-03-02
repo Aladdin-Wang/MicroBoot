@@ -10,6 +10,7 @@ nav:
       - 基于 CMSIS-PACK 移植 : quick-start/cmsis-pack.md
       - 基于 RT-Thread 软件包移植 : quick-start/RT-Thread.md
       - 基于源码移植: quick-start/quick-start.md
+      - 移植常见问题: quick-start/troubleshooting.md
   - 使用指南:
       - 配置: usage-guide/config.md
   - 必备知识: 
