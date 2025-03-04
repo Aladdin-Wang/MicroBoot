@@ -29,8 +29,8 @@
 extern "C" {
 #endif
 
-#ifndef ERROR_YMODEM_PRINTF
-#define ERROR_YMODEM_PRINTF(message) printf("\nError: %s in file %s at line %d\n", message, __FILE__, __LINE__)
+#ifndef YMODEM_HANDLER
+#define YMODEM_HANDLER(state,message) do{ymodem_state_handler(state);printf("\r\nymodem: %s at line %d\r\n", message, __LINE__);}while(0)
 #endif
 
 #ifndef container_of

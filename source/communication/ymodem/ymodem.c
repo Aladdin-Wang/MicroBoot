@@ -118,6 +118,12 @@ int64_t get_system_time_ms(void)
     return wTimeCount;
 }
 
+__attribute__((weak))
+void ymodem_state_handler(ymodem_state_t state)
+{
+
+}
+
 static ymodem_state_t ymodem_read_data_with_timeout(ymodem_read_timeout_t *ptThis, uint8_t* pchByte, uint16_t hwSize, uint16_t hwTimeout)
 {
     /* Macro to reset the finite state machine (FSM) */
@@ -317,7 +323,7 @@ static ymodem_state_t ymodem_receive_package(ymodem_package_t *ptThis, uint8_t c
                 /* Combine both CRC bytes to form the complete CRC value received with the packet. */
                 if(this.hwCheck != ((uint16_t)this.chCheck[0] << 8) + (uint16_t)this.chCheck[1]) {
                     /* CRC mismatch, implying data corruption. Reset FSM and report checksum error. */
-                    ERROR_YMODEM_PRINTF("incorrect checkout");
+                    YMODEM_HANDLER(STATE_PACKET_CPL,"incorrect checkout");
                     YMODEM_RECEIVE_PACKAGE_RESET_FSM();
                     return STATE_INCORRECT_CHECKOUT;
                 } else {
@@ -340,7 +346,7 @@ static ymodem_state_t ymodem_receive_package(ymodem_package_t *ptThis, uint8_t c
                 /* Correct packet received, or it's a repeat of the previous packet. */
                 if(this.chBlk == (chPacketNum - 1)) {
                     /* Duplicate packet received, no further processing needed for this packet. */
-                    ERROR_YMODEM_PRINTF("duplicate packet number");
+                    YMODEM_HANDLER(STATE_DUPLICATE_PACKET_NUMBER,"duplicate packet number");
                     YMODEM_RECEIVE_PACKAGE_RESET_FSM();
                     return STATE_DUPLICATE_PACKET_NUMBER;
                 }
@@ -351,7 +357,7 @@ static ymodem_state_t ymodem_receive_package(ymodem_package_t *ptThis, uint8_t c
                 return STATE_PACKET_CPL;
             } else {
                 /* Packet number does not match expected value, indicating wrong packet sequence. */
-                ERROR_YMODEM_PRINTF("incorrect packet number");
+                YMODEM_HANDLER(STATE_INCORRECT_PACKET_NUMBER,"incorrect packet number");
                 YMODEM_RECEIVE_PACKAGE_RESET_FSM();
                 return STATE_INCORRECT_PACKET_NUMBER;
             }
@@ -411,7 +417,7 @@ ymodem_state_t ymodem_receive(ymodem_t *ptThis)
                     this.chByte = ACK; /* Setting ACK to acknowledge the file path packet. */
                 } else {
                     /* File path handling by the callback failed, reset FSM and signal an error. */
-                    ERROR_YMODEM_PRINTF("incorrect data size");
+                    YMODEM_HANDLER(STATE_INCORRECT_SIZE,"incorrect data size");
                     YMODEM_RECEIVE_RESET_FSM();
                     return STATE_INCORRECT_SIZE;
                 }
@@ -441,6 +447,7 @@ ymodem_state_t ymodem_receive(ymodem_t *ptThis)
                 if(this.tOps.pchBuffer[0] == 0) {
                     /* No more data, complete transmission and reset FSM. */
                     YMODEM_RECEIVE_RESET_FSM();
+                    YMODEM_HANDLER(STATE_FINSH,"receive finsh");
                     return STATE_FINSH;
                 }
 
@@ -556,7 +563,7 @@ ymodem_state_t ymodem_receive(ymodem_t *ptThis)
                 /* Response successfully sent. Determine the next action based on the last received packet type. */
                 if(this.chByte == CAN) {
                     /* If a cancellation was sent, reset FSM and return error. */
-                    ERROR_YMODEM_PRINTF("try count max");
+                    YMODEM_HANDLER(STATE_CAN,"try count max");
                     YMODEM_RECEIVE_RESET_FSM();
                     return STATE_CAN;
                 } else {
@@ -590,7 +597,7 @@ ymodem_state_t ymodem_receive(ymodem_t *ptThis)
                 }
             } else if(STATE_TIMEOUT == tFsm) {
                 /* Timeout waiting for EOT signifies an error, reset FSM and report it. */
-                ERROR_YMODEM_PRINTF("read timeout");
+                YMODEM_HANDLER(STATE_TIMEOUT,"read timeout");
                 YMODEM_RECEIVE_RESET_FSM();
                 return STATE_TIMEOUT;
             } else {
@@ -812,7 +819,7 @@ ymodem_state_t ymodem_send(ymodem_t *ptThis)
                         this.chState = SEND_PACK_PATH;
                     } else {
                         /* File path retrieval failed, reset state machine */
-                        ERROR_YMODEM_PRINTF("incorrect size");
+                        YMODEM_HANDLER(STATE_INCORRECT_SIZE,"incorrect size");
                         YMODEM_RECEIVE_RESET_FSM();
                         return STATE_INCORRECT_SIZE;
                     }
@@ -857,6 +864,7 @@ ymodem_state_t ymodem_send(ymodem_t *ptThis)
                     if(this.tOps.pchBuffer[0] == 0) {
                         /* No more data to send; transfer complete */
                         YMODEM_RECEIVE_RESET_FSM();
+                        YMODEM_HANDLER(STATE_FINSH,"send finsh");
                         return STATE_FINSH;
                     } else {
                         /* More data pending; increment packet number and proceed */
@@ -869,7 +877,7 @@ ymodem_state_t ymodem_send(ymodem_t *ptThis)
                 }
             } else if(STATE_TIMEOUT == tFsm) {
                 /* ACK waiting period timed out; reset state machine */
-                ERROR_YMODEM_PRINTF("read timeout");
+                YMODEM_HANDLER(STATE_TIMEOUT,"read timeout");
                 YMODEM_RECEIVE_RESET_FSM();
                 return STATE_TIMEOUT;
             } else {
@@ -900,7 +908,7 @@ ymodem_state_t ymodem_send(ymodem_t *ptThis)
                         memset(__get_buffer_addr(ptThis) + hwNextPartData, 0x1A, MODEM_1K_DATA_BUFFER_SIZE - hwNextPartData);
                     } else {
                         /* hwSize too large, reset state machine and return error */
-                        ERROR_YMODEM_PRINTF("incorrect size");
+                        YMODEM_HANDLER(STATE_INCORRECT_SIZE,"incorrect size");
                         YMODEM_RECEIVE_RESET_FSM();
                         return STATE_INCORRECT_SIZE;
                     }
@@ -914,7 +922,7 @@ ymodem_state_t ymodem_send(ymodem_t *ptThis)
                 }
             } else if(STATE_TIMEOUT == tFsm) {
                 /* Timeout elapsed while waiting for 'C', reset FSM and return error */
-                ERROR_YMODEM_PRINTF("read timeout");
+                YMODEM_HANDLER(STATE_TIMEOUT,"read timeout");
                 YMODEM_RECEIVE_RESET_FSM();
                 return STATE_TIMEOUT;
             } else {
@@ -974,7 +982,7 @@ ymodem_state_t ymodem_send(ymodem_t *ptThis)
                         break;
                     } else {
                         /* hwSize too large, reset state machine and return error */
-                        ERROR_YMODEM_PRINTF("incorrect size");
+                        YMODEM_HANDLER(STATE_INCORRECT_SIZE,"incorrect size");
                         YMODEM_RECEIVE_RESET_FSM();
                         return STATE_INCORRECT_SIZE;
                     }
@@ -984,7 +992,7 @@ ymodem_state_t ymodem_send(ymodem_t *ptThis)
 
                     if(this.chTryCount > MODEM_MAX_TRY_AGAN) {
                         /* Max retries reached, reset FSM and return error */
-                        ERROR_YMODEM_PRINTF("try count max");
+                        YMODEM_HANDLER(STATE_FAIL,"try count max");
                         YMODEM_RECEIVE_RESET_FSM();
                         return STATE_FAIL;
                     } else {
@@ -994,7 +1002,7 @@ ymodem_state_t ymodem_send(ymodem_t *ptThis)
                     }
                 } else if(this.chByte == CAN) {
                     /* Received CAN, transmission cancelled, reset FSM and return error */
-                    ERROR_YMODEM_PRINTF("Received CAN");
+                    YMODEM_HANDLER(STATE_CAN,"Received CAN");
                     YMODEM_SEND_RESET_FSM();
                     return STATE_CAN;
                 } else {
@@ -1003,7 +1011,7 @@ ymodem_state_t ymodem_send(ymodem_t *ptThis)
                 }
             } else if(STATE_TIMEOUT == tFsm) {
                 /* Timed out waiting for receiver's response, reset FSM and return error */
-                ERROR_YMODEM_PRINTF("read timeout");
+                YMODEM_HANDLER(STATE_TIMEOUT,"read timeout");
                 YMODEM_RECEIVE_RESET_FSM();
                 return STATE_TIMEOUT;
             }
@@ -1046,7 +1054,7 @@ ymodem_state_t ymodem_send(ymodem_t *ptThis)
                 }
             } else if(STATE_TIMEOUT == tFsm) {
                 /* Timeout waiting for NAK, reset FSM to handle error */
-                ERROR_YMODEM_PRINTF("read timeout");
+                YMODEM_HANDLER(STATE_TIMEOUT,"read timeout");
                 YMODEM_RECEIVE_RESET_FSM();
                 return STATE_TIMEOUT;
             }
@@ -1089,7 +1097,7 @@ ymodem_state_t ymodem_send(ymodem_t *ptThis)
                 }
             } else if(STATE_TIMEOUT == tFsm) {
                 /* Timeout waiting for ACK, reset FSM to handle error */
-                ERROR_YMODEM_PRINTF("read timeout");
+                YMODEM_HANDLER(STATE_TIMEOUT,"read timeout");
                 YMODEM_RECEIVE_RESET_FSM();
                 return STATE_TIMEOUT;
             } else {
