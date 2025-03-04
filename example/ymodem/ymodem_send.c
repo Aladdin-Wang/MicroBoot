@@ -1,124 +1,119 @@
 #include "ymodem_send.h"
-#include <rtthread.h>
-#include <rtdevice.h>
-#include <board.h>
-#include <string.h>
-#include <dfs_fs.h>
-#include <dfs_file.h>
-#include <sys/unistd.h>
-#include <sys/stat.h>
+#include "ff.h"
+#include "diskio.h"
+#include "board.h"
 
-#undef this
-#define this        (*ptThis)
-static ymodem_send_t s_tYmodemSend;
-static uint8_t *pchBuf = NULL;
-static rt_device_t dev;
-static uint16_t file_count = 0;
+static FIL file;
 
-static int pf = 0;
-static char directory[50];
-
+ATTR_RAMFUNC_WITH_ALIGNMENT(4) 
+static uint8_t s_chQueueBuffer[1024] ;
 static uint16_t ymodem_send_file_name(ymodem_t *ptObj, uint8_t *pchBuffer, uint16_t hwSize)
 {
+   static uint8_t file_count = 0;  
+    FRESULT res;
     ymodem_send_t *(ptThis) = (ymodem_send_t *)ptObj;
-    struct stat file_buf;
-    file_count++;
 
-    if(file_count > 1) {
-        file_count = 0;
+    if(0 == this.chfileNum) {
+       file_count = 0;
+       this.wFileSize = 0;
+       this.wOffSet = 0;
+       return 0;
+    }
+
+    res = f_open(&file, this.chFileName[file_count], FA_READ);
+    if (res != FR_OK) {
+        pika_platform_printf("Failed to open %s file: %d\n",this.chFileName[file_count], res);
         return 0;
     }
-    pf = open(directory, O_RDONLY);
-		stat(directory, &file_buf);
-    rt_sprintf((char *)pchBuf, "%s%c%d", directory, '\0', file_buf.st_size);
+    this.wFileSize = (uint32_t)f_size(&file);
+    sprintf((char *)pchBuffer, "%s%c%d", this.chFileName[file_count], '\0', this.wFileSize);
+    file_count++;
+    this.chfileNum--;
     return hwSize;
 }
 
 static uint16_t ymodem_send_file_data(ymodem_t *ptObj, uint8_t *pchBuffer, uint16_t hwSize)
 {
+    FRESULT res;
     ymodem_send_t *(ptThis) = (ymodem_send_t *)ptObj;
-	  if(pf == 0){
-        pf = open(directory, O_RDONLY);			
-		}
-    uint16_t hwReadSize = read(pf, (void*)pchBuffer, hwSize);
-
+    UINT hwReadSize;
+    res = f_read(&file, pchBuffer, hwSize, &hwReadSize);
+    if (res != FR_OK) {
+        f_close(&file);
+        printf("Failed to read file: %d\n", res);
+        return 0;
+    }
     return hwReadSize;
 }
 
 static uint16_t ymodem_read_data(ymodem_t *ptObj, uint8_t* pchByte, uint16_t hwSize)
 {
     ymodem_send_t *(ptThis) = (ymodem_send_t *)ptObj;
-
-    return rt_device_read(dev, 0, pchByte, hwSize);
+    uint16_t hwReceiveSize = this.ptReadByte->fnGetByte(this.ptReadByte, pchByte, hwSize);
+    return hwReceiveSize;
 }
 
 static uint16_t ymodem_write_data(ymodem_t *ptObj, uint8_t* pchByte, uint16_t hwSize)
 {
+    static uint8_t old_per = 0;
     ymodem_send_t *(ptThis) = (ymodem_send_t *)ptObj;
-    rt_pin_write(GET_PIN(A, 8), PIN_HIGH);
-		rt_hw_us_delay(200);
-    rt_device_write(dev, 0, pchByte, hwSize);
-	  rt_hw_us_delay(200);
-    rt_pin_write(GET_PIN(A, 8), PIN_LOW);
-    return 	hwSize;
+    assert(NULL != ptObj);
+    emit(ymodem_send_sig, ptThis,
+         args(
+             pchByte,
+             hwSize
+         ));
+    this.wOffSet += hwSize;
+    if(this.wFileSize > 0){
+        uint8_t progress = (this.wOffSet) * 100 / this.wFileSize;
+        if(progress >= 100){
+            progress = 100;
+        }
+        if(old_per != progress){
+            old_per = progress;
+            printf("load: %3d%%\r\n", progress);
+        }
+    }
+    return hwSize;
 }
 
-static rt_err_t _rym_rx_ind(rt_device_t dev, rt_size_t size)
+fsm_rt_t ymodem_lib_send(ymodem_t *ptObj)
 {
-    return 0;
+    ymodem_state_t tState = ymodem_send(ptObj);
+
+    if(tState == STATE_ON_GOING) {
+        return fsm_rt_on_going;
+    }else if(tState == STATE_INCORRECT_NBlk || tState == STATE_INCORRECT_CHAR) {
+        return fsm_rt_user_req_drop;
+    }else if(tState == STATE_TIMEOUT) {
+        return fsm_rt_user_req_timeout;
+    }else if(tState == STATE_FINSH ){
+        return fsm_rt_cpl;
+    }else {
+        return fsm_rt_cpl;
+    }
 }
 
-
-int sy(uint8_t argc, char **argv)
+ymodem_lib_send_t *ymodem_lib_send_init(ymodem_lib_send_t *ptObj, peek_byte_t *ptReadByte)
 {
-	  const char *file_path;
-    ymodem_state_t tYmodemState;
-    rt_uint16_t odev_flag;
-    rt_err_t (*odev_rx_ind)(rt_device_t dev, rt_size_t size);
-	
-	  if (argc < 2)
-    {
-        rt_kprintf("invalid file path.\n");
-        return -RT_ERROR;
-    }
-		file_path = argv[1];
-		rt_strncpy(directory, file_path, strlen(file_path));
-		
-    pchBuf =  rt_malloc(1024);
-
-    if (pchBuf == RT_NULL) {
-        return 0;
-    }
-
+    ymodem_lib_send_t *(ptThis) = ptObj;
+    assert(NULL != ptObj);
+    this.tCheckAgent.pAgent = &this.tYmodemSent.parent;
+    this.tCheckAgent.fnCheck = (check_hanlder_t *)ymodem_lib_send;
+    this.tCheckAgent.ptNext = NULL;
+    this.tCheckAgent.hwPeekStatus = 0;
+    this.tCheckAgent.bIsKeepingContext = true;
+    this.tYmodemSent.ptReadByte = ptReadByte;
     ymodem_ops_t s_tOps = {
-        .pchBuffer = pchBuf,
-        .hwSize = 1024,
+        .pchBuffer = s_chQueueBuffer,
+        .hwSize = sizeof(s_chQueueBuffer),
         .fnOnFileData = ymodem_send_file_data,
         .fnOnFilePath = ymodem_send_file_name,
         .fnReadData = ymodem_read_data,
-        .fnWriteData = ymodem_write_data,
+        .fnWriteData = ymodem_write_data
     };
-    ymodem_init(&s_tYmodemSend.parent, &s_tOps);
-    dev =  rt_console_get_device();
-    odev_rx_ind = dev->rx_indicate;
-    rt_device_set_rx_indicate(dev, _rym_rx_ind);
-    odev_flag = dev->open_flag;
-    dev->open_flag &= ~RT_DEVICE_FLAG_STREAM;
-    rt_device_open(dev, RT_DEVICE_FLAG_INT_RX | RT_DEVICE_FLAG_RDWR);
+    ymodem_init(&this.tYmodemSent.parent, &s_tOps);
 
-    do {
-        tYmodemState = ymodem_send(&s_tYmodemSend.parent);
-        rt_thread_delay(1);
-    } while(tYmodemState == STATE_ON_GOING || tYmodemState == STATE_INCORRECT_CHAR);
-
-    rt_free(pchBuf);
-    dev->open_flag = odev_flag;
-    rt_device_set_rx_indicate(dev, odev_rx_ind);
-	  close(pf);
-		file_count = 0;
-		rt_kprintf("exit ymodem,tYmodemState = %d \r\n",tYmodemState);
-    return 0;
+    return ptObj;
 }
-
-MSH_CMD_EXPORT(sy,  YMODEM Send e.g: sy file_path);
 
