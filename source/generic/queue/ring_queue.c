@@ -97,13 +97,13 @@ uint16_t enqueue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
     /* initialise "this" (i.e. ptThis) to access class members */
     class_internal(ptObj, ptThis, byte_queue_t);		
     bool bEarlyReturn = false;  // Initialize early return flag
-    safe_atom_code() {  // Start atomic section for thread safety
-        if(this.hwHead == this.hwTail && 0 != this.hwLength) {  // Check if queue is full
-            if(this.bIsCover == false) {  // If not allowed to overwrite
-                bEarlyReturn = true;							
-                continue;  // Exit atomic block
-            }
-        }			
+
+    if(this.hwHead == this.hwTail && 0 != this.hwLength) {  // Check if queue is full
+        if(this.bIsCover == false) {  // If not allowed to overwrite
+            return 0;  // Return 0 if queue is full
+        }
+    }	
+    safe_atom_code() {  // Start atomic section for thread safety		
         if(!this.bMutex) {  // Check if mutex is free
             this.bMutex  = true;  // Lock the queue for thread safety
         } else {
@@ -170,11 +170,11 @@ uint16_t dequeue_bytes(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLength)
     /* initialise "this" (i.e. ptThis) to access class members */
     class_internal(ptObj, ptThis, byte_queue_t);
     bool bEarlyReturn = false;  // Initialize early return flag
-    safe_atom_code() {  // Start atomic section for thread safety
-        if(this.hwHead == this.hwTail && 0 == this.hwLength) {  // Check if queue is empty
-            bEarlyReturn = true;  // Set early return flag
-            continue;  // Exit atomic block
-        }			
+
+    if(this.hwHead == this.hwTail && 0 == this.hwLength) {  // Check if queue is empty
+        return 0;  // Return 0 if queue is empty
+    }
+    safe_atom_code() {  // Start atomic section for thread safety		
         if(!this.bMutex) {  // Check if mutex is free
             this.bMutex  = true;  // Lock the queue for thread safety
         } else {
@@ -299,11 +299,11 @@ uint16_t peek_bytes_queue(byte_queue_t *ptObj, void *pDate, uint16_t hwDataLengt
     class_internal(ptObj, ptThis, byte_queue_t);
 		
     bool bEarlyReturn = false;  // Initialize early return flag
-    safe_atom_code() {  // Start atomic section for thread safety
-        if(this.hwPeek == this.hwTail && 0 == this.hwPeekLength) {  // Check if peek buffer is empty
-            bEarlyReturn = true;  // Set early return flag
-            continue;  // Exit atomic block
-        }			
+	
+    if(this.hwPeek == this.hwTail && 0 == this.hwPeekLength) {  // Check if peek buffer is empty
+        return 0;  // Return 0 if peek buffer is empty
+    }		
+    safe_atom_code() {  // Start atomic section for thread safety		
         if(!this.bMutex) {  // Check if mutex is free
             this.bMutex  = true;  // Lock the queue for thread safety
         } else {
