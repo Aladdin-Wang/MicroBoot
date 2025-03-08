@@ -14,9 +14,13 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 - [x] 支持USB转串口，最大10M波特率无丢包
 
-- [x] 支持大量Cortex-M系列芯片U盘拖拽下载，内置大量下载算法，自动识别目标芯片
+- [x] 支持python脚本，可以通过脚本指定下载算法
 
-- [x] 内置ymodem协议栈，U盘拖拽文件自动触发ymodem通过串口传输文件到目标设备（需配合带ymodem协议的[bootloader](https://github.com/Aladdin-Wang/MicroBoot)）
+- [x] 支持U盘拖拽下载
+
+- [x] 支持U盘离线下载，通过python脚本触发下载
+
+- [x] 内置ymodem协议栈，通过python脚本触发
 
 - [x] 支持系统固件升级，为后续添加更多功能
 
@@ -43,7 +47,7 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 ### 购买地址
 
-淘宝链接：https://item.taobao.com/item.htm?ft=t&id=826800975011
+淘宝链接：https://item.taobao.com/item.htm?ft=t&id=895964393739
 
 ![SJTB](../../images/microlink/SJTB.png)
 
