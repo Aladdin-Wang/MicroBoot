@@ -4,7 +4,7 @@
 
 ## 一、产品概述
 
-MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为加速和简化开发者在**研发、调试、量产和售后服务**各阶段的工作流程而设计。不同于传统的开发工具链，MicroLink在DAPLink的基础上将**调试器**、**USB转串口**、**离线下载器**和**固件升级工具**等多种功能集成到一个设备中，为开发者提供一站式解决方案。无论您是开发新产品、调试代码、批量生产还是售后维护，MicroLink都能满足您的需求，大大提升开发效率，减少工具切换带来的时间和财务成本。
+MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为加速和简化开发者在**研发、调试、量产和售后服务**各阶段的工作流程而设计。不同于传统的开发工具链，MicroLink在DAPLink的基础上将**调试器**、**USB转串口**、**离线下载器**和**固件升级工具**等多种功能集成到一个设备中，为开发者提供一站式解决方案。无论您是下载固件、调试代码、批量生产还是固件升级，MicroLink都能满足您的需求，大大提升开发效率，减少工具切换带来的时间和财务成本。
 
 ### 产品特点
 
@@ -74,7 +74,7 @@ MicroLink基于标准的CMSIS-DAP在线调试下载协议，针对传统DAPLink�
 | **MicroLink** | **24.205秒**   |
 | J-LINK V12    | 33.439秒       |
 
-### 2、USB转串口或485
+### 2、USB转串口
 
 MicroLink内置USB转串口功能，支持常见的串口和485通信，串口最大支持10M波特率，无丢包。
 
@@ -114,11 +114,11 @@ res1 = ReadFlm.load("STM32/STM32F10x_512.FLM.o",0X08000000,0x20000000)
 <iframe src="https://player.bilibili.com/player.html?bvid=BV14HsKeJEQ1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
 ### 4、离线下载
 
-MicroLink支持脱机离线下载的功能，借助于强大的PikaPython开源项目，让MicroLink可以使用python脚本进行二次开发，可以非常容易得定制私有功能和配套上位机的开发。
+MicroLink支持脱机离线下载的功能，借助于强大的PikaPython开源项目，让MicroLink可以使用python脚本进行二次开发，可以非常容易得定制私有功能和上位机的开发。
 
 > PikaPython (也称 PikaScript、PikaPy) 是一个完全重写的超轻量级 python 引擎，零依赖，零配置，可以在少于 4KB 的 RAM 下运行 (如 stm32g030c8 和 stm32f103c8)，极易部署和扩展。
 
-MicroLink内置了一条简单的离线下载的python函数：
+MicroLink内置了一条离线下载的python函数：
 
 ```python
 load.bin("boot.bin",0X8000000)
@@ -145,14 +145,12 @@ MicorBoot简介：https://microboot.readthedocs.io/zh-cn/latest/
 
 MicorBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
-将需要升级的固件拷贝到U盘中，比如updata.bin，然后随便使用一个串口助手，打开虚拟串口，输入`ym.sent("updata.bin")`加回车
+将需要升级的固件拷贝到U盘中，比如updata.bin，然后随便使用一个串口助手，打开虚拟串口，输入`ym.send("updata.bin")`加回车
 
 参数的含义：
 
 - "updata.bin"：下载的文件名字；
 - 支持多个参数，多个文件连续发送；
-
-
 
 如果你的bootloader中还没有ymodem协议，可以使用xshell等待ymodem接收协议的上位机，进行快速验证，演示视频如下，使用MicroLink和另外一个串口工具，分别使用sscom5上位机输入命令和xshell上位机进行文件接收
 
@@ -184,7 +182,17 @@ MBED.HTM是一个在线文档的网址链接，双击该文件即可访问在线
 
 ![](../../images/microlink/readdocs.png)
 
+- flm_config.py
 
+设备上电会首先读取flm_config.py脚本，根据脚本内容加载Flash下载算法，执行用户指令。
+
+- xxx.FLM.o
+
+借助单片机厂家提供的pack包里的xxx.FLM下载算法文件，提取出擦写函数，生成xxx.FLM.o文件。
+
+比如STM32F1系列的下载算法所在的电脑默认位置如下：
+
+![](../../images/microlink/FLM.jpg)
 
 ### 2、引脚说明
 
@@ -209,7 +217,29 @@ JTAG简化接线图：
 
 ![](../../images/microlink/JTAG.jpg)
 
-### 3、操作说明
+### 3、端口说明
+
+电脑使用USB TypeC数据线与MicroLink连接以后，电脑设备端会弹出三个设备：
+
+![](../../images/microlink/shebei.png)
+
+- 磁盘设备
+
+![](../../images/microlink/Upan.png)
+
+- 串口(两路)
+
+一路为USB转串口；
+
+另外一路为python终端，打开串口时，输入回车，会自动打印python的信息
+
+![](../../images/microlink/python.jpg)
+
+- MicroLink CMSIS-DAP
+
+如果Keil无法识别，请给keil升级到最新版本，并尝试卸载MicroLink CMSIS-DAP设备，重新连接MicroLink
+
+### 4、操作说明
 
 - 以Keil为例
 
