@@ -9,36 +9,16 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 ### 产品特点
 
 - [x] 支持SWD/JTAG接口，下载调试速度超越JLINK V12（时钟10Mhz）
-
 - [x] 支持使用OpenOCD的IDE下载调试ARM/RISC-V等芯片
-
 - [x] 支持USB转串口，最大10M波特率无丢包
-
 - [x] 支持python脚本，可以通过脚本指定下载算法
-
-- [x] 支持U盘拖拽下载
-
+- [x] 支持Cortex-M系列U盘拖拽下载
 - [x] 支持U盘离线下载，通过python脚本触发下载
-
 - [x] 内置ymodem协议栈，通过python脚本触发
-
 - [x] 支持系统固件升级，为后续添加更多功能
-
 - [x] 采用winusb对window10免驱，即插即用
-
 - [x] 支持3V3/5V大电流输出电源
-
 - [x] 内置防倒灌和过流保护，外部电流无法反向流入USB口，防止损坏USB
-
-- [ ] 支持通过U盘读取目标芯片固件
-
-- [ ] 支持通过U盘读取目标芯片任意文件
-
-- [ ] 支持Cortex-M系列芯片脱机下载，自动识别目标芯片，自动触发下载
-
-- [ ] 支持RISC-V系列芯片U盘拖拽下载，内置大量下载算法，自动识别目标芯片
-
-- [ ] 支持RISC-V系列芯片脱机下载，自动识别目标芯片，自动触发下载
   ![MicroLink](../../images/microlink/MicroLink.jpg)
 
 
@@ -71,7 +51,9 @@ MicroLink基于标准的CMSIS-DAP在线调试下载协议，针对传统DAPLink�
 
 ![](../../images/microlink/10M.png)
 
+下载过程中CLK的时钟波形：
 
+![](../../images/microlink/clk.jpg)
 
 - **下载速度对比测试**
 
@@ -106,23 +88,56 @@ MicroLink内置USB转串口功能，支持常见的串口和485通信，串口�
 
 MicroLink支持U盘拖拽下载功能，使固件更新变得像复制文件一样简单。用户只需将固件文件拖放到虚拟U盘中，MicroLink便能自动完成下载，摆脱对上位机的依赖，极大地降低了操作门槛。
 
-ARM官方DAPLINK的拖拽烧录只能针对某一个型号单片机，要想支持其他单片机必须更新调试器的固件，对使用者门槛较高，导致这么方便的功能食之无味弃之可惜。
+U盘拖拽下载支持HEX文件和BIN文件，HEX文件自带地址信息，自动根据HEX中的地址选择烧录的位置，BIN文件的下载地址可以通过`flm_config.py`脚本进行配置。
 
-MicroLink为了让U盘拖拽下载功能真正走进千家万户，对Cortex-M系列的大量芯片做了适配工作，其中意法半导体STM32，国产芯片兆易创新GD32基本都以适配完成，还在持续增加其他型号。
+![](../../images/microlink/flmo.jpg)
 
-支持的型号：
+打开U盘内的`flm_config.py`脚本，代码如下所示：
 
-| 厂商             | 型号                                                 |
-| -------------- | -------------------------------------------------- |
-| ST意法半导体STM32   | STM32F0XX,STM32F10X,,STM32F4xx,STM32F7xx,STM32G4xx |
-| GigaDevice兆易创新 | GD32E50X，                                          |
+```py
+import FLMConfig
+ReadFlm = FLMConfig.ReadFlm()
+res1 = ReadFlm.load("STM32/STM32F10x_512.FLM.o",0X08000000,0x20000000)
+```
 
-U盘拖拽下载支持HEX文件和BIN文件，HEX文件自带地址信息，自动根据HEX中的地址选择烧录的位置，BIN文件默认下载的地址为0x08000000，以下演示视频是将HEX文件复制到U盘中，完成固件下载：
+`ReadFlm.load`函数的三个参数：
+
+- "STM32/STM32F10x_512.FLM.o" ：选择对应单片机的下载算法文件；
+
+![](../../images/microlink/STM32FLMO.jpg)
+
+- 0X08000000：默认U盘拖拽下载的FLASH位置；
+- 0x20000000：单片机的RAM基地址；
+
+以下演示视频是将HEX文件复制到U盘中，完成固件下载：
 
 <iframe src="https://player.bilibili.com/player.html?bvid=BV14HsKeJEQ1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
-### 4、内置Ymodem协议
+### 4、离线下载
 
-MicroLink内置Ymodem协议，支持通过串口进行可靠的文件传输。Ymodem协议在多次重传时仍能保持数据的完整性，适用于嵌入式系统的固件更新和调试中需要高可靠性传输的场景。
+MicroLink支持脱机离线下载的功能，借助于强大的PikaPython开源项目，让MicroLink可以使用python脚本进行二次开发，可以非常容易得定制私有功能和配套上位机的开发。
+
+> PikaPython (也称 PikaScript、PikaPy) 是一个完全重写的超轻量级 python 引擎，零依赖，零配置，可以在少于 4KB 的 RAM 下运行 (如 stm32g030c8 和 stm32f103c8)，极易部署和扩展。
+
+MicroLink内置了一条简单的离线下载的python函数：
+
+```python
+load.bin("boot.bin",0X8000000)
+```
+
+两个参数的含义：
+
+- "boot.bin"：下载的文件名字；
+- 0X8000000：下载的地址；
+
+将需要下载的bin文件复制到U盘中，然后随便使用一个串口助手，打开虚拟串口，输入`load.bin("boot.bin",0X8000000)`加回车，效果如下：
+
+![](../../images/microlink/loadbin.png)
+
+
+
+### 5、内置Ymodem协议下载
+
+MicroLink内置Ymodem协议，支持通过串口进行可靠的文件传输。Ymodem协议在多次重传时仍能保持数据的完整性，非常适用于嵌入式系统的固件升级。
 
 使用内置的ymodem协议发送文件，首先需要目标设备支持ymodem协议接收文件，MicorBoot开源框架集成了ymodem模块，可以方便用户直接安装使用，具体使用方法请看MicorBoot简介。
 
@@ -130,16 +145,20 @@ MicorBoot简介：https://microboot.readthedocs.io/zh-cn/latest/
 
 MicorBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
-数据流图：
+将需要升级的固件拷贝到U盘中，比如updata.bin，然后随便使用一个串口助手，打开虚拟串口，输入`ym.sent("updata.bin")`加回车
 
-![](../../images/microlink/data_flow.jpg)
+参数的含义：
 
-**注：当SWD接口连接到板子时，U盘拖拽下载默认使用SWD接口，当只有串口连接时，才自动切换到ymodem协议下载。**
+- "updata.bin"：下载的文件名字；
+- 支持多个参数，多个文件连续发送；
 
-ymodem协议支持传输任意文件，配合MicorBoot可以用来升级固件或者传输音视频等文件到目标设备，以下演示视频是将bin文件复制到U盘中，完成ymodem的文件传输。传输过程中，可以打开串口助手，连接MicroLink的虚拟串口，选择波特率，MicroLink将以串口设定的波特率传输数据，并实时显示ymodem传输的数据。
 
-<iframe src="https://player.bilibili.com/player.html?bvid=BV1CcsWeoE5o" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
-### 5、固件升级
+
+如果你的bootloader中还没有ymodem协议，可以使用xshell等待ymodem接收协议的上位机，进行快速验证，演示视频如下，使用MicroLink和另外一个串口工具，分别使用sscom5上位机输入命令和xshell上位机进行文件接收
+
+<iframe src="https://player.bilibili.com/player.html?bvid=BV1VYRgYYERg" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
+
+### 6、固件升级
 
 MicroLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，升级完成可以查看DETAILS.TXT文件，了解升级后的新功能。
 
@@ -157,7 +176,7 @@ MicroLink支持系统固件升级，可以为后续添加更多的功能，升�
 
 DETAILS.TXT记录了MicroLink软硬件版本和每次版本更新的内容。
 
-![](../../images/microlink/DETAILS.jpg)
+![](../../images/microlink/DETAILS.png)
 
 - MBED.HTM
 
@@ -165,9 +184,7 @@ MBED.HTM是一个在线文档的网址链接，双击该文件即可访问在线
 
 ![](../../images/microlink/readdocs.png)
 
-- FAIL.TXT
-  FAIL.TXT文件只有在U盘拖拽下载失败时，会自动生成，记录了下载失败的原因，如果下载成功，会自动重启U盘，不会生成新的提示文件。
-  ![](../../images/microlink/FAIL.png)
+
 
 ### 2、引脚说明
 
