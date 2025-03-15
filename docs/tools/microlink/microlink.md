@@ -84,6 +84,14 @@ MicroLink内置USB转串口功能，支持常见的串口和485通信，串口�
 
 ![](../../images/microlink/10M_TTL.jpg)
 
+
+
+
+
+![](../../images/microlink/FLMTool.jpg)
+
+
+
 ### 3、U盘拖拽下载
 
 MicroLink支持U盘拖拽下载功能，使固件更新变得像复制文件一样简单。用户只需将固件文件拖放到虚拟U盘中，MicroLink便能自动完成下载，摆脱对上位机的依赖，极大地降低了操作门槛。
