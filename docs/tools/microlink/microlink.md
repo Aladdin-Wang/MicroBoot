@@ -86,12 +86,6 @@ MicroLink内置USB转串口功能，支持常见的串口和485通信，串口�
 
 
 
-
-
-![](../../images/microlink/FLMTool.jpg)
-
-
-
 ### 3、U盘拖拽下载
 
 MicroLink支持U盘拖拽下载功能，使固件更新变得像复制文件一样简单。用户只需将固件文件拖放到虚拟U盘中，MicroLink便能自动完成下载，摆脱对上位机的依赖，极大地降低了操作门槛。
@@ -164,11 +158,21 @@ MicorBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
 <iframe src="https://player.bilibili.com/player.html?bvid=BV1VYRgYYERg" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
 
-### 6、固件升级
+### 6、FLM通用下载算法转换工具
+
+以STM32F4xx_1024.FLM为例，下载算法在ARM CMSIS Pack文件夹（通常在D:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\CMSIS\Flash）中，通过FLM下载算法转换工具打开文件，可以生成对应的下载算法驱动文件，将生成的STM32F4xx_512.FLM.o文件，拷贝到MicroLink的U盘中，然后通过`flm_config.py`脚本指定使用此下载算法文件。
+
+![](../../images/microlink/FLMTool.png)
+
+借助单片机原厂提供的FLM下载算法文件，便可以几乎适配所有的Cortex-M系列单片机。
+
+### 7、固件升级
 
 MicroLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，升级完成可以查看DETAILS.TXT文件，了解升级后的新功能。
 
-升级包下载地址：https://pan.baidu.com/s/1Dr8Ss16cBRWXtQpyOGrROg?pwd=zyo0 
+
+
+**开发资料下载地址**：https://pan.baidu.com/s/1Dr8Ss16cBRWXtQpyOGrROg?pwd=zyo0 
 
 
 
@@ -245,7 +249,7 @@ JTAG简化接线图：
 
 - MicroLink CMSIS-DAP
 
-如果Keil无法识别，请给keil升级到最新版本，并尝试卸载MicroLink CMSIS-DAP设备，重新连接MicroLink
+**如果Keil无法识别，请给keil升级到最新版本，并尝试卸载MicroLink CMSIS-DAP设备驱动，重新连接MicroLink**
 
 ### 4、操作说明
 
