@@ -23,9 +23,9 @@ static uint16_t ymodem_recv_file_name(ymodem_t *ptObj, uint8_t *pchBuffer, uint1
         printf("file size outrange flash size. \r\n");
         return 0;
     }
-
+    target_flash_init(APP_PART_ADDR);
     uint32_t wEraseSize = target_flash_erase(APP_PART_ADDR, this.wFileSize);
-
+    target_flash_uninit(APP_PART_ADDR);
     if( wEraseSize < this.wFileSize) {
         printf("target flash erase error. \r\n");
         return 0;
@@ -47,17 +47,18 @@ static uint16_t ymodem_recv_file_data(ymodem_t *ptObj, uint8_t *pchBuffer, uint1
     if(wWriteLen > wRemainLen) {
         wWriteLen = wRemainLen;
     }
-
+    target_flash_init(APP_PART_ADDR);
     uint16_t wWriteSize = target_flash_write(APP_PART_ADDR + this.wOffSet, pchBuffer, wWriteLen);
-
+    target_flash_uninit(APP_PART_ADDR);
     if( wWriteSize != wWriteLen) {
         printf("target flash write data error. 0x%x.\r\n", wWriteSize);
         return 0;
     }
 
     uint16_t hwWriteCheck = ymodem_crc16(pchBuffer, wWriteLen);
+    target_flash_init(APP_PART_ADDR);	
     uint16_t wReadSize = target_flash_read(APP_PART_ADDR + this.wOffSet, pchBuffer, wWriteLen);
-
+    target_flash_uninit(APP_PART_ADDR);
     if( wReadSize != wWriteLen) {
         printf("target flash wReadSize data error. 0x%x.\r\n", wReadSize);
         return 0;

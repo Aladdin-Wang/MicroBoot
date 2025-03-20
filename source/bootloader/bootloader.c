@@ -152,8 +152,10 @@ static volatile const boot_ops_t tBootOps BOOT_FLASH_SECTION = {
 void enter_bootloader(uint8_t *pchDate, uint16_t hwLength)
 {
     uint32_t wData = 0;
+    tBootOps.target_flash_init(APP_PART_ADDR);	
     tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - (USER_DATA_SIZE)), pchDate, USER_DATA_SIZE);
     tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - MARK_SIZE), (const uint8_t *)&wData,  sizeof(wData));
+    tBootOps.target_flash_uninit(APP_PART_ADDR);
 }
 
 /**
@@ -171,9 +173,11 @@ void enter_bootloader(uint8_t *pchDate, uint16_t hwLength)
 void begin_download(void)
 {
     memset(chBootMagic, 0, sizeof(chBootMagic));
+    tBootOps.target_flash_init(APP_PART_ADDR);	
     tBootOps.target_flash_erase(APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE), 3*MARK_SIZE);
     tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - 2 * (USER_DATA_SIZE)), tUserData.msg_data.B, USER_DATA_SIZE);
     tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (2*MARK_SIZE)), chBootMagic[1], MARK_SIZE);
+    tBootOps.target_flash_uninit(APP_PART_ADDR);
 }
 
 /**
@@ -191,7 +195,9 @@ void begin_download(void)
 void finalize_download(void)
 {
     memset(chBootMagic, 0X00, sizeof(chBootMagic));
+    tBootOps.target_flash_init(APP_PART_ADDR);	
     tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - 3*MARK_SIZE), chBootMagic[0], MARK_SIZE);
+    tBootOps.target_flash_uninit(APP_PART_ADDR);
 }
 /**
  * @brief User data structure.
@@ -221,8 +227,8 @@ __attribute__((constructor(255)))
 #endif
 static void enter_application(void)
 {
+    tBootOps.target_flash_init(APP_PART_ADDR);
     do {
-        tBootOps.target_flash_init(APP_PART_ADDR);
         // User-defined conditions for entering the bootloader
         if(user_enter_bootloader()){
             tBootOps.target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
@@ -258,6 +264,7 @@ static void enter_application(void)
                                            (*(volatile uint32_t *)(APP_PART_ADDR + APP_PART_OFFSET)));
         #endif
     } while(0);	
+    tBootOps.target_flash_uninit(APP_PART_ADDR);		
 }
 
 
