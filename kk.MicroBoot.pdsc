@@ -86,7 +86,6 @@
 #define __USER_APP_CFG_H__ "user_app_cfg.h"
          </Pre_Include_Global_h>		
     </component>	
-  <components>
     <component Cclass="MicroBoot" Cversion="0.9.6" Csub="FlashDrv" Cgroup="components" Cvariant="STM32"  condition="FlashDrv">
         <description>MicroBoot flash drive</description>
         <files>
