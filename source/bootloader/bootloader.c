@@ -78,7 +78,7 @@ static uint8_t chBootMagic[3][MARK_SIZE];
  * bootloader mode, initializing flash, reading from flash, writing to flash, and erasing flash.
  */
 typedef struct {
-    void (*fnEnterBootloaderMode)(uint8_t *pchDate, uint16_t hwLength); /**< Function pointer to enter bootloader mode */
+    void (*fnGoToBoot)(uint8_t *pchDate, uint16_t hwLength); /**< Function pointer to enter bootloader mode */
     bool (*target_flash_init)(uint32_t addr); /**< Function pointer to initialize flash */
     bool (*target_flash_uninit)(uint32_t addr); /**< Function pointer to uninitialize flash */
     int  (*target_flash_read)(uint32_t addr, uint8_t *buf, size_t size); /**< Function pointer to read from flash */
@@ -109,8 +109,9 @@ typedef struct {
     #define BOOT_FLASH_SECTION
 #endif
 
+__USED
 static volatile const boot_ops_t tBootOps BOOT_FLASH_SECTION = {
-    .fnEnterBootloaderMode = enter_bootloader,
+    .fnGoToBoot = enter_bootloader,
     .target_flash_init = target_flash_init,
     .target_flash_erase = target_flash_erase,
     .target_flash_write = target_flash_write,
@@ -152,10 +153,10 @@ static volatile const boot_ops_t tBootOps BOOT_FLASH_SECTION = {
 void enter_bootloader(uint8_t *pchDate, uint16_t hwLength)
 {
     uint32_t wData = 0;
-    tBootOps.target_flash_init(APP_PART_ADDR);	
-    tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - (USER_DATA_SIZE)), pchDate, USER_DATA_SIZE);
-    tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - MARK_SIZE), (const uint8_t *)&wData,  sizeof(wData));
-    tBootOps.target_flash_uninit(APP_PART_ADDR);
+    target_flash_init(APP_PART_ADDR);	
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - (USER_DATA_SIZE)), pchDate, USER_DATA_SIZE);
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - MARK_SIZE), (const uint8_t *)&wData,  sizeof(wData));
+    target_flash_uninit(APP_PART_ADDR);
 }
 
 /**
@@ -173,11 +174,11 @@ void enter_bootloader(uint8_t *pchDate, uint16_t hwLength)
 void begin_download(void)
 {
     memset(chBootMagic, 0, sizeof(chBootMagic));
-    tBootOps.target_flash_init(APP_PART_ADDR);	
-    tBootOps.target_flash_erase(APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE), 3*MARK_SIZE);
-    tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - 2 * (USER_DATA_SIZE)), tUserData.msg_data.B, USER_DATA_SIZE);
-    tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (2*MARK_SIZE)), chBootMagic[1], MARK_SIZE);
-    tBootOps.target_flash_uninit(APP_PART_ADDR);
+    target_flash_init(APP_PART_ADDR);	
+    target_flash_erase(APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE), 3*MARK_SIZE);
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - 2 * (USER_DATA_SIZE)), tUserData.msg_data.B, USER_DATA_SIZE);
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (2*MARK_SIZE)), chBootMagic[1], MARK_SIZE);
+    target_flash_uninit(APP_PART_ADDR);
 }
 
 /**
@@ -195,9 +196,9 @@ void begin_download(void)
 void finalize_download(void)
 {
     memset(chBootMagic, 0X00, sizeof(chBootMagic));
-    tBootOps.target_flash_init(APP_PART_ADDR);	
-    tBootOps.target_flash_write((APP_PART_ADDR + APP_PART_SIZE - 3*MARK_SIZE), chBootMagic[0], MARK_SIZE);
-    tBootOps.target_flash_uninit(APP_PART_ADDR);
+    target_flash_init(APP_PART_ADDR);	
+    target_flash_write((APP_PART_ADDR + APP_PART_SIZE - 3*MARK_SIZE), chBootMagic[0], MARK_SIZE);
+    target_flash_uninit(APP_PART_ADDR);
 }
 /**
  * @brief User data structure.
