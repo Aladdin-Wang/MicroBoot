@@ -249,7 +249,7 @@ JTAG简化接线图：
 
 - MicroLink CMSIS-DAP
 
-**如果Keil无法识别，请给keil升级到最新版本，并尝试卸载MicroLink CMSIS-DAP设备驱动，重新连接MicroLink**
+**如果Keil无法识别，请给keil升级到最新版本（不能低于5.29），并尝试卸载MicroLink CMSIS-DAP设备驱动，重新连接MicroLink**
 
 ### 4、操作说明
 
