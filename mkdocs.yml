@@ -34,7 +34,7 @@ nav:
       - 如何贡献文档: contribute/document.md
   - 开发神器:   
       - microlink: tools/microlink/microlink.md     
-      - RTTView:   tools/RTTView/RTTView.md    
+      - Python:   tools/Python/Python.md    
   - 私人订制:   
       - BootLoader: bootloader/BootLoader.md        
   - About:

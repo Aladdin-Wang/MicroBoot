@@ -11,6 +11,7 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 - [x] 支持SWD/JTAG接口，下载调试速度超越JLINK V12（时钟10Mhz）
 - [x] 支持使用OpenOCD的IDE下载调试ARM/RISC-V等芯片
 - [x] 支持USB转串口，最大10M波特率无丢包
+- [x] 内置RTT，无需使用RTTView上位机，支持任意串口助手
 - [x] 支持python脚本，可以通过脚本指定下载算法
 - [x] 支持Cortex-M系列U盘拖拽下载
 - [x] 支持U盘离线下载，通过python脚本触发下载
@@ -86,7 +87,26 @@ MicroLink内置USB转串口功能，支持常见的串口和485通信，串口�
 
 
 
-### 3、U盘拖拽下载
+### 3、RTTView
+
+只要拥有了**MicroLink**，你就可以享受以下的便利：
+
+- 无需占用**USART**或者**USB**转串口工具，将**printf**重定位到一个由**MicroLink**提供的虚拟串口上；
+- 不需要使用专门的RTTView上位机，支持任意串口助手；
+- 高速通信，不影响芯片的实时响应。
+
+**启动RTT功能：**打开任意串口助手，输入以下指令：
+
+```python
+RTTView.start(0x20000000,1024)
+```
+
+- 0x20000000:搜索RTT控制块的起始地址；
+- 1024：搜寻范围大小
+
+![](../../images/microlink/RTT.jpg)
+
+### 4、U盘拖拽下载
 
 MicroLink支持U盘拖拽下载功能，使固件更新变得像复制文件一样简单。用户只需将固件文件拖放到虚拟U盘中，MicroLink便能自动完成下载，摆脱对上位机的依赖，极大地降低了操作门槛。
 
@@ -114,7 +134,7 @@ res1 = ReadFlm.load("STM32/STM32F10x_512.FLM.o",0X08000000,0x20000000)
 以下演示视频是将HEX文件复制到U盘中，完成固件下载：
 
 <iframe src="https://player.bilibili.com/player.html?bvid=BV14HsKeJEQ1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
-### 4、离线下载
+### 5、离线下载
 
 MicroLink支持脱机离线下载的功能，借助于强大的PikaPython开源项目，让MicroLink可以使用python脚本进行二次开发，可以非常容易得定制私有功能和上位机的开发。
 
@@ -137,7 +157,7 @@ load.bin("boot.bin",0X8000000)
 
 
 
-### 5、内置Ymodem协议下载
+### 6、内置Ymodem协议下载
 
 MicroLink内置Ymodem协议，支持通过串口进行可靠的文件传输。Ymodem协议在多次重传时仍能保持数据的完整性，非常适用于嵌入式系统的固件升级。
 
@@ -158,7 +178,7 @@ MicorBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
 <iframe src="https://player.bilibili.com/player.html?bvid=BV1VYRgYYERg" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
 
-### 6、FLM通用下载算法转换工具
+### 7、FLM通用下载算法转换工具
 
 以STM32F4xx_1024.FLM为例，下载算法在ARM CMSIS Pack文件夹（通常在D:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\CMSIS\Flash）中，通过FLM下载算法转换工具打开文件，可以生成对应的下载算法驱动文件，将生成的STM32F4xx_512.FLM.o文件，拷贝到MicroLink的U盘中，然后通过`flm_config.py`脚本指定使用此下载算法文件。
 
@@ -166,9 +186,9 @@ MicorBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
 借助单片机原厂提供的FLM下载算法文件，便可以几乎适配所有的Cortex-M系列单片机。
 
-### 7、固件升级
+### 8、固件升级
 
-MicroLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，升级完成可以查看DETAILS.TXT文件，了解升级后的新功能。
+MicroLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，并删除升级包。升级完成可以查看DETAILS.TXT文件，了解升级后的新功能。
 
 
 
@@ -241,9 +261,11 @@ JTAG简化接线图：
 
 - 串口(两路)
 
-一路为USB转串口；
+**一路为USB转串口**；
 
-另外一路为python终端，打开串口时，输入回车，会自动打印python的信息
+另外一路为**虚拟串口**，打开串口时，输入回车，会自动打印python的信息；
+
+**为了方便区分两路串口，通过USB转串口发送数据LED指示灯会闪烁，通过虚拟串口发送数据不LED指示灯不会闪烁。**
 
 ![](../../images/microlink/python.jpg)
 
