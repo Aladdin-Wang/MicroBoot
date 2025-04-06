@@ -266,24 +266,6 @@ unsigned long GetBankNum(unsigned long adr)
 
 static int32_t Init(uint32_t adr, uint32_t clk, uint32_t fnc)
 {
-
-    return (0);
-}
-
-/*
- *  De-Initialize Flash Programming Functions
- *    Parameter:      fnc:  Function Code (1 - Erase, 2 - Program, 3 - Verify)
- *    Return Value:   0 - OK,  1 - Failed
- */
-
-static int32_t UnInit(uint32_t fnc)
-{
-
-    return (0);
-}
-
-static void flash_unlock()
-{
     #if defined(STM32F4xx_1024) || defined(STM32F4xx_2048) || defined(STM32F4xx_1536) || defined(STM32F4xx_1024dual)
     FLASH->KEYR = FLASH_KEY1;                             // Unlock Flash
     FLASH->KEYR = FLASH_KEY2;
@@ -322,9 +304,16 @@ static void flash_unlock()
     FLASH->KEYR2 = FLASH_KEY2;
     FLASH->CCR2  = FLASH_PGERR;                    /* Clear status register  */
     #endif	
+    return (0);
 }
 
-static void flash_lock()
+/*
+ *  De-Initialize Flash Programming Functions
+ *    Parameter:      fnc:  Function Code (1 - Erase, 2 - Program, 3 - Verify)
+ *    Return Value:   0 - OK,  1 - Failed
+ */
+
+static int32_t UnInit(uint32_t fnc)
 {
     #if defined(STM32F4xx_1024) || defined(STM32F4xx_2048) || defined(STM32F4xx_1536) || defined(STM32F4xx_1024dual)
     FLASH->CR |=  FLASH_LOCK;                             // Lock Flash
@@ -342,6 +331,7 @@ static void flash_lock()
     FLASH->CR1 |=  FLASH_CR_LOCK;                  /* Lock FLASH A Registers access */
     FLASH->CR2 |=  FLASH_CR_LOCK;                  /* Lock FLASH B Registers access */
     #endif	
+    return (0);
 }
 
 /*
@@ -351,7 +341,6 @@ static void flash_lock()
 
 static int32_t EraseChip(void)
 {
-	flash_unlock();
     #if defined(STM32F4xx_1024) || defined(STM32F4xx_2048) || defined(STM32F4xx_1536) || defined(STM32F4xx_1024dual)
     FLASH->CR |=  FLASH_MER;                              // Mass Erase Enabled (sectors  0..11)
     #ifdef STM32F4xx_2048
@@ -421,7 +410,6 @@ static int32_t EraseChip(void)
     FLASH->CR2  =  0;                              /* Reset command register */
 	
     #endif
-	flash_lock();
     return (0);	
 }
 
@@ -433,7 +421,6 @@ static int32_t EraseChip(void)
 static int32_t EraseSector(uint32_t adr)
 {
     int32_t result = 0;
-	flash_unlock();
     /*Variable used for Erase procedure*/
 
     #if  defined(STM32F10x_128)||defined(STM32F10x_512)||defined(STM32F10x_1024)
@@ -550,7 +537,6 @@ static int32_t EraseSector(uint32_t adr)
             result =(1);  
     }
     #endif
-	flash_lock();
     return (result);	
 }
 
@@ -564,7 +550,6 @@ static int32_t EraseSector(uint32_t adr)
 static int32_t ProgramPage(uint32_t addr, uint32_t sz, uint8_t* buf)
 {
     int32_t result = 0;
-	flash_unlock();
     #if defined(STM32F10x_128)||defined(STM32F10x_512)||defined(STM32F10x_1024)
     uint32_t end_addr   = addr + sz;
 
@@ -766,8 +751,7 @@ static int32_t ProgramPage(uint32_t addr, uint32_t sz, uint8_t* buf)
 
         sz  -= 32;
     }
-    #endif
-	flash_lock();	
+    #endif	
     return (result);
 }
 
