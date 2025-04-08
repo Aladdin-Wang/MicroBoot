@@ -1,6 +1,6 @@
 
 
-#include "../flash_blob.h" 
+#include "../flash_algo.h" 
 #ifdef HC32F460
 #include "hc32_ll_efm.h"
 static  flash_dev_t const FlashDevice  =  {
