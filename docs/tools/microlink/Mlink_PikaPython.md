@@ -261,17 +261,5 @@ https://github.com/Aladdin-Wang/MicroBoot
 
 **欢迎 Fork、Star，也欢迎提 Issue、提 PR —— 不只是使用者，你也可以成为 MicroLink 的共建者！**
 
-**“源深者流长，根固者枝茂。”**
 
-如果你觉得 MicroLink 有点意思，也愿意支持我继续探索下去，欢迎购买正版硬件，让这条“微链”能走得更远一些。
-
-
-
-每一份支持，都是我继续前行的底气，感谢！
-
-## 五 、彩蛋
-
-**震惊！SystemView也能支持？**
-
-qq群：
 

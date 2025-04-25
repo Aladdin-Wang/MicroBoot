@@ -25,16 +25,16 @@ nav:
       - ymodem: components/ymodem/ymodem.md
       - BootLoader: components/bootloader/bootloader.mds
       - FlashBlob:  components/flash_blob/flash_blob.md
-  - 第三方库:   
+  - 第三方库:  
+      - Arm-2D: 3rd-party/Arm-2D/arm_2d.md  
       - PLOOC: 3rd-party/plooc/plooc.md
       - FSM: 3rd-party/fsm/fsm.md
-      - Arm-2D: 3rd-party/Arm-2D/arm_2d.md
+   - 开发神器:   
+      - microlink: tools/microlink/Mlink_Introduce.md
+      - RTT_printf:   tools/microlink/RTT_printf.md       
   - 参与项目:
       - 如何贡献代码: contribute/code.md
-      - 如何贡献文档: contribute/document.md
-  - 开发神器:   
-      - microlink: tools/microlink/microlink.md     
-      - Python:   tools/Python/Python.md    
+      - 如何贡献文档: contribute/document.md 
   - 私人订制:   
       - BootLoader: bootloader/BootLoader.md        
   - About:
