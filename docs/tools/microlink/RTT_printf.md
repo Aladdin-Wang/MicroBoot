@@ -143,7 +143,23 @@ int main(void)
 
 ## 五、快速上手 MicroLink RTT 功能
 
-✅ **使用串口助手类工具访问 MicroLink 的 USB CDC 虚拟串口**
+✅ **步骤一：找到MicroLink 的 USB CDC 虚拟串口**
+
+使用USB TypeC数据线与MicroLink连接以后，电脑设备端会弹出三个设备：
+
+![](../../images/microlink/shebei.png)
+
+其中端口会弹出两路串行设备：
+
+- **一路为真实的USB转串口**；
+
+- **一路为USB CDC 虚拟串口**，打开串口时，输入回车，会自动回复 `>>>`；
+
+**为了方便区分两路串口，通过USB转串口发送数据LED指示灯会闪烁，通过虚拟串口发送数据LED指示灯不会闪烁。**
+
+![](../../images/microlink/python.jpg)
+
+✅ **步骤二：使用串口助手类工具访问 MicroLink 的 USB CDC 虚拟串口**
 
 比如使用SSCOM，连接MicroLink的串口，输入以下指令：
 
