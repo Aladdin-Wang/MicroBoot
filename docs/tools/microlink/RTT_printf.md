@@ -173,13 +173,11 @@ RTTView.start(0x20000000,1024,0)
 
 ![RTT_MAP](../.././images/microlink/RTT.jpg)
 
+**_SEGGER_RTT** 控制块地址可以通过查看MDK编译生成的.map文件来查找，如下：
 
+![RTT_MAP](../.././images/microlink/RTT_MAP.jpg)
 
-**_SEGGER_RTT** 控制块地址可以通过查看MDK编译生成的.map文件来查看，如下：
-
-![RTT_MAP](../.././images/microlink/RTT_MAP.png)
-
-可知，\_SEGGER_RTT在地址0x24000400处，可以通过设置搜寻的地址和大小来重新启动MicroLink的RTT功能。
+可知，\_SEGGER_RTT在地址0x20000040处，可以通过设置搜寻的地址和大小来重新启动MicroLink的RTT功能。
 
 ## 六、总结
 
