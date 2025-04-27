@@ -23,13 +23,13 @@ nav:
       - 消息地图: components/msg_map/msg_map.md
       - shell: components/shell/shell.md
       - ymodem: components/ymodem/ymodem.md
-      - BootLoader: components/bootloader/bootloader.mds
+      - BootLoader: components/bootloader/bootloader.md
       - FlashBlob:  components/flash_blob/flash_blob.md
   - 第三方库:
       - Arm-2D: 3rd-party/Arm-2D/arm_2d.md
       - PLOOC: 3rd-party/plooc/plooc.md
       - FSM: 3rd-party/fsm/fsm.md
-   - 开发神器:
+  - 开发神器:
       - microlink: tools/microlink/Mlink_Introduce.md
       - RTT-printf: tools/microlink/RTT_printf.md
   - 参与项目:
