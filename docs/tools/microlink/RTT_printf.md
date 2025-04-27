@@ -2,7 +2,7 @@
 
 ## 一、RTT+ MicroLink，让串口调试真正自由
 
-在嵌入式开发中，我们总是离不开“串口打印”来调试。
+在嵌入式开发中，我们总是离不开**“串口打印”**来调试。
 
 但传统串口调试存在很多明显的痛点：
 
@@ -35,25 +35,25 @@ RTT，全称 **Real Time Transfer（实时传输）**，是一种**无需中断 
 
 ### 2、RTT 的基本工作原理
 
-📖在 MCU RAM 中，有一个非常重要的结构体：
+🔵 **在 MCU RAM 中，有一个非常重要的结构体：**
 
 > **_SEGGER_RTT 控制块**
 
-📖它的作用是：
+🔵 **它的作用是：**
 
 - 保存多个 **UpBuffer（MCU ➡ PC）** 和 **DownBuffer（PC ➡ MCU）** 的信息；
 - 包括每个缓冲区的起始地址、大小、写指针、读指针等。
 
-📖收发数据过程：
+🔵 **收发数据过程：**
 
 - **MCU发送数据** ➔ 只需把数据 `memcpy` 拷贝到 **UpBuffer** 的空闲区域；
 - **PC接收数据** ➔ 通过 J-Link 或 MicroLink 读取 UpBuffer 的数据；
 - **PC发送指令** ➔ 把数据写入 DownBuffer；
 - **MCU读取指令** ➔ 从 DownBuffer 中 `memcpy` 出来。
 
-✅ 由于只是内存拷贝，**整个收发过程极快，微秒级完成**，不会打断 MCU 正常工作。
+📷 由于只是内存拷贝，**整个收发过程极快，微秒级完成**，不会打断 MCU 正常工作。
 
-
+![RTT.drawio](../.././images/microlink/RTT_Draw.jpg)
 
 ### 3、RTT 怎么用？
 
@@ -88,8 +88,6 @@ int main(void)
 - 如果使用传统 J-Link，只能用 RTT Viewer / RTT Logger；
 - 如果用 MicroLink，可以用**任意串口助手**直接访问 RTT 数据！
 
-
-
 ## 三、MicroLink：释放 RTT 的真正威力
 
 ### 1. 为什么传统 RTT 调试有局限？
@@ -122,7 +120,7 @@ int main(void)
 
 📷 **MicroLink RTT 通道示意图：**
 
-
+![RTT_printf](../.././images/microlink/RTT_printf.jpg)
 
 
 
@@ -135,41 +133,37 @@ int main(void)
 
 ## 四、与传统串口调试的性能对比
 
-| 特性       | 串口            | RTT                           |
-| ---------- | --------------- | ----------------------------- |
-| 通信速率   | 低（115200 等） | 高（上 MB 级别）              |
-| 占用 CPU   | 较高中断开销    | 几乎无打扰                    |
-| 崩溃后可用 | ❌               | ✅ 可访问 RAM 数据             |
-| 多通道支持 | ❌               | ✅ 支持多个 Up/Down Buffer     |
-| 使用灵活性 | 有限            | 高，可集成在 UI、日志、命令中 |
+| 特性       | 串口         | RTT                           |
+| ---------- | ------------ | ----------------------------- |
+| 通信速率   | 低           | 高（上 MB 级别）              |
+| 占用 CPU   | 较高中断开销 | 几乎无打扰                    |
+| 崩溃后可用 | ❌            | ✅ 可访问 RAM 数据             |
+| 多通道支持 | ❌            | ✅ 支持多个 Up/Down Buffer     |
+| 使用灵活性 | 有限         | 高，可集成在 UI、日志、命令中 |
 
 ## 五、快速上手 MicroLink RTT 功能
 
-✅ **步骤一：在程序中集成 RTT 库**
+✅ **使用串口助手类工具访问 MicroLink 的 USB CDC 虚拟串口**
+
+比如使用SSCOM，连接MicroLink的串口，输入以下指令：
+
+```
+RTTView.start(0x20000000,1024,0)
+```
+
+- 0x20000000:搜索RTT控制块的起始地址；
+- 1024：搜寻范围大小；
+- 0：启动RTT的通道。
+
+![RTT_MAP](../.././images/microlink/RTT.jpg)
 
 
 
-**_SEGGER_RTT** 控制块地址可以通过查看MDK编译生成的.map文件来实现，如下：
+**_SEGGER_RTT** 控制块地址可以通过查看MDK编译生成的.map文件来查看，如下：
 
 ![RTT_MAP](../.././images/microlink/RTT_MAP.png)
 
-可知，\_SEGGER_RTT在地址0x24000400处，MicroLink可以自动检测设定地址,来寻找\_SEGGER_RTT变量。
-
-
-
-✅ 步骤2：替换串口输出函数
-
-将 `printf()` 替换为：
-
-```c
-SEGGER_RTT_printf(0, "温度 = %d °C\n", temp);
-```
-
-这样日志会通过 RTT 输出到 PC。
-
-✅ 步骤3：使用串口助手类工具访问 MicroLink 的 USB CDC 虚拟串口
-
-
+可知，\_SEGGER_RTT在地址0x24000400处，可以通过设置搜寻的地址和大小来重新启动MicroLink的RTT功能。
 
 ## 六、总结
 
