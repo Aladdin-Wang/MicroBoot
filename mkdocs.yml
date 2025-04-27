@@ -30,7 +30,7 @@ nav:
       - PLOOC: 3rd-party/plooc/plooc.md
       - FSM: 3rd-party/fsm/fsm.md
   - 开发神器:
-      - microlink: tools/microlink/Mlink_Introduce.md
+      - microlink: tools/microlink/microlink.md
       - RTT-printf: tools/microlink/RTT_printf.md
   - 参与项目:
       - 如何贡献代码: contribute/code.md
