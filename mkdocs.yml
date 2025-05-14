@@ -30,8 +30,10 @@ nav:
       - PLOOC: 3rd-party/plooc/plooc.md
       - FSM: 3rd-party/fsm/fsm.md
   - 开发神器:
-      - microlink: tools/microlink/microlink.md
-      - RTT-printf: tools/microlink/RTT_printf.md
+      - 简介: tools/microlink/microlink.md
+      - RTT: tools/microlink/RTT_printf.md
+      - 脱机下载:
+      - Python API:
   - 参与项目:
       - 如何贡献代码: contribute/code.md
       - 如何贡献文档: contribute/document.md

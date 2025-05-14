@@ -162,9 +162,9 @@ MicroLink内置Ymodem协议，支持通过串口进行可靠的文件传输。Ym
 
 使用内置的ymodem协议发送文件，首先需要目标设备支持ymodem协议接收文件，MicorBoot开源框架集成了ymodem模块，可以方便用户直接安装使用，具体使用方法请看MicorBoot简介。
 
-MicorBoot简介：https://microboot.readthedocs.io/zh-cn/latest/
+MicroBoot简介：https://microboot.readthedocs.io/zh-cn/latest/
 
-MicorBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
+MicroBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
 将需要升级的固件拷贝到U盘中，比如updata.bin，然后随便使用一个串口助手，打开虚拟串口，输入`ym.send("updata.bin")`加回车
 
