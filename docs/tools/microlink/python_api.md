@@ -4,7 +4,7 @@
 
 ---
 
-1. `ReadFlm.load(flm_path: str, base_addr: int, ram_addr: int = 0) -> int`
+- [x] `ReadFlm.load(flm_path: str, base_addr: int, ram_addr: int = 0) -> int`
 
 加载 FLM 算法文件。
 
@@ -19,7 +19,7 @@
 
 ---
 
-2. `load.bin(file_path: str, addr: int) -> int`
+- [x] `load.bin(file_path: str, addr: int) -> int`
 
 烧录二进制文件到指定地址。
 
@@ -33,7 +33,7 @@
 
 ---
 
-3. `RTTView.start(rtt_addr: int, size: int, channel: int) -> None`
+- [x] `RTTView.start(rtt_addr: int, size: int, channel: int) -> None`
 
 启动 RTT 数据转发功能，使 PC 可通过串口查看 MCU 的 RTT 输出。
 
@@ -47,6 +47,6 @@
 
 ---
 
-4. `RTTView.stop() -> None`
+- [x] `RTTView.stop() -> None`
 
 停止 RTT 功能，释放相关资源。
