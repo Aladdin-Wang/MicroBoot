@@ -101,15 +101,89 @@ RTTView.start(0x20000000,1024)
 ```
 
 - 0x20000000:搜索RTT控制块的起始地址；
-- 1024：搜寻范围大小
+- 1024：搜寻RTT控制块地址范围大小
+
+以SSCOM串口助手为例：
 
 ![](../../images/microlink/RTT.jpg)
 
-### 4、U盘拖拽下载
+### 4、离线下载
+
+MicroLink支持脱机离线下载的功能，借助于强大的PikaPython开源项目，让MicroLink可以使用python脚本进行二次开发，可以非常容易得定制升级流程。
+
+MicroLink的虚拟U盘中有一个`offline_download.py`文件，内容如下：
+
+```python
+import FLMConfig
+import PikaStdLib
+import PikaStdDevice
+import time
+
+time = PikaStdDevice.Time()
+buzzer = PikaStdDevice.GPIO()
+buzzer.setPin('PA4') # 蜂鸣器
+buzzer.setMode('out')
+
+ReadFlm = FLMConfig.ReadFlm()
+# 加载第一个 FLM 下载算法文件
+result = ReadFlm.load("STM32/STM32F7x_1024.FLM.o", 0x08000000, 0x20000000)
+if result != 0:
+    return 
+
+# 烧写 boot.bin和rtthread.bin
+result = load.bin("boot.bin", 0x08000000,"rtthread.bin", 0x08020000)
+if result != 0:
+    return 
+
+# 加载外部 Flash 的 FLM 下载算法文件
+result = ReadFlm.load("STM32F767_W25QXX.FLM.o", 0x90000000, 0x20000000)
+if result != 0:
+    return 
+
+# 烧写 HZK.bin
+result = load.bin("HZK.bin", 0x90000000)
+if result != 0:
+    return 
+# 蜂鸣器响一声，表示烧写完成
+buzzer.enable()
+buzzer.high()
+time.sleep_ms(500)
+buzzer.low()
+time.sleep_ms(500)
+
+```
+
+该代码通过加载FLM算法文件，将多个二进制文件（如boot.bin、rtthread.bin和HZK.bin）分别烧录到STM32内部和外部Flash中，并通过蜂鸣器响声提示烧录完成。
+
+> **注意：**请根据您的实际项目需求，修改以下内容：
+>
+> - **下载算法文件名称**（如 `"STM32/STM32F7x_1024.FLM.o"` 和 `"STM32F767_W25QXX.FLM.o"`）：应替换为对应芯片和Flash型号的 FLM 文件。
+> - **BIN 文件名称及地址**（如 `"boot.bin"`、`"rtthread.bin"`、`"HZK.bin"` 及其对应的地址）：请确保文件名和烧录地址与您的程序结构一致。
+>
+> 若文件名或地址设置不当，可能导致程序无法正常运行或烧录失败。
+
+🚀 **触发烧录的方式**
+
+MicroLink 下载器支持以下两种方式触发脱机烧录脚本的执行：
+
+1. **按键触发**
+    按下 MicroLink 脱机下载扩展板上的按键，即可启动脱机烧录流程并执行该脚本。
+
+![](../../images/microlink/KZB.jpg)
+
+2. **Python 虚拟终端手动触发**
+
+使用一个串口助手，连接虚拟串口端口，输入`load.offline()`加回车，效果如下：
+
+![](../../images/microlink/load_offline.jpg)
+
+
+
+### 5、U盘拖拽下载
 
 MicroLink支持U盘拖拽下载功能，使固件更新变得像复制文件一样简单。用户只需将固件文件拖放到虚拟U盘中，MicroLink便能自动完成下载，摆脱对上位机的依赖，极大地降低了操作门槛。
 
-U盘拖拽下载支持HEX文件和BIN文件，HEX文件自带地址信息，自动根据HEX中的地址选择烧录的位置，BIN文件的下载地址可以通过`flm_config.py`脚本进行配置。
+U盘拖拽下载支持HEX文件和BIN文件，HEX文件自带地址信息，自动根据HEX中的地址选择烧录的位置，BIN文件的下载地址可以通过`drag_download.py`脚本进行配置。
 
 ![](../../images/microlink/flmo.jpg)
 
@@ -133,32 +207,11 @@ res1 = ReadFlm.load("STM32/STM32F10x_512.FLM.o",0X08000000,0x20000000)
 以下演示视频是将HEX文件复制到U盘中，完成固件下载：
 
 <iframe src="https://player.bilibili.com/player.html?bvid=BV14HsKeJEQ1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
-### 5、离线下载
-
-MicroLink支持脱机离线下载的功能，借助于强大的PikaPython开源项目，让MicroLink可以使用python脚本进行二次开发，可以非常容易得定制私有功能和上位机的开发。
-
-> PikaPython (也称 PikaScript、PikaPy) 是一个完全重写的超轻量级 python 引擎，零依赖，零配置，可以在少于 4KB 的 RAM 下运行 (如 stm32g030c8 和 stm32f103c8)，极易部署和扩展。
-
-MicroLink内置了一条离线下载的python函数：
-
-```python
-load.bin("boot.bin",0X8000000)
-```
-
-两个参数的含义：
-
-- "boot.bin"：下载的文件名字；
-- 0X8000000：下载的地址；
-
-将需要下载的bin文件复制到U盘中，然后随便使用一个串口助手，打开虚拟串口，输入`load.bin("boot.bin",0X8000000)`加回车，效果如下：
-
-![](../../images/microlink/loadbin.png)
-
 
 
 ### 6、内置Ymodem协议下载
 
-MicroLink内置Ymodem协议，支持通过串口进行可靠的文件传输。Ymodem协议在多次重传时仍能保持数据的完整性，非常适用于嵌入式系统的固件升级。
+MicroLink内置Ymodem协议，支持通过串口进行可靠的文件传输。ymodem协议在多次重传时仍能保持数据的完整性，非常适用于嵌入式系统的固件升级。
 
 使用内置的ymodem协议发送文件，首先需要目标设备支持ymodem协议接收文件，MicorBoot开源框架集成了ymodem模块，可以方便用户直接安装使用，具体使用方法请看MicorBoot简介。
 
@@ -213,9 +266,13 @@ MBED.HTM是一个在线文档的网址链接，双击该文件即可访问在线
 
 ![](../../images/microlink/readdocs.png)
 
-- flm_config.py
+- 拖拽下载脚本drag_download.py
 
-设备上电会首先读取flm_config.py脚本，根据脚本内容加载Flash下载算法，执行用户指令。
+设备上电会首先读取drag_download.py脚本，根据脚本内容加载Flash下载算法，执行用户指令。
+
+- 脱机下载脚本offline_download.py
+
+根据脚本，执行脱机下载流程。
 
 - xxx.FLM.o
 
