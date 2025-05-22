@@ -41,7 +41,7 @@ if result != 0:
 result = load.bin("app.bin", 0x08000000,"rtthread.bin", 0x08020000)
 if result != 0:
     return    
-# 蜂鸣器响一声，表示烧写完成
+# 蜂鸣器响声，表示烧写完成
 buzzer.enable()
 buzzer.high()
 time.sleep_ms(500)
@@ -212,8 +212,8 @@ MicroLink 支持两种脱机烧录触发方式：
 
 搭配专用脱机下载扩展板，板上有下载按钮和蜂鸣器。
 
-- **按下按钮** → MicroLink 自动执行 `main.py` 脚本
-- **烧录成功** → 蜂鸣器响一声提示用户
+- **按下按钮** → MicroLink 自动执行 `offline_download.py` 脚本
+- **烧录成功** → 蜂鸣器响声提示用户
 - **可用于量产、售后维修、断网环境**
 
 > 纯离线运行，不依赖上位机。
