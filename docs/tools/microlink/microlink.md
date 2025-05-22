@@ -240,7 +240,7 @@ MicroBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
 ### 8、固件升级
 
-MicroLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，并删除升级包。升级完成可以查看DETAILS.TXT文件，了解升级后的新功能。
+MicroLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，并删除升级包。升级完成可以查看version.txt文件，了解升级后的新功能。
 
 
 
