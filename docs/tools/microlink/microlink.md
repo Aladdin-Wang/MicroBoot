@@ -12,6 +12,7 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 - [x] 支持使用OpenOCD的IDE下载调试ARM/RISC-V等芯片
 - [x] 支持USB转串口，最大10M波特率无丢包
 - [x] 内置RTT，无需使用RTTView上位机，支持任意串口助手
+- [x] 支持SystemView，无需额外硬件的情况下，轻松进行任务级别的运行态分析与可视化调试
 - [x] 支持python脚本，可以通过脚本指定下载算法
 - [x] 支持Cortex-M系列U盘拖拽下载
 - [x] 支持U盘离线下载，通过python脚本触发下载
@@ -86,7 +87,7 @@ MicroLink内置USB转串口功能，支持常见的串口和485通信，串口�
 
 
 
-### 3、RTTView
+### 3、RTT
 
 只要拥有了**MicroLink**，你就可以享受以下的便利：
 
@@ -97,17 +98,44 @@ MicroLink内置USB转串口功能，支持常见的串口和485通信，串口�
 **启动RTT功能：**打开任意串口助手，输入以下指令：
 
 ```python
-RTTView.start(0x20000000,1024)
+RTTView.start(0x20000000,1024,0)
 ```
 
 - 0x20000000:搜索RTT控制块的起始地址；
 - 1024：搜寻RTT控制块地址范围大小
+- 0: RTT通道
 
 以SSCOM串口助手为例：
 
 ![](../../images/microlink/RTT.jpg)
 
-### 4、离线下载
+### 4、SystemView
+
+MicroLink 加入了 **SEGGER SystemView 协议支持**，让你可以在**无需额外硬件**的情况下，轻松进行任务级别的运行态分析与可视化调试。
+
+MicroLink 会将目标设备中 RTOS（如 RT-Thread、FreeRTOS）产生的 SystemView 日志数据通过 **RTT 协议**采集，并通过 USB CDC 虚拟串口转发给 PC。
+
+✅ 使用方式：
+
+1. 在 MCU 中启用 SEGGER RTT 和 SystemView 支持（支持 RT-Thread、FreeRTOS 等常见 RTOS）
+2. 发送启动SystemView 指令，MicroLink 会开启自动侦测 RTT UpBuffer 并将数据透传
+3. 在 PC 上打开 SystemView 工具，选择对应串口，即可实时查看运行状态
+
+**启动SystemView 功能：**打开任意串口助手，输入以下指令：
+
+```python
+SystemView.start(0x20000000,1024,1)
+```
+
+- 0x20000000:搜索RTT控制块的起始地址；
+- 1024：搜寻RTT控制块地址范围大小
+- 1：SystemView使用RTT的通道
+
+📌 示例画面：
+
+![](../../images/microlink/systemView.jpg)
+
+### 5、脱机下载
 
 MicroLink支持脱机离线下载的功能，借助于强大的PikaPython开源项目，让MicroLink可以使用python脚本进行二次开发，可以非常容易得定制升级流程。
 
@@ -179,7 +207,7 @@ MicroLink 下载器支持以下两种方式触发脱机烧录脚本的执行：
 
 
 
-### 5、U盘拖拽下载
+### 6、拖拽下载
 
 MicroLink支持U盘拖拽下载功能，使固件更新变得像复制文件一样简单。用户只需将固件文件拖放到虚拟U盘中，MicroLink便能自动完成下载，摆脱对上位机的依赖，极大地降低了操作门槛。
 
@@ -209,7 +237,7 @@ res1 = ReadFlm.load("STM32/STM32F10x_512.FLM.o",0X08000000,0x20000000)
 <iframe src="https://player.bilibili.com/player.html?bvid=BV14HsKeJEQ1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
 
 
-### 6、内置Ymodem协议下载
+### 7、内置Ymodem协议下载
 
 MicroLink内置Ymodem协议，支持通过串口进行可靠的文件传输。ymodem协议在多次重传时仍能保持数据的完整性，非常适用于嵌入式系统的固件升级。
 
@@ -230,7 +258,7 @@ MicroBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
 <iframe src="https://player.bilibili.com/player.html?bvid=BV1VYRgYYERg" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
 
-### 7、FLM通用下载算法转换工具
+### 8、FLM通用下载算法转换工具
 
 以STM32F4xx_1024.FLM为例，下载算法在ARM CMSIS Pack文件夹（通常在D:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\CMSIS\Flash）中，通过FLM下载算法转换工具打开文件，可以生成对应的下载算法驱动文件，将生成的STM32F4xx_512.FLM.o文件，拷贝到MicroLink的U盘中，然后通过`flm_config.py`脚本指定使用此下载算法文件。
 
@@ -238,11 +266,11 @@ MicroBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
 借助单片机原厂提供的FLM下载算法文件，便可以几乎适配所有的Cortex-M系列单片机。
 
-### 8、固件升级
+### 9、固件升级
 
 MicroLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，并删除升级包。升级完成可以查看version.txt文件，了解升级后的新功能。
 
-
+⚠️ 需要注意的是，升级前先格式化U盘，然后再把升级固件复制到U盘，如果Microlink没有自动重启升级，请手动重新上电。
 
 **开发资料下载地址**：https://pan.baidu.com/s/1Dr8Ss16cBRWXtQpyOGrROg?pwd=zyo0 
 
@@ -254,15 +282,15 @@ MicroLink支持系统固件升级，可以为后续添加更多的功能，升�
 
 ### 1、U盘文件说明
 
-- DETAILS.TXT
+- Version.txt
 
-DETAILS.TXT记录了MicroLink软硬件版本和每次版本更新的内容。
+Version.txt记录了MicroLink软硬件版本和每次版本更新的内容。
 
 ![](../../images/microlink/DETAILS.png)
 
-- MBED.HTM
+- Help.htm
 
-MBED.HTM是一个在线文档的网址链接，双击该文件即可访问在线文档，进一步了解更多的功能。
+Help.htm是一个在线文档的网址链接，双击该文件即可访问在线文档，进一步了解更多的功能。
 
 ![](../../images/microlink/readdocs.png)
 
