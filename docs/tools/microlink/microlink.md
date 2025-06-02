@@ -115,12 +115,6 @@ MicroLink 加入了 **SEGGER SystemView 协议支持**，让你可以在**无需
 
 MicroLink 会将目标设备中 RTOS（如 RT-Thread、FreeRTOS）产生的 SystemView 日志数据通过 **RTT 协议**采集，并通过 USB CDC 虚拟串口转发给 PC。
 
-✅ 使用方式：
-
-1. 在 MCU 中启用 SEGGER RTT 和 SystemView 支持（支持 RT-Thread、FreeRTOS 等常见 RTOS）
-2. 发送启动SystemView 指令，MicroLink 会开启自动侦测 RTT UpBuffer 并将数据透传
-3. 在 PC 上打开 SystemView 工具，选择对应串口，即可实时查看运行状态
-
 **启动SystemView 功能：**打开任意串口助手，输入以下指令：
 
 ```python
@@ -209,13 +203,11 @@ MicroLink 下载器支持以下两种方式触发脱机烧录脚本的执行：
 
 ### 6、拖拽下载
 
-MicroLink支持U盘拖拽下载功能，使固件更新变得像复制文件一样简单。用户只需将固件文件拖放到虚拟U盘中，MicroLink便能自动完成下载，摆脱对上位机的依赖，极大地降低了操作门槛。
+MicroLink支持任意Cotex-M内核芯片的U盘拖拽下载功能，使固件更新变得像复制文件一样简单。用户只需将固件文件拖放到虚拟U盘中，MicroLink便能自动完成下载，摆脱对上位机的依赖，极大地降低了操作门槛。
 
-U盘拖拽下载支持HEX文件和BIN文件，HEX文件自带地址信息，自动根据HEX中的地址选择烧录的位置，BIN文件的下载地址可以通过`drag_download.py`脚本进行配置。
+U盘拖拽下载支持BIN文件，BIN文件的下载地址可以通过`drag_download.py`脚本进行配置。
 
-![](../../images/microlink/flmo.jpg)
-
-打开U盘内的`flm_config.py`脚本，代码如下所示：
+打开U盘内的`drag_download.py`脚本，代码如下所示：
 
 ```py
 import FLMConfig
