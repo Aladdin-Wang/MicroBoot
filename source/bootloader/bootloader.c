@@ -127,11 +127,11 @@ static volatile const boot_ops_t tBootOps BOOT_FLASH_SECTION = {
 |--------------------|-----------------------|-----------------------|-----------|-----------|-----------|
 |     size           |      192 Byte         |      192 Byte         | 64 Byte   | 64 Byte   | 64 Byte   | 
 |++++++++++++++++++++|+++++++++++++++++++++++|+++++++++++++++++++++++|+++++++++++|+++++++++++|+++++++++++|
-| enter_bootloader   |      XXXX             |      user_data...     |   XXXX    |   XXXX    |    0x00   |
+| enter_bootloader   |      XXXX             |      user_data...     |   XXXX    |   XXXX    | 0X55555555   |
 |--------------------|-----------------------|-----------------------|-----------|-----------|-----------|
-| begin_download     |      user_data...     |      0xFF, 0XFF...    |   0XFF    |   0X00    |    0xFF   |
+| begin_download     |      user_data...     |      XXXX...          |   XXXX    | 0X55555555     XXXX   |
 |--------------------|-----------------------|-----------------------|-----------|-----------|-----------|
-| finalize_download  |      user_data...     |      0xFF, 0XFF...    |   0X00    |   0X00    |    0xFF   |  
+| finalize_download  |      user_data...     |      XXXX...          | 0X55555555  0X55555555|    XXXX   |  
 
 ***********************************************************************************************************/
 
@@ -144,7 +144,7 @@ static volatile const boot_ops_t tBootOps BOOT_FLASH_SECTION = {
  * Memory Layout After Execution:
  * |    Distribution    |      UserData Backup  |      UserData         | Magic1    | Magic2    | Magic3    |
  * |--------------------|-----------------------|-----------------------|-----------|-----------|-----------|
- * | enter_bootloader   |      XXXX             |      user_data...     |   XXXX    |   XXXX    |    0x00   |
+ * | enter_bootloader   |      XXXX             |      user_data...     |   XXXX    |   XXXX    | 0X55555555|
  * 
  * @param pchDate Pointer to the data to be written to flash.
  * @param hwLength Length of the data to be written.
@@ -152,7 +152,7 @@ static volatile const boot_ops_t tBootOps BOOT_FLASH_SECTION = {
  __attribute__((weak))
 void enter_bootloader(uint8_t *pchDate, uint16_t hwLength)
 {
-    uint32_t wData = 0;
+    uint32_t wData = 0X55555555;
     target_flash_init(APP_PART_ADDR);	
     target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - (USER_DATA_SIZE)), pchDate, USER_DATA_SIZE);
     target_flash_write((APP_PART_ADDR + APP_PART_SIZE - MARK_SIZE), (const uint8_t *)&wData,  sizeof(wData));
@@ -168,12 +168,12 @@ void enter_bootloader(uint8_t *pchDate, uint16_t hwLength)
  * Memory Layout After Execution:
  * |    Distribution    |      UserData Backup  |      UserData         | Magic1    | Magic2    | Magic3    |
  * |--------------------|-----------------------|-----------------------|-----------|-----------|-----------|
- * | begin_download     |      user_data...     |      0xFF, 0XFF...    |   0XFF    |   0X00    |    0xFF   |
+ * | begin_download     |      user_data...     |      XXXX...          |   XXXX    | 0X55555555|   XXXX    |
  */
  __attribute__((weak))
 void begin_download(void)
 {
-    memset(chBootMagic, 0, sizeof(chBootMagic));
+    memset(chBootMagic, 0X55, sizeof(chBootMagic));
     target_flash_init(APP_PART_ADDR);	
     target_flash_erase(APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE), 3*MARK_SIZE);
     target_flash_write((APP_PART_ADDR + APP_PART_SIZE - (3*MARK_SIZE) - 2 * (USER_DATA_SIZE)), tUserData.msg_data.B, USER_DATA_SIZE);
@@ -190,12 +190,12 @@ void begin_download(void)
  * Memory Layout After Execution:
  * |    Distribution    |      UserData Backup  |      UserData         | Magic1    | Magic2    | Magic3    |
  * |--------------------|-----------------------|-----------------------|-----------|-----------|-----------|
- * | finalize_download  |      user_data...     |      0xFF, 0XFF...    |   0X00    |   0X00    |    0xFF   |
+ * | finalize_download  |      user_data...     |      XXXX...          | 0X55555555| 0X55555555|    XXXX   |
  */
  __attribute__((weak))
 void finalize_download(void)
 {
-    memset(chBootMagic, 0X00, sizeof(chBootMagic));
+    memset(chBootMagic, 0X55, sizeof(chBootMagic));
     target_flash_init(APP_PART_ADDR);	
     target_flash_write((APP_PART_ADDR + APP_PART_SIZE - 3*MARK_SIZE), chBootMagic[0], MARK_SIZE);
     target_flash_uninit(APP_PART_ADDR);
@@ -228,35 +228,35 @@ __attribute__((constructor(255)))
 #endif
 static void enter_application(void)
 {
-    tBootOps.target_flash_init(APP_PART_ADDR);
+    target_flash_init(APP_PART_ADDR);
     do {
         // User-defined conditions for entering the bootloader
         if(user_enter_bootloader()){
-            tBootOps.target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
+            target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
             break;			
         }
         // Read the magic values from flash memory to determine the next action
-        tBootOps.target_flash_read((APP_PART_ADDR + APP_PART_SIZE - 3 * MARK_SIZE), chBootMagic[0], 3 * MARK_SIZE);
+        target_flash_read((APP_PART_ADDR + APP_PART_SIZE - 3 * MARK_SIZE), chBootMagic[0], 3 * MARK_SIZE);
 
-        // Check if Magic3 is 0x00, indicating to read user data from a specific location
-        if ((0 == *(uint32_t *)&chBootMagic[2])) {
-            tBootOps.target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
+        // Check if Magic3 is 0x55, indicating to read user data from a specific location
+        if ((0X55555555 == *(uint32_t *)&chBootMagic[2])) {
+            target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
             break;
         }
 
         // Check if Magic2 is 0x00 and Magic1 is 0xFFFFFFFF, indicating to read user data from a different location
-        if ((0 == *(uint32_t *)&chBootMagic[1]) && (0XFFFFFFFF == *(uint32_t *)&chBootMagic[0])) {
-            tBootOps.target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - 2 * USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
+        if ((0X55555555 == *(uint32_t *)&chBootMagic[1]) && (0X55555555 != *(uint32_t *)&chBootMagic[0])) {
+            target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - 2 * USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
             break;
         }
          		
         //Check if the value at the address (APP_PART_ADDR + 4) has the expected application identifier
         uint32_t wValue = 0;
-        tBootOps.target_flash_read((APP_PART_ADDR + APP_PART_OFFSET), (uint8_t *)&wValue, 4);
+        target_flash_read((APP_PART_ADDR + APP_PART_OFFSET), (uint8_t *)&wValue, 4);
         if ((wValue) == (0xffffffff) || (wValue) == (0) ) {
             break;
         }
-        tBootOps.target_flash_uninit(APP_PART_ADDR);		
+        target_flash_uninit(APP_PART_ADDR);		
         // If all checks are passed, modify the stack pointer and start the application
         #ifdef __riscv
         modify_stack_pointer_and_start_app((APP_PART_ADDR + APP_PART_OFFSET));
@@ -265,7 +265,7 @@ static void enter_application(void)
                                            (*(volatile uint32_t *)(APP_PART_ADDR + APP_PART_OFFSET)));
         #endif
     } while(0);	
-    tBootOps.target_flash_uninit(APP_PART_ADDR);		
+    target_flash_uninit(APP_PART_ADDR);		
 }
 
 
