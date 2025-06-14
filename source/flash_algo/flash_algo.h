@@ -23,6 +23,11 @@
 #include <string.h>
 #include "./app_cfg.h"
 
+#ifndef __FLASH_CFG_PORTING_INCLUDE__
+#   include "flash_port_default.h"
+#else
+#   include __FLASH_CFG_PORTING_INCLUDE__
+#endif
 
 #undef __CONNECT2
 #undef CONNECT2
@@ -39,44 +44,12 @@
     #define SAFE_NAME(__NAME)   CONNECT3(__,__NAME,__LINE__)
 #endif
 #ifndef safe_atom_code
-  #ifdef __riscv
-    #define MSTATUS_MIE (1 << 3U)
-    #define MSTATUS_MPIE (1 << 7U)
-    static inline uint32_t read_mstatus(void) {
-        uint32_t value;
-        __asm volatile("csrr %0, mstatus" : "=r"(value));
-        return value;
-    }
-    static inline void write_mstatus(uint32_t value) {
-        __asm volatile("csrw mstatus, %0" ::"r"(value));
-    }
-    static inline uint32_t __get_mstatus_and_disable_irq(void) {
-        uint32_t mstatus = 0;
-        mstatus = read_mstatus();
-        write_mstatus(mstatus & ~MSTATUS_MIE);
-        return mstatus;
-    }
-    static inline void __set_mstatus(uint32_t mstatus) {
-        write_mstatus(mstatus);
-    }
-    #define safe_atom_code()\
-      for(uint32_t SAFE_NAME(temp) = __get_mstatus_and_disable_irq(),\
-         *SAFE_NAME(temp3) = NULL ;\
-           SAFE_NAME(temp3)++ == NULL;\
-           __set_mstatus(SAFE_NAME(temp)))
-
-  #else
-      #include "cmsis_compiler.h"	
       #define safe_atom_code()                                         \
               for(  uint32_t SAFE_NAME(temp) =                          \
-  					({uint32_t SAFE_NAME(temp2)=__get_PRIMASK();       \
-                      __disable_irq();                                 \
+                          ({uint32_t SAFE_NAME(temp2)=flash_port_disable_global_interrupt();  \
                        SAFE_NAME(temp2);}),*SAFE_NAME(temp3) = NULL;    \
                        SAFE_NAME(temp3)++ == NULL;                      \
-                      __set_PRIMASK(SAFE_NAME(temp)))
-						 
-							
-  #endif
+                      flash_port_resume_global_interrupt(SAFE_NAME(temp)))				 					
 #endif
 
 

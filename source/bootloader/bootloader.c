@@ -109,7 +109,7 @@ typedef struct {
     #define BOOT_FLASH_SECTION
 #endif
 
-__USED
+__attribute__((used))
 static volatile const boot_ops_t tBootOps BOOT_FLASH_SECTION = {
     .fnGoToBoot = enter_bootloader,
     .target_flash_init = target_flash_init,
