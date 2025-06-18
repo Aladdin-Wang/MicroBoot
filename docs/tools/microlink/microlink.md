@@ -26,6 +26,10 @@ MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为�
 
 结合以上产品特点，为开发者提供了**下载调试，批量生产，售后维护，固件升级**等一站式解决方案。
 
+### 源码地址
+
+github链接：https://github.com/Aladdin-Wang/MicroLink
+
 ### 购买地址
 
 淘宝链接：https://item.taobao.com/item.htm?ft=t&id=895964393739
@@ -224,9 +228,7 @@ res1 = ReadFlm.load("STM32/STM32F10x_512.FLM.o",0X08000000,0x20000000)
 - 0X08000000：默认U盘拖拽下载的FLASH位置；
 - 0x20000000：单片机的RAM基地址；
 
-以下演示视频是将HEX文件复制到U盘中，完成固件下载：
 
-<iframe src="https://player.bilibili.com/player.html?bvid=BV14HsKeJEQ1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
 
 
 ### 7、内置Ymodem协议下载
