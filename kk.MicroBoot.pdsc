@@ -99,8 +99,6 @@
         </files>
 		 <Pre_Include_Global_h>
 #define __USER_APP_CFG_H__ "user_app_cfg.h"
-         </Pre_Include_Global_h>	
-		 <Pre_Include_Global_h>
 #define __FLASH_CFG_PORTING_INCLUDE__ "flash_port_user.h"
          </Pre_Include_Global_h>			 
     </component>
