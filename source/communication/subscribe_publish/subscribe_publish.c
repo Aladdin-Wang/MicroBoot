@@ -43,9 +43,9 @@ wl_subscribe_publish_t *wl_subscribe_publish_init(wl_subscribe_publish_t *ptObj)
     /* GNU GCC Compiler and TI CCS */
     extern const int __vsymtab_start;
     extern const int __vsymtab_end;
-    init_fsm(search_msg_map, &this.fsmSearchTopicMap, args((msg_t *)&__vsymtab_start, (msg_t *)&__vsymtab_end, &this.tByteInQueue, false));
+    init_fsm(search_msg_map, &this.fsmSearchTopicMap, args((msg_t *)&__vsymtab_start, (msg_t *)&__vsymtab_end, &this.tGetByte, false));
     #elif defined(__ADSPBLACKFIN__) /* for VisualDSP++ Compiler */
-    init_fsm(search_msg_map, &this.fsmSearchTopicMap, args((msg_t *)&__vsymtab_start, (msg_t *)&__vsymtab_end, &this.tByteInQueue, false));
+    init_fsm(search_msg_map, &this.fsmSearchTopicMap, args((msg_t *)&__vsymtab_start, (msg_t *)&__vsymtab_end, &this.tGetByte, false));
     #elif defined(_MSC_VER)
     unsigned int *ptr_begin, *ptr_end;
     ptr_begin = (unsigned int *)&__vsym_begin;
@@ -58,7 +58,7 @@ wl_subscribe_publish_t *wl_subscribe_publish_init(wl_subscribe_publish_t *ptObj)
 
     while (*ptr_end == 0) ptr_end --;
 
-    init_fsm(search_msg_map, &this.fsmSearchTopicMap, args((msg_t *)ptr_begin, (msg_t *)ptr_end, &this.tByteInQueue, false));
+    init_fsm(search_msg_map, &this.fsmSearchTopicMap, args((msg_t *)ptr_begin, (msg_t *)ptr_end, &this.tGetByte, false));
     #endif
     return ptObj;
 }
