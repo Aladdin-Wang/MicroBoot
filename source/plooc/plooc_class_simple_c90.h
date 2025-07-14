@@ -16,6 +16,7 @@
  *                                                                           *
  ****************************************************************************/
 
+
 /******************************************************************************
  * HOW TO USE                                                                 *
  ******************************************************************************/
@@ -47,8 +48,8 @@ extern "C" {
 
 /*============================ MACROFIED FUNCTIONS ===========================*/
 
-#ifndef __PLOOC_CLASS_SIMPLE_H__
-#define __PLOOC_CLASS_SIMPLE_H__
+#ifndef __PLOOC_CLASS_SIMPLE_C90_H__
+#define __PLOOC_CLASS_SIMPLE_C90_H__
 
 #   define __def_simple_class(__name)       struct  __name
 #   define def_simple_class(__name)         __def_simple_class(__name)
@@ -58,31 +59,12 @@ extern "C" {
 
 #endif  /* __PLOOC_CLASS_SIMPLE_H__ */
 
-#if     defined(__OOC_DEBUG__)
 
-#   define private_member(...)              PLOOC_VISIBLE(__VA_ARGS__)
-#   define protected_member(...)            PLOOC_VISIBLE(__VA_ARGS__)
-#   define public_member(...)               PLOOC_VISIBLE(__VA_ARGS__)
+#   define private_member(__member)         __member
+#   define protected_member(__member)       __member
+#   define public_member(__member)          __member
 
-#elif   defined(__PLOOC_CLASS_IMPLEMENT__) || defined(__PLOOC_CLASS_IMPLEMENT)
 
-#   define private_member(...)              PLOOC_VISIBLE(__VA_ARGS__)
-#   define protected_member(...)            PLOOC_VISIBLE(__VA_ARGS__)
-#   define public_member(...)               PLOOC_VISIBLE(__VA_ARGS__)
-
-#elif   defined(__PLOOC_CLASS_INHERIT__) || defined(__PLOOC_CLASS_INHERIT)
-
-#   define private_member(...)              PLOOC_INVISIBLE(__VA_ARGS__)
-#   define protected_member(...)            PLOOC_VISIBLE(__VA_ARGS__)
-#   define public_member(...)               PLOOC_VISIBLE(__VA_ARGS__)
-
-#else   /* __PLOOC_CLASS_EXTERN */
-
-#   define private_member(...)              PLOOC_INVISIBLE(__VA_ARGS__)
-#   define protected_member(...)            PLOOC_INVISIBLE(__VA_ARGS__)
-#   define public_member(...)               PLOOC_VISIBLE(__VA_ARGS__)
-
-#endif
 
 // code below is just try to be compatible with plooc_class_strict
 #undef declare_class
@@ -99,12 +81,12 @@ extern "C" {
 #undef __end_extern_class
 
           
-#define __end_def_class(...)
+#define __end_def_class(__name)
 
-#define __def_class(__name, ...)                                                \
-    typedef struct __name __name;                                               \
+#define __def_class(__name, __member)                                           \
+    /*typedef struct __name __name; */                                          \
     struct __name {                                                             \
-        __VA_ARGS__                                                             \
+        __member                                                                \
     };                      
     
 
@@ -115,33 +97,19 @@ extern "C" {
 
 #   undef  class
 #   define class(__name)                    __class(__name)
-            
-#   undef __with_class
-#   define __with_class(__type, __src, ...)                                     \
-        {                                                                       \
-            class(__type)*_ =(class(__type) *)(__src);                          \
-            PLOOC_UNUSED_PARAM(_);                                              \
-            __VA_ARGS__;                                                        \
-        }                                                                       \
-        for (class(__type)*_ =(class(__type) *)(__src); NULL != _; _ = NULL)
 
-#   undef with_class
-#   define with_class(__type, __src, ...)                                       \
-            __with_class(__type, __src, __VA_ARGS__)
             
 #   undef __class_internal
-#   define __class_internal(__src, __des, __type, ...)                          \
-            class(__type) *(__des) = (class(__type) *)(__src);                  \
-            PLOOC_UNUSED_PARAM(__des);                                          \
-            __with_class(__type, (__src), __VA_ARGS__)
+#   define __class_internal(__src, __des, __type)                               \
+            class(__type) *(__des) = (class(__type) *)(__src);                  
             
 #   undef class_internal
-#   define class_internal(__src, __des, __type,...)                             \
-            __class_internal(__src, __des, __type, __VA_ARGS__)
+#   define class_internal(__src, __des, __type)                                 \
+            __class_internal(__src, __des, __type)
 
-#define __extern_class(...)                                    
+#define __extern_class(__name, __member)                                    
 
-#define __end_extern_class(...)
+#define __end_extern_class(__name)
         
 #elif   defined(__PLOOC_CLASS_INHERIT__) || defined(__PLOOC_CLASS_INHERIT)
 
@@ -152,62 +120,47 @@ extern "C" {
 #   define class_protected(__name)              __class_protected(__name)
 
 
-
-#   undef __with_protected
-#   define __with_protected(__type, __src, ...)                                 \
-        {                                                                       \
-            class_protected(__type)*_ =(class_protected(__type) *)(__src);      \
-            PLOOC_UNUSED_PARAM(_);                                              \
-            __VA_ARGS__;                                                        \
-        }
-
-#   undef with_protected
-#   define with_protected(__type, __src, ...)                                   \
-            __with_protected(__type, __src, __VA_ARGS__)     
-
-
 #   undef __protected_internal
-#   define __protected_internal(__src, __des, __type, ...)                      \
-            class_protected(__type) *(__des)=(class_protected(__type) *)(__src);\
-            PLOOC_UNUSED_PARAM(__des);                                          \
-            __with_protected(__type, __src, __VA_ARGS__)
+#   define __protected_internal(__src, __des, __type)                           \
+            class_protected(__type) *(__des)=(class_protected(__type) *)(__src);
 
 #   undef protected_internal            
-#   define protected_internal(__src, __des, __type, ...)                        \
-            __protected_internal(__src, __des, __type, __VA_ARGS__)                
+#   define protected_internal(__src, __des, __type)                             \
+            __protected_internal(__src, __des, __type)                
 
-#define __extern_class(...)                                    
+#define __extern_class(__name, __member)                                    
 
-#define __end_extern_class(...)
+#define __end_extern_class(__name)
 
 #else  /* __PLOOC_CLASS_EXTERN */
 
-#define __extern_class(...)             __def_class(__VA_ARGS__)
+#define __extern_class(__name, __member)    __def_class(__name, __member)
 
-#define __end_extern_class(...)
+#define __end_extern_class(__name)
 
 #endif 
 
 #undef which
-#define which(...)                      PLOOC_VISIBLE(__VA_ARGS__)
+#define which(__type)                   __type
                                                     
-#define def_class(__name, ...)          __def_class(__name, __VA_ARGS__)
-#define define_class(__name, ...)       def_class(__name, __VA_ARGS__)
-                           
-#define end_def_class(...)              __end_def_class(__VA_ARGS__)
-#define end_define_class(...)           end_def_class(__VA_ARGS__)
+#define def_class(__name, __member)     __def_class(__name, __member)
+#define define_class(__name, __member)  def_class(__name, __member)
 
-#define dcl_class(__name)               typedef struct __name __name;
+#define end_def_class(__name)           __end_def_class(__name)
+#define end_define_class(__name)        end_def_class(__name)
+
 #define declare_class(__name)           typedef struct __name __name;
+#define dcl_class(__name)               declare_class(__name)
 
-#define extern_class(__name, ...)       __extern_class(__name, __VA_ARGS__)
+#define extern_class(__name, __member)  __extern_class(__name, __member)
 
-#define end_extern_class(__name, ...)   __end_extern_class(__name, __VA_ARGS__)
+#define end_extern_class(__name)        __end_extern_class(__name)
 
 #undef __PLOOC_CLASS_IMPLEMENT__
 #undef __PLOOC_CLASS_INHERIT__
 #undef __PLOOC_CLASS_IMPLEMENT
 #undef __PLOOC_CLASS_INHERIT
+
 /*============================ TYPES =========================================*/
 /*============================ GLOBAL VARIABLES ==============================*/
 /*============================ LOCAL VARIABLES ===============================*/
