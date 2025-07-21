@@ -31,23 +31,27 @@ DAPLink 的 U 盘拖拽下载基于传统的 **MSC（Mass Storage Class）协议
 
 > 👉 支持用户**加载外置 Flash 编程算法**（兼容 Keil 的 FLM 格式），配合 Python 脚本自定义烧录逻辑，实现对任意芯片的拖拽支持。
 
-这意味着，只要你写好对应的算法，就能适配任何 MCU，真正做到 **“芯片自由”**！
-
-
+这意味着，只要你有对应的下载算法，就能适配任何 MCU，真正做到 **“芯片自由”**！
 
 ### ✅ 2. **MTP 协议加持 · 即时反馈**
 
+> 📚 **关于 MTP 协议**
+>  MTP（Media Transfer Protocol）最初由微软提出，用于在 PC 和便携设备（如手机、相机）之间传输媒体文件。
+
 传统 MSC 模式的另一个痛点是——**你不知道下载是否成功**，直到重启 DAPLink，才能看到 `FAIL.TXT` 提示文件。
 
-我采用了 **CherryUSB 实现的 MTP（Media Transfer Protocol）** 模式，完美解决这个问题：
+采用 **CherryUSB 实现的 MTP（Media Transfer Protocol）** 模式，完美解决这个问题：
 
 - MTP 模式下，每次文件传输完成后，**立即回写**成功或失败信息为文件内容；
-- PC 端无需重启，**可即时查看返回的提示文件**内容；
+- PC 端无需重启下载器，**可即时查看返回的提示文件**内容；
 - 更高的稳定性，避免 MSC 的缓存不一致问题。
 
 这就像 U盘拖拽的外衣下，藏着一个智能、可通信的“文件传输助手”。
 
 
+
+**🔗 淘宝购买链接：**
+ 👉 https://item.taobao.com/item.htm?ft=t&id=895964393739
 
 ## 🛠 使用教程：MicroLink 拖拽下载就是这么简单
 
@@ -58,10 +62,20 @@ DAPLink 的 U 盘拖拽下载基于传统的 **MSC（Mass Storage Class）协议
 - 插入 MicroLink 后，PC 会识别出一个名为 **CherryUSB MTP** 的 MTP 设备；
 - 打开该设备，你会看到一个提示说明文件 `README.TXT`。
 
+![RTT.drawio](../.././images/microlink/MTP.jpg)
+
 ### 🔧 2. 配置下载算法与脚本
 
 - 将你的目标芯片烧录算法（FLM 文件），经过工具转换以后，放入FLM目录；
 - 编写Python文件夹下的drag_download.py，绑定下载算法。
+
+```python
+import FLMConfig
+ReadFlm = FLMConfig.ReadFlm()
+res1 = ReadFlm.load("FLM/STM32F10x_1024.FLM.o",0X08000000,0x20000000)
+# 设置下载速率
+cmd.set_swd_clock(5000000)
+```
 
 ### 📦 3. 拖入 `.bin` 固件文件即可开始下载
 

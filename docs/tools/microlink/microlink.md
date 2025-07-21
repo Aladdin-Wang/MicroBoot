@@ -216,14 +216,12 @@ U盘拖拽下载支持BIN文件，BIN文件的下载地址可以通过`drag_down
 ```py
 import FLMConfig
 ReadFlm = FLMConfig.ReadFlm()
-res1 = ReadFlm.load("STM32/STM32F10x_512.FLM.o",0X08000000,0x20000000)
+res1 = ReadFlm.load("FLM/STM32F10x_512.FLM.o",0X08000000,0x20000000)
 ```
 
 `ReadFlm.load`函数的三个参数：
 
-- "STM32/STM32F10x_512.FLM.o" ：选择对应单片机的下载算法文件；
-
-![](../../images/microlink/STM32FLMO.jpg)
+- "FLM/STM32F10x_512.FLM.o" ：选择对应单片机的下载算法文件；
 
 - 0X08000000：默认U盘拖拽下载的FLASH位置；
 - 0x20000000：单片机的RAM基地址；
@@ -264,7 +262,7 @@ MicroBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
 MicroLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，并删除升级包。升级完成可以查看version.txt文件，了解升级后的新功能。
 
-⚠️ 需要注意的是，升级前先格式化U盘，然后再把升级固件复制到U盘，如果Microlink没有自动重启升级，请手动重新上电。
+⚠️ 需要注意的是，如果Microlink没有自动重启升级，请手动重新上电,再重新复制升级包进行升级。
 
 **开发资料下载地址**：https://pan.baidu.com/s/1Dr8Ss16cBRWXtQpyOGrROg?pwd=zyo0 
 
