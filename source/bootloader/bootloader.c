@@ -239,7 +239,7 @@ static void enter_application(void)
         target_flash_read((APP_PART_ADDR + APP_PART_SIZE - 3 * MARK_SIZE), chBootMagic[0], 3 * MARK_SIZE);
 
         // Check if Magic3 is 0x55, indicating to read user data from a specific location
-        if ((0X55555555 == *(uint32_t *)&chBootMagic[2])) {
+        if ((0X55555555 == *(uint32_t *)&chBootMagic[2]) || (0 == *(uint32_t *)&chBootMagic[2])) {
             target_flash_read((APP_PART_ADDR + APP_PART_SIZE - (3 * MARK_SIZE) - USER_DATA_SIZE), tUserData.msg_data.B, USER_DATA_SIZE);
             break;
         }
