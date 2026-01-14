@@ -1,40 +1,66 @@
-# MicroLink
+# MicroKeen
 
 ---
 
 ## 一、产品概述
 
-MicroLink是一款集多功能于一体的嵌入式系统开发工具，专为加速和简化开发者在**研发、调试、量产和售后服务**各阶段的工作流程而设计。不同于传统的开发工具链，MicroLink在DAPLink的基础上将**调试器**、**USB转串口**、**离线下载器**和**固件升级工具**等多种功能集成到一个设备中，为开发者提供一站式解决方案。无论您是下载固件、调试代码、批量生产还是固件升级，MicroLink都能满足您的需求，大大提升开发效率，减少工具切换带来的时间和财务成本。
+MicroKeen(简称MKLink)是一款集多功能于一体的嵌入式系统开发工具，专为加速和简化开发者在**研发、调试、量产和售后服务**各阶段的工作流程而设计。不同于传统的开发工具链，MKLink在DAPLink的基础上将**调试器**、**USB转串口**、**离线下载器**和**固件升级工具**等多种功能集成到一个设备中，为开发者提供一站式解决方案。无论您是下载固件、调试代码、批量生产还是固件升级，MKLink都能满足您的需求，大大提升开发效率，减少工具切换带来的时间和财务成本。
 
-### 产品特点
+### 产品型号
 
-- [x] 支持SWD/JTAG接口，下载调试速度超越JLINK V12（时钟10Mhz）
-- [x] 支持使用OpenOCD的IDE下载调试ARM/RISC-V等芯片
-- [x] 支持USB转串口，最大10M波特率无丢包
-- [x] 内置RTT，无需使用RTTView上位机，支持任意串口助手
-- [x] 支持SystemView，轻松进行任务级别的运行态分析与可视化调试
-- [x] 支持python脚本，可以通过脚本指定下载算法
-- [x] 支持Cortex-M系列U盘拖拽下载
-- [x] 支持U盘离线下载，通过python脚本触发下载
-- [x] 内置ymodem协议栈，通过python脚本触发
-- [x] 支持系统固件升级，为后续添加更多功能
-- [x] 采用winusb对window10免驱，即插即用
-- [x] 支持3V3/5V大电流输出电源
-- [x] 内置防倒灌和过流保护，外部电流无法反向流入USB口，防止损坏USB
+### 1、MicroKeen V2
+
+![](../../images/microlink/MKLink_V2.png)
+
+​                                                         型号1：MKLinkV2 高速在线dap下载器 USB转UART
+
+### 2、MicroKeen V3
+
+![](../../images/microlink/MKLink V3.png)
+
+​                                                               型号2：MKLinkV3 高速在线/脱机dap下载器 USB转UART
+
+### 3、MicroKeen V3 LCD
+
+![](../../images/microlink/MKLinkV3 LCD.png)
+
+​                                                                       型号3：MKLinkV3 LCD高速在线/脱机dap下载器
+
+### 功能对比
+
+| 功能/型号                                       | MKLink V2 | MKLink  V3 | MKLink V3 LCD |
+| ----------------------------------------------- | --------- | ---------- | ------------- |
+| 高速在线下载调试                                | ✔         | ✔          | ✔             |
+| 高速USB转串口(12M)                              | ✔         | ✔          | ✔             |
+| USB转RTTVIEW                                    | ✔         | ✔          | ✔             |
+| USB转SystemView                                 | ✔         | ✔          | ✔             |
+| USB转VOFA+                                      | ✔         | ✔          | ✔             |
+| 支持python脚本                                  | ✔         | ✔          | ✔             |
+| 支持winusb，win10以上系统免驱                   | ✔         | ✔          | ✔             |
+| 自动扫描芯片，提示连接成功                      |           | ✔          | ✔             |
+| vref电压自适应，1.8~5V电压                      |           | ✔          | ✔             |
+| 脱机下载(bin文件，hex文件)，支持解析FLM下载算法 |           | ✔          | ✔             |
+| 内置4MB nor flash                               |           | ✔          |               |
+| 内置128MB SD卡                                  |           |            | ✔             |
+| 高速USB转485                                    |           |            | ✔             |
+| 电压电流显示功率计                              |           |            | ✔             |
+| 内置ymodem等自定义协议串口升级固件              |           |            | ✔             |
 
 
 
 结合以上产品特点，为开发者提供了**下载调试，批量生产，售后维护，固件升级**等一站式解决方案。
 
-### 源码地址
 
-github链接：https://github.com/Aladdin-Wang/MicroLink
 
 ### 购买地址
 
-淘宝链接：https://item.taobao.com/item.htm?ft=t&id=895964393739
+MKLinkV2        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=895964393739
 
-![SJTB](../../images/microlink/SJTB.png)
+MKLinkV3        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=1013104417098
+
+MKLinkV3 LCD淘宝链接：https://item.taobao.com/item.htm?ft=t&id=1013104417098
+
+
 
 ### 更多技术支持
 
@@ -81,7 +107,7 @@ MicroLink基于标准的CMSIS-DAP在线调试下载协议，针对传统DAPLink�
 
 ### 2、USB转串口
 
-MicroLink内置USB转串口功能，支持常见的串口和485通信，串口最大支持10M波特率，无丢包。
+MicroLink内置USB转串口功能，支持常见的串口和485通信，串口最大支持12M波特率，无丢包。
 
 ![](../../images/microlink/10M_Baud.jpg)
 
@@ -99,25 +125,33 @@ MicroLink内置USB转串口功能，支持常见的串口和485通信，串口�
 - 不需要使用专门的RTTView上位机，支持任意串口助手；
 - 高速通信，不影响芯片的实时响应。
 
+#### 使用方式
+
 **启动RTT功能：**打开任意串口助手，输入以下指令：
 
 ```python
 RTTView.start(0x20000000,1024,0)
 ```
 
-- 0x20000000:搜索RTT控制块的起始地址；
+- 0x20000000:搜索_SEGGER_RTT控制块的起始地址；
 - 1024：搜寻RTT控制块地址范围大小
 - 0: RTT通道
 
 以SSCOM串口助手为例：
 
-![](../../images/microlink/RTT.jpg)
+![](../../images/microlink/RTT.png)
+
+**_SEGGER_RTT** 控制块地址可以通过查看MDK编译生成的.map文件来查找，如下：
+
+![RTT_MAP](../.././images/microlink/RTT_MAP.png)
 
 ### 4、SystemView
 
 MicroLink 加入了 **SEGGER SystemView 协议支持**，让你可以在**无需额外硬件**的情况下，轻松进行任务级别的运行态分析与可视化调试。
 
 MicroLink 会将目标设备中 RTOS（如 RT-Thread、FreeRTOS）产生的 SystemView 日志数据通过 **RTT 协议**采集，并通过 USB CDC 虚拟串口转发给 PC。
+
+#### 使用方式
 
 **启动SystemView 功能：**打开任意串口助手，输入以下指令：
 
@@ -129,62 +163,155 @@ SystemView.start(0x20000000,1024,1)
 - 1024：搜寻RTT控制块地址范围大小
 - 1：SystemView使用RTT的通道
 
+**_SEGGER_RTT** 控制块地址可以通过查看MDK编译生成的.map文件来查找，如下：
+
+![RTT_MAP](../.././images/microlink/RTT_MAP.jpg)
+
 📌 示例画面：
 
 ![](../../images/microlink/systemView.jpg)
 
-### 5、脱机下载
+### 5、VOFA+
+
+MicroKeen（MKLink）已完成对 **VOFA+ 上位机协议的原生适配**，可在功能与使用体验上**完美替代 J-Link 的 J-Scope**。无需额外的 USB 转串口模块或专用数据采集硬件，即可实现**高速、稳定、实时的数据可视化调试**。MKLink 通过 **SWD 直接读取目标芯片内存中的变量数据**，并将其实时封装为 VOFA+ 协议，经 USB CDC 虚拟串口发送至 PC，实现对运行中变量的**曲线显示、波形分析与参数调试**，且不占用 MCU 串口资源、不侵入业务代码。
+
+#### 核心优势
+
+- **无需占用 MCU 串口资源**
+   不依赖 USART ，不影响产品原有通信接口设计；
+- **基于 SWD 的非侵入式采集**
+   不修改业务代码逻辑，对实时性影响极小；
+- **支持多种数据类型**
+   支持 `int / float / double` 等常见变量类型，自动解析；
+- **高速刷新，稳定可靠**
+   适配 MKLink 高速 SWD 通道，最高支持1M的读取速率；
+- **即插即用**
+   直接使用官方 VOFA+ 上位机，无需定制软件。
+
+#### 使用方式
+
+1. 使用 MKLink 连接目标板并正常下载程序；
+2. 启动 VOFA+ 上位机，选择MKLink 提供的虚拟串口，发送启动命令。
+3. 最多一次支持读取16个常用数据类型的变量
+
+```python
+vofa.send(0x20000030,"uint8_t",0x2000154c,"float",0x20001550,"float",0.00001)
+```
+
+- 0x20000030:变量1内存地址；
+- uint8_t：变量1数据类型；
+- 0.00001：读取周期，单位秒，最小支持1us
+
+相关的变量地址可以通过查看MDK编译生成的.map文件来查找，如下：
+
+![RTT_MAP](../.././images/microlink/vofa_map.png)
+
+📌 示例画面：
+
+![](../../images/microlink/vofa.png)
+
+
+
+### 6、脱机下载
 
 MicroLink支持脱机离线下载的功能，借助于强大的PikaPython开源项目，让MicroLink可以使用python脚本进行二次开发，可以非常容易得定制升级流程。
 
 MicroLink的虚拟U盘中有一个`offline_download.py`文件，内容如下：
 
 ```python
-import FLMConfig
 import PikaStdLib
-import PikaStdDevice
 import time
+import cmd
+import load
 
-time = PikaStdDevice.Time()
-buzzer = PikaStdDevice.GPIO()
-buzzer.setPin('PA4') # 蜂鸣器
-buzzer.setMode('out')
+# 自动下载循环次数
+AUTO_DOWNLOAD_COUNT = 1
+# 等待读取目标IDCODE有效的超时时间（ms）
+WAIT_IDCODE_TIMEOUT = 10000
+# FLM 文件路径
+FLM_FILE_PATH = "FLM/STM32F10x_1024.FLM"
+# 目标 Flash 基地址
+FLM_FLASH_BASE = 0x08000000
+# 目标 RAM 基地址
+FLM_RAM_BASE = 0x20000000
+# HEX 文件路径（支持通配符）
+HEX_FILE_PATH = "rt-thread.hex"
+# BIN 文件路径（支持通配符）
+BIN_FILE_PATH = "boot.bin"
+# BIN 文件下载地址
+BIN_FILE_ADD = 0x08000000
+# SWD 时钟频率（Hz）
+SWD_CLOCK_HZ = 10000000
+ # 设置下载速度
+cmd.set_swd_clock(SWD_CLOCK_HZ)
 
-ReadFlm = FLMConfig.ReadFlm()
-# 加载第一个 FLM 下载算法文件
-result = ReadFlm.load("STM32/STM32F7x_1024.FLM.o", 0x08000000, 0x20000000)
-if result != 0:
-    return 
+ # 自动循环下载 
+abort = False
+for i in range(AUTO_DOWNLOAD_COUNT):
+    if abort:
+        break
+    print("=== Auto Download Round:", i + 1, "===")
+    elapsed = 0
+ # 等待连接目标板   
+    while True:
+        idcode = cmd.get_idcode()
+        if idcode not in (0, 0xFFFFFFFF):
+            break
+        if elapsed >= WAIT_IDCODE_TIMEOUT:
+            print("wait idcode online timeout")
+            abort = True
+            break
+        print("=== waited_ms :", elapsed, "===")
+        time.sleep_ms(500)
+        elapsed += 500
+    if abort:
+        break
+    print("IDCODE: 0x%08X" % idcode)
+    time.sleep_ms(200)
+ # 加载下载算法 
+    if load.flm(FLM_FILE_PATH, FLM_FLASH_BASE, FLM_RAM_BASE) != 0:
+        print("load flm failed")
+        abort = True
+        break
+ # 下载bin文件     
+    if load.bin(BIN_FILE_PATH,BIN_FILE_ADD) != 0:
+        print("load bin failed")
+        abort = True
+        break        
+ # 下载hex文件     
+    if load.hex(HEX_FILE_PATH) != 0:
+        print("load hex failed")
+        abort = True
+        break
+ # 循环次数为1，只下载一次        
+    if  AUTO_DOWNLOAD_COUNT == 1:
+        break    
+    elapsed = 0
+ # 等待断开连接目标板     
+    while True:
+        idcode = cmd.get_idcode()
+        if idcode in (0, 0xFFFFFFFF):
+            break
 
-# 烧写 boot.bin和rtthread.bin
-result = load.bin("boot.bin", 0x08000000,"rtthread.bin", 0x08020000)
-if result != 0:
-    return 
-
-# 加载外部 Flash 的 FLM 下载算法文件
-result = ReadFlm.load("STM32F767_W25QXX.FLM.o", 0x90000000, 0x20000000)
-if result != 0:
-    return 
-
-# 烧写 HZK.bin
-result = load.bin("HZK.bin", 0x90000000)
-if result != 0:
-    return 
-# 蜂鸣器响一声，表示烧写完成
-buzzer.enable()
-buzzer.high()
-time.sleep_ms(500)
-buzzer.low()
-time.sleep_ms(500)
+        if elapsed >= WAIT_IDCODE_TIMEOUT:
+            print("wait idcode offline timeout")
+            abort = True
+            break
+        time.sleep_ms(500)
+        elapsed += 500
+if not abort:
+    print("auto download finished")
+else:
+    print("auto download aborted")
 
 ```
 
-该代码通过加载FLM算法文件，将多个二进制文件（如boot.bin、rtthread.bin和HZK.bin）分别烧录到STM32内部和外部Flash中，并通过蜂鸣器响声提示烧录完成。
+该代码通过加载FLM算法文件，将多个二进制文件（如boot.bin和rt-thread.hex）分别烧录到STM32内部不同地址的flash中。
 
 > **注意：**请根据您的实际项目需求，修改以下内容：
 >
-> - **下载算法文件名称**（如 `"STM32/STM32F7x_1024.FLM.o"` 和 `"STM32F767_W25QXX.FLM.o"`）：应替换为对应芯片和Flash型号的 FLM 文件。
-> - **BIN 文件名称及地址**（如 `"boot.bin"`、`"rtthread.bin"`、`"HZK.bin"` 及其对应的地址）：请确保文件名和烧录地址与您的程序结构一致。
+> - **下载算法文件名称**（如 `"FLM/STM32F10x_1024.FLM"`）：应替换为对应芯片和Flash型号的 FLM 文件。
+> - **下载文件名称及地址**（如 `"boot.bin"`、`"rt-thread.hex"`，及其对应的地址）：请确保文件名和烧录地址与您的程序结构一致。
 >
 > 若文件名或地址设置不当，可能导致程序无法正常运行或烧录失败。
 
@@ -193,9 +320,9 @@ time.sleep_ms(500)
 MicroLink 下载器支持以下两种方式触发脱机烧录脚本的执行：
 
 1. **按键触发**
-    按下 MicroLink 脱机下载扩展板上的按键，即可启动脱机烧录流程并执行该脚本。
+    按下 MKLink 脱机下载扩展板上的按键，即可启动脱机烧录流程并执行该脚本。
 
-![](../../images/microlink/KZB.jpg)
+
 
 2. **Python 虚拟终端手动触发**
 
@@ -204,27 +331,6 @@ MicroLink 下载器支持以下两种方式触发脱机烧录脚本的执行：
 ![](../../images/microlink/load_offline.jpg)
 
 
-
-### 6、拖拽下载
-
-MicroLink支持任意Cotex-M内核芯片的U盘拖拽下载功能，使固件更新变得像复制文件一样简单。用户只需将固件文件拖放到虚拟U盘中，MicroLink便能自动完成下载，摆脱对上位机的依赖，极大地降低了操作门槛。
-
-U盘拖拽下载支持BIN文件，BIN文件的下载地址可以通过`drag_download.py`脚本进行配置。
-
-打开U盘内的`drag_download.py`脚本，代码如下所示：
-
-```py
-import FLMConfig
-ReadFlm = FLMConfig.ReadFlm()
-res1 = ReadFlm.load("FLM/STM32F10x_512.FLM.o",0X08000000,0x20000000)
-```
-
-`ReadFlm.load`函数的三个参数：
-
-- "FLM/STM32F10x_512.FLM.o" ：选择对应单片机的下载算法文件；
-
-- 0X08000000：默认U盘拖拽下载的FLASH位置；
-- 0x20000000：单片机的RAM基地址；
 
 
 
@@ -250,17 +356,11 @@ MicroBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
 <iframe src="https://player.bilibili.com/player.html?bvid=BV1VYRgYYERg" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
 
-### 8、FLM通用下载算法转换工具
 
-以STM32F4xx_1024.FLM为例，下载算法在ARM CMSIS Pack文件夹（通常在D:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\CMSIS\Flash）中，通过FLM下载算法转换工具打开文件，可以生成对应的下载算法驱动文件，将生成的STM32F4xx_512.FLM.o文件，拷贝到MicroLink的U盘中，然后通过`flm_config.py`脚本指定使用此下载算法文件。
 
-![](../../images/microlink/FLMTool.png)
+### 8、固件升级
 
-借助单片机原厂提供的FLM下载算法文件，便可以几乎适配所有的Cortex-M系列单片机。
-
-### 9、固件升级
-
-MicroLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，并删除升级包。升级完成可以查看version.txt文件，了解升级后的新功能。
+MKLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，并删除升级包。升级完成可以查看version.txt文件，了解升级后的新功能。
 
 ⚠️ 需要注意的是，如果Microlink没有自动重启升级，请手动重新上电,再重新复制升级包进行升级。
 
@@ -274,17 +374,26 @@ MicroLink支持系统固件升级，可以为后续添加更多的功能，升�
 
 ### 1、U盘文件说明
 
-- Version.txt
+- readme.txt
 
-Version.txt记录了MicroLink软硬件版本和每次版本更新的内容。
+readme.txt记录了MicroLink软硬件版本和每次版本更新的内容。
 
 ![](../../images/microlink/DETAILS.png)
 
-- Help.htm
+- help.htm
 
-Help.htm是一个在线文档的网址链接，双击该文件即可访问在线文档，进一步了解更多的功能。
+help.htm是一个在线文档的网址链接，双击该文件即可访问在线文档，进一步了解更多的功能。
 
 ![](../../images/microlink/readdocs.png)
+
+- 默认配置脚本default_config.py
+
+```python
+ # 使能自动扫描芯片
+cmd.set_auto_scan(1)
+ # 设置默认输出电压(单位mv)
+cmd.set_power_on(3300)
+```
 
 - 拖拽下载脚本drag_download.py
 
@@ -294,9 +403,9 @@ Help.htm是一个在线文档的网址链接，双击该文件即可访问在线
 
 根据脚本，执行脱机下载流程。
 
-- xxx.FLM.o
+- xxx.FLM
 
-借助单片机厂家提供的pack包里的xxx.FLM下载算法文件，提取出擦写函数，生成xxx.FLM.o文件。
+借助单片机厂家提供的pack包里的xxx.FLM下载算法文件，可以支持任意单片机的脱机下载。
 
 比如STM32F1系列的下载算法所在的电脑默认位置如下：
 
