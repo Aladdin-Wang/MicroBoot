@@ -58,9 +58,7 @@ MKLinkV2        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=89596439
 
 MKLinkV3        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=1013104417098
 
-MKLinkV3 LCD淘宝链接：https://item.taobao.com/item.htm?ft=t&id=1013104417098
-
-
+MKLinkV3 LCD       淘宝链接：正在生产中
 
 ### 更多技术支持
 
@@ -322,15 +320,13 @@ MicroLink 下载器支持以下两种方式触发脱机烧录脚本的执行：
 1. **按键触发**
     按下 MKLink 脱机下载扩展板上的按键，即可启动脱机烧录流程并执行该脚本。
 
-
+![](../../images/microlink/key.png)
 
 2. **Python 虚拟终端手动触发**
 
 使用一个串口助手，连接虚拟串口端口，输入`load.offline()`加回车，效果如下：
 
 ![](../../images/microlink/load_offline.jpg)
-
-
 
 
 
@@ -360,9 +356,19 @@ MicroBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
 ### 8、固件升级
 
-MKLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单，只需要将microlink.rbl升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，并删除升级包。升级完成可以查看version.txt文件，了解升级后的新功能。
+MKLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单。
 
-⚠️ 需要注意的是，如果Microlink没有自动重启升级，请手动重新上电,再重新复制升级包进行升级。
+#### MKLink V2升级方式：
+
+只需要将后缀为xxx.rbl的升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，并删除升级包。升级完成可以查看readme.txt文件，了解升级后的新功能。
+
+#### MKLink V3升级方式：
+
+按下下载器的按键，然后给下载器上电，会进入固件升级模式，电脑会弹出名为CHERRYUF2的U盘，将后缀为xxxx.uf2的升级包拖到U盘中，升级完会自动重启。升级完成可以查看readme.txt文件，了解升级后的新功能。
+
+
+
+⚠️ 需要注意的是，如果MKlink没有自动重启升级，请手动重新上电,再重新复制升级包进行升级。
 
 **开发资料下载地址**：https://pan.baidu.com/s/1Dr8Ss16cBRWXtQpyOGrROg?pwd=zyo0 
 
