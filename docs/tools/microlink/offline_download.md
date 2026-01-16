@@ -143,7 +143,7 @@ if result != 0:
 result = load.bin("HZK.bin", 0x90000000)
 if result != 0:
     return 
-# 蜂鸣器响一声，表示烧写完成
+# 蜂鸣器响声，表示烧写完成
 buzzer.enable()
 buzzer.high()
 time.sleep_ms(500)
