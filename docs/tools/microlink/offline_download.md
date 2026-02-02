@@ -79,7 +79,7 @@ FLM 是一种标准化的芯片 Flash 编程算法格式，通常来自官方 Pa
 
 传统脱机下载器往往只支持烧一个文件，流程固定。而 MicroLink 提供了完整的 Python 脚本接口，允许用户自己用代码定义“烧录流程”。
 
-示例脚本：
+MKLINK V2示例脚本：
 
 ```python
 import load
@@ -117,7 +117,96 @@ if ok:
     
 ```
 
-该脚本通过加载FLM算法文件，将多个二进制文件（如boot.bin、rt-thread.hex）分别烧录到STM32内部Flash中，并通过蜂鸣器响声提示烧录完成。
+MKLINK V3示例脚本：
+
+```python
+import PikaStdLib
+import time
+import cmd
+import load
+
+# 自动下载循环次数
+AUTO_DOWNLOAD_COUNT = 1
+# 等待读取目标IDCODE有效的超时时间（ms）
+WAIT_IDCODE_TIMEOUT = 10000
+# FLM 文件路径
+FLM_FILE_PATH = "FLM/STM32F10x_1024.FLM"
+# 目标 Flash 基地址
+FLM_FLASH_BASE = 0x08000000
+# 目标 RAM 基地址
+FLM_RAM_BASE = 0x20000000
+# HEX 文件路径（支持通配符）
+HEX_FILE_PATH = "rt-thread.hex"
+# BIN 文件路径（支持通配符）
+BIN_FILE_PATH = "bootloader.bin"
+# BIN 文件下载地址
+BIN_FILE_ADD = 0x08000000
+# SWD 时钟频率（Hz）
+SWD_CLOCK_HZ = 10000000
+ # 设置下载速度
+cmd.set_swd_clock(SWD_CLOCK_HZ)
+
+ # 自动循环下载 
+abort = False
+for i in range(AUTO_DOWNLOAD_COUNT):
+    if abort:
+        break
+    print("=== Auto Download Round:", i + 1, "===")
+    elapsed = 0
+ # 等待连接目标板   
+    while True:
+        idcode = cmd.get_idcode()
+        if idcode not in (0, 0xFFFFFFFF):
+            break
+        if elapsed >= WAIT_IDCODE_TIMEOUT:
+            print("wait idcode online timeout")
+            abort = True
+            break
+        print("=== waited_ms :", elapsed, "===")
+        time.sleep_ms(500)
+        elapsed += 500
+    if abort:
+        break
+    print("IDCODE: 0x%08X" % idcode)
+ # 加载下载算法 
+    if load.flm(FLM_FILE_PATH, FLM_FLASH_BASE, FLM_RAM_BASE) != 0:
+        print("load flm failed")
+        abort = True
+        break
+ # 下载bin文件     
+    if load.bin(BIN_FILE_PATH,BIN_FILE_ADD) != 0:
+        print("load bin failed")
+        abort = True
+        break        
+ # 下载hex文件     
+    if load.hex(HEX_FILE_PATH) != 0:
+        print("load hex failed")
+        abort = True
+        break
+ # 循环次数为1，只下载一次        
+    if  AUTO_DOWNLOAD_COUNT == 1:
+        break    
+    elapsed = 0
+ # 等待断开连接目标板     
+    while True:
+        idcode = cmd.get_idcode()
+        if idcode in (0, 0xFFFFFFFF):
+            break
+
+        if elapsed >= WAIT_IDCODE_TIMEOUT:
+            print("wait idcode offline timeout")
+            abort = True
+            break
+        time.sleep_ms(500)
+        elapsed += 500
+if not abort:
+    print("auto download finished")
+else:
+    print("auto download aborted")
+
+```
+
+该脚本通过加载FLM算法文件，将多个二进制文件（如boot.bin、rt-thread.hex）分别烧录到STM32内部Flash中。
 
 > **注意：**请根据您的实际项目需求，修改以下内容：
 >
@@ -132,9 +221,9 @@ if ok:
 - **灵活控制烧写顺序与文件分布**
 - **添加控制逻辑：判断、日志输出、状态指示**
 - **控制外设：比如烧写成功后蜂鸣器响一下**
-- **未来可扩展逻辑判断、加密校验等功能**
+- **自动扫描单片机，根据循环次数自动下载**
 
-> MicroLink 的烧录逻辑不是固定的，而是**被你编写出来的**。
+> MKLink 的烧录逻辑不是固定的，而是**被你编写出来的**。
 
 这相当于赋予了创客一个高度自由的平台，让你可以自己定义烧录策略，而不是被工具的“支持列表”所限制。
 
@@ -171,17 +260,24 @@ MicroLink 支持两种脱机烧录触发方式：
 
 **🔘 方式一：按键触发**
 
-搭配专用脱机下载扩展板，板上有下载按钮和蜂鸣器。
+MKLink V3，板上有下载按钮。
 
-- **按下按钮** → MicroLink 自动执行 `offline_download.py` 脚本
-- **烧录成功** → 蜂鸣器响声提示用户
+- **按下按钮** → MKLink V3 自动执行 `offline_download.py` 脚本
+- **烧录成功** → LED亮绿灯
+- **烧录失败**→  LED亮红灯
 - **可用于量产、售后维修、断网环境**
 
 > 纯离线运行，不依赖上位机。
 
 ------
 
-![](../../images/microlink/KZB.jpg)
+![](../../images/microlink/key.png)
+
+MKLink V2，可用于机台烧录。
+
+- **触发下载**→ TDI引脚与GND短接触发执行 `offline_download.py` 脚本
+- **烧录成功** → TDO引脚可接蜂鸣器或者LED灯提示烧录成功或者失败
+- **可用于量产、售后维修、断网环境**
 
 **💻 方式二：串口命令触发**
 
