@@ -1,4 +1,4 @@
-# 比串口printf更高效的调试技巧
+# 将rtthread的msh重定向到RTT简直爽爆了
 
 ## 一、RTT+ MicroLink，让串口调试真正自由
 

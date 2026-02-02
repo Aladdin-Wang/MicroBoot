@@ -24,7 +24,7 @@ MicroKeen(简称MKLink)是一款集多功能于一体的嵌入式系统开发工
 
 ![](../../images/microlink/MKLinkV3 LCD.png)
 
-​                                                                       型号3：MKLinkV3 LCD高速在线/脱机dap下载器
+​                                                                       型号3：MKLinkV4 高速在线/脱机dap下载器
 
 ### 功能对比
 
@@ -275,7 +275,6 @@ for i in range(AUTO_DOWNLOAD_COUNT):
     if abort:
         break
     print("IDCODE: 0x%08X" % idcode)
-    time.sleep_ms(200)
  # 加载下载算法 
     if load.flm(FLM_FILE_PATH, FLM_FLASH_BASE, FLM_RAM_BASE) != 0:
         print("load flm failed")
@@ -328,7 +327,12 @@ else:
 MicroLink 下载器支持以下两种方式触发脱机烧录脚本的执行：
 
 1. **按键触发**
-    按下 MKLink 脱机下载扩展板上的按键，即可启动脱机烧录流程并执行该脚本。
+
+    V2型号需要搭配 MKLink 脱机下载扩展板上的按键，即可启动脱机烧录流程并执行该脚本。
+
+    ![](../../images/microlink/KZB.jpg)
+
+    V3型号按下 MKLink V3外壳上的按键，即可启动脱机烧录流程并执行该脚本。
 
 ![](../../images/microlink/key.png)
 

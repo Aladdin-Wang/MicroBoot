@@ -21,34 +21,6 @@ MicroLink 支持使用 Python 脚本完整编排脱机烧写过程：
 
 全都不是问题。只需写几行 Python脚本，就能完整描述你的烧录流程。
 
-```python
-import FLMConfig
-import PikaStdLib
-import PikaStdDevice
-import time
-
-time = PikaStdDevice.Time()
-buzzer = PikaStdDevice.GPIO()
-buzzer.setPin('PA4') # 蜂鸣器
-buzzer.setMode('out')
-# 加载FLM 下载算法文件
-ReadFlm = FLMConfig.ReadFlm()
-result = ReadFlm.load("STM32/STM32F7x_1024.FLM.o", 0x08000000, 0x20000000)
-if result != 0:
-    return 
-# 烧写 app.bin到地址0x08000000
-result = load.bin("app.bin", 0x08000000,"rtthread.bin", 0x08020000)
-if result != 0:
-    return    
-# 蜂鸣器响声，表示烧写完成
-buzzer.enable()
-buzzer.high()
-time.sleep_ms(500)
-buzzer.low()
-time.sleep_ms(500)    
-    
-```
-
 > 🔧 **MicroLink 内部运行的是 Python 解释器（基于 PikaPython）**，脱机下载脚本会在脚本引擎中逐行执行，就像运行一个嵌入式程序一样灵活。
 
 ## 二、芯片自由的背后：如何让下载器不再“认芯片”？
@@ -82,15 +54,12 @@ FLM 是一种标准化的芯片 Flash 编程算法格式，通常来自官方 Pa
 
 - 从 Keil MDK 安装路径中提取（通常在 `Keil\ARM\Flash`）
 - 从芯片厂商提供的 Pack 包中提取
-- 使用 MicroLink 提供的 **FLM 提取工具**一键导出为 `.FLM.o` 格式
-
-![RTT.drawio](../.././images/microlink/FLMTool.png)
 
 > ⚠️ 注意：不同芯片型号可能对应不同的 FLM 文件，请确认地址和容量匹配。
 
 **MicroLink 如何利用 FLM 实现烧录？**
 
-1. **解析 FLM 文件**（.FLM.o）：提取必要代码段，减小FLM文件尺寸
+1. **解析 FLM 文件**（XXX.FLM）：提取必要代码段
 
 2. **将代码加载进 MCU RAM**：作为“动态烧录器”运行
 3. **通过调用烧录函数**：实现对目标芯片 Flash 的操作
@@ -113,50 +82,47 @@ FLM 是一种标准化的芯片 Flash 编程算法格式，通常来自官方 Pa
 示例脚本：
 
 ```python
-import FLMConfig
+import load
 import PikaStdLib
 import PikaStdDevice
 import time
 
 time = PikaStdDevice.Time()
 buzzer = PikaStdDevice.GPIO()
-buzzer.setPin('PA4') # 蜂鸣器
+buzzer.setPin('PA4')
 buzzer.setMode('out')
 
-ReadFlm = FLMConfig.ReadFlm()
-# 加载第一个 FLM 下载算法文件
-result = ReadFlm.load("STM32/STM32F7x_1024.FLM.o", 0x08000000, 0x20000000)
-if result != 0:
-    return 
+ok = True
+# 加载 FLM 文件
+load.flm("FLM/STM32F10x_1024.FLM", 0x08000000, 0x20000000)
 
-# 烧写 boot.bin和rtthread.bin
-result = load.bin("boot.bin", 0x08000000,"rtthread.bin", 0x08020000)
-if result != 0:
-    return 
+# 设置频率
+cmd.set_swd_clock(5000000)
 
-# 加载外部 Flash 的 FLM 下载算法文件
-result = ReadFlm.load("STM32F767_W25QXX.FLM.o", 0x90000000, 0x20000000)
-if result != 0:
-    return 
-
-# 烧写 HZK.bin
-result = load.bin("HZK.bin", 0x90000000)
-if result != 0:
-    return 
-# 蜂鸣器响声，表示烧写完成
-buzzer.enable()
-buzzer.high()
-time.sleep_ms(500)
-buzzer.low()
-time.sleep_ms(500)
+#下载bin文件
+if load.bin("boot.bin", 0x08000000) != 0:
+    ok = False
+    
+ #下载hex文件
+if load.hex("rt-thread.hex") != 0:
+    ok = False   
+    
+#蜂鸣器提示下载成功
+if ok:
+    buzzer.enable()
+    buzzer.high()
+    time.sleep_ms(500)
+    buzzer.low()
+    time.sleep_ms(500) 
+    
 ```
 
-该脚本通过加载FLM算法文件，将多个二进制文件（如boot.bin、rtthread.bin和HZK.bin）分别烧录到STM32内部和外部Flash中，并通过蜂鸣器响声提示烧录完成。
+该脚本通过加载FLM算法文件，将多个二进制文件（如boot.bin、rt-thread.hex）分别烧录到STM32内部Flash中，并通过蜂鸣器响声提示烧录完成。
 
 > **注意：**请根据您的实际项目需求，修改以下内容：
 >
-> - **下载算法文件名称**（如 `"STM32/STM32F7x_1024.FLM.o"` 和 `"STM32F767_W25QXX.FLM.o"`）：应替换为对应芯片和Flash型号的 FLM 文件。
-> - **BIN 文件名称及地址**（如 `"boot.bin"`、`"rtthread.bin"`、`"HZK.bin"` 及其对应的地址）：请确保文件名和烧录地址与您的程序结构一致。
+> - **下载算法文件名称**（如 `"STM32/STM32F10x_1024.FLM"` ）：应替换为对应芯片和Flash型号的 FLM 文件。
+> - **BIN 文件名称及地址**（如 `"boot.bin"`、`"rt-thread.hex"`及其对应的地址）：请确保文件名和烧录地址与您的程序结构一致。
 >
 > 若文件名或地址设置不当，可能导致程序无法正常运行或烧录失败。
 
@@ -180,11 +146,11 @@ time.sleep_ms(500)
 
 你只需将以下文件拷贝到 MicroLink 的脱机下载目录中（类似 U 盘的文件夹）：
 
-| 文件名                | 作用                                                         |
-| --------------------- | ------------------------------------------------------------ |
-| `*.FLM.o`             | FLM 下载算法文件（支持多个），可以利用**FLM文件提取工具**生成 |
-| `*.bin`               | 需要烧录的固件文件                                           |
-| `offline_download.py` | 控制烧录流程的 Python 脚本（必须）                           |
+| 文件名                | 作用                               |
+| --------------------- | ---------------------------------- |
+| `*.FLM`               | FLM 下载算法文件（支持多个）       |
+| `*.bin`               | 需要烧录的固件文件                 |
+| `offline_download.py` | 控制烧录流程的 Python 脚本（必须） |
 
 示例目录结构：
 
@@ -192,11 +158,9 @@ time.sleep_ms(500)
 /MICROLINK/
 │
 ├── offline_download.py
-├── STM32F7x_1024.FLM.o
-├── STM32F767_W25QXX.FLM.o
+├── STM32F1x_1024.FLM
 ├── boot.bin
-├── rtthread.bin
-└── HZK.bin
+├── rt-thread.hex
 ```
 
 ------
@@ -231,89 +195,9 @@ MicroLink 支持两种脱机烧录触发方式：
 - 在工控系统中集成自动烧录流程
 - 将离线流程作为可控子模块远程触发。
 
-## 三、给创客的自由：把“下载器”变成“工具箱”
 
-MicroLink 不是一个封闭的烧录盒，而是一个开放的工具平台。它支持：
 
-#### 🚀 1、高速在线下载与调试（CMSIS-DAP 接口）
-
-MicroLink 支持高速在线烧录与调试，使用 CMSIS-DAP 协议，底层优化加速引擎使得 **下载速度与调试响应明显优于传统 DAPLink**。无需忍受慢速 Flash 编程，开发体验更顺畅。
-
-#### 🔄 2、在线/脱机无缝切换
-
-你可以在开发阶段使用 **在线下载**快速验证，在量产阶段直接切换到 **脱机脚本烧录**，无需切换工具，一站到底。**MicroLink = 开发 + 量产 + 售后，一机搞定。**
-
-#### ⚡ 3、USB 转串口：支持高达 10Mbps 波特率
-
-内置 USB 转串口模块，波特率最高支持 **10Mbps**，远超常规工具。这意味着：
-
-- 下载日志不丢字；
-- 串口通信不卡顿；
-- 适配高速设备调试/通信需求。
-
-#### 🛰️ 4、内置 RTT，支持任意串口助手替代RTTView上位机
-
-MicroLink 支持直接转发 RTT 数据（基于 SEGGER RTT 协议）至主机，通过串口即可与 **Xshell、Termite VOFA等串口助手**兼容交互。实现以下功能：
-
-- MCU 实时输出调试信息；
-- 主机发送命令并快速响应；
-- 无需外接调试器，也无需复杂配置。
-
-甚至，你可以把 RTT 与shell等命令行工具结合，在脚本中嵌入设备状态上报、日志输出等功能，打造更“聪明”的调试工具。
-
-#### 📊 5、实时可视化调试支持：SystemView 助你掌控运行态
-
-除了支持在线与脱机烧录，MicroLink 现在还加入了 **SEGGER SystemView 协议支持**，让你可以在**无需额外硬件**的情况下，轻松进行任务级别的运行态分析与可视化调试。
-
-MicroLink 会将目标设备中 RTOS（如 RT-Thread、FreeRTOS）产生的 SystemView 日志数据通过 **RTT 协议**采集，并通过 USB CDC 虚拟串口转发给 PC。
-
-✅ 使用方式：
-
-1. 在 MCU 中启用 SEGGER RTT 和 SystemView 支持（支持 RT-Thread、FreeRTOS 等常见 RTOS）
-2. 发送启动SystemView 指令，MicroLink 会开启自动侦测 RTT UpBuffer 并将数据透传
-3. 在 PC 上打开 SystemView 工具，选择对应串口，即可实时查看运行状态
-
-**启动SystemView 功能：**打开任意串口助手，输入以下指令：
-
-```python
-SystemView.start(0x20000000,1024,1)
-```
-
-- 0x20000000:搜索RTT控制块的起始地址；
-- 1024：搜寻RTT控制块地址范围大小
-- 1：SystemView使用RTT的通道
-
-📌 示例画面：
-
-![](../../images/microlink/systemView.jpg)
-
-#### 📂 6、拖拽烧录：让烧写像拷文件一样简单
-
-通过 MicroLink 的**任意芯片拖拽下载功能**，你可以将 `.bin` 文件直接拖进 U 盘盘符，设备会根据当前配置的 FLM 算法与脚本，**自动识别芯片、地址并完成烧录**。
-
-这意味着：
-
-- 烧录只需「拖进去」；
-- 支持任意芯片（只要有 FLM 算法）；
-- 可搭配自动化脚本，实现智能判断和校验。
-
-#### 🧰 一台设备，多种身份
-
-总结一下，**MicroLink = 脱机下载器 + 在线调试器 + USB 转串口 + RTT 通信 + SystemView +拖拽烧录 + 用户可编程自动化工具**。MicroLink 不只是下载器，更是你打造智能嵌入式工作流的利器。
-
-| 功能                    | 使用场景                       |
-| ----------------------- | ------------------------------ |
-| ✅ 脱机下载              | 工厂烧写、售后维护             |
-| ✅ 在线下载/调试         | 开发阶段快速验证               |
-| ✅ USB转串口（10Mbps）   | 日志收集、高速通信             |
-| ✅ RTT 转UART            | 实时调试、远程诊断             |
-| ✅ SystemView            | RTOS运行态分析与可视化调试     |
-| ✅ 拖拽烧录              | 简化操作，适配量产与非工程用户 |
-| ✅ Python 脚本自动化流程 | 高度定制的烧录策略与交互控制   |
-
-> 从开发到量产，从调试到通信，MicroLink 将所有工具集于一身，让创客拥有前所未有的开发自由。
-
-## 四、未来展望：不断扩展功能，打造工程师手边真正好用的工具
+## 三、未来展望：不断扩展功能，打造工程师手边真正好用的工具
 
 ### 🛒 1. 淘宝购买链接
 
@@ -328,11 +212,10 @@ SystemView.start(0x20000000,1024,1)
 
 为了帮助用户更快上手和排查问题，我们整理了使用 MicroLink 脱机下载功能时的一些常见问题与解答：
 
-| 问题                                  | 解答                                                         |
-| ------------------------------------- | ------------------------------------------------------------ |
-| 💡 FLM 文件从哪里获取？                | 可从 Keil MDK 安装目录（通常在 `Keil\ARM\Flash`）或芯片厂商提供的 Pack 包中提取，然后使用 MicroLink 提供的 FLM 提取工具生成 `.FLM.o` 文件。 |
-| 📂 我只有 bin 文件，没有 FLM，怎么办？ | 建议使用 Keil 安装包或厂商资源获取 FLM，也可以借助他人共享的兼容 FLM 文件。我们未来也计划支持开源算法标准或社区共建资源库。 |
-| 🔄 脱机脚本可以烧录多个文件吗？        | 可以，Python 脚本中你可以按需加载多个 bin 文件、写入不同地址，还可操作多个 Flash 区域。 |
-| 🧪 烧录失败了怎么办？可以调试脚本吗？  | 可以。你可以通过串口连接 MicroLink，使用 `load.offline()` 命令手动触发脚本执行，并通过输出调试信息来定位问题。 |
-| 📦 脱机脚本能控制哪些外设？            | 可以控制 GPIO、电平翻转、蜂鸣器响声、串口交互、延时、打印日志等，用于丰富脱机过程的交互与状态反馈。 |
-| 🚦 如何判断烧录成功？                  | 烧录完成后 MicroLink 会自动鸣响蜂鸣器作为提示，也可以在脚本中自定义 LED 灯亮灭或串口发送完成信号。 |
+| 问题                                 | 解答                                                         |
+| ------------------------------------ | ------------------------------------------------------------ |
+| 💡 FLM 文件从哪里获取？               | 可从 Keil MDK 安装目录（通常在 `Keil\ARM\Flash`）或芯片厂商提供的 Pack 包中提取 |
+| 🔄 脱机脚本可以烧录多个文件吗？       | 可以，Python 脚本中你可以按需加载多个 bin 文件、写入不同地址，还可操作多个 Flash 区域。 |
+| 🧪 烧录失败了怎么办？可以调试脚本吗？ | 可以。你可以通过串口连接 MicroLink，使用 `load.offline()` 命令手动触发脚本执行，并通过输出调试信息来定位问题。 |
+| 📦 脱机脚本能控制哪些外设？           | 可以控制 GPIO、电平翻转、蜂鸣器响声、串口交互、延时、打印日志等，用于丰富脱机过程的交互与状态反馈。 |
+| 🚦 如何判断烧录成功？                 | 烧录完成后 MicroLink 会自动鸣响蜂鸣器作为提示，也可以在脚本中自定义 LED 灯亮灭或串口发送完成信号。 |
