@@ -39,12 +39,15 @@ MicroKeen(简称MKLink)是一款集多功能于一体的嵌入式系统开发工
 | 支持winusb，win10以上系统免驱                   | ✔         | ✔          | ✔         |
 | 自动扫描芯片，提示连接成功                      |           | ✔          | ✔         |
 | vref电压自适应，1.8~5V电压                      |           | ✔          | ✔         |
+| 拖拽下载(bin文件)                               | ✔         |            |           |
 | 脱机下载(bin文件，hex文件)，支持解析FLM下载算法 |           | ✔          | ✔         |
 | 内置4MB nor flash                               |           | ✔          |           |
 | 内置128MB SD卡                                  |           |            | ✔         |
 | USB转485                                        |           |            | ✔         |
 | 功率计：电压电流实时显示                        |           |            | ✔         |
 | 内置ymodem等自定义协议串口升级固件              |           |            | ✔         |
+
+
 
 结合以上产品特点，为开发者提供了**下载调试，批量生产，售后维护，固件升级**等一站式解决方案。
 
@@ -68,7 +71,7 @@ MKLinkV2        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=89596439
 
 MKLinkV3        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=1013104417098
 
-MKLinkV4        淘宝链接：正在生产中，敬请期待
+MKLinkV4        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=1020501356342
 
 ### 更多技术支持
 
