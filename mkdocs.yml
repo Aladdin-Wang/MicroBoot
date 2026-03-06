@@ -33,8 +33,8 @@ nav:
       - 简介: tools/microlink/microlink.md
       - RTT: tools/microlink/RTT_printf.md
       - SystemView: tools/microlink/SystemView.md
+      - VOFA+: tools/microlink/vofa.md      
       - 脱机下载: tools/microlink/offline_download.md
-      - 拖拽下载: tools/microlink/USB_MTP.md
       - Python API: tools/microlink/python_api.md
   - 参与项目:
       - 如何贡献代码: contribute/code.md
