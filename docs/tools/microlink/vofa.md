@@ -29,9 +29,9 @@ vofa.send(0x20000030,"uint8_t",0x2000154c,"float",0x20001550,"float",0.00001)
 
 相关的变量地址可以通过查看MDK编译生成的.map文件来查找，如下：
 
-![RTT_MAP](E:/software/MicroBoot/docs/images/microlink/vofa_map.png)
+![RTT_MAP](../.././images/microlink/vofa_map.png)
 
 📌 示例画面：
 
-![](E:/software/MicroBoot/docs/images/microlink/vofa.png)
+![](../.././images/microlink/vofa.png)
 
