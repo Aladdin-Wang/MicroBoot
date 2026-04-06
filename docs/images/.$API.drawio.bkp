@@ -1,0 +1,28 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.17 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.17">
+  <diagram name="第 1 页" id="beuV4Jj7xMEtti9D6Ooq">
+    <mxGraphModel dx="1221" dy="823" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="JvtZ7tMpK2YuMDSfQ92w-1" value="Python API" style="whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="40" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="JvtZ7tMpK2YuMDSfQ92w-2" value="CMD API" style="whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="280" y="160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="JvtZ7tMpK2YuMDSfQ92w-4" value="LOAD API" style="whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="280" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="JvtZ7tMpK2YuMDSfQ92w-6" value="RTT API" style="whiteSpace=wrap;html=1;fontSize=16;fillColor=#d5e8d4;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="280" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="JvtZ7tMpK2YuMDSfQ92w-8" value="SYS API" style="whiteSpace=wrap;html=1;fontSize=16;fillColor=#d5e8d4;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="280" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="JvtZ7tMpK2YuMDSfQ92w-9" value="VOFA API" style="whiteSpace=wrap;html=1;fontSize=16;fillColor=#d5e8d4;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="280" y="640" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

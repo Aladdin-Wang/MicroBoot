@@ -198,7 +198,7 @@ RTTView.start(0x20000000,1024,0)
 #define __ARM_AT(x) ".ARM.__at_"#x
 #define ARM_AT(x) __ARM_AT(x)
 #if defined(__CC_ARM)  // ARM Compiler 5 (AC5)
-    #define SEGGER_RTT_SECTION __attribute__((at(BOOT_FLASH_OPS_ADDR)))
+    #define SEGGER_RTT_SECTION __attribute__((at(SEGGER_RTT_OPS_ADDR)))
 #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)  // ARM Compiler 6 (AC6)
     #define SEGGER_RTT_SECTION __attribute__((section(ARM_AT(SEGGER_RTT_OPS_ADDR))))
 #elif defined(__GNUC__)  // GCC
@@ -209,6 +209,8 @@ RTTView.start(0x20000000,1024,0)
 SEGGER_RTT_SECTION
 SEGGER_RTT_PUT_CB_SECTION(SEGGER_RTT_CB_ALIGN(SEGGER_RTT_CB _SEGGER_RTT));  
 ```
+
+**如果设置0X20000000后，发现下载程序或者仿真时打印乱码，可以先不指定\_SEGGER_RTT控制块的地址，通过MAP文件查看编译器自动指定的地址,第一遍编译确定好之后,后面把\_SEGGER_RTT固定到对应的地址上。**
 
 ### 2、上电自动开启RTT功能的方法
 
