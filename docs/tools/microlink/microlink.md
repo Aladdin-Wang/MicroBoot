@@ -83,6 +83,10 @@ MKLinkV4        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=10205013
 
 淘宝链接：https://item.taobao.com/item.htm?id=1024972806030
 
+官方授权店铺3：睿桐科技企业店
+
+淘宝链接：https://item.taobao.com/item.htm?id=1042231224417&skuId=6225750154529
+
 ### 更多技术支持
 
 手机扫码添加微信备注**加群**
