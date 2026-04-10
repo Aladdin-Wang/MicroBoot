@@ -31,7 +31,7 @@ nav:
       - FSM: 3rd-party/fsm/fsm.md
   - 开发神器:
       - 简介: tools/microlink/microlink.md
-      - RTT: tools/microlink/RTT_printf.md
+      - SEGGER RTT: tools/microlink/RTT_printf.md
       - SystemView: tools/microlink/SystemView.md
       - VOFA+: tools/microlink/vofa.md      
       - 脱机下载: tools/microlink/offline_download.md
