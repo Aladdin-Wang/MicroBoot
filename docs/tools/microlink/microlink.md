@@ -6,6 +6,8 @@
 
 MicroKeen(简称MKLink)是一款集多功能于一体的嵌入式系统开发工具，专为加速和简化开发者在**研发、调试、量产和售后服务**各阶段的工作流程而设计。不同于传统的开发工具链，MKLink在DAPLink的基础上将**调试器**、**USB转串口**、**离线下载器**和**固件升级工具**等多种功能集成到一个设备中，为开发者提供一站式解决方案。无论您是下载固件、调试代码、批量生产还是固件升级，MKLink都能满足您的需求，大大提升开发效率，减少工具切换带来的时间和财务成本。
 
+<iframe src="https://player.bilibili.com/player.html?bvid=BV1xDQpBMEad" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
+
 ### 产品型号
 
 ### 1、MicroKeen V2
@@ -382,7 +384,7 @@ MicroBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
 
 如果你的bootloader中还没有ymodem协议，可以使用xshell等支持ymodem接收协议的上位机，进行快速验证，演示视频如下，使用MicroLink和另外一个串口工具，分别使用sscom5上位机输入命令和xshell上位机进行文件接收
 
-<iframe src="https://player.bilibili.com/player.html?bvid=BV1VYRgYYERg" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
+
 
 
 
