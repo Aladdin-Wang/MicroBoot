@@ -5,3 +5,7 @@
 文档介绍：
 
 https://microboot.readthedocs.io/zh-cn/latest/
+
+源码链接：
+
+https://github.com/Aladdin-Wang/MicroBootRom
