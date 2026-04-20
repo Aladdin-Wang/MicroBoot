@@ -279,15 +279,15 @@ DownBuffer Channel 2 Size: 0 Mode: 0
 
 ### 4.1 启动VOFA
 
-vofa.send(addr,type,addr,type,addr,type,...,time)
+vofa.send(addr,num,time)
 
 **参数**:
 
 - addr：变量的地址
-- type，变量的类型
+- num，连续读取的变量个数
 - 周期，读取周期，单位秒，0为停止
 
 **示例**:
 
-- vofa.send(0x20000030,"uint8_t",0x2000154c,"float",0x20001550,"float",0.00001)
+- vofa.send(0x20000030,5,0.00001)
 
