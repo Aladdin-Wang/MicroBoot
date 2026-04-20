@@ -20,7 +20,7 @@ nav:
       - queue:  components/queue/queue.md
       - 信号槽: components/signals_slots/signals_slots.md
       - 发布订阅: components/subscribe_publish/subscribe_publish.md
-      - 消息地图: components/msg_map/msg_map.md
+      - multiple_delay: components/multiple_delay/multiple_delay.md
       - shell: components/shell/shell.md
       - ymodem: components/ymodem/ymodem.md
       - BootLoader: components/bootloader/bootloader.md
