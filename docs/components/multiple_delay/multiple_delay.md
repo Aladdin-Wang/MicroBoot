@@ -76,35 +76,36 @@ init() 做了几件事：
 
 **请求一个延时是怎么做的**
 
-request_delay() 的流程很直白：
+request_delay() 的流程：
 
-1. 检查参数
+1.检查参数
 
-   - ptObj != NULL
-   - wDelay != 0
-   - fnHandler != NULL
+- ptObj != NULL
 
-2. 读取当前计数 wCurrentCounter = this.wCounter
+- wDelay != 0
+- fnHandler != NULL
 
-3. 做一个溢出保护：
+2.读取当前计数 wCurrentCounter = this.wCounter
 
-   `if ((uint32_t)(wCurrentCounter + wDelay) < wCurrentCounter) `
+3.做一个溢出保护：
 
-   如果加法回绕了，就拒绝这次请求
+`if ((uint32_t)(wCurrentCounter + wDelay) < wCurrentCounter) `
 
-4. 从内存池分配一个 multiple_delay_item_t
+如果加法回绕了，就拒绝这次请求
 
-5. 填好字段：
+4.从内存池分配一个 multiple_delay_item_t
 
-   - fnHandler
-   - pTag
-   - tPriority
-   - wTargetTime = wCurrentCounter + wDelay
+5.填好字段：
 
-6. 按优先级插入对应链表：
+- fnHandler
+- pTag
+- tPriority
+- wTargetTime = wCurrentCounter + wDelay
 
-   - HIGH 进 ptHighPriorityDelayList
-   - NORMAL / LOW 进 ptDelayList
+6.按优先级插入对应链表：
+
+- HIGH 进 ptHighPriorityDelayList
+- NORMAL / LOW 进 ptDelayList
 
 ------
 
@@ -136,28 +137,23 @@ insert_timer_tick_event_handler() 是整个模块的“时间推进器”。
 
 逻辑可以概括成：
 
-1. 先处理 HIGH 优先级链表表头
-2. 只要表头已经到时间：
-   - 把它从链表弹出
-   - 立即调用回调 fnHandler(MULTIPLE_DELAY_TIMEOUT, pTag)
-   - 释放 item
-3. 如果高优先级表头没超时，就停
-4. 最后 wCounter++
+1.先处理 HIGH 优先级链表表头
+
+2.只要表头已经到时间：
+
+- 把它从链表弹出
+- 立即调用回调 fnHandler(MULTIPLE_DELAY_TIMEOUT, pTag)
+- 释放 item
+
+3.如果高优先级表头没超时，就停
+
+4.最后 wCounter++
 
 这里有个很重要的细节：
 
 **它在 tick 函数里只直接处理高优先级链表，不处理普通/低优先级链表。**
 
 普通/低优先级是交给 Task() 去做的。
-
-还有个细节：
-
-```
-if (NULL == this.ptHighPriorityDelayList) {    if (NULL == this.ptDelayList) {        this.wCounter = 0;        this.wOldCounter = 0;        this.wSavedCounter = 0;        break;    } } 
-```
-
-也就是当两个等待链表都空了，它会把计数器清零。
-这个设计不是必须的，但作者这么做可以让计数值在“空闲期”回到 0，顺便降低长时间运行的溢出压力。
 
 ------
 
@@ -169,26 +165,33 @@ Task() 最终会调用内部 FSM：multiple_delay_task
 
 FSM 大致分三步：
 
-1. on_start
-   - 把当前 wCounter 存到 wSavedCounter
-   - 如果 wOldCounter == wSavedCounter，说明 tick 没变化，这次就没必要继续做
-2. CHECK_LIST
-   - 从 ptDelayList 表头开始检查
-   - 凡是 wTargetTime <= wSavedCounter 的 item 都弹出来
-   - 如果是 LOW，挂进 LowPriorityEvent
-   - 否则挂进 NormalPriorityEvent
-3. RAISE_NORMAL_PRIORITY_EVENT
-   - 每次取一个普通优先级事件
-   - 调回调
-   - 释放 item
-   - 直到普通队列空了，再转去低优先级
-4. RAISE_LOW_PRIORITY_EVENT
-   - 每次取一个低优先级事件
-   - 调回调
-   - 释放 item
-   - 队列空了就 fsm_cpl()
+1.on_start
 
-所以它的实际策略是：
+- 把当前 wCounter 存到 wSavedCounter
+- 如果 wOldCounter == wSavedCounter，说明 tick 没变化，这次就没必要继续做
+
+2.CHECK_LIST
+
+- 从 ptDelayList 表头开始检查
+- 凡是 wTargetTime <= wSavedCounter 的 item 都弹出来
+- 如果是 LOW，挂进 LowPriorityEvent
+- 否则挂进 NormalPriorityEvent
+
+3.RAISE_NORMAL_PRIORITY_EVENT
+
+- 每次取一个普通优先级事件
+- 调回调
+- 释放 item
+- 直到普通队列空了，再转去低优先级
+
+4.RAISE_LOW_PRIORITY_EVENT
+
+- 每次取一个低优先级事件
+- 调回调
+- 释放 item
+- 队列空了就 fsm_cpl()
+
+5.所以它的实际策略是：
 
 - 先把已超时的 normal/low 请求，从“等待链表”搬到“事件队列”
 - 再先处理 normal
@@ -206,11 +209,14 @@ FSM 大致分三步：
 
 cancel_delay() 的逻辑是：
 
-1. 根据 ptItem->tPriority 推测它在哪个链表
-2. 尝试把它从等待链表中删除
-3. 删除成功后：
-   - 回调 fnHandler(MULTIPLE_DELAY_CANCELLED, pTag)
-   - 释放 item
+1.根据 ptItem->tPriority 推测它在哪个链表
+
+2.尝试把它从等待链表中删除
+
+3.删除成功后：
+
+- 回调 fnHandler(MULTIPLE_DELAY_CANCELLED, pTag)
+- 释放 item
 
 注意一个边界：
 
@@ -221,41 +227,25 @@ cancel_delay() 的逻辑是：
 
 ------
 
-**这个模块最值得学的设计点**
-
-**1. 把“时间推进”和“事件处理”拆开**
-
-- tick 只做尽量少的事
-- 复杂处理留给主循环
-
-**2. 用排序链表降低扫描成本**
-
-- 每次只看表头是否到期
-- 不需要每 tick 全表遍历
-
-**3. 用内存池代替动态堆**
-
-- 很适合 MCU
-
-**4. 用优先级隔离中断上下文负担**
-
-- 高优先级立即响应
-- 普通/低优先级延后处理
-
-------
-
 **你在项目里应该怎么用**
 
 典型流程会是这样：
 
-1. 准备一块 buffer 给内存池
-2. MULTIPLE_DELAY.Init(&obj, &cfg)
-3. 在定时中断里周期调用：
-   - MULTIPLE_DELAY.Dependent.TimerTickService(&obj);
-4. 在主循环里反复调用：
-   - MULTIPLE_DELAY.Task(&obj);
-5. 需要一个延时时：
-   - MULTIPLE_DELAY.RequestDelay(&obj, delay, priority, tag, handler);
+1.准备一块 buffer 给内存池
+
+2.MULTIPLE_DELAY.Init(&obj, &cfg)
+
+3.在定时中断里周期调用：
+
+- MULTIPLE_DELAY.Dependent.TimerTickService(&obj);
+
+4.在主循环里反复调用：
+
+- MULTIPLE_DELAY.Task(&obj);
+
+5.需要一个延时时：
+
+- MULTIPLE_DELAY.RequestDelay(&obj, delay, priority, tag, handler);
 
 大概像这样：
 
