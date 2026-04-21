@@ -8,13 +8,11 @@
 
 github：[https://github.com/Aladdin-Wang/MicroBoot_Demo](https://github.com/Aladdin-Wang/MicroBoot_Demo)
 
-gitee：[https://gitee.com/Aladdin-Wang/MicroBoot_Demo](https://gitee.com/Aladdin-Wang/MicroBoot_Demo)
-
 ## 2.安装Pack包
 
 在 **MDK** 中部署 **MicroBoot **的第一步是获取对应的 **cmsis-pack**，对于可以流畅访问 Github 的朋友来说，通过下面的网址直接找到最新的 .pack 文件。
 
-[https://github.com/Aladdin-Wang/MicroBoot/releases](https://github.com/Aladdin-Wang/MicroBoot/releases)
+[Releases · Aladdin-Wang/MicroBootRom](https://github.com/Aladdin-Wang/MicroBootRom/releases)
 
 下载结束后双击文件进行安装,一路 Next 安装即可
 
@@ -54,13 +52,14 @@ gitee：[https://gitee.com/Aladdin-Wang/MicroBoot_Demo](https://gitee.com/Aladdi
 
 在工程管理器中展开 **MicroBoot**，并找到新加入的用户适配器文件（**user_app_cfg.h**)，双击打开后，在编辑器的左下角选择 **Configuration Wizard**，进入图形配置界面：
 
-![cmsis_pack_7](./../images/quick-start/cmsis_pack_7.jpg)
+![cmsis_pack_7](./../images/quick-start/cmsis_pack_7.png)
 
 配置bootloader的参数：
 
 - The starting address of the app：从bootloader跳转到APP的地址；
+- the reset vector offset：复位向量偏移，通常为 4，默认无需修改
 - The app size：APP占用FLASH的大小，必须对扇区对齐；
-- The Boot Flash Ops Addr：对flash进行擦写函数的地址，使用默认值；
+- The Boot Flash Ops Addr：对flash进行擦写函数的api地址；
 
 **步骤四：添加代码**
 
@@ -99,7 +98,7 @@ gitee：[https://gitee.com/Aladdin-Wang/MicroBoot_Demo](https://gitee.com/Aladdi
 __attribute__((aligned(32)))
 uint8_t s_chBuffer[2048] ;
 static byte_queue_t                  s_tCheckUsePeekQueue;
-static fsm(check_use_peek)           s_fsmCheckUsePeek;
+static fsm_check_use_peek_t          s_fsmCheckUsePeek;
 static ymodem_ota_recive_t           s_tYmodemOtaReceive;
 ```
 
@@ -159,7 +158,7 @@ int main(void)
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
-        call_fsm( check_use_peek,  &s_fsmCheckUsePeek );
+        check_use_peek_task(&s_fsmCheckUsePeek );
     }
 
     /* USER CODE END 3 */
