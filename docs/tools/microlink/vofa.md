@@ -31,6 +31,10 @@ vofa.send(0x20000030,5,0.00001)
 2. 启动 VOFA+ 上位机，选择MKLink 提供的虚拟串口，发送启动命令。
 3. 最多一次支持读取16个常用数据类型的变量
 
+**特别注意：变量必须严格4字节对齐，要不然会出现数据撕裂**
+
+`__attribute__((aligned(4))) static volatile uint16_t conut2 = 0;`
+
 ```c
 vofa.send(0x20000030,"uint8_t",0x2000154c,"float",0x20001550,"float",0.00001)
 ```
