@@ -244,9 +244,9 @@ FLASH空间占用如下：
 
 | 描述                  | 用户数据备份区（192 字节） | 用户数据区（192字节） | Magic1 （64字节） | Magic2 （64字节） | Magic3 （64字节） |
 | --------------------- | -------------------------- | --------------------- | ----------------- | ----------------- | ----------------- |
-| **enter_bootloader**  | 0XFFFFFFFF...              | **user_data**         | 0XFFFFFFFF        | 0XFFFFFFFF        | 0x00000000        |
-| **begin_download**    | **user_data**              | 0XFFFFFFFF...         | 0XFFFFFFFF        | 0x00000000        | 0XFFFFFFFF        |
-| **finalize_download** | **user_data**              | 0XFFFFFFFF...         | 0x00000000        | 0x00000000        | 0XFFFFFFFF        |
+| **enter_bootloader**  | 0XFFFFFFFF...              | **user_data**         | 0XFFFFFFFF        | 0XFFFFFFFF        | 0x55555555        |
+| **begin_download**    | **user_data**              | 0XFFFFFFFF...         | 0XFFFFFFFF        | 0x55555555        | 0XFFFFFFFF        |
+| **finalize_download** | **user_data**              | 0XFFFFFFFF...         | 0x55555555        | 0x00000000        | 0XFFFFFFFF        |
 
 - **APP 参数写入**：在需要固件升级时，APP 会将接口类型、波特率等升级信息写入指定的用户数据区。
 - **Boot参数读取**：Bootloader 在启动时首先读取该存储区域，提取接口和波特率参数，并据此初始化通信配置。

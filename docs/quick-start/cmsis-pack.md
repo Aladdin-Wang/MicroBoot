@@ -30,11 +30,11 @@ github：[https://github.com/Aladdin-Wang/MicroBoot_Demo](https://github.com/Ala
 
 如果只想使用MicroBoot的ota功能，可以勾选ymodem_ota，如下图所示，你会发现在窗口中看到橙色的警告：
 
-![cmsis_pack_3](./../images/quick-start/cmsis_pack_4.jpg)
+![cmsis_pack_3](./../images/quick-start/cmsis_pack_4.png)
 
 这里警告的含义是说：**ymodem_ota**依赖了其他模块，但你没有勾选它们。简单的单击左下角的 Resolve 按钮，RTE会自动帮你勾选上所依赖的模块。
 
-![cmsis_pack_3](./../images/quick-start/cmsis_pack_3.jpg)
+![cmsis_pack_3](./../images/quick-start/cmsis_pack_3.png)
 
 单击“OK” 按钮完成组件的添加。
 
@@ -231,5 +231,7 @@ uint16_t shell_write_data(wl_shell_t *ptObj, const char *pchBuffer, uint16_t hwS
 ![cmsis_pack_18](./../images/quick-start/cmsis_pack_18.jpg)
 
 ## 5.常见问题
+[工程](https://github.com/Aladdin-Wang/MicroBoot_Demo)
+
 [参考](../troubleshooting.md)
 
