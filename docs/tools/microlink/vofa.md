@@ -36,7 +36,7 @@ vofa.send(0x20000030,5,0.00001)
 `__attribute__((aligned(4))) static volatile uint16_t conut2 = 0;`
 
 ```c
-vofa.send(0x20000030,"uint8_t",0x2000154c,"float",0x20001550,"float",0.00001)
+vofa.send(0x20000030,"uint8_t",0x2000154c,"uint16_t",0x20001550,"float",0.00001)
 ```
 
 - 0x20000030:变量1内存地址；

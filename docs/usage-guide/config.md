@@ -1,6 +1,6 @@
 在工程管理器中展开 **MicroBoot**，并找到新加入的用户适配器文件（**user_app_cfg.h**)，双击打开后，在编辑器的左下角选择 **Configuration Wizard**，进入图形配置界面：
 
-![cmsis_pack_7](E:/software/MicroBoot/docs/images/quick-start/cmsis_pack_7.png)
+![cmsis_pack_7](../images/quick-start/cmsis_pack_7.png)
 
 配置bootloader的参数：
 
