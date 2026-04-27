@@ -231,7 +231,5 @@ uint16_t shell_write_data(wl_shell_t *ptObj, const char *pchBuffer, uint16_t hwS
 ![cmsis_pack_18](./../images/quick-start/cmsis_pack_18.jpg)
 
 ## 5.常见问题
-[工程](https://github.com/Aladdin-Wang/MicroBoot_Demo)
-
-[参考](../troubleshooting.md)
+[参考工程](https://github.com/Aladdin-Wang/MicroBoot_Demo)
 
