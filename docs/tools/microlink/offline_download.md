@@ -117,7 +117,7 @@ if ok:
     
 ```
 
-MKLINK V3示例脚本：
+MKLINK V3和V4示例脚本：
 
 ```python
 import PikaStdLib
@@ -212,6 +212,20 @@ else:
 >
 > - **下载算法文件名称**（如 `"STM32/STM32F10x_1024.FLM"` ）：应替换为对应芯片和Flash型号的 FLM 文件。
 > - **BIN 文件名称及地址**（如 `"boot.bin"`、`"rt-thread.hex"`及其对应的地址）：请确保文件名和烧录地址与您的程序结构一致。
+> - **修改下载函数**：如果只烧录单个文件，只保留load.bin或者load.hex的代码，如下，下载bin文件，屏蔽hex下载：
+>
+> ```python
+>  # 下载bin文件     
+>     if load.bin(BIN_FILE_PATH,BIN_FILE_ADD) != 0:
+>         print("load bin failed")
+>         abort = True
+>         break        
+>  # 下载hex文件     
+>  #   if load.hex(HEX_FILE_PATH) != 0:
+>  #      print("load hex failed")
+>  #      abort = True
+>  #      break
+> ```
 >
 > 若文件名或地址设置不当，可能导致程序无法正常运行或烧录失败。
 
@@ -245,9 +259,8 @@ else:
 
 ```
 /MICROLINK/
-│
-├── offline_download.py
-├── STM32F1x_1024.FLM
+├── python
+├── FLM
 ├── boot.bin
 ├── rt-thread.hex
 ```
@@ -260,7 +273,7 @@ MicroLink 支持两种脱机烧录触发方式：
 
 **🔘 方式一：按键触发**
 
-MKLink V3，板上有下载按钮。
+MKLink V3和V4，有下载按钮。
 
 - **按下按钮** → MKLink V3 自动执行 `offline_download.py` 脚本
 - **烧录成功** → LED亮绿灯
@@ -277,7 +290,7 @@ MKLink V2，可用于机台烧录。
 
 - **触发下载**→ TDI引脚与GND短接触发执行 `offline_download.py` 脚本
 - **烧录成功** → TDO引脚可接蜂鸣器或者LED灯提示烧录成功或者失败
-- **可用于量产、售后维修、断网环境**
+- **可用于量产、售后维修**
 
 **💻 方式二：串口命令触发**
 
@@ -300,7 +313,12 @@ MKLink V2，可用于机台烧录。
 如果你想支持这个项目，也欢迎购买 MicroLink 实体设备：
 
 🔗 淘宝购买链接：
- 👉 https://item.taobao.com/item.htm?ft=t&id=895964393739
+
+MKLinkV2        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=895964393739
+
+MKLinkV3        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=1013104417098
+
+MKLinkV4        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=1020501356342
 
 包括主板、扩展板、TypeC数据线、说明文档等内容。
 
