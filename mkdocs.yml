@@ -30,7 +30,7 @@ nav:
       - 脱机下载: tools/microlink/offline_download.md
       - IAP程序升级: tools/microlink/ymodem.md
       - Python API: tools/microlink/python_api.md
-      - 常见问题: tools/microlink/常见问题.md
+      - 常见问题: tools/microlink/questions.md
   - 第三方库:
       - Arm-2D: 3rd-party/Arm-2D/arm_2d.md
       - PLOOC: 3rd-party/plooc/plooc.md
