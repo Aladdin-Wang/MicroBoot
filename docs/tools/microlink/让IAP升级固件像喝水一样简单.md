@@ -1,235 +1,213 @@
-# 让IAP升级固件像喝水一样简单
+# IAP升级固件——基于ymodem协议
 
-## 1.准备工作
+## 1.V4下载器准备工作
 
-准备一份基础的裸机源码 (可通过 STM32CubeMx 可视化软件创建也可按照工程项目所需文档手动创建) 工程，如一份 stm32 包含一个支持 **printf 的串口初始化**代码。
+- 在python文件夹中新建一个比如叫`ymodem.py`的脚本，代码如下：
 
-基于CMSIS-PACK移植的DEMO例程地址：
-
-github：[https://github.com/Aladdin-Wang/MicroBoot_Demo](https://github.com/Aladdin-Wang/MicroBoot_Demo)
-
-## 2.安装Pack包
-
-在 **MDK** 中部署 **MicroBoot **的第一步是获取对应的 **cmsis-pack**，对于可以流畅访问 Github 的朋友来说，通过下面的网址直接找到最新的 .pack 文件。
-
-[Releases · Aladdin-Wang/MicroBootRom](https://github.com/Aladdin-Wang/MicroBootRom/releases)
-
-下载结束后双击文件进行安装,一路 Next 安装即可
-
-![cmsis_pack](./../images/quick-start/cmsis_pack.png)
-
-## 3.添加MicroBoot到工程
-
-**步骤一：加入组件** 
-
-在 MDK 工程中通过工具栏的快捷按钮，来打开 RTE 配置窗口：
-
-![cmsis_pack_2](./../images/quick-start/cmsis_pack_2.png)
-
-在 Manage Rum-Time Environment 里 "Software Component" 栏找到 MicroBoot，并将其展开：
-
-如果只想使用MicroBoot的ota功能，可以勾选ymodem_ota，如下图所示，你会发现在窗口中看到橙色的警告：
-
-![cmsis_pack_3](./../images/quick-start/cmsis_pack_4.png)
-
-这里警告的含义是说：**ymodem_ota**依赖了其他模块，但你没有勾选它们。简单的单击左下角的 Resolve 按钮，RTE会自动帮你勾选上所依赖的模块。
-
-![cmsis_pack_3](./../images/quick-start/cmsis_pack_3.png)
-
-单击“OK” 按钮完成组件的添加。
-
-根据芯片类型选择FLASH的驱动程序：
-
-![cmsis_pack_5](./../images/quick-start/cmsis_pack_5.jpg)
-
-**步骤二：配置编译环境**
-
-如果你使用**Arm Compiler 6（armclang）**，则需要打开对**C11**和**GNU扩展**的支持，即直接在"Language C"中选择“**gnu11**”：
-
-![cmsis_pack_6](./../images/quick-start/cmsis_pack_6.jpg)
-
-**步骤三：模块配置**
-
-在工程管理器中展开 **MicroBoot**，并找到新加入的用户适配器文件（**user_app_cfg.h**)，双击打开后，在编辑器的左下角选择 **Configuration Wizard**，进入图形配置界面：
-
-![cmsis_pack_7](./../images/quick-start/cmsis_pack_7.png)
-
-配置bootloader的参数：
-
-- The starting address of the app：从bootloader跳转到APP的地址；
-- the reset vector offset：复位向量偏移，通常为 4，默认无需修改
-- The app size：APP占用FLASH的大小，必须对扇区对齐；
-- The Boot Flash Ops Addr：对flash进行擦写函数的api地址；
-
-**步骤四：添加代码**
-
-假设你以串口（其他串行外设方法类似）的方式传输数据，在usart.h中，添加信号：
-
-![cmsis_pack_8](./../images/quick-start/cmsis_pack_8.png)
-
-在usart.c中，添加data_msg_t的定义
-
-![cmsis_pack_9](./../images/quick-start/cmsis_pack_9.png)
-
-打开串口接收数据中断
-
-![cmsis_pack_10](./../images/quick-start/cmsis_pack_10.jpg)
-
-在中断接收回调函数中，发射信号：
-
-![cmsis_pack_11](./../images/quick-start/cmsis_pack_11.jpg)
-
-实现一个串口发送接口：
-
-![cmsis_pack_12](./../images/quick-start/cmsis_pack_12.jpg)
-
-
-
-在main.c中包含头文件：
-
-```c
-#include "ymodem_ota.h"
-#include "check_agent_engine.h"
+```python
+import PikaStdLib
+import cmd
+import ym
+#发送字节数据
+#data = bytes([0x01,0x05,0x00,0x01,0x00,0x01,0X5D,0XCA])
+#发送字符串数据
+data = b'boot\r\n'
+#使用串口发送
+#uart = serial.uart(115200)
+#uart.write_bytes(data,len(data))
+#使用485发送
+rs485 = serial.rs485(115200)
+rs485.write_bytes(data,len(data))
+#开始ymodem升级
+ymodem = ym.ymodem("uart",115200)
+ymodem.send("rtthread.bin")
 ```
 
-添加对象
+整个升级流程分两步：
 
-```c
-__attribute__((aligned(32)))
-uint8_t s_chBuffer[2048] ;
-static byte_queue_t                  s_tCheckUsePeekQueue;
-static fsm_check_use_peek_t          s_fsmCheckUsePeek;
-static ymodem_ota_recive_t           s_tYmodemOtaReceive;
+**（1）先让 APP 进入 BootLoader**
+
+```
+data = b'boot\r\n'
+rs485.write_bytes(data, len(data))
 ```
 
-实现一个获取系统运行时间的函数：
+这一步就是**发一条指令给 APP**，让它跳转到 BootLoader。
+
+这条指令可以是任意格式，比如：
+
+- 字符串命令（如 `boot`）
+- Modbus 指令
+- 自定义协议数据
+
+只要你的 APP 能识别并执行“跳转 BootLoader”即可。
+
+**（2）通过 YModem 发送固件**
+
+```
+ymodem = ym.ymodem("uart", 115200)
+ymodem.send("rtthread.bin")
+```
+
+进入 BootLoader 后，使用 YMODEM 协议传输固件，完成升级。
+
+**说明：**
+
+- 触发命令和 YModem **可以使用不同波特率**
+- APP 阶段用什么协议都可以，只要能识别到跳转指令
+
+## 2.APP准备工作
+
+app需要能接收到下载器发来的跳转指令，比如字符串命令（如 `boot`），以下是我使用的app跳转代码：
 
 ```c
-int64_t get_system_time_ms(void)
+typedef struct {
+    char chProjectName[16];
+    char chHardWareVersion[16];
+    char chSoftBootVersion[16];
+    char chSoftAppVersion[16];	
+    char chPortName[16];
+	int wPortBaudrate;
+} msgSig_t;
+typedef struct {
+    union {
+        msgSig_t sig;
+        char B[sizeof(msgSig_t)];
+    } msg_data;
+} user_data_t;
+
+user_data_t  tUserData = {
+    .msg_data.sig.chProjectName = "app",
+};
+
+typedef struct {
+    void (*fnGoToBoot)(uint8_t *pchDate, uint16_t hwLength);
+    bool (*target_flash_init)(uint32_t addr);
+    bool (*target_flash_uninit)(uint32_t addr);
+    int  (*target_flash_read)(uint32_t addr, uint8_t *buf, size_t size);
+    int  (*target_flash_write)(uint32_t addr, const uint8_t *buf, size_t size);
+    int  (*target_flash_erase)(uint32_t addr, size_t size);
+} boot_ops_t;
+
+void boot()
 {
-    return HAL_GetTick();
+    memcpy(tUserData.msg_data.sig.chPortName, "UART1", strlen("UART1"));
+    tUserData.msg_data.sig.wPortBaudrate = 115200;
+    boot_ops_t *ptBootOps = (boot_ops_t *) BOOT_FLASH_OPS_ADDR;
+    ptBootOps->fnGoToBoot((uint8_t *)tUserData.msg_data.B, sizeof(tUserData));
+    reboot();
+}
+MSH_CMD_EXPORT(boot, go to bootloader);
+```
+
+APP 的核心任务只有一个：**收到指令后跳转到 BootLoader**
+
+**（1）用户数据结构**
+
+```
+typedef struct {
+    char chProjectName[16];
+    char chHardWareVersion[16];
+    char chSoftBootVersion[16];
+    char chSoftAppVersion[16];	
+    char chPortName[16];
+    int wPortBaudrate;
+} msgSig_t;
+```
+
+这个结构体用于**传递参数给 BootLoader**，主要包含：
+
+- 当前工程信息（可选）
+- 通信接口（如 `"UART1"`）
+- 通信波特率（如 `115200`）
+
+BootLoader 可以根据这些信息初始化通信接口。
+
+**（2）数据封装**
+
+```
+typedef struct {
+    union {
+        msgSig_t sig;
+        char B[sizeof(msgSig_t)];
+    } msg_data;
+} user_data_t;
+```
+
+作用：
+
+- 将结构体转换为**字节数组**
+- 方便作为参数传递给 BootLoader
+
+**（3）BootLoader 接口表**
+
+```
+typedef struct {
+    void (*fnGoToBoot)(uint8_t *pchDate, uint16_t hwLength);
+    bool (*target_flash_init)(uint32_t addr);
+    bool (*target_flash_uninit)(uint32_t addr);
+    int  (*target_flash_read)(uint32_t addr, uint8_t *buf, size_t size);
+    int  (*target_flash_write)(uint32_t addr, const uint8_t *buf, size_t size);
+    int  (*target_flash_erase)(uint32_t addr, size_t size);
+} boot_ops_t;
+```
+
+这是 BootLoader 提供的一组函数接口，其中最关键的是：
+
+- `fnGoToBoot()`：用于**跳转到 BootLoader**
+
+**（4）跳转函数**
+
+```
+void boot()
+{
+    memcpy(tUserData.msg_data.sig.chPortName, "UART1", strlen("UART1"));
+    tUserData.msg_data.sig.wPortBaudrate = 115200;
+
+    boot_ops_t *ptBootOps = (boot_ops_t *) BOOT_FLASH_OPS_ADDR;
+    ptBootOps->fnGoToBoot((uint8_t *)tUserData.msg_data.B, sizeof(tUserData));
+
+    reboot();
 }
 ```
 
-在**main()** 函数中加入代码：
+执行流程：
 
-```c
+设置通信参数
 
-int main(void)
-{
-    /* USER CODE BEGIN 1 */
+- 指定使用哪个串口（如 `UART1`）
+- 指定波特率（如 `115200`）
 
-    /* USER CODE END 1 */
+获取 BootLoader 接口地址
 
-    /* MCU Configuration--------------------------------------------------------*/
+- `BOOT_FLASH_OPS_ADDR` 是 BootLoader 中接口表的固定地址
 
-    /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-    HAL_Init();
+调用跳转函数
 
-    /* USER CODE BEGIN Init */
+- 将参数（字节流）传给 BootLoader
+- 触发跳转
 
-    /* USER CODE END Init */
+软件复位
 
-    /* Configure the system clock */
-    SystemClock_Config();
+- 确保系统正确进入 BootLoader
 
-    /* USER CODE BEGIN SysInit */
-
-    /* USER CODE END SysInit */
-
-    /* Initialize all configured peripherals */
-    MX_GPIO_Init();
-    MX_USART6_UART_Init();
-    /* USER CODE BEGIN 2 */
-    queue_init(&s_tCheckUsePeekQueue, s_chBuffer, sizeof(s_chBuffer));
-    init_fsm(check_use_peek, &s_fsmCheckUsePeek, args(&s_tCheckUsePeekQueue));
-		
-    ymodem_ota_receive_init(&s_tYmodemOtaReceive, get_read_byte_interface(&s_fsmCheckUsePeek));
-    agent_register(&s_fsmCheckUsePeek, &s_tYmodemOtaReceive.tCheckAgent);
-
-    connect(&tUartMsgObj, SIGNAL(uart_sig), &s_tCheckUsePeekQueue, SLOT(enqueue_bytes));
-    connect(&s_tYmodemOtaReceive.tYmodemReceive, SIGNAL(ymodem_rec_sig), &huart6, SLOT(uart_sent_data));
-
-    /* USER CODE END 2 */
-
-    /* Infinite loop */
-    /* USER CODE BEGIN WHILE */
-    while (1) {
-        /* USER CODE END WHILE */
-
-        /* USER CODE BEGIN 3 */
-        check_use_peek_task(&s_fsmCheckUsePeek );
-    }
-
-    /* USER CODE END 3 */
-}
-```
-
-**步骤五：验证升级功能**
-
-以上就完成了对 **MicroBoot** 模块基本功能的配置，编译下载，如果一切顺利，你应该可以在串口助手中看到3秒钟打印一个字母“C”。
-
-![cmsis_pack_13](./../images/quick-start/cmsis_pack_13.png)
-
-
-
-使用 Xshell等带有Ymodem协议的串口助手，来下载文件：
-
-![cmsis_pack_14](./../images/quick-start/cmsis_pack_14.jpg)
-
-![cmsis_pack_15](./../images/quick-start/cmsis_pack_15.jpg)
-
-或者直接使用MicroLink进行下载，MicroLink内置Ymodem协议，将需要升级的bin文件，直接拷贝到虚拟U盘中，即可自动完成下载。
-
-![cmsis_pack_16](./../images/quick-start/cmsis_pack_16.png)
-
-
-
-## 4.添加shell命令行工具到工程
-
-添加shell组件：
-
-![cmsis_pack_17](./../images/quick-start/cmsis_pack_17.png)
-
-在main.c中添加头文件：
-
-```c
-#include "micro_shell.h"
+**（5）命令注册**（可选）
 
 ```
-
-添加micro_shell的对象，并实现shell读写数据的函数
-
-```c
-static check_shell_t                 s_tShellObj;
-uint16_t shell_read_data(wl_shell_t *ptObj, char *pchBuffer, uint16_t hwSize)
-{
-    peek_byte_t *ptReadByte = get_read_byte_interface(&s_fsmCheckUsePeek);
-    return ptReadByte->fnGetByte(ptReadByte, (uint8_t *)pchBuffer, hwSize);
-}
-
-uint16_t shell_write_data(wl_shell_t *ptObj, const char *pchBuffer, uint16_t hwSize)
-{
-	HAL_UART_Transmit(&huart6, (uint8_t *)pchBuffer, hwSize, 100);
-	return hwSize;
-}
+MSH_CMD_EXPORT(boot, go to bootloader);
 ```
 
-在main函数中注册shell
+作用：
 
-```c
-    shell_ops_t s_tOps = {
-        .fnReadData = shell_read_data,
-		.fnWriteData = shell_write_data,
-    };
-    shell_init(&s_tShellObj,&s_tOps);
-	agent_register(&s_fsmCheckUsePeek, &s_tShellObj.tCheckAgent);
+- 将 `boot` 函数注册为命令行指令
+- 用户可以直接输入：
+
+```
+boot
 ```
 
-完成以上，下载后便可使用命令行功能
+即可触发升级流程。
 
-![cmsis_pack_18](./../images/quick-start/cmsis_pack_18.jpg)
+## 3.bootloader准备工作
 
-## 5.常见问题
-[参考工程](https://github.com/Aladdin-Wang/MicroBoot_Demo)
-
+参考[基于 CMSIS-PACK 移植教程](..\..\quick-start\cmsis-pack.md)使用microboot。
