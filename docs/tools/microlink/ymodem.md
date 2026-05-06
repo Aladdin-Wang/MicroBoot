@@ -210,4 +210,4 @@ boot
 
 ## 3.bootloader准备工作
 
-参考[基于 CMSIS-PACK 移植教程](..\..\quick-start\cmsis-pack.md)使用microboot。
+参考[基于 CMSIS-PACK 移植教程](https://microboot.readthedocs.io/zh-cn/latest/quick-start/cmsis-pack/)使用microboot。
