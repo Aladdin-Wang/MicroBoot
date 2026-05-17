@@ -38,8 +38,9 @@ nav:
   - 参与项目:
       - 如何贡献代码: contribute/code.md
       - 如何贡献文档: contribute/document.md
-  - 私人订制:
-      - BootLoader: bootloader/BootLoader.md
+  - AI:
+      - 入门: AI/AI.md
+      - skill: tools/microlink/skill.md
   - About:
       - Overview: about/about.md
       - Team: about/team.md
