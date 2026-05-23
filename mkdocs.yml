@@ -40,6 +40,7 @@ nav:
       - 如何贡献文档: contribute/document.md
   - AI:
       - 入门: AI/AI.md
+      - AI下载器: AI/AI下载器
       - skill: tools/microlink/skill.md
   - About:
       - Overview: about/about.md

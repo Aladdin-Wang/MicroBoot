@@ -4,9 +4,55 @@
 
 ## 一、产品概述
 
-MicroKeen(简称MKLink)是一款集多功能于一体的嵌入式系统开发工具，专为加速和简化开发者在**研发、调试、量产和售后服务**各阶段的工作流程而设计。不同于传统的开发工具链，MKLink在DAPLink的基础上将**调试器**、**USB转串口**、**离线下载器**和**固件升级工具**等多种功能集成到一个设备中，为开发者提供一站式解决方案。无论您是下载固件、调试代码、批量生产还是固件升级，MKLink都能满足您的需求，大大提升开发效率，减少工具切换带来的时间和财务成本。
+MicroKeen（简称 MKLink）是一款面向 AI Agent 时代打造的多功能嵌入式开发工具，也是全球首批真正支持 AI 直接调用硬件调试能力的智能下载器之一。
 
-<iframe src="https://player.bilibili.com/player.html?bvid=BV1xDQpBMEad" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
+不同于传统仅服务于人类工程师的调试工具，MKLink 不再只是一个“下载程序”的设备，而是一个能够连接 AI 与真实 MCU 硬件世界的运行时接口层（MCU Runtime Interface）。
+
+MKLink 在 DAPLink 架构基础上深度扩展，融合了：
+
+- 高速调试器（Debugger）
+- USB 转串口
+- RTT 实时数据通道
+- 离线下载器
+- 固件升级工具
+- 高速 RAM / Flash 访问
+- Runtime 数据采集
+- AI Skill 调用接口
+
+等多种功能于一体，为研发、调试、量产、自动化测试以及售后升级提供统一的一站式解决方案。
+
+传统下载器主要面向 IDE、按钮和图形界面设计，而 MKLink 从底层开始更加关注：
+
+### “如何让 AI Agent 直接操作硬件”
+
+通过标准化、结构化、可脚本化的接口，AI 可以直接调用 MKLink 完成：
+
+- 固件下载
+- RAM 读取
+- 寄存器分析
+- RTT 日志获取
+- HardFault 调试
+- dump_memory 高速采样
+- 运行态数据分析
+- 自动验证与闭环修复
+
+使 AI 不再只是“读代码”，而是真正开始“读取硬件现场”。
+
+借助 MKLink Skill，AI Agent 可以将：
+
+代码分析 → 自动编译 → 固件烧录 → 运行态读取 → 故障分析 → 自动修复 → 再验证
+
+串联成完整闭环。
+
+这意味着：
+
+嵌入式开发工具第一次开始从“Human-in-the-loop（人类在环）”走向“Agent-in-the-loop（AI在环）”。
+
+无论您是在进行 MCU 调试、RTOS 分析、DMA 故障定位、HardFault 排查、BMS 系统验证、自动化测试，还是 AI 驱动的嵌入式开发，MKLink 都能够显著提升开发效率，降低工具切换成本，并为 AI Agent 提供真正可落地的硬件执行能力。
+
+MKLink 不只是一个多功能下载器。
+
+详情说明：
 
 ### 产品型号
 
@@ -53,19 +99,9 @@ MicroKeen(简称MKLink)是一款集多功能于一体的嵌入式系统开发工
 
 结合以上产品特点，为开发者提供了**下载调试，批量生产，售后维护，固件升级**等一站式解决方案。
 
-## MicroKeen（MKLink） vs J-Link
+## MicroKeen（MKLink） vs 其他
 
-### 功能覆盖与差异化对比
-
-| 能力维度                          | **MicroKeen（MKLink）**                                | **J-Link**                      | 差异化说明                                  |
-| --------------------------------- | ------------------------------------------------------ | ------------------------------- | ------------------------------------------- |
-| **在线下载与调试**                | CMSIS-DAP V2                                           | 专有协议                        | MKLink 在标准协议下实现更高性价比的高速调试 |
-| **USB 转串口**                    | 内置高速 USB-UART最高 12M Baud                         | 需外接或特定型号支持            | MKLink 原生集成，减少工具依赖               |
-| **RTT / RTTView**                 | 原生支持 RTT<br/>任意串口工具可用                      | 需 RTTViewer 专用工具           | MKLink 更开放，不绑定上位机                 |
-| **SystemView**                    | 原生 SystemView 协议<br/>RTT 方式采集<br/>无需额外硬件 | 依赖 J-Link 硬件                | 功能等效，硬件与成本更友好                  |
-| **数据可视化（VOFA+ / J-Scope）** | 原生 VOFA+ 协议<br/>基于 SWD 非侵入采集                | J-Scope 专有协议                | MKLink 采用开放协议，易集成                 |
-| **自动化与脚本能力**              | 内置 Python 脚本引擎<br/>可定制量产 / 升级流程         | J-Link Commander<br/>命令式控制 | MKLink 更适合复杂自动化场景                 |
-| **量产与脱机下载**                | 支持脱机烧录<br/>FLM + Python 脚本                     | 需额外量产工具                  | MKLink 覆盖生产阶段                         |
+![](../../images/microlink/AI.png)
 
 ### 购买地址
 
