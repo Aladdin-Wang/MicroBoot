@@ -52,7 +52,7 @@ MKLink 在 DAPLink 架构基础上深度扩展，融合了：
 
 MKLink 不只是一个多功能下载器。
 
-详情说明：
+详情说明：https://microboot.readthedocs.io/zh-cn/latest/AI/AI_MKLink
 
 ### 产品型号
 
