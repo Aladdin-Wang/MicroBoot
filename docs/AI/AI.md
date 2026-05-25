@@ -6,7 +6,7 @@
 
 ## 1、快速启用Agent
 
-[参考HyueAPI 使用指南](https://doc.hyueapi.com/web/#/609504501/282610590)
+[快速开始 · ProAPI](https://newdocs.prorisehub.com/)
 
 ## 2、 如何使用CODEX
 
