@@ -24,6 +24,14 @@ vscode安装 Cladue Code插件
 
 ## 4、安装下载器的skill
 
+百度云下载地址：
+
+https://pan.baidu.com/s/1Dr8Ss16cBRWXtQpyOGrROg?pwd=zyo0 
+
+github下载地址：
+
+https://github.com/Aladdin-Wang/Mklink-AI-Probe
+
 以codex为例：
 
 将mklink-flash压缩包解压到C:\Users\akqbd\.codex\skills目录
