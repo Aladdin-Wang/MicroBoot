@@ -54,6 +54,8 @@ MKLink 不只是一个多功能下载器。
 
 详情说明：https://microboot.readthedocs.io/zh-cn/latest/AI/AI_MKLink
 
+<iframe src="https://player.bilibili.com/player.html?bvid=BV1W1EK6rE2X" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
+
 ### 产品型号
 
 ### 1、MicroKeen V2
