@@ -257,6 +257,8 @@ DC EF ED 86               // CRC32
 
 `cmd.flush_memory(addr, byte1, byte2, byte3, ..., byteN)`
 
+`cmd.flush_memory((addr, data))`
+
 `cmd.flush_memory([(addr1, data1), (addr2, data2), ..., (addrN, dataN)])`
 
 **参数**:
@@ -267,8 +269,9 @@ DC EF ED 86               // CRC32
 
 **说明**:
 
-- 第一种写法兼容旧接口，只能向一个连续地址写入多个字节
-- 第二种写法支持一次向多个地址写入多段数据，按列表顺序依次写入
+- 第一种写法，只能向一个连续地址写入少量字节
+- 第二种写法支持单地址 `bytes/list/tuple` 数据写入，适合中大块连续数据
+- 第三种写法支持一次向多个地址写入多段数据，按列表顺序依次写入
 - 写入过程内部按小块分批写 RAM，失败时会输出 `flush fail`
 
 **示例**:
@@ -284,6 +287,61 @@ cmd.flush_memory([
     (0x20003000, bytes([0x88]))
 ])
 ```
+
+**大块数据示例**:
+
+```python
+# 重复字节填充
+cmd.flush_memory([
+    (0x20002000, bytes([0x5A]) * 1024)
+])
+
+# 16 字节实际 pattern 循环
+cmd.flush_memory([
+    (
+        0x20002000,
+        bytes([
+            0x01, 0x05, 0x00, 0x01,
+            0x00, 0x01, 0x5D, 0xCA,
+            0x10, 0x20, 0x30, 0x40,
+            0x55, 0xAA, 0x7E, 0x81,
+        ]) * 64
+    )
+])
+```
+
+**使用边界**:
+
+| 接口形式 | 推荐稳定边界 | 实测上限 | 说明 |
+|---|---:|---:|---|
+| `cmd.flush_memory(addr, b0, b1, ...)` | `<= 20 bytes` | `20 bytes` | 实测 `addr + 20 bytes = 21` 个总参数可用，`addr + 21 bytes = 22` 个总参数异常 |
+| `cmd.flush_memory((addr, data))` | `<= 12KB` | `14KB` | 单地址 `bytes/list` 写入。14KB 头/中/尾读回通过，15KB 后 CDC 异常 |
+| `cmd.flush_memory([(addr, data)])` | `<= 12KB` | `14KB` | 单地址 batch 形式，边界与 tuple 单地址一致 |
+| `cmd.flush_memory([(addr1, data1), ...])` | `<= 8 个地址项` | `8 个地址项` | 多地址多数据写入。9~11 项未细分，12 项失败后 CDC 异常 |
+| 多地址总数据量 | `<= 12KB` | 参考单地址 `14KB` | 地址项数未超时，总数据量仍建议按单地址边界控制 |
+
+**推荐实际使用边界**:
+
+```text
+单次 flush_memory:
+- 老接口数据字节 <= 20 bytes
+- 单地址/单块数据量 <= 12KB
+- 多地址数量 <= 8 个地址项
+- 多地址总数据量 <= 12KB
+
+极限可用但不建议长期压线:
+- 单地址数据量 <= 14KB
+```
+
+**注意事项**:
+
+- `cmd.flush_memory` 成功时通常只返回 `>>>`，不会打印成功文本。
+- 失败时可能打印 `flush fail`，也可能导致 CDC 端口异常或短暂消失，需要复位或重插设备后继续。
+- 大数据优先使用短表达式，例如 `bytes([0x5A]) * N` 或短 pattern 乘法。
+- 完整 256 字节列表表达式如 `bytes([0, 1, ..., 255]) * k` 在当前测试固件中可能触发 `SyntaxError`。
+- 写入地址必须确认是目标 RAM 空闲区，避免覆盖目标程序栈、堆、RTOS 对象、DMA 缓冲或显示缓冲。
+- 边界与固件版本、`PIKA_LINE_BUFF_SIZE`、目标 RAM 布局、下载器状态有关，升级固件后应复测。
+- 大块数据写入后建议用 `cmd.read_ram(addr, 16)`、`cmd.read_ram(addr + size // 2, 16)`、`cmd.read_ram(addr + size - 16, 16)` 读取头部、中间、尾部进行校验。
 
 ## 2 load api列表
 
