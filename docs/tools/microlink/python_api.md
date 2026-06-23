@@ -8,8 +8,6 @@ PikaPython 开发文档：https://pikapython.com/doc/#pikapython
 
 ![](../../images/microlink/API.png)
 
-![](../../images/microlink/python_API.png)
-
 ## 1.cmd api列表
 
 ### 1.1 读取Ram数据
@@ -342,6 +340,163 @@ cmd.flush_memory([
 - 写入地址必须确认是目标 RAM 空闲区，避免覆盖目标程序栈、堆、RTOS 对象、DMA 缓冲或显示缓冲。
 - 边界与固件版本、`PIKA_LINE_BUFF_SIZE`、目标 RAM 布局、下载器状态有关，升级固件后应复测。
 - 大块数据写入后建议用 `cmd.read_ram(addr, 16)`、`cmd.read_ram(addr + size // 2, 16)`、`cmd.read_ram(addr + size - 16, 16)` 读取头部、中间、尾部进行校验。
+
+### 1.9 设置复位单片机
+
+`cmd.set_reset()`
+
+**参数**:
+
+- 无
+
+**说明**:
+
+- 通过下载器控制目标芯片的复位脚，对目标单片机执行一次软件和硬件复位。
+
+**示例**:
+
+- `cmd.set_reset()`
+
+### 1.10 设置下载频率
+
+`cmd.set_swd_clock(int clock)`
+
+**参数**:
+
+- `clock`：SWD 下载时钟频率，单位 Hz
+
+**说明**:
+
+- 设置 MKLink 访问目标芯片时使用的 SWD 时钟频率。
+- 频率越高，下载和读写速度通常越快，但对连线质量、目标板电源和目标芯片调试接口稳定性要求也越高。
+- 如果出现下载失败、读写不稳定、偶发无法连接等问题，建议先降低频率再测试。
+
+**示例**:
+
+- `cmd.set_swd_clock(1000000)`：设置为 1 MHz
+- `cmd.set_swd_clock(5000000)`：设置为 5 MHz
+- `cmd.set_swd_clock(10000000)`：设置为 10 MHz
+
+```c++
+cmd.set_swd_clock(5000000)
+```
+
+**注意事项**:
+
+- 建议先使用较低频率确认连线和芯片连接正常，再逐步提高频率。
+- 长排线、杜邦线、目标板供电不稳或目标芯片低功耗运行时，都可能需要降低 SWD 频率。
+
+### 1.11 设置是否开启vref电压跟随(V4)
+
+`cmd.set_auto_follow_vref(bool enable)`
+
+**参数**:
+
+- `enable`：是否开启 VREF 电压跟随
+  - `1`：开启 VREF 电压跟随
+  - `0`：关闭 VREF 电压跟随
+
+**说明**:
+
+- 该接口适用于 MKLink V4。
+- 开启 VREF 跟随后，下载器会根据目标板 VREF 输入电压调整接口电平，用于适配不同目标板电压。
+- 关闭 VREF 跟随后，可配合 `cmd.set_power_on(mv)` 手动设置 VCC 输出电压。
+
+**示例**:
+
+- `cmd.set_auto_follow_vref(1)`：开启 VREF 电压跟随
+- `cmd.set_auto_follow_vref(0)`：关闭 VREF 电压跟随
+
+**注意事项**:
+
+- VREF 是电压输入脚，用来检测目标板电压，不建议把它当作供电脚使用。
+- VCC 是电压输出脚，可以给目标板提供电源，默认输出 3.3V，可设置为 1.8V 到 5V。
+- 如果关闭 VREF 跟随并将 VCC 与 VREF 短接，需要确认 `cmd.set_power_on(mv)` 设置的电压符合目标芯片允许范围。
+
+### 1.12 设置VCC电压(V3/V4)
+
+`cmd.set_power_on(int mv)`
+
+**参数**:
+
+- `mv`：VCC 输出电压，单位 mV
+
+**说明**:
+
+- 该接口适用于 MKLink V3/V4。
+- 设置下载器 VCC 引脚的输出电压，可用于给目标板供电。
+- 支持的电压范围为 1.8V 到 5V，即 `1800` 到 `5000`。
+
+**示例**:
+
+- `cmd.set_power_on(1800)`：VCC 输出 1.8V
+- `cmd.set_power_on(3300)`：VCC 输出 3.3V
+- `cmd.set_power_on(5000)`：VCC 输出 5V
+
+**注意事项**:
+
+- 设置电压前请确认目标板可以接受该供电电压，错误电压可能损坏目标芯片或外设。
+- 如果目标板已经由外部电源供电，也可以使用下载器的VCC供电，下载器的VCC输出有二极管防倒灌。
+- 如果使用 VREF 跟随模式，优先按目标板 VREF 电压适配接口电平；需要手动输出固定电压时，可先关闭 VREF 跟随。
+
+### 1.13 设置自动扫描芯片(V3/V4)
+
+`cmd.set_auto_scan(bool enable)`
+
+**参数**:
+
+- `enable`：是否开启自动扫描芯片
+  - `1`：开启自动扫描
+  - `0`：关闭自动扫描
+
+**说明**:
+
+- 该接口适用于 MKLink V3/V4。
+- 开启后，下载器会自动扫描目标芯片连接状态，适合脱机下载、批量烧录或需要插上目标板后自动识别的场景。
+- 关闭后，下载器不再主动执行自动扫描，适合手动控制下载流程或避免脚本执行期间被自动扫描打断的场景。
+
+**示例**:
+
+- `cmd.set_auto_scan(1)`：开启自动扫描芯片
+- `cmd.set_auto_scan(0)`：关闭自动扫描芯片
+
+**注意事项**:
+
+- 自动扫描依赖 SWD 接线和目标板供电状态，开启后仍需要保证 `SWDIO`、`SWCLK`、`GND`、`RST` 等信号连接可靠。
+- 批量烧录时通常会配合 `cmd.set_swd_clock(clock)`、`load.flm()`、`load.bin()` 或 `load.hex()` 一起使用。
+
+### 1.14 设置蜂鸣器(V4)
+
+`cmd.set_beep_on()`
+
+`cmd.set_beep_off()`
+
+**参数**:
+
+- 无
+
+**说明**:
+
+- 该接口适用于 MKLink V4。
+- `cmd.set_beep_on()` 用于打开蜂鸣器。
+- `cmd.set_beep_off()` 用于关闭蜂鸣器。
+- 常用于脱机下载或自动化脚本中提示任务状态，例如下载成功后短鸣提示。
+
+**示例**:
+
+- `cmd.set_beep_on()`：打开蜂鸣器
+- `cmd.set_beep_off()`：关闭蜂鸣器
+
+```c++
+cmd.set_beep_on()
+time.sleep_ms(200)
+cmd.set_beep_off()
+```
+
+**注意事项**:
+
+- 蜂鸣器打开后需要主动调用 `cmd.set_beep_off()` 关闭。
+- 如果脚本中需要延时，请确认当前固件的 Python 运行环境中已经导入或支持对应的延时接口。
 
 ## 2 load api列表
 
