@@ -1,5 +1,7 @@
 # Python API 列表
 
+![](../../images/microlink/python_API.png)
+
 PikaPython 开发文档：https://pikapython.com/doc/#pikapython
 
 本列表汇总了 MKLink 常用的 Python API 接口
@@ -7,6 +9,8 @@ PikaPython 开发文档：https://pikapython.com/doc/#pikapython
 ---
 
 ![](../../images/microlink/API.png)
+
+
 
 ## 1.cmd api列表
 
@@ -186,6 +190,15 @@ cmd.read_cpu_reg(0,16)
 
 `dump_memory` 返回二进制流，所有多字节字段均为小端。总读取数据量 `total_size <= 2048` 时返回普通帧，`total_size > 2048` 时返回大数据分块帧，每个 block 的数据负载最大为 2048 字节。
 
+**使用边界**:
+
+| 项目 | 边界 | 说明 |
+|---|---:|---|
+| 单次 `addr/size` 参数总数 | `<= 32` | `addr` 和 `size` 必须成对传入，即最多 16 组 `(addr, size)` / 16 个 region；最后的 `period` 为采样周期参数，不计入这 32 个 `addr/size` 数据参数 |
+| 单次地址/region 数量 | `<= 16` | 每个 region 对应一组 `(addr, size)`； |
+| 普通帧 | `total_size <= 2048 bytes` | 单帧返回 |
+| 大数据分块帧 | `total_size > 2048 bytes` | B1 分块返回，每个 block 负载最大 2048 bytes |
+
 **普通帧格式**:
 
 | 偏移 |  长度 | 字段           | 说明                                                        |
@@ -312,33 +325,19 @@ cmd.flush_memory([
 
 | 接口形式 | 推荐稳定边界 | 实测上限 | 说明 |
 |---|---:|---:|---|
-| `cmd.flush_memory(addr, b0, b1, ...)` | `<= 20 bytes` | `20 bytes` | 实测 `addr + 20 bytes = 21` 个总参数可用，`addr + 21 bytes = 22` 个总参数异常 |
-| `cmd.flush_memory((addr, data))` | `<= 12KB` | `14KB` | 单地址 `bytes/list` 写入。14KB 头/中/尾读回通过，15KB 后 CDC 异常 |
-| `cmd.flush_memory([(addr, data)])` | `<= 12KB` | `14KB` | 单地址 batch 形式，边界与 tuple 单地址一致 |
-| `cmd.flush_memory([(addr1, data1), ...])` | `<= 8 个地址项` | `8 个地址项` | 多地址多数据写入。9~11 项未细分，12 项失败后 CDC 异常 |
-| 多地址总数据量 | `<= 12KB` | 参考单地址 `14KB` | 地址项数未超时，总数据量仍建议按单地址边界控制 |
-
-**推荐实际使用边界**:
-
-```text
-单次 flush_memory:
-- 老接口数据字节 <= 20 bytes
-- 单地址/单块数据量 <= 12KB
-- 多地址数量 <= 8 个地址项
-- 多地址总数据量 <= 12KB
-
-极限可用但不建议长期压线:
-- 单地址数据量 <= 14KB
-```
+| `cmd.flush_memory(addr, b0, b1, ...)` | `<= 20 bytes` | `20 bytes` | 适合少量字节 |
+| `cmd.flush_memory((addr, data))` | `<= 16KB` | `16300B` | 适合大量字节 |
+| `cmd.flush_memory([(addr, data)])` | `<= 16KB` | `16300B` | 单地址 batch 形式，边界按单地址 tuple 形式控制 |
+| `cmd.flush_memory([(addr1, data1), ...])` | `<= 8 个地址项` | `8 个地址项` | 多地址多数据写入； |
+| 多地址总数据量 | `<= 16KB` | 参考单地址 `16300B` | 地址项数未超出 8 项时，总数据量按单地址边界控制 |
 
 **注意事项**:
 
 - `cmd.flush_memory` 成功时通常只返回 `>>>`，不会打印成功文本。
 - 失败时可能打印 `flush fail`，也可能导致 CDC 端口异常或短暂消失，需要复位或重插设备后继续。
 - 大数据优先使用短表达式，例如 `bytes([0x5A]) * N` 或短 pattern 乘法。
-- 完整 256 字节列表表达式如 `bytes([0, 1, ..., 255]) * k` 在当前测试固件中可能触发 `SyntaxError`。
 - 写入地址必须确认是目标 RAM 空闲区，避免覆盖目标程序栈、堆、RTOS 对象、DMA 缓冲或显示缓冲。
-- 边界与固件版本、`PIKA_LINE_BUFF_SIZE`、目标 RAM 布局、下载器状态有关，升级固件后应复测。
+- 边界与固件版本、目标 RAM 布局、下载器状态有关，升级固件后应复测。
 - 大块数据写入后建议用 `cmd.read_ram(addr, 16)`、`cmd.read_ram(addr + size // 2, 16)`、`cmd.read_ram(addr + size - 16, 16)` 读取头部、中间、尾部进行校验。
 
 ### 1.9 设置复位单片机
