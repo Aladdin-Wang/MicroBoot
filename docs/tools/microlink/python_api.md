@@ -641,3 +641,83 @@ vofa.send(addr,num,time)
 
 - vofa.send(0x20000030,5,0.00001)
 
+## 5 串口API列表（V4）
+
+V4 提供两路独立串口对象：
+
+| 接口 | 说明 |
+|---|---|
+| `serial.uart(baud)` | 打开 UART 串口，`baud` 为波特率 |
+| `serial.rs485(baud)` | 打开 RS485 串口，`baud` 为波特率 |
+| `write_bytes(data, length)` | 发送 `bytes` 数据，`length` 为发送字节数，返回底层发送接口的返回值 |
+| `read_bytes(length)` | 从接收队列读取最多 `length` 字节，返回实际读到的 `bytes` 数据 |
+
+**说明**:
+
+- `write_bytes()` 的 `data` 参数必须是 `bytes` 类型；字符串需要先使用 `encode()` 转成字节。
+- `read_bytes()` 返回的是 `bytes` 类型；如果接收内容是字符串协议，可以使用 `bytearray(rx_bytes).decode()` 转成字符串后再上报。
+- `read_bytes(length)` 最多读取 `length` 字节；当前接收队列数据不足时，返回实际已收到的数据，可能为空。
+- UART 与 RS485 的 API 完全一致，只是创建对象不同：`serial.uart(baud)` / `serial.rs485(baud)`。
+
+### 5.1 UART 发送和接收数据
+
+```python
+import PikaStdLib
+import cmd
+
+uart = serial.uart(115200)
+
+# 发送字符串数据
+tx_str = 'uart string data\r\n'
+tx_str_bytes = tx_str.encode()
+uart_tx_str_len = uart.write_bytes(tx_str_bytes, len(tx_str_bytes))
+print('uart send string:', tx_str)
+print('uart send string bytes:', tx_str_bytes)
+print('uart send string len:', uart_tx_str_len)
+
+# 发送 bytes 数据
+tx_bytes = bytes([0x55, 0xAA, 0x01, 0x02, 0x0D, 0x0A])
+uart_tx_bytes_len = uart.write_bytes(tx_bytes, len(tx_bytes))
+print('uart send bytes:', tx_bytes)
+print('uart send bytes len:', uart_tx_bytes_len)
+
+# 接收数据，返回值为 bytes
+rx_bytes = uart.read_bytes(128)
+print('uart recv bytes:', rx_bytes)
+
+# 如果接收的是字符串数据，可以 decode 后上报
+rx_str = bytearray(rx_bytes).decode()
+print('uart recv string:', rx_str)
+```
+
+### 5.2 RS485 发送和接收数据
+
+```python
+import PikaStdLib
+import cmd
+
+rs485 = serial.rs485(115200)
+
+# 发送字符串数据
+tx_str = 'rs485 string data\r\n'
+tx_str_bytes = tx_str.encode()
+rs485_tx_str_len = rs485.write_bytes(tx_str_bytes, len(tx_str_bytes))
+print('rs485 send string:', tx_str)
+print('rs485 send string bytes:', tx_str_bytes)
+print('rs485 send string len:', rs485_tx_str_len)
+
+# 发送 bytes 数据
+tx_bytes = bytes([0x01, 0x03, 0x00, 0x00, 0x00, 0x02])
+rs485_tx_bytes_len = rs485.write_bytes(tx_bytes, len(tx_bytes))
+print('rs485 send bytes:', tx_bytes)
+print('rs485 send bytes len:', rs485_tx_bytes_len)
+
+# 接收数据，返回值为 bytes
+rx_bytes = rs485.read_bytes(128)
+print('rs485 recv bytes:', rx_bytes)
+
+# 如果接收的是字符串数据，可以 decode 后上报
+rx_str = bytearray(rx_bytes).decode()
+print('rs485 recv string:', rx_str)
+```
+
