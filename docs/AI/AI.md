@@ -2,13 +2,13 @@
 
 ### 1.1 注册中转站
 
-https://hyueapi.com/register?aff=WQC9H4LRT65F
+https://newapi.prorisehub.com/sign-up?aff=o0Br
 
 ### 1.2 创建API秘钥（API Key）
 
-1. 点击「创建秘钥」
+1. 点击「创建API秘钥」
 2. 填写令牌名称（随便起，方便自己辨认）
-3. 选择分组（不知道选什么就选 `GPT(plus)`）
+3. 选择分组（不知道选什么就选 `GPT(plus-pro混池)`）
 4. 设置额度（可选，不设则跟随账户余额）
 
 ### 1.3 CC Switch 一键配置（推荐）
