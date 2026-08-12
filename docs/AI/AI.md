@@ -1,40 +1,44 @@
-## 1、使用中转站快速启用Agent
+# AI + MKLink 使用概览
 
-### 1.1 注册中转站
+MKLink AI Probe 让工程师在熟悉的 AI 编码环境中读取真实 RAM、寄存器、RTT、变量时间线和 RTOS Trace，并把采集结果与源码、构建产物和测试记录放在同一条工程流程中。
 
-https://newapi.prorisehub.com/sign-up?aff=o0Br
+## 从猜测到硬件闭环
 
-### 1.2 创建API秘钥（API Key）
+```text
+阅读工程 -> 提出假设 -> 编译 -> 烧录 -> 采集硬件证据
+    ^                                      |
+    +----------- 修改并重新验证 <----------+
+```
 
-1. 点击「创建API秘钥」
-2. 填写令牌名称（随便起，方便自己辨认）
-3. 选择分组（不知道选什么就选 `GPT(plus-pro混池)`）
-4. 设置额度（可选，不设则跟随账户余额）
+工程师仍负责目标、风险和最终判断；AI 负责重复操作、结构化采集与证据整理。涉及擦除、烧录、写内存、写寄存器和复位时，必须先说明目标、范围和影响。
 
-### 1.3 CC Switch 一键配置（推荐）
+## 你需要什么
 
-下载[CC Switch | Claude Code & Codex CLI 配置统一管理工具](https://cc-switch.cc/)
+- 支持本机文件和终端操作的 AI 编码助手；
+- 完整安装的 MKLink AI Probe Skill；
+- MKLink 下载器和目标板；
+- 最好提供工程源码、IDE 工程文件以及匹配固件的 AXF/ELF 和 MAP。
 
-1. 登录 [HyueAPI 管理面板](https://hyueapi.com/)
-2. 进入「API秘钥」页面
-3. 找到你的令牌，点击旁边的 **「导入到 CCS」** 按钮
-4. 浏览器会唤起 CC Switch 并自动写入配置
-5. 在 CC Switch 中选择对应的 CLI 工具，点击「启动」即可
+普通网页聊天窗口无法直接访问本机工程和 USB 下载器。
 
-## 2、 如何使用CODEX
+## 第一次使用
 
-vscode安装codex插件
+1. [安装和更新完整 Skill](skill.md)；
+2. [了解 Skill、MCP、CLI 与 GUI 的分工](interfaces.md)；
+3. 把工程目录和目标交给 AI；
+4. 要求 AI 在写入硬件前报告识别结果和计划；
+5. 用 RTT、变量、寄存器或目标行为验证结果。
 
-![](../images/microlink/codex.png)
+首次接入时，先让 AI 输出工程识别结果和验证计划，再决定是否写入目标板。提示词只是入口，实际执行仍以 GUI/CLI 的返回值和目标板证据为准。
 
-## 3、 如何使用CLAUDE CODE
+## 常见任务
 
-vscode安装 Cladue Code插件
+| 目标 | AI 应完成的闭环 |
+|---|---|
+| 编译并下载 | 识别 IDE Target -> 零错误构建 -> 下载 -> 运行验证 |
+| RTT 日志 | 定位控制块 -> 采集原始日志 -> 关联源码和时间 |
+| 变量异常 | 解析 ELF -> 连续采样 -> 对照状态机和寄存器 |
+| HardFault | 保存现场 -> 解码 Fault -> 定位源码 -> 修改后复验 |
+| RTOS 卡顿 | 采集有效 SystemView -> 分析任务/ISR/CPU -> 验证优化 |
 
-![](../images/microlink/claude.png)
-
-## 4、安装下载器的skill
-
-参考[skill - MicroBoot](https://microboot.readthedocs.io/zh-cn/latest/tools/microlink/skill/)
-
-![](../images/microlink/视频号.jpg)
+完整实战见 [STM32F103RET6 + RT-Thread 案例](stm32f103-case.md)。控制环和 FOC 变量的采样方法见[SuperWatch 与 PID 调试](../tools/microlink/superwatch.md)。

@@ -10,11 +10,13 @@ nav:
       - 基于 CMSIS-PACK 移植 : quick-start/cmsis-pack.md
       - 基于源码移植: quick-start/quick-start.md
       - 移植常见问题: quick-start/troubleshooting.md
+      - RT-Thread: quick-start/RT-Thread.md
   - 使用指南:
       - 配置: usage-guide/config.md
   - 必备知识: 
       - 变参函数和可变参数宏: utilities/ParameterMacro.md
       - Flash下载算法制作: utilities/FLM.md
+      - 线程安全: utilities/ThreadSafety.md
   - 组件介绍:
       - queue:  components/queue/queue.md
       - 信号槽: components/signals_slots/signals_slots.md
@@ -22,15 +24,39 @@ nav:
       - multiple_delay: components/multiple_delay/multiple_delay.md
       - shell: components/shell/shell.md
       - ymodem: components/ymodem/ymodem.md
+      - BootLoader: components/bootloader/bootloader.md
+      - Flash Blob: components/flash_blob/flash_blob.md
+      - Message Map: components/msg_map/msg_map.md
+      - Message Map API: components/msgmap/msgmap.md
+      - BootLoader API: bootloader/BootLoader.md
   - 开发神器:
-      - 简介: tools/microlink/microlink.md
-      - SEGGER RTT: tools/microlink/RTT_printf.md
-      - SystemView: tools/microlink/SystemView.md
-      - VOFA+: tools/microlink/vofa.md      
-      - 脱机下载: tools/microlink/offline_download.md
-      - IAP程序升级: tools/microlink/ymodem.md
-      - Python API: tools/microlink/python_api.md
+      - MKLink 产品与功能总览: tools/microlink/microlink.md
+      - 安装上位机与快速启动: tools/microlink/gui-install.md
+      - 连接硬件与配置工程: tools/microlink/project-config.md
+      - 烧录:
+          - 在线编译与烧录: tools/microlink/online-flash.md
+          - 脱机下载与量产: tools/microlink/offline_download.md
+      - 运行观测:
+          - RTT View 日志与终端: tools/microlink/RTT_printf.md
+          - SuperWatch 与 PID 调试: tools/microlink/superwatch.md
+          - VOFA+ 数据可视化: tools/microlink/vofa.md
+      - 故障定位:
+          - Memory 内存与寄存器: tools/microlink/memory.md
+          - HardFault 现场分析: tools/microlink/hardfault.md
+          - RTOS Trace / SystemView: tools/microlink/SystemView.md
+      - 串口与 Modbus: tools/microlink/serial-modbus.md
+      - 固件升级: tools/microlink/firmware-upgrade.md
+      - 资料下载: tools/microlink/downloads.md
+      - 下载器内部 Python API: tools/microlink/python_api.md
+      - IAP / YModem: tools/microlink/ymodem.md
       - 常见问题: tools/microlink/questions.md
+      - 扩展阅读:
+          - 单片机的灵魂伴侣: tools/microlink/单片机的灵魂伴侣.md
+          - PikaPython 下载器: tools/microlink/Mlink_PikaPython.md
+          - USB MTP 拖拽下载: tools/microlink/USB_MTP.md
+          - 选项字节: tools/microlink/如何利用opt下载算法文件自由更改单片机选项字节.md
+          - 先楫生态: tools/microlink/先辑使用教程.md
+          - 调试器工具链: tools/microlink/一个调试器，干掉四套工具链.md
   - 第三方库:
       - Arm-2D: 3rd-party/Arm-2D/arm_2d.md
       - PLOOC: 3rd-party/plooc/plooc.md
@@ -39,9 +65,15 @@ nav:
       - 如何贡献代码: contribute/code.md
       - 如何贡献文档: contribute/document.md
   - AI:
-      - AI觉醒之旅: AI/AI.md
-      - 安装skill: AI/skill.md
-      - AI下载器: AI/AI_MKLink      
+      - AI + MKLink 使用概览: AI/AI.md
+      - 安装和更新完整 Skill: AI/skill.md
+      - Skill、MCP、CLI 与 GUI: AI/interfaces.md
+      - 第一次让 AI 操作工程: AI/first-project.md
+      - AI 编译、烧录与验证: AI/flash-workflow.md
+      - AI 辅助调试: AI/debug-workflow.md
+      - STM32F103RET6 + RT-Thread 案例: AI/stm32f103-case.md
+      - 安全边界与排障: AI/safety.md
+      - 为什么 AI 需要硬件闭环: AI/AI_MKLink.md
   - About:
       - Overview: about/about.md
       - Team: about/team.md

@@ -1,596 +1,116 @@
-# MicroKeen
+# MKLink 产品与功能总览
 
----
+MKLink（MicroKeen）把在线调试、固件烧录、串口、RTT、变量采样和脱机生产集中到一台设备中。研发阶段可以在 Keil、IAR 或 Web GUI 中使用；进入小批量生产后，同一台下载器可以保存固件和算法，脱离电脑完成烧录；出现运行故障时，还可以读取内存、Fault 寄存器和 RTOS Trace。
 
-## 一、产品概述
+![MKLink V4](../../images/microlink/MKLinkV3 LCD.jpg)
 
-MicroKeen（简称 MKLink）是一款面向 AI Agent 时代打造的多功能嵌入式开发工具，也是全球首批真正支持 AI 直接调用硬件调试能力的智能下载器之一。
+## 先按任务选择功能
 
-不同于传统仅服务于人类工程师的调试工具，MKLink 不再只是一个“下载程序”的设备，而是一个能够连接 AI 与真实 MCU 硬件世界的运行时接口层（MCU Runtime Interface）。
+| 要完成的工作 | 使用功能 | 需要准备 | 主要入口 | 详细教程 |
+|---|---|---|---|---|
+| 编译、烧录并确认新程序运行 | 在线烧录 | 工程或 HEX/BIN | IDE、在线烧录 | [在线编译与烧录](online-flash.md) |
+| 不接电脑进行单台或连续烧录 | 脱机下载 | 固件、FLM、量产参数 | 脱机烧录 | [脱机下载与量产](offline_download.md) |
+| 不占用 MCU 串口查看日志 | RTT View | RTT 控制块 | 仪表盘 / RTT View | [RTT View 日志与终端](RTT_printf.md) |
+| 连续观察 PID、FOC 和状态变量 | SuperWatch | 匹配固件的 AXF/ELF | 仪表盘 / SuperWatch | [SuperWatch 与 PID 调试](superwatch.md) |
+| 查看 RAM、外设和 Fault 寄存器 | Memory | 地址或 AXF 符号 | 仪表盘 / Memory | [Memory 内存与寄存器](memory.md) |
+| 保存异常现场并定位源码 | HardFault | Fault 现场、匹配的 AXF | 仪表盘 / HardFault | [HardFault 现场分析](hardfault.md) |
+| 分析任务、ISR 和 CPU 占用 | RTOS Trace | RTT、SystemView 适配 | 仪表盘 / RTOS Trace | [RTOS Trace / SystemView](SystemView.md) |
+| 调试 UART、RS485 或 Modbus RTU | 串口与 Modbus | 通信参数或点表 | 仪表盘 | [串口与 Modbus](serial-modbus.md) |
+| 更新下载器自身功能 | 固件升级 | 对应型号升级包 | U 盘 / UF2 | [固件升级](firmware-upgrade.md) |
+| 获取软件、固件、FLM 和源码 | 资料下载 | 下载器型号、目标器件 | 官方资料页 | [资料下载](downloads.md) |
 
-MKLink 在 DAPLink 架构基础上深度扩展，融合了：
+Web GUI 适合人工配置、操作和查看曲线；AI Skill 适合读取工程、调用同一套硬件能力并整理验证证据。两者可以使用同一个工程，但不能同时占用同一探针资源。
 
-- 高速调试器（Debugger）
-- USB 转串口
-- RTT 实时数据通道
-- 离线下载器
-- 固件升级工具
-- 高速 RAM / Flash 访问
-- Runtime 数据采集
-- AI Skill 调用接口
+## 产品型号
 
-等多种功能于一体，为研发、调试、量产、自动化测试以及售后升级提供统一的一站式解决方案。
+### MKLink V2
 
-传统下载器主要面向 IDE、按钮和图形界面设计，而 MKLink 从底层开始更加关注：
+![MKLink V2](../../images/microlink/MKLink_V2.png)
 
-### “如何让 AI Agent 直接操作硬件”
+面向在线下载、调试和高速 USB 转串口。V2 可通过虚拟磁盘拖入固件，脱机机台触发使用 TDI/TDO 引脚。
 
-通过标准化、结构化、可脚本化的接口，AI 可以直接调用 MKLink 完成：
+### MKLink V3
 
-- 固件下载
-- RAM 读取
-- 寄存器分析
-- RTT 日志获取
-- HardFault 调试
-- dump_memory 高速采样
-- 运行态数据分析
-- 自动验证与闭环修复
+![MKLink V3](../../images/microlink/MKLink V3.png)
 
-使 AI 不再只是“读代码”，而是真正开始“读取硬件现场”。
+在在线功能基础上增加独立脱机下载、板载存储、目标电压跟随和按键触发，适合研发与小批量生产共用。
 
-借助 MKLink Skill，AI Agent 可以将：
+### MKLink V4
 
-代码分析 → 自动编译 → 固件烧录 → 运行态读取 → 故障分析 → 自动修复 → 再验证
+V4 增加显示、RS485、功率监测、更大的存储空间和可选择的 Python 脱机脚本，适合调试台和量产工位。
 
-串联成完整闭环。
+| 能力 | V2 | V3 | V4 |
+|---|:---:|:---:|:---:|
+| CMSIS-DAP 在线下载和调试 | 支持 | 支持 | 支持 |
+| USB 转 UART | 支持 | 支持 | 支持 |
+| RTT、SystemView、VOFA+ | 支持 | 支持 | 支持 |
+| 下载器内部 Python API | 支持 | 支持 | 支持 |
+| 脱机 HEX/BIN + FLM | 机台/拖拽场景 | 支持 | 支持 |
+| 按键触发脱机烧录 | - | 支持 | 支持 |
+| 可选择多个脱机脚本 | - | - | 支持 |
+| RS485、功率显示 | - | - | 支持 |
 
-这意味着：
+!!! note "以设备实际版本为准"
+    不同批次固件可能增加能力。连接下载器后可在 Web GUI 底部查看版本历史，也可读取 U 盘中的 `readme.txt`。升级方法见[固件升级](firmware-upgrade.md)。
 
-嵌入式开发工具第一次开始从“Human-in-the-loop（人类在环）”走向“Agent-in-the-loop（AI在环）”。
+## 一套工具覆盖产品生命周期
 
-无论您是在进行 MCU 调试、RTOS 分析、DMA 故障定位、HardFault 排查、BMS 系统验证、自动化测试，还是 AI 驱动的嵌入式开发，MKLink 都能够显著提升开发效率，降低工具切换成本，并为 AI Agent 提供真正可落地的硬件执行能力。
+### 研发
 
-MKLink 不只是一个多功能下载器。
+- 在 Keil、IAR 等 IDE 中使用标准 CMSIS-DAP 下载和单步调试；
+- 用在线烧录页检查 HEX/BIN 地址范围并完成擦除、编程、校验和复位；
+- 用 RTT 查看日志，用 SuperWatch 观察控制环，用 RTOS Trace 分析调度；
+- 发生 HardFault 时先保存寄存器和异常栈，再恢复目标。
 
-详情说明：https://microboot.readthedocs.io/zh-cn/latest/AI/AI_MKLink
+### 小批量和量产
 
-<iframe src="https://player.bilibili.com/player.html?bvid=BV1W1EK6rE2X" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="640" height="480"> </iframe>
+- 将固件、FLM 和下载脚本部署到下载器；
+- 通过按键或机台输入触发；
+- 记录固件摘要、脚本版本、器件型号和烧录结果；
+- 多镜像工程可以按顺序烧录 BootLoader、参数区和应用程序。
 
-### 产品型号
+### 售后维护
 
-### 1、MicroKeen V2
+- 使用 YModem 将升级文件发送给产品 BootLoader；
+- 在现场通过 RTT、内存和变量获取运行证据；
+- 需要无人值守或异地处理时，再使用受认证的远程 Site Agent。
 
-![](../../images/microlink/MKLink_V2.png)
+## 推荐学习路线
 
-​                                                         型号1：MKLinkV2 高速在线dap下载器 USB转UART
+第一次使用建议按以下顺序完成：
 
-### 2、MicroKeen V3
+1. [安装上位机与快速启动](gui-install.md)，确认页面显示“后端正常”；
+2. [连接硬件与配置工程](project-config.md)，加载同一次构建的 AXF 和 MAP；
+3. [在线编译与烧录](online-flash.md)，完成校验并用 RTT 确认运行；
+4. [RTT View](RTT_printf.md) 和 [SuperWatch](superwatch.md)，建立正常运行基线；
+5. 根据任务进入 [Memory](memory.md)、[HardFault](hardfault.md) 或 [RTOS Trace](SystemView.md)；
+6. 需要生产工位时再配置[脱机下载](offline_download.md)。
 
-![](../../images/microlink/MKLink V3.png)
+本手册的实测案例使用 `STM32F103RET6`、RT-Thread 5.1.0 和 Keil MDK。工程目录保留了历史名称 `STM32F103RC`，但芯片丝印、Keil Device 和下载算法均按 RET6 配置。
 
-​                                                               型号2：MKLinkV3 高速在线/脱机dap下载器 USB转UART
+## AI 与工程师如何配合
 
-### 3、MicroKeen V4
+AI 可以读取工程、选择操作入口、采集日志和整理证据。写 Flash、写 RAM、复位或改变控制参数前，仍应由工程师确认目标、范围和停止条件。
 
-![](../../images/microlink/MKLinkV3 LCD.jpg)
+简洁的任务描述即可：
 
-​                                                                       型号3：MKLinkV4 高速在线/脱机dap下载器
+> 检查当前工程和芯片，编译并烧录，最后用 RTT 证明新固件正在运行。
 
-### 功能对比
+> 采集 12 秒 PID 曲线，分析超调和稳态误差；先不要写参数。
 
-| 功能/型号                                       | MKLink V2 | MKLink  V3 | MKLink V4 |
-| ----------------------------------------------- | --------- | ---------- | --------- |
-| 高速在线下载调试                                | ✔         | ✔          | ✔         |
-| 高速USB转串口(最高10M波特率)                    | ✔         | ✔          | ✔         |
-| USB转RTTVIEW                                    | ✔         | ✔          | ✔         |
-| USB转SystemView                                 | ✔         | ✔          | ✔         |
-| USB转VOFA+                                      | ✔         | ✔          | ✔         |
-| 支持python脚本                                  | ✔         | ✔          | ✔         |
-| 支持winusb，win10以上系统免驱                   | ✔         | ✔          | ✔         |
-| 自动扫描芯片，提示连接成功                      |           | ✔          | ✔         |
-| vref电压自适应，1.8~5V电压                      |           | ✔          | ✔         |
-| 拖拽下载(bin文件)                               | ✔         |            |           |
-| 脱机下载(bin文件，hex文件)，支持解析FLM下载算法 |           | ✔          | ✔         |
-| 内置4MB nor flash                               |           | ✔          |           |
-| 内置128MB SD卡                                  |           |            | ✔         |
-| USB转485                                        |           |            | ✔         |
-| 功率计：电压电流实时显示                        |           |            | ✔         |
-| 内置ymodem等自定义协议串口升级固件              |           |            | ✔         |
+完整的安装和安全边界见 [AI + MKLink 使用概览](../../AI/AI.md)。
 
+## 购买、支持与资料
 
-
-结合以上产品特点，为开发者提供了**下载调试，批量生产，售后维护，固件升级**等一站式解决方案。
-
-## MicroKeen（MKLink） vs 其他
-
-![](../../images/microlink/AI.png)
-
-### 购买地址
+- [固件升级](firmware-upgrade.md)
+- [资料下载](downloads.md)
+- [常见问题](questions.md)
+- [下载器内部 Python API](python_api.md)
 
 官方店铺：
 
-MKLinkV2        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=895964393739
-
-MKLinkV3        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=1013104417098
-
-MKLinkV4        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=1020501356342
-
-官方授权店铺1：深圳市微炬科技有限公司
-
-淘宝链接：https://item.taobao.com/item.htm?ft=t&id=1027099154964
-
-官方授权店铺2：睿赛德科技（RTThread）
-
-淘宝链接：https://item.taobao.com/item.htm?id=1024972806030
-
-官方授权店铺3：睿桐科技企业店
-
-淘宝链接：https://item.taobao.com/item.htm?id=1042231224417&skuId=6225750154529
-
-### 更多技术支持
-
-手机扫码添加微信备注**加群**
-
-![](../../images/microlink/weixin.jpg)
-
-关注公众号及时获得最新文章
-
-![](../../images/microlink/WX.jpg)
-
-## 二、功能介绍
-
-### 1、DAPLink 在线下载和调试
-
-MicroLink基于标准的CMSIS-DAP在线调试下载协议，针对传统DAPLink工具下载和调试速度缓慢的问题进行了全面优化。为了弥补DAPLINK性能上的不足，硬件方面，采用了**先辑半导体**的高性能**HPM5301**芯片，该芯片主频高达480MHz，内置PHY的高速USB接口；软件方面，将USB协议替换为传输速度更快的**CherryUSB**协议栈，并且对DAPLink固件中的数据处理和通信代码进行了深度优化，减少了内部延迟和等待时间，将SWD时钟速度提升至10MHz。
-
-高速SWD支持高达10MHz的稳定时钟频率，为资源有限的嵌入式设备提供快速、可靠的单线调试和下载体验。
-
-![](../../images/microlink/10M.png)
-
-下载过程中CLK的时钟波形：
-
-![](../../images/microlink/clk.jpg)
-
-- **下载速度对比测试**
-
-与目前市面上最新的J-LINK-V12速度对比，目标芯片使用STM32H743，开发环境MDK V5.39，分别使用**MicroLink**和**Jlink V12**将**2558KB**的HEX文件下载到内部FLASH中。使用逻辑分析仪测试时钟引脚，计算出擦除，编程，校验全过程的时间，MicroLink使用时间为**24.205秒**，Jlink V12使用时间为**33.439秒**，测试数据如下图：
-
-**Jlink V12测试结果：**
-
-![](../../images/microlink/JLINK_Download.jpg)
-
-**MicroLink测试结果：**
-
-![](../../images/microlink/MicroLink_Download.jpg)
-
-**测试结果对比：**
-
-| 调试器           | 总耗时（擦除，编程，校验） |
-| ------------- |:-------------:|
-| **MicroLink** | **24.205秒**   |
-| J-LINK V12    | 33.439秒       |
-
-### 2、USB转串口
-
-MicroLink内置USB转串口功能，支持常见的串口和485通信，串口最大支持12M波特率，无丢包。
-
-![](../../images/microlink/10M_Baud.jpg)
-
-使用逻辑分析仪抓取波形如图所示，每个bit传输的时间为1/10M=100ns。
-
-![](../../images/microlink/10M_TTL.jpg)
-
-
-
-### 3、SEGGER RTT
-
-只要拥有了**MicroLink**，你就可以享受以下的便利：
-
-- 无需占用**USART**或者**USB**转串口工具，将**printf**重定位到一个由**MicroLink**提供的虚拟串口上；
-- 不需要使用专门的RTTView上位机，支持任意串口助手；
-- 高速通信，不影响芯片的实时响应。
-
-#### 使用方式
-
-**启动RTT功能：**打开任意串口助手，输入以下指令：
-
-```python
-RTTView.start(0x20000000,1024,0)
-```
-
-- 0x20000000:搜索_SEGGER_RTT控制块的起始地址；
-- 1024：搜寻RTT控制块地址范围大小
-- 0: RTT通道
-
-以SSCOM串口助手为例：
-
-![](../../images/microlink/RTT.png)
-
-**_SEGGER_RTT** 控制块地址可以通过查看MDK编译生成的.map文件来查找，如下：
-
-![RTT_MAP](../.././images/microlink/RTT_MAP.png)
-
-### 4、SystemView
-
-MicroLink 加入了 **SEGGER SystemView 协议支持**，让你可以在**无需额外硬件**的情况下，轻松进行任务级别的运行态分析与可视化调试。
-
-MicroLink 会将目标设备中 RTOS（如 RT-Thread、FreeRTOS）产生的 SystemView 日志数据通过 **RTT 协议**采集，并通过 USB CDC 虚拟串口转发给 PC。
-
-#### 使用方式
-
-**启动SystemView 功能：**打开任意串口助手，输入以下指令：
-
-```python
-SystemView.start(0x20000000,1024,1)
-```
-
-- 0x20000000:搜索RTT控制块的起始地址；
-- 1024：搜寻RTT控制块地址范围大小
-- 1：SystemView使用RTT的通道
-
-**_SEGGER_RTT** 控制块地址可以通过查看MDK编译生成的.map文件来查找，如下：
-
-![RTT_MAP](../.././images/microlink/RTT_MAP.jpg)
-
-📌 示例画面：
-
-![](../../images/microlink/systemView.jpg)
-
-### 5、VOFA+
-
-MicroKeen（MKLink）已完成对 **VOFA+ 上位机协议的原生适配**，可在功能与使用体验上**完美替代 J-Link 的 J-Scope**。无需额外的 USB 转串口模块或专用数据采集硬件，即可实现**高速、稳定、实时的数据可视化调试**。MKLink 通过 **SWD 直接读取目标芯片内存中的变量数据**，并将其实时封装为 VOFA+ 协议，经 USB CDC 虚拟串口发送至 PC，实现对运行中变量的**曲线显示、波形分析与参数调试**，且不占用 MCU 串口资源、不侵入业务代码。
-
-#### 核心优势
-
-- **无需占用 MCU 串口资源**
-   不依赖 USART ，不影响产品原有通信接口设计；
-- **基于 SWD 的非侵入式采集**
-   不修改业务代码逻辑，对实时性影响极小；
-- **高速刷新，稳定可靠**
-   适配 MKLink 高速 SWD 通道，最高支持1M的读取速率；
-- **即插即用**
-   直接使用官方 VOFA+ 上位机，无需定制软件。
-
-#### 使用方式1（需要升级到最新固件版本）
-
-1. 使用 MKLink 连接目标板并正常下载程序；
-2. 启动 VOFA+ 上位机，选择MKLink 提供的虚拟串口，发送启动命令。
-3. 最多一次支持读取16个float类型的变量
-
-```python
-vofa.send(0x20000030,5,0.00001)
-```
-
-- 0x20000030:变量1内存地址；
-- 5：读取五个数据，只支持float类型；
-- 0.00001：读取周期，单位秒，最小支持1us，**设置0，停止读取**
-
-#### 使用方式2
-
-1. 使用 MKLink 连接目标板并正常下载程序；
-
-2. 启动 VOFA+ 上位机，选择MKLink 提供的虚拟串口，发送启动命令。
-
-3. 最多一次支持读取16个常用数据类型的变量
-
-   **特别注意：变量必须严格4字节对齐，要不然会出现数据撕裂**
-
-   `__attribute__((aligned(4))) static volatile uint16_t conut2 = 0;`
-
-```c
-vofa.send(0x20000030,"uint8_t",0x2000154c,"uint16_t ",0x20001550,"float",0.00001)
-```
-
-- 0x20000030:变量1内存地址；
-- uint8_t：变量1数据类型；
-- 0.00001：读取周期，单位秒，最小支持1us，**设置0，停止读取**
-
-相关的变量地址可以通过查看MDK编译生成的.map文件来查找，如下：
-
-![RTT_MAP](../.././images/microlink/vofa_map.png)
-
-📌 示例画面：
-
-![](../../images/microlink/vofa.png)
-
-
-
-### 6、脱机下载
-
-MicroLink支持脱机离线下载的功能，借助于强大的PikaPython开源项目，让MicroLink可以使用python脚本进行二次开发，可以非常容易得定制升级流程。
-
-MicroLink的虚拟U盘中有一个`offline_download.py`文件，内容如下：
-
-```python
-import PikaStdLib
-import time
-import cmd
-import load
-
-# 自动下载循环次数
-AUTO_DOWNLOAD_COUNT = 1
-# 等待读取目标IDCODE有效的超时时间（ms）
-WAIT_IDCODE_TIMEOUT = 10000
-# FLM 文件路径
-FLM_FILE_PATH = "FLM/STM32F10x_1024.FLM"
-# 目标 Flash 基地址
-FLM_FLASH_BASE = 0x08000000
-# 目标 RAM 基地址
-FLM_RAM_BASE = 0x20000000
-# HEX 文件路径（支持通配符）
-HEX_FILE_PATH = "rt-thread.hex"
-# BIN 文件路径（支持通配符）
-BIN_FILE_PATH = "boot.bin"
-# BIN 文件下载地址
-BIN_FILE_ADD = 0x08000000
-# SWD 时钟频率（Hz）
-SWD_CLOCK_HZ = 10000000
- # 设置下载速度
-cmd.set_swd_clock(SWD_CLOCK_HZ)
-
- # 自动循环下载 
-abort = False
-for i in range(AUTO_DOWNLOAD_COUNT):
-    if abort:
-        break
-    print("=== Auto Download Round:", i + 1, "===")
-    elapsed = 0
- # 等待连接目标板   
-    while True:
-        idcode = cmd.get_idcode()
-        if idcode not in (0, 0xFFFFFFFF):
-            break
-        if elapsed >= WAIT_IDCODE_TIMEOUT:
-            print("wait idcode online timeout")
-            abort = True
-            break
-        print("=== waited_ms :", elapsed, "===")
-        time.sleep_ms(500)
-        elapsed += 500
-    if abort:
-        break
-    print("IDCODE: 0x%08X" % idcode)
- # 加载下载算法 
-    if load.flm(FLM_FILE_PATH, FLM_FLASH_BASE, FLM_RAM_BASE) != 0:
-        print("load flm failed")
-        abort = True
-        break
- # 下载bin文件     
-    if load.bin(BIN_FILE_PATH,BIN_FILE_ADD) != 0:
-        print("load bin failed")
-        abort = True
-        break        
- # 下载hex文件     
-    if load.hex(HEX_FILE_PATH) != 0:
-        print("load hex failed")
-        abort = True
-        break
- # 循环次数为1，只下载一次        
-    if  AUTO_DOWNLOAD_COUNT == 1:
-        break    
-    elapsed = 0
- # 等待断开连接目标板     
-    while True:
-        idcode = cmd.get_idcode()
-        if idcode in (0, 0xFFFFFFFF):
-            break
-
-        if elapsed >= WAIT_IDCODE_TIMEOUT:
-            print("wait idcode offline timeout")
-            abort = True
-            break
-        time.sleep_ms(500)
-        elapsed += 500
-if not abort:
-    print("auto download finished")
-else:
-    print("auto download aborted")
-
-```
-
-该代码通过加载FLM算法文件，将多个二进制文件（如boot.bin和rt-thread.hex）分别烧录到STM32内部不同地址的flash中。
-
-> **注意：**请根据您的实际项目需求，修改以下内容：
->
-> - **下载算法文件名称**（如 `"FLM/STM32F10x_1024.FLM"`）：应替换为对应芯片和Flash型号的 FLM 文件。
-> - **下载文件名称及地址**（如 `"boot.bin"`、`"rt-thread.hex"`，及其对应的地址）：请确保文件名和烧录地址与您的程序结构一致。
->
-> - **修改下载函数**：如果只烧录单个文件，只保留load.bin或者load.hex的代码，如下，下载bin文件，屏蔽hex下载：
->
-> ```python
->  # 下载bin文件     
->     if load.bin(BIN_FILE_PATH,BIN_FILE_ADD) != 0:
->         print("load bin failed")
->         abort = True
->         break        
->  # 下载hex文件     
->  #   if load.hex(HEX_FILE_PATH) != 0:
->  #      print("load hex failed")
->  #      abort = True
->  #      break
-> ```
->
-> 若文件名或地址设置不当，可能导致程序无法正常运行或烧录失败。
-
-🚀 **触发烧录的方式**
-
-MicroLink 下载器支持以下两种方式触发脱机烧录脚本的执行：
-
-1. **按键触发**
-
-    **MKLink V3和V4**型号按下外壳上的按键，即可启动脱机烧录流程并执行该脚本。
-
-![](../../images/microlink/key.png)
-
-​     **MKLink V2**本身不带按键，可以通过TDI和TDO用于机台烧录。
-
-- **触发下载**→ TDI引脚与GND短接触发执行 `offline_download.py` 脚本
-- **烧录成功** → TDO引脚可接蜂鸣器或者LED灯提示烧录成功或者失败
-
-2. **Python 虚拟终端手动触发**
-
-使用一个串口助手，连接虚拟串口端口，输入`load.offline()`加回车，效果如下：
-
-![](../../images/microlink/load_offline.jpg)
-
-
-
-
-### 7、内置Ymodem协议下载
-
-MicroLink内置Ymodem协议，支持通过串口进行可靠的文件传输。ymodem协议在多次重传时仍能保持数据的完整性，非常适用于嵌入式系统的固件升级。
-
-使用内置的ymodem协议发送文件，首先需要目标设备支持ymodem协议接收文件，MicorBoot开源框架集成了ymodem模块，可以方便用户直接安装使用，具体使用方法请看MicorBoot简介。
-
-MicroBoot简介：https://microboot.readthedocs.io/zh-cn/latest/
-
-MicroBoot开源代码：https://github.com/Aladdin-Wang/MicroBoot
-
-将需要升级的固件拷贝到U盘中，比如updata.bin，然后随便使用一个串口助手，打开虚拟串口，输入`ym.send("updata.bin")`加回车
-
-参数的含义：
-
-- "updata.bin"：下载的文件名字；
-- 支持多个参数，多个文件连续发送；
-
-如果你的bootloader中还没有ymodem协议，可以使用xshell等支持ymodem接收协议的上位机，进行快速验证，演示视频如下，使用MicroLink和另外一个串口工具，分别使用sscom5上位机输入命令和xshell上位机进行文件接收
-
-### 8、固件升级
-
-MKLink支持系统固件升级，可以为后续添加更多的功能，升级方式非常简单。
-
-#### MKLink V2升级方式：
-
-只需要将后缀为xxx.rbl的升级包，复制到MicroLink的U盘中即可自动完成升级，升级完成后会自动重启设备，并删除升级包。升级完成可以查看readme.txt文件，了解升级后的新功能。
-
-#### MKLink V3、V4升级方式：
-
-按下下载器的按键，然后给下载器上电，会进入固件升级模式，电脑会弹出名为CHERRYUF2的U盘，将后缀为xxxx.uf2的升级包拖到U盘中，升级完会自动重启。升级完成可以查看readme.txt文件，了解升级后的新功能。
-
-
-
-⚠️ 需要注意的是，如果MKlink没有自动重启升级，请手动重新上电,再重新复制升级包进行升级。
-
-**开发资料下载地址**：https://pan.baidu.com/s/1Dr8Ss16cBRWXtQpyOGrROg?pwd=zyo0 
-
-
-
-![](../../images/microlink/microlink.pack.png)
-
-## 三、使用说明
-
-### 1、U盘文件说明
-
-- readme.txt
-
-readme.txt记录了MicroLink软硬件版本和每次版本更新的内容。
-
-![](../../images/microlink/DETAILS.png)
-
-- help.htm
-
-help.htm是一个在线文档的网址链接，双击该文件即可访问在线文档，进一步了解更多的功能。
-
-![](../../images/microlink/readdocs.png)
-
-- 默认配置脚本default_config.py
-
-```python
- # 使能自动扫描芯片
-cmd.set_auto_scan(1)
- # 设置默认输出电压(单位mv)
-cmd.set_power_on(3300)
-```
-
-- 拖拽下载脚本drag_download.py
-
-设备上电会首先读取drag_download.py脚本，根据脚本内容加载Flash下载算法，执行用户指令。
-
-- 脱机下载脚本offline_download.py
-
-根据脚本，执行脱机下载流程。
-
-- xxx.FLM
-
-借助单片机厂家提供的pack包里的xxx.FLM下载算法文件，可以支持任意单片机的脱机下载。
-
-比如STM32F1系列的下载算法所在的电脑默认位置如下：
-
-![](../../images/microlink/FLM.jpg)
-
-### 2、引脚说明
-
-| 引脚名称    | 功能                    |
-| ------- | --------------------- |
-| 5V      | 5V电源输出                |
-| 3.3V    | 3.3V电源输出              |
-| GND     | GND公共地                |
-| DIO/TMS | SWD接口数据信号，或JTAG接口模式选择 |
-| CLK/TCK | SWD接口时钟信号，或JTAG接口时钟   |
-| TDO     | JTAG接口数据输出            |
-| TDI     | JTAG接口数据输入            |
-| RX/A    | 串口数据接收，或者485接口A       |
-| TX/B    | 串口数据发生，或者485接口B       |
-| RST     | 复位脚输出                 |
-
-SWD简化接线图：
-
-![](../../images/microlink/SWD.jpg)
-
-JTAG简化接线图：
-
-![](../../images/microlink/JTAG.jpg)
-
-### 3、端口说明
-
-电脑使用USB TypeC数据线与MicroLink连接以后，电脑设备端会弹出三个设备：
-
-![](../../images/microlink/shebei.png)
-
-- 磁盘设备
-
-![](../../images/microlink/Upan.png)
-
-- 串口(两路)
-
-**一路为USB转串口**；
-
-另外一路为**虚拟串口**，打开串口时，输入回车，会自动打印python的信息；
-
-**为了方便区分两路串口，通过USB转串口发送数据LED指示灯会闪烁，通过虚拟串口发送数据不LED指示灯不会闪烁。**
-
-![](../../images/microlink/python.jpg)
-
-- MicroLink CMSIS-DAP
-
-**如果Keil无法识别，请给keil升级到最新版本（不能低于5.29），并尝试卸载MicroLink CMSIS-DAP设备驱动，重新连接MicroLink**
-
-### 4、操作说明
-
-- 以Keil为例
-
-1、在DEBUG栏中选择CMSIS-DAP Debugger
-
-![](../../images/microlink/DEBUG.png)
-
-2、与设备连接好SWD引脚，选择MICROLINK CMSIS-DAP，Max Clock下载时钟频率选择10MHz
-
-![](../../images/microlink/MAX_Clock.jpg)
-
-3、勾选自动复位选项，添加下载算法
-
-![](../../images/microlink/XZSF.jpg)
-
-- 以SEGGER Embedded Studio为例
-
-1、点击工程， 右击选择“options” ， 在弹出的对话框中点击Debugger,然后选择GDB Server  
-
-![](../../images/microlink/SES1.jpg)
-
-2、点击GDB Server,在GDB Server Command Line中查看openocd配置文件,更改此配置文件为 cmsis-dap.cfg
-
-![](../../images/microlink/SES2.jpg)
-
-3、与设备连接好JTAG引脚，点击Target,连接connect GDB Server，连接成功后Output窗口如图所示
-
-![](../../images/microlink/SES3.jpg)
+- [MKLink V2](https://item.taobao.com/item.htm?ft=t&id=895964393739)
+- [MKLink V3](https://item.taobao.com/item.htm?ft=t&id=1013104417098)
+- [MKLink V4](https://item.taobao.com/item.htm?ft=t&id=1020501356342)
+
+产品讨论、性能对比和设计背景收录在导航末尾的“扩展阅读”中。教程页不再重复营销内容，便于工程师直接完成任务。

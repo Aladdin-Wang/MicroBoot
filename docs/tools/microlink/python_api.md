@@ -1,10 +1,12 @@
-# Python API 列表
+# 下载器内部 Python API
 
 ![](../../images/microlink/python_API.png)
 
 PikaPython 开发文档：https://pikapython.com/doc/#pikapython
 
-本列表汇总了 MKLink 常用的 Python API 接口
+本页汇总运行在下载器内部 PikaPython 环境中的 API，主要用于脱机烧录和设备端自动化。它不同于电脑端的 `python -m mklink` CLI、MCP tool 和 Web REST API。
+
+普通调试优先使用 Web GUI、MCP 或 CLI；只有编排脱机流程、下载器端 GPIO/蜂鸣器或兼容旧串口工作流时，才直接调用本页接口。写 RAM、擦除或写 Flash 前必须确认地址和影响。
 
 ---
 

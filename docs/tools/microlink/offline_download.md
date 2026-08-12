@@ -1,335 +1,155 @@
-# 开源一个芯片自由的脱机下载器
+# 脱机下载与量产
 
-## 一、脱机下载，也可以是自由的
+脱机下载将固件、Flash 算法和执行脚本保存到 MKLink。部署完成后，下载器不再依赖 PC 软件，可以通过外壳按键、机台引脚或 Web GUI 的“触发测试”完成烧录。
 
-💡 **什么是脱机下载器？**
-简单来说，脱机下载器就是在**不连接电脑、不用专业软件**的情况下，也能帮你把程序烧录进芯片的工具。只要插上电源、按个按钮，固件就自动下载进 MCU，非常适合量产、售后、维修等场景。
+它适合小批量生产、返修工位和现场升级。研发阶段仍建议先完成一次[在线烧录](online-flash.md)，确认器件、固件地址和运行结果都正确，再生成脱机任务。
 
-🧩 **芯片自由**：适配你想用的芯片
+## 工作过程
 
-通过加载标准的 **FLM 下载算法文件**（由 Keil Pack 或芯片厂商提供），MicroLink 可以支持几乎所有 Cortex-M 架构的芯片（如 STM32、GD32 等绝大多数国产芯片），包括内置 Flash 和外部 Flash 的烧写。
-
-你无需等待更新固件适配芯片，无需绑定品牌，只要有 FLM 文件，就能烧。
-
-📡 **编程自由**：流程由你定义
-
-MicroLink 支持使用 Python 脚本完整编排脱机烧写过程：
-
-- 烧哪个文件，烧到哪？
-- 先烧 Boot，再烧 RTOS，再烧资源包？
-- 烧完如何提示烧写成功？
-
-全都不是问题。只需写几行 Python脚本，就能完整描述你的烧录流程。
-
-> 🔧 **MicroLink 内部运行的是 Python 解释器（基于 PikaPython）**，脱机下载脚本会在脚本引擎中逐行执行，就像运行一个嵌入式程序一样灵活。
-
-## 二、芯片自由的背后：如何让下载器不再“认芯片”？
-
-在传统下载器中，“支持某颗芯片”往往意味着厂商写死支持逻辑，用户只能等待官方升级。但 MicroLink 打破了这种封闭方式，**通过动态加载芯片算法 + 脚本控制烧录流程**，实现了真正意义上的“芯片自由”。
-
-我们将这个能力拆解为两个关键部分：
-
-### 📦 1. FLM 算法加载机制：让下载器“学会”支持芯片
-
-MicroLink 不内置任何芯片写死的支持代码，而是通过加载 Keil MDK 或芯片原厂提供的 **FLM 下载算法（Flash Loader）** 文件来完成烧录。
-
-FLM 是一种标准化的芯片 Flash 编程算法格式，通常来自官方 Pack 包，包含以下核心内容：
-
-- **Init**：芯片初始化代码（打开电源、时钟等）
-- **Erase/Program**：擦除/写入 Flash 的函数
-- **Sector Info**：每个 Flash 页的大小、布局等元信息
-
-**🔍 IDE 是如何用 FLM 文件下载固件的？**
-
-在 Keil、IAR 等 IDE 中，固件下载流程大致如下：
-
-1. **选择芯片或目标板**：IDE 会根据芯片型号自动关联对应的 FLM 文件。
-2. **加载 FLM 到 RAM**：IDE 把 FLM 算法文件中的代码段加载进目标 MCU 的 RAM。
-3. **跳转执行**：通过调试接口（如 SWD），IDE 控制 MCU 跳转执行 FLM 中的 Init、Erase、Program 等函数。
-4. **写入用户固件**：IDE 将用户编译好的 bin 文件，通过 FLM 算法完成 Flash 编程。
-
-简单来说，IDE 并不是“自带”所有芯片的烧录代码，而是 **动态加载** FLM 算法，把烧录这件事交给芯片本身的 RAM 里执行。MicroLink 就复用了这套机制，使你不需要写适配代码，也能支持任意芯片。
-
-📁 **FLM 文件获取方式：**
-
-- 从 Keil MDK 安装路径中提取（通常在 `Keil\ARM\Flash`）
-- 从芯片厂商提供的 Pack 包中提取
-
-> ⚠️ 注意：不同芯片型号可能对应不同的 FLM 文件，请确认地址和容量匹配。
-
-**MicroLink 如何利用 FLM 实现烧录？**
-
-1. **解析 FLM 文件**（XXX.FLM）：提取必要代码段
-
-2. **将代码加载进 MCU RAM**：作为“动态烧录器”运行
-3. **通过调用烧录函数**：实现对目标芯片 Flash 的操作
-4. **一颗芯片支持多个区域（如主 Flash + 外部 SPI Flash）**：可以加载多个 FLM 文件分别处理
-
-这个过程中，MicroLink 自己并不关心芯片型号，只需要：
-
-- 有合适的 FLM 算法
-- 知道 Flash 起始地址
-- 有合适的下载数据（bin）
-
-> 这就像是“把芯片支持交给算法提供者”，MicroLink 只负责执行和协调。
-
-### 💡 2. Python 脚本控制机制：让烧录流程更聪明
-
-有了 FLM 算法，接下来是：**如何控制整个烧录流程**？例如，先烧 boot，再烧 app，再烧外挂 Flash，再提示成功。
-
-传统脱机下载器往往只支持烧一个文件，流程固定。而 MicroLink 提供了完整的 Python 脚本接口，允许用户自己用代码定义“烧录流程”。
-
-MKLINK V2示例脚本：
-
-```python
-import load
-import PikaStdLib
-import PikaStdDevice
-import time
-
-time = PikaStdDevice.Time()
-buzzer = PikaStdDevice.GPIO()
-buzzer.setPin('PA4')
-buzzer.setMode('out')
-
-ok = True
-# 加载 FLM 文件
-load.flm("FLM/STM32F10x_1024.FLM", 0x08000000, 0x20000000)
-
-# 设置频率
-cmd.set_swd_clock(5000000)
-
-#下载bin文件
-if load.bin("boot.bin", 0x08000000) != 0:
-    ok = False
-    
- #下载hex文件
-if load.hex("rt-thread.hex") != 0:
-    ok = False   
-    
-#蜂鸣器提示下载成功
-if ok:
-    buzzer.enable()
-    buzzer.high()
-    time.sleep_ms(500)
-    buzzer.low()
-    time.sleep_ms(500) 
-    
+```text
+选择器件和 FLM -> 加入 HEX/BIN -> 设置量产参数 -> 生成预览
+        -> 部署到 MICROKEEN -> 触发烧录 -> 读取结果 -> 验证程序运行
 ```
 
-MKLINK V3和V4示例脚本：
+“部署成功”只表示文件已经写入下载器；“触发完成”只表示脚本运行结束。量产任务还必须检查 `loaded success`、`auto download finished`，并至少通过版本号、RTT、通信响应或板级行为确认新固件运行。
 
-```python
-import PikaStdLib
-import time
-import cmd
-import load
+## 开始前检查
 
-# 自动下载循环次数
-AUTO_DOWNLOAD_COUNT = 1
-# 等待读取目标IDCODE有效的超时时间（ms）
-WAIT_IDCODE_TIMEOUT = 10000
-# FLM 文件路径
-FLM_FILE_PATH = "FLM/STM32F10x_1024.FLM"
-# 目标 Flash 基地址
-FLM_FLASH_BASE = 0x08000000
-# 目标 RAM 基地址
-FLM_RAM_BASE = 0x20000000
-# HEX 文件路径（支持通配符）
-HEX_FILE_PATH = "rt-thread.hex"
-# BIN 文件路径（支持通配符）
-BIN_FILE_PATH = "bootloader.bin"
-# BIN 文件下载地址
-BIN_FILE_ADD = 0x08000000
-# SWD 时钟频率（Hz）
-SWD_CLOCK_HZ = 10000000
- # 设置下载速度
-cmd.set_swd_clock(SWD_CLOCK_HZ)
+- 目标芯片精确型号和供电电压已经确认；
+- HEX/BIN 来自已通过构建和在线验证的配置；
+- BIN 已知准确的 Flash 基地址；HEX 的地址保存在文件内部；
+- 非 HPM 目标有覆盖固件地址范围的 FLM；
+- BootLoader、参数区和应用程序的擦写范围不会互相覆盖；
+- MKLink U 盘卷标为 `MICROKEEN`，Web GUI 已显示后端正常。
 
- # 自动循环下载 
-abort = False
-for i in range(AUTO_DOWNLOAD_COUNT):
-    if abort:
-        break
-    print("=== Auto Download Round:", i + 1, "===")
-    elapsed = 0
- # 等待连接目标板   
-    while True:
-        idcode = cmd.get_idcode()
-        if idcode not in (0, 0xFFFFFFFF):
-            break
-        if elapsed >= WAIT_IDCODE_TIMEOUT:
-            print("wait idcode online timeout")
-            abort = True
-            break
-        print("=== waited_ms :", elapsed, "===")
-        time.sleep_ms(500)
-        elapsed += 500
-    if abort:
-        break
-    print("IDCODE: 0x%08X" % idcode)
- # 加载下载算法 
-    if load.flm(FLM_FILE_PATH, FLM_FLASH_BASE, FLM_RAM_BASE) != 0:
-        print("load flm failed")
-        abort = True
-        break
- # 下载bin文件     
-    if load.bin(BIN_FILE_PATH,BIN_FILE_ADD) != 0:
-        print("load bin failed")
-        abort = True
-        break        
- # 下载hex文件     
-    if load.hex(HEX_FILE_PATH) != 0:
-        print("load hex failed")
-        abort = True
-        break
- # 循环次数为1，只下载一次        
-    if  AUTO_DOWNLOAD_COUNT == 1:
-        break    
-    elapsed = 0
- # 等待断开连接目标板     
-    while True:
-        idcode = cmd.get_idcode()
-        if idcode in (0, 0xFFFFFFFF):
-            break
+!!! warning "先停止其他探针任务"
+    RTT、SuperWatch、RTOS Trace 和在线烧录会占用相同的目标调试资源。部署可以在 U 盘可用时完成，但触发前应正常停止其他会话。
 
-        if elapsed >= WAIT_IDCODE_TIMEOUT:
-            print("wait idcode offline timeout")
-            abort = True
-            break
-        time.sleep_ms(500)
-        elapsed += 500
-if not abort:
-    print("auto download finished")
-else:
-    print("auto download aborted")
+## 使用 Web GUI 部署
 
+打开“脱机烧录”，页面按工作流分成三个区域。
+
+### 1. 选择器件和算法
+
+在“器件与下载算法”中搜索精确器件，例如 `STM32F103RE`。页面会列出来自已安装 CMSIS-Pack、MCU Profile 和下载器 U 盘的算法。
+
+本案例选择：
+
+| 参数 | 值 |
+|---|---|
+| 目标器件 | `STM32F103RE` |
+| Flash | 512 KiB，`0x08000000` 起始 |
+| 下载算法 | `STM32F10x_512.FLM` |
+| FLM RAM 基址 | `0x20000000` |
+
+不要因为名称相近而选择 `STM32F10x_OPT.FLM`。它用于选项字节，不用于应用固件。
+
+### 2. 添加固件和烧录顺序
+
+把 HEX 或 BIN 拖入“烧录顺序”。多镜像工程按实际地址和依赖排列，例如：
+
+1. BootLoader；
+2. 参数或资源镜像；
+3. Application。
+
+每个固件必须绑定正确的 FLM。BIN 还需要填写基地址；地址未知时停止，不要试烧。HEX 可在预览中核对实际数据范围。
+
+### 3. 设置量产参数
+
+| 参数 | 建议 | 说明 |
+|---|---|---|
+| 下载器型号 | 按实物选择 | V2/V3 使用固定脚本名；V4 可自定义 |
+| 脚本文件名 | 能识别项目和版本 | V4 示例为 `stm32f103ret6_demo.py` |
+| 自动烧录次数 | 首次测试设为 1 | 连续生产前再调整 |
+| IDCODE 超时 | 10000 ms | 等待目标接入或断开的最长时间 |
+| SWD 速率 | 从 1 MHz 起验证 | 线短且信号稳定后可提高到 10 MHz |
+
+先点击“生成预览”。检查脚本中的 FLM、固件名、地址、顺序和循环次数，再点击“部署到 U 盘”。页面应列出实际写入的所有文件。
+
+![脱机烧录工作区](../../images/microlink/gui/offline-flash.png)
+
+## STM32F103RET6 实测
+
+本次演示使用 `STM32F103RET6` 和 RT-Thread 固件。构建产物为 `rt-thread.hex`，下载算法为 `STM32F10x_512.FLM`。
+
+部署结果：
+
+```text
+model: V4
+script: stm32f103ret6_demo.py
+files:
+  rt-thread.hex
+  FLM/STM32F10x_512.FLM
+  python/stm32f103ret6_demo.py
 ```
 
-该脚本通过加载FLM算法文件，将多个二进制文件（如boot.bin、rt-thread.hex）分别烧录到STM32内部Flash中。
+点击“触发测试”后，上位机实际发送：
 
-> **注意：**请根据您的实际项目需求，修改以下内容：
->
-> - **下载算法文件名称**（如 `"STM32/STM32F10x_1024.FLM"` ）：应替换为对应芯片和Flash型号的 FLM 文件。
-> - **BIN 文件名称及地址**（如 `"boot.bin"`、`"rt-thread.hex"`及其对应的地址）：请确保文件名和烧录地址与您的程序结构一致。
-> - **修改下载函数**：如果只烧录单个文件，只保留load.bin或者load.hex的代码，如下，下载bin文件，屏蔽hex下载：
->
-> ```python
->  # 下载bin文件     
->     if load.bin(BIN_FILE_PATH,BIN_FILE_ADD) != 0:
->         print("load bin failed")
->         abort = True
->         break        
->  # 下载hex文件     
->  #   if load.hex(HEX_FILE_PATH) != 0:
->  #      print("load hex failed")
->  #      abort = True
->  #      break
-> ```
->
-> 若文件名或地址设置不当，可能导致程序无法正常运行或烧录失败。
-
-🧭 **脚本的作用是：**
-
-- **按需加载多个 FLM 算法**（多片 Flash）
-- **灵活控制烧写顺序与文件分布**
-- **添加控制逻辑：判断、日志输出、状态指示**
-- **控制外设：比如烧写成功后蜂鸣器响一下**
-- **自动扫描单片机，根据循环次数自动下载**
-
-> MKLink 的烧录逻辑不是固定的，而是**被你编写出来的**。
-
-这相当于赋予了创客一个高度自由的平台，让你可以自己定义烧录策略，而不是被工具的“支持列表”所限制。
-
-### 🎯 3. 如何使用脱机下载功能？
-
-了解原理之后，我们来看 MicroLink 的脱机下载功能如何实际使用。**整个流程非常简单**，不需要专业软件、不依赖电脑，就可以完成整套烧录动作。
-
-**✅ 第一步：准备 FLM 算法文件与烧录脚本**
-
-你只需将以下文件拷贝到 MicroLink 的脱机下载目录中（类似 U 盘的文件夹）：
-
-| 文件名                | 作用                               |
-| --------------------- | ---------------------------------- |
-| `*.FLM`               | FLM 下载算法文件（支持多个）       |
-| `*.bin`               | 需要烧录的固件文件                 |
-| `offline_download.py` | 控制烧录流程的 Python 脚本（必须） |
-
-示例目录结构：
-
-```
-/MICROLINK/
-├── python
-├── FLM
-├── boot.bin
-├── rt-thread.hex
+```text
+load.offline("Python/stm32f103ret6_demo.py")
+set clock 10000000
+=== Auto Download Round: 1 ===
+fileName rt-thread.hex
+Download: 100% ,used 10102 ms
+/rt-thread.hex loaded success
+auto download finished
 ```
 
-------
+烧录约 10.1 秒完成。触发后通过 RTT 连续采集，运行时间持续增长，温度、转速和告警状态正常变化：
 
-**✅ 第二步：触发脱机下载（两种方式）**
+```text
+MKLink demo | uptime=41284 ms | temp=30.0 C | speed=1050 rpm | state=2 | alarm=1
+MKLink demo | uptime=42292 ms | temp=29.0 C | speed=1000 rpm | state=2 | alarm=0
+MKLink demo | uptime=44300 ms | temp=28.0 C | speed=950 rpm  | state=2 | alarm=0
+```
 
-MicroLink 支持两种脱机烧录触发方式：
+这两组证据分别证明“脱机脚本完成”和“目标程序实际运行”。
 
-**🔘 方式一：按键触发**
+## 不连接电脑时如何触发
 
-MKLink V3和V4，有下载按钮。
+### V3 / V4 按键
 
-- **按下按钮** → MKLink V3 自动执行 `offline_download.py` 脚本
-- **烧录成功** → LED亮绿灯
-- **烧录失败**→  LED亮红灯
-- **可用于量产、售后维修、断网环境**
+目标板接线和供电确认后，按下下载器外壳按键。执行期间不要拔线或切断目标电源。以显示、蜂鸣器、指示灯或生产工装返回信号判断结果。
 
-> 纯离线运行，不依赖上位机。
+![脱机下载按键](../../images/microlink/key.png)
 
-------
+### V2 机台引脚
 
-![](../../images/microlink/key.png)
+V2 不带独立按键。机台可通过 TDI 与 GND 触发，TDO 用于输出成功/失败提示。接入工装前确认电平、上拉和触发脉宽，避免浮空输入造成误烧录。
 
-MKLink V2，可用于机台烧录。
+### Web GUI 触发测试
 
-- **触发下载**→ TDI引脚与GND短接触发执行 `offline_download.py` 脚本
-- **烧录成功** → TDO引脚可接蜂鸣器或者LED灯提示烧录成功或者失败
-- **可用于量产、售后维修**
+研发和建站阶段优先使用“触发测试”。它会显示设备端实时输出，适合验证脚本、算法和接线。通过后再转为按键或工装触发。
 
-**💻 方式二：串口命令触发**
+## 连续量产
 
-如果 MicroLink 已连接电脑，你可以通过 USB CDC 虚拟串口发送`load.offline()`加回车，效果如下：
+连续烧录不是简单增大循环次数。工位应完成以下设计：
 
-![](../../images/microlink/load_offline.jpg)
+- 等待有效 IDCODE 后才开始；
+- 每台下载完成后等待目标断开，再接受下一台；
+- 记录固件版本、SHA-256、脚本名、下载器固件版本和结果；
+- 失败后停止当前循环并保留日志，不自动跳过；
+- 对 BootLoader、密钥区和选项字节使用独立权限与复核流程；
+- 定期抽检目标启动、通信和业务功能。
 
-该命令会立即触发一次离线脚本的执行，适合：
+## 常见失败
 
-- 测试脚本是否正确
-- 在工控系统中集成自动烧录流程
-- 将离线流程作为可控子模块远程触发。
+| 现象 | 排查顺序 |
+|---|---|
+| 未发现 MICROKEEN | 检查 USB 数据线、磁盘卷标和系统挂载状态 |
+| 找不到目标算法 | 核对精确器件，安装对应 Pack，或导入厂家 FLM |
+| 等待 IDCODE 超时 | 检查目标供电、Vref、GND、SWDIO、SWCLK 和 NRST |
+| `load flm failed` | 检查 FLM 文件完整性、Flash/RAM 基址和器件系列 |
+| BIN 下载后不启动 | 优先核对 BIN 基址、向量表和 BootLoader 跳转地址 |
+| 显示 100% 但程序不运行 | 检查 verify、复位方式、启动脚、选项字节，并做 RTT/通信复验 |
+| 连续模式卡住 | 判断正在等待目标接入还是等待上一目标断开 |
 
+## 使用 AI 协助
 
+AI 提示词保持任务化即可：
 
-## 三、未来展望：不断扩展功能，打造工程师手边真正好用的工具
+> 为 STM32F103RET6 生成并部署单次脱机任务，触发测试后用 RTT 验证固件运行。执行前报告固件、FLM、地址和摘要。
 
-### 🛒 1. 淘宝购买链接
+AI 应在部署前报告目标器件、文件摘要和擦写范围；触发失败时保留原始日志，不静默改用其他烧录后端。
 
-如果你想支持这个项目，也欢迎购买 MicroLink 实体设备：
-
-🔗 淘宝购买链接：
-
-MKLinkV2        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=895964393739
-
-MKLinkV3        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=1013104417098
-
-MKLinkV4        淘宝链接：https://item.taobao.com/item.htm?ft=t&id=1020501356342
-
-包括主板、扩展板、TypeC数据线、说明文档等内容。
-
-### ❓ 2 .常见问题答疑（FAQ）
-
-为了帮助用户更快上手和排查问题，我们整理了使用 MicroLink 脱机下载功能时的一些常见问题与解答：
-
-| 问题                                 | 解答                                                         |
-| ------------------------------------ | ------------------------------------------------------------ |
-| 💡 FLM 文件从哪里获取？               | 可从 Keil MDK 安装目录（通常在 `Keil\ARM\Flash`）或芯片厂商提供的 Pack 包中提取 |
-| 🔄 脱机脚本可以烧录多个文件吗？       | 可以，Python 脚本中你可以按需加载多个 bin 文件、写入不同地址，还可操作多个 Flash 区域。 |
-| 🧪 烧录失败了怎么办？可以调试脚本吗？ | 可以。你可以通过串口连接 MicroLink，使用 `load.offline()` 命令手动触发脚本执行，并通过输出调试信息来定位问题。 |
-| 📦 脱机脚本能控制哪些外设？           | 可以控制 GPIO、电平翻转、蜂鸣器响声、串口交互、延时、打印日志等，用于丰富脱机过程的交互与状态反馈。 |
-| 🚦 如何判断烧录成功？                 | 烧录完成后 MicroLink 会自动鸣响蜂鸣器作为提示，也可以在脚本中自定义 LED 灯亮灭或串口发送完成信号。 |
+下一步可阅读 [固件升级](firmware-upgrade.md) 或 [下载器内部 Python API](python_api.md)。
