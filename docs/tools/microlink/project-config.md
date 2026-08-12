@@ -44,6 +44,26 @@ Keil 的 DFP 将 `STM32F103RET6` 归入 `STM32F103RE` 设备条目。工程目�
 
 本示例当前构建结果为：Code 约 94.7 KiB，RO-data 约 20.4 KiB，RW-data 约 2.5 KiB，ZI-data 约 34.6 KiB。配置文件来源时应选择 `build/keil/Obj/rt-thread.axf` 和 `build/keil/List/rt-thread.map`，不要误选工程根目录中的旧产物。
 
+## HPM5301 + FreeRTOS 示例
+
+第二个案例使用 HPM5301 EVK Lite 和 HPM SDK `samples/segger_sysview/freertos`，由 SEGGER Embedded Studio 8.24 构建。
+
+| 配置项目 | 本次实测值 |
+|---|---|
+| 精确器件 | `HPM5301xEGx` |
+| 板型 | `hpm5301evklite` |
+| ELF | SES Debug 输出目录中的 `demo.elf` |
+| MAP | 同一目录中的 `demo.map` |
+| BIN | `demo.bin`，55,432 字节 |
+| BIN 基址 | `0x80000400` |
+| RTT 控制块 | `0x00087100` |
+
+![HPM5301 工程与 ELF/MAP 配置](../../images/microlink/hpm5301/web-config-files.png)
+
+![HPM5301 本地设备与串口配置](../../images/microlink/hpm5301/web-config-device.png)
+
+HPM 的 BIN 用于 ROM API 烧录，ELF/MAP 用于符号、RTT 和源码定位。三者必须来自同一次构建。完整案例见 [HPM5301 + FreeRTOS 全功能实战](hpm5301-freertos-case.md)。
+
 !!! warning "不要公开本机信息"
     分享截图前隐藏完整 COM 号、探针唯一 ID、用户名、工程绝对路径和远程 Token。
 

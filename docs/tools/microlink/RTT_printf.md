@@ -56,6 +56,20 @@ MKLink demo | uptime=74549 ms | temp=29.0 C | speed=1000 rpm | state=2 | alarm=0
 
 温度达到 30.0°C 时 `alarm=1`，回落到 29.0°C 后恢复为 0。日志截图中的地址、来源 AXF 和状态栏应与当前会话一致。
 
+### HPM5301 FreeRTOS 实测
+
+HPM5301 案例的 `_SEGGER_RTT` 位于 `0x00087100`。在 Web GUI 输入该地址或使用当前 ELF/MAP 自动搜索，连续运行至少 12 秒，覆盖 800→1600→800 rpm 阶跃。
+
+![HPM5301 RTT 运行日志](../../images/microlink/hpm5301/rtt-view-running.png)
+
+```text
+HPM5301 t=90000 target=1600 speed=847 output=100 temp=38 state=1 alarm=0
+HPM5301 t=92000 target=1600 speed=1571 output=74 temp=40 state=1 alarm=0
+HPM5301 t=96000 target=800 speed=1541 output=0 temp=42 state=1 alarm=0
+```
+
+目标值切换后，输出先变化、反馈再跟随。重新烧录安全固件后也用相同方法短采 5 秒，确认 FreeRTOS/PID 任务恢复。完整构建与烧录参数见 [HPM5301 + FreeRTOS 全功能实战](hpm5301-freertos-case.md)。
+
 ## 成功判据
 
 - 页面报告找到 RTT 控制块和有效通道；

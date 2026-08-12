@@ -1,4 +1,4 @@
-# HardFault 现场分析
+# HardFault / RISC-V Trap 现场分析
 
 HardFault 分析的目标不是猜一个可能原因，而是保存异常发生时的寄存器、异常栈和相关内存，用匹配的 AXF/ELF 将 PC、LR 映射回源码，再通过修改和复验关闭问题。
 
@@ -89,8 +89,53 @@ RT-Thread 还输出了完整异常寄存器和线程表：`hfdemo` 处于 runnin
 
 修复不能只以“设备重新启动”为完成标准。应重复原触发条件，并确认 Fault 寄存器、日志和相关变量都恢复正常。
 
+## HPM5301 RISC-V Trap 实测
+
+HPM5301 是 RISC-V，不能照搬 Cortex-M 的 CFSR/HFSR。该架构优先保存：
+
+- `mcause`：异常原因；
+- `mepc`：异常发生的 PC；
+- `mtval`：与异常相关的地址或指令值；
+- `mstatus`：机器模式状态；
+- 当前任务、栈和与故障相关的 RAM。
+
+案例固件使用双钥匙受控触发，两个值都正确时才执行 `0xFFFFFFFF` 非法指令：
+
+```text
+trap_unlock_key  = 0x48504D53
+trap_trigger_key = 0x54524150
+```
+
+触发后先读取保留 RAM，不复位：
+
+```text
+trap_state = 2
+mcause      = 2
+mepc        = 0x80008B1A
+mtval       = 0xFFFFFFFF
+mstatus     = 0x00001880
+```
+
+![HPM5301 RISC-V Trap RAM 现场](../../images/microlink/hpm5301/riscv-trap-memory.png)
+
+![HPM5301 Trap 符号地址](../../images/microlink/hpm5301/riscv-trap-symbols.png)
+
+`mcause=2` 表示非法指令，`mtval` 与故意执行的指令字一致。使用当前 `demo.elf` 映射 `mepc`：
+
+```text
+0x80008B1A -> trigger_illegal_instruction() -> src/main.c:68
+```
+
+现场采集完成后重新在线烧录默认安全 BIN，再用 RTT 确认 PID 阶跃、`state=1` 和 `alarm=0` 恢复。完整步骤见 [HPM5301 + FreeRTOS 全功能实战](hpm5301-freertos-case.md)。
+
 ## 使用 AI 协助
+
+Cortex-M：
 
 > 保存 Fault 寄存器和异常栈，用当前 AXF 定位 PC/LR；采集完成前不要复位。
 
-AI 必须把寄存器事实、源码推断和待验证项分开，不应在缺少匹配 AXF 或异常栈时给出确定根因。
+RISC-V：
+
+> 保存 RISC-V Trap 的 `mcause/mepc/mtval/mstatus`，用当前 ELF 定位源码；采集完成前不要复位。
+
+AI 必须把寄存器事实、源码推断和待验证项分开，不应在缺少匹配 ELF、异常栈或 Trap CSR 时给出确定根因。

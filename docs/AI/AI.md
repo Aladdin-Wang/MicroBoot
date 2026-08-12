@@ -38,7 +38,7 @@ MKLink AI Probe 让工程师在熟悉的 AI 编码环境中读取真实 RAM、�
 | 编译并下载 | 识别 IDE Target -> 零错误构建 -> 下载 -> 运行验证 |
 | RTT 日志 | 定位控制块 -> 采集原始日志 -> 关联源码和时间 |
 | 变量异常 | 解析 ELF -> 连续采样 -> 对照状态机和寄存器 |
-| HardFault | 保存现场 -> 解码 Fault -> 定位源码 -> 修改后复验 |
+| HardFault / RISC-V Trap | 保存现场 -> 解码 Fault/CSR -> 定位源码 -> 修改后复验 |
 | RTOS 卡顿 | 采集有效 SystemView -> 分析任务/ISR/CPU -> 验证优化 |
 
-完整实战见 [STM32F103RET6 + RT-Thread 案例](stm32f103-case.md)。控制环和 FOC 变量的采样方法见[SuperWatch 与 PID 调试](../tools/microlink/superwatch.md)。
+Arm Cortex-M 实战见 [STM32F103RET6 + RT-Thread 案例](stm32f103-case.md)。RISC-V 与 HPM ROM API 实战见 [HPM5301：AI 全程调试实录](hpm5301-ai-debug-article.md)。控制环和 FOC 变量的采样方法见[SuperWatch 与 PID 调试](../tools/microlink/superwatch.md)。

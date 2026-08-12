@@ -6,6 +6,8 @@
 
 先说明工程目录、目标板丝印、芯片型号、当前问题和允许的操作。对于本手册案例，芯片是 `STM32F103RET6`，Keil Device 是 `STM32F103RE`；工程目录名称不能代替芯片识别。
 
+HPM 案例还要说明精确料号、开发板、BIN 基址和 Flash 配置来源。`HPM5301xEGx + hpm5301evklite + 0x80000400` 只适用于对应的 HPM SDK 构建，不能当作所有 HPM 工程的默认值。
+
 ## 第二步：审核识别结果和产物
 
 AI 至少应报告：
@@ -33,3 +35,5 @@ AI 至少应报告：
 ## 完成标准
 
 AI 的最终报告应包含构建结果、烧录路径、硬件证据、结论、未解决风险，以及对目标板做过的状态改变。
+
+完整示例：[STM32F103RET6 + RT-Thread](stm32f103-case.md) · [HPM5301 + FreeRTOS](../tools/microlink/hpm5301-freertos-case.md)

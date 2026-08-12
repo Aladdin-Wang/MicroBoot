@@ -36,6 +36,14 @@ Memory 用于读取 RAM、Flash 和内存映射寄存器。它适合核对变量
 
 若只是想知道 `g_pid_feedback_rpm` 当前是多少，优先在符号页按 `float` 读取；Memory 更适合检查布局、相邻字段和原始字节。
 
+## HPM5301 PID 参数实测
+
+当前 HPM5301 构建中，`pid_kp/pid_ki/pid_kd` 从 `0x000848D8` 开始连续存放。在 Memory 页读取 32 字节，可核对三个参数及相邻运行变量。
+
+![HPM5301 PID 参数原始 RAM](../../images/microlink/hpm5301/memory-pid-ram.png)
+
+对应初值为 `0.080f`、`0.120f`、`0.001f`。调参应优先通过符号名和 `float` 类型写入；Memory 原始写入只用于明确知道字节布局的场景。重新编译后先从符号表取得新地址。
+
 ## 读取外设寄存器
 
 读取 DMA、ADC、定时器或 NVIC 前，从芯片参考手册确认地址、位定义和访问属性。
@@ -75,4 +83,6 @@ Memory 用于读取 RAM、Flash 和内存映射寄存器。它适合核对变量
 
 > 只读检查这个变量和相关寄存器，先列出地址来源、位定义和判断条件，不要写入。
 
-下一步：[HardFault 现场分析](hardfault.md)。
+下一步：[HardFault / RISC-V Trap 现场分析](hardfault.md)。
+
+HPM RISC-V 现场的完整读取示例见 [HPM5301 + FreeRTOS 全功能实战](hpm5301-freertos-case.md)。

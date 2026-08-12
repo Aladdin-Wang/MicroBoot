@@ -53,6 +53,18 @@ connect -> erase -> program -> verify -> reset -> disconnect
 
 本例完整作业实测状态为 `succeeded`，包含校验和复位，耗时约 10 秒。
 
+## HPM5301 ROM API 实测
+
+HPM 目标不使用 Pack/FLM。选择 `HPM5301xEGx` 后，页面应显示“HPM ROM API / 无需 FLM”，板型选择 `hpm5301evklite`，BIN 基址填写 `0x80000400`。
+
+![HPM5301 在线烧录参数](../../images/microlink/hpm5301/online-flash-ready.png)
+
+本次 `demo.bin` 为 55,432 字节，SHA-256 为 `9133B8A7...F6333DB`。真实作业完成 connect、erase、program、verify、reset、disconnect，状态为 `SUCCEEDED`，耗时约 13.9 秒。
+
+![HPM5301 HPM ROM API 在线烧录成功](../../images/microlink/hpm5301/online-flash-succeeded.png)
+
+烧录后连续采集 RTT，确认时间递增、PID 目标在 800/1600 rpm 间切换，`state=1`、`alarm=0`。这一步用于证明目标运行，而不是重复证明文件已经写入。HPM 完整流程见 [HPM5301 + FreeRTOS 全功能实战](hpm5301-freertos-case.md)。
+
 设备被 RTT、SuperWatch 或 SystemView 占用时，先停止对应会话并释放资源，再启动在线烧录。
 
 ## 使用 AI

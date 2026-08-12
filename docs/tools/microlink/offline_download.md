@@ -105,6 +105,40 @@ MKLink demo | uptime=44300 ms | temp=28.0 C | speed=950 rpm  | state=2 | alarm=0
 
 这两组证据分别证明“脱机脚本完成”和“目标程序实际运行”。
 
+## HPM5301 ROM API 脱机实测
+
+HPM 脱机任务不需要 FLM。实测配置为：
+
+| 参数 | 值 |
+|---|---|
+| 目标 | `HPM5301xEGx` |
+| 板型 | `hpm5301evklite` |
+| 固件 | `demo.bin`，55,432 字节 |
+| 基址 | `0x80000400` |
+| 脚本 | `hpm5301_freertos_demo.py` |
+
+生成预览后检查脚本包含：
+
+```python
+hpm.board("hpm5301evklite")
+hpm.program("demo.bin", 0x80000400)
+```
+
+脚本中不能出现 `load.flm()`。
+
+![HPM5301 ROM API 脱机预览](../../images/microlink/hpm5301/offline-rom-api-preview.png)
+
+本次部署前后均核对了固件大小和 SHA-256。点击“触发测试”后，设备端日志显示文件大小 55,432 字节，下载到 100%，最终返回：
+
+```text
+demo.bin loaded successfully.
+auto download finished
+```
+
+![HPM5301 脱机触发成功](../../images/microlink/hpm5301/offline-trigger-succeeded.png)
+
+同名固件尤其需要摘要校验。本次测试曾发现另一份 `demo.bin` 只有 30,380 字节，因此在触发前停止并换回正式构建产物。文件名相同不能证明内容相同。
+
 ## 不连接电脑时如何触发
 
 ### V3 / V4 按键

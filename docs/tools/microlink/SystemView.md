@@ -88,8 +88,25 @@ SystemView 页面出现时间线并不等于数据有效。至少同时满足以
 | 任务名只有地址 | 加载 ELF，并确认任务控制块地址和 RAM base 正确 |
 | 丢包持续增加 | 增大 RTT 缓冲、缩短采集链路延迟或减少事件 |
 
+## HPM5301 FreeRTOS 实测
+
+HPM SDK 的 `samples/segger_sysview/freertos` 已包含 FreeRTOS/SystemView 适配。本次构建加载 `demo.elf`，RTT 控制块为 `0x00087100`。
+
+![HPM5301 FreeRTOS SystemView 时间线](../../images/microlink/hpm5301/systemview-freertos-running.png)
+
+采集识别到 47,147 个事件、4 个任务和 360 MHz CPU 时钟，任务为 `task1`、`task2`、`task3`、`Idle`，并显示 MTimer、ECall 和 GPTMR ISR。
+
+本次 8 秒高事件率采集出现 `session dropped: 1934`。因此可以确认任务和 ISR 结构，但不能把这组数据写成零丢包的精确 CPU 占用报告。需要定量分析时：
+
+1. 缩短采集窗口；
+2. 降低目标事件率；
+3. 增大 RTT/SystemView Up Buffer；
+4. 重新采集并确认 drop/overflow 不再增长。
+
+HPM 示例的 SES 构建、ROM API 烧录和完整验收见 [HPM5301 + FreeRTOS 全功能实战](hpm5301-freertos-case.md)。
+
 ## 使用 AI 协助
 
-> 采集 6 秒 RTOS Trace，先报告任务数、时间基准和目标 overflow，再分析 CPU/ISR。
+> 采集 6 秒 RTOS Trace，先报告任务数、时间基准和目标 overflow/drop，再分析 CPU/ISR。
 
-无效采集只能用于排障，不能让 AI 根据异常时间或零任务数据推断调度结论。
+无效采集只能用于排障，不能让 AI 根据异常时间、零任务或持续丢包数据推断调度结论。

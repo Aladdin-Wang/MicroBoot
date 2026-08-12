@@ -18,9 +18,15 @@ AI 应保留原始数据，避免只返回摘要。高速变量优先用 SuperWa
 
 > 请先保存 Fault 寄存器、异常栈和相关 RAM，使用匹配的 ELF 解码 PC/LR 到源码。区分确定事实和推断，不要在采集现场前复位。
 
+RISC-V 目标不要套用 Cortex-M Fault 寄存器。优先保存 `mcause/mepc/mtval/mstatus`、当前任务和相关 RAM，再用匹配 ELF 映射 `mepc`：
+
+> 保存 RISC-V Trap 的 `mcause/mepc/mtval/mstatus`，用当前 ELF 定位源码；采集完成前不要复位。
+
 ## SystemView
 
 SystemView 必须先通过有效性检查：任务数大于 0、时间基准正常、无 overflow、无持续丢包。否则只记录采集失败原因，不给出 CPU 占用结论。
+
+HPM5301 实测的 8 秒高事件率窗口出现 1934 个 session drop，因此只能确认任务/ISR 结构，精确占用需要缩短窗口或增大缓冲后重采。不能为了让报告好看而省略这项限制。
 
 ## 闭环标准
 

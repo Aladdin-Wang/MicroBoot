@@ -12,8 +12,9 @@ MKLink（MicroKeen）把在线调试、固件烧录、串口、RTT、变量采�
 | 不接电脑进行单台或连续烧录 | 脱机下载 | 固件、FLM、量产参数 | 脱机烧录 | [脱机下载与量产](offline_download.md) |
 | 不占用 MCU 串口查看日志 | RTT View | RTT 控制块 | 仪表盘 / RTT View | [RTT View 日志与终端](RTT_printf.md) |
 | 连续观察 PID、FOC 和状态变量 | SuperWatch | 匹配固件的 AXF/ELF | 仪表盘 / SuperWatch | [SuperWatch 与 PID 调试](superwatch.md) |
+| 在第三方上位机中显示变量曲线 | VOFA+ | 变量地址、类型、MKLink 虚拟串口 | VOFA+ / JustFloat | [VOFA+ 第三方上位机](vofa.md) |
 | 查看 RAM、外设和 Fault 寄存器 | Memory | 地址或 AXF 符号 | 仪表盘 / Memory | [Memory 内存与寄存器](memory.md) |
-| 保存异常现场并定位源码 | HardFault | Fault 现场、匹配的 AXF | 仪表盘 / HardFault | [HardFault 现场分析](hardfault.md) |
+| 保存异常现场并定位源码 | HardFault / RISC-V Trap | Fault/Trap 现场、匹配的 ELF | 仪表盘 / Memory / HardFault | [故障现场分析](hardfault.md) |
 | 分析任务、ISR 和 CPU 占用 | RTOS Trace | RTT、SystemView 适配 | 仪表盘 / RTOS Trace | [RTOS Trace / SystemView](SystemView.md) |
 | 调试 UART、RS485 或 Modbus RTU | 串口与 Modbus | 通信参数或点表 | 仪表盘 | [串口与 Modbus](serial-modbus.md) |
 | 更新下载器自身功能 | 固件升级 | 对应型号升级包 | U 盘 / UF2 | [固件升级](firmware-upgrade.md) |
@@ -83,10 +84,12 @@ V4 增加显示、RS485、功率监测、更大的存储空间和可选择的 Py
 2. [连接硬件与配置工程](project-config.md)，加载同一次构建的 AXF 和 MAP；
 3. [在线编译与烧录](online-flash.md)，完成校验并用 RTT 确认运行；
 4. [RTT View](RTT_printf.md) 和 [SuperWatch](superwatch.md)，建立正常运行基线；
-5. 根据任务进入 [Memory](memory.md)、[HardFault](hardfault.md) 或 [RTOS Trace](SystemView.md)；
+5. 根据任务进入 [Memory](memory.md)、[HardFault / RISC-V Trap](hardfault.md) 或 [RTOS Trace](SystemView.md)；
 6. 需要生产工位时再配置[脱机下载](offline_download.md)。
 
 本手册的实测案例使用 `STM32F103RET6`、RT-Thread 5.1.0 和 Keil MDK。工程目录保留了历史名称 `STM32F103RC`，但芯片丝印、Keil Device 和下载算法均按 RET6 配置。
+
+先楫案例使用 `HPM5301xEGx`、FreeRTOS、HPM SDK 和 SEGGER Embedded Studio，下载只走 HPM ROM API。完整过程见 [HPM5301 + FreeRTOS 全功能实战](hpm5301-freertos-case.md)。
 
 ## AI 与工程师如何配合
 
@@ -105,6 +108,8 @@ AI 可以读取工程、选择操作入口、采集日志和整理证据。写 F
 - [固件升级](firmware-upgrade.md)
 - [资料下载](downloads.md)
 - [常见问题](questions.md)
+- [先楫 HPM 生态](先辑使用教程.md)
+- [售后服务与嵌入式 AI 交流群](after-sales.md)
 - [下载器内部 Python API](python_api.md)
 
 官方店铺：
@@ -113,4 +118,4 @@ AI 可以读取工程、选择操作入口、采集日志和整理证据。写 F
 - [MKLink V3](https://item.taobao.com/item.htm?ft=t&id=1013104417098)
 - [MKLink V4](https://item.taobao.com/item.htm?ft=t&id=1020501356342)
 
-产品讨论、性能对比和设计背景收录在导航末尾的“扩展阅读”中。教程页不再重复营销内容，便于工程师直接完成任务。
+产品讨论和原理文章收录在导航末尾的“扩展阅读”中。先楫 HPM 的工程流程已单独整理为“先楫生态”，需要技术支持或加入交流群可进入“售后服务”。
