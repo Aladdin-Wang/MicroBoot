@@ -1,5 +1,7 @@
 # RTT 终端与曲线
 
+> 本页介绍 Web GUI 手动查看日志和曲线。自动采集与分析见[嵌入式 AI 采集 RTT](../../AI/rtt-workflow.md)。
+
 SEGGER RTT 通过调试接口读写目标 RAM 中的环形缓冲区，不占用 MCU UART，适合日志、命令行交互和实时数据观察。
 
 ## 嵌入式端准备

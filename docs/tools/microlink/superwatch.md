@@ -1,5 +1,7 @@
 # SuperWatch 与 PID 调试
 
+> 本页介绍 Web GUI 手动观测曲线。自动采样和参数比较见[嵌入式 AI 调试 PID](../../AI/pid-workflow.md)。
+
 SuperWatch 根据 AXF/ELF 中的符号和类型，直接通过 SWD 连续读取 MCU 变量并绘制曲线。它不占用业务串口，也不要求在固件中增加专用数据帧，适合状态机、传感器、PID 和 FOC 控制环的运行观测。
 
 ## 什么时候使用

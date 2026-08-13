@@ -1,5 +1,7 @@
 # HardFault / RISC-V Trap 现场分析
 
+> 本页介绍 Web GUI 手动分析。自动保存现场和源码定位见[嵌入式 AI 定位 HardFault](../../AI/hardfault-workflow.md)。
+
 HardFault 分析的目标不是猜一个可能原因，而是保存异常发生时的寄存器、异常栈和相关内存，用匹配的 AXF/ELF 将 PC、LR 映射回源码，再通过修改和复验关闭问题。
 
 ## 发生故障后先不要做什么

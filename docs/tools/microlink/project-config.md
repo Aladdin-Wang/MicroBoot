@@ -1,5 +1,7 @@
 # 配置第一个工程
 
+> 本页介绍 Web GUI 手动配置。工程自动识别和检查见[第一次让嵌入式 AI 接手工程](../../AI/first-project.md)。
+
 ## 本页目标
 
 让 Web GUI 知道工程目录、MKLink 设备以及 AXF/ELF、MAP 文件的位置，为 RTT、符号变量、内存和 SystemView 共用同一份配置。

@@ -64,17 +64,23 @@ nav:
   - 参与项目:
       - 如何贡献代码: contribute/code.md
       - 如何贡献文档: contribute/document.md
-  - AI:
+  - 嵌入式 AI:
       - AI + MKLink 使用概览: AI/AI.md
       - 安装和更新完整 Skill: AI/skill.md
       - Skill、MCP、CLI 与 GUI: AI/interfaces.md
-      - 第一次让 AI 操作工程: AI/first-project.md
-      - AI 编译、烧录与验证: AI/flash-workflow.md
-      - AI 辅助调试: AI/debug-workflow.md
-      - STM32F103RET6 + RT-Thread 案例: AI/stm32f103-case.md
+      - 第一次让 AI 接手工程: AI/first-project.md
+      - AI 编译、在线烧录与运行验证: AI/flash-workflow.md
+      - AI 部署和触发脱机下载: AI/offline-workflow.md
+      - AI 采集和分析 RTT: AI/rtt-workflow.md
+      - AI 读取变量、内存和寄存器: AI/memory-workflow.md
+      - AI 使用 SuperWatch 调试 PID / FOC: AI/pid-workflow.md
+      - AI 定位 HardFault: AI/hardfault-workflow.md
+      - AI 分析 RTOS Trace / SystemView: AI/systemview-workflow.md
+      - AI 调试工作流: AI/debug-workflow.md
+      - STM32F103RET6 + RT-Thread 全功能实战: AI/stm32f103-case.md
       - HPM5301：AI 全程调试实录: AI/hpm5301-ai-debug-article.md
       - 安全边界与排障: AI/safety.md
-      - 为什么 AI 需要硬件闭环: AI/AI_MKLink.md
+      - 为什么嵌入式 AI 需要硬件闭环: AI/AI_MKLink.md
   - About:
       - Overview: about/about.md
       - Team: about/team.md

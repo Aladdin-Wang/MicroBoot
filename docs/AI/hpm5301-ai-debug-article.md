@@ -1,141 +1,209 @@
-# AI 能否独立完成一次嵌入式调试？HPM5301 从改代码到故障定位实录
+# HPM5301：AI 全程调试实录
 
-这次测试没有给 AI 准备一套理想化脚本。我提供了一块 HPM5301 EVK Lite、MKLink 下载器和 HPM SDK 自带的 FreeRTOS/SystemView 示例工程，然后开始录屏。AI 需要自己阅读工程、修改代码、调用 SEGGER Embedded Studio 编译、烧录真机、采集曲线、制造一次受控故障，最后恢复安全固件并整理官方教程。
+本文以 HPM5301 EVK Lite 和 HPM SDK 的 `segger_sysview/freertos` 示例为例，记录一次完整的 AI 调试过程：读取工程、修改代码、编译、下载、观察控制量、定位 RISC-V Trap，最后恢复并复核固件。数据来自 2026-08-13 连接在 COM220 的实机，命令和输出可以直接作为自己的操作模板。
 
-目标不是证明 AI 会写几段 C 代码，而是验证它能否完成一次有硬件证据的闭环。
+页面配置、曲线和人工操作见 [HPM5301 + FreeRTOS 全功能实战](../tools/microlink/hpm5301-freertos-case.md)。ARM 工程的 RTT、变量、Memory、SuperWatch 和 SystemView 操作与本文一致，差别只有下载后端和异常寄存器：HPM 使用 ROM API，故障现场读取 RISC-V CSR。
 
-## 任务边界
-
-本次目标是 `HPM5301xEGx`，开发板为 `hpm5301evklite`。工程使用 FreeRTOS，构建工具是 SEGGER Embedded Studio 8.24。HPM 固件只允许通过芯片 ROM API 下载，不使用 FLM。
-
-AI 首先确认了三个容易出错的参数：
+## 工程和目标
 
 ```text
-目标型号：HPM5301xEGx
-板型：hpm5301evklite
-BIN 基址：0x80000400
+目标：HPM5301xEGx
+开发板：hpm5301evklite
+工程：hpm_sdk/samples/segger_sysview/freertos
+IDE：SEGGER Embedded Studio 8.24
+RTOS：FreeRTOS
+下载基址：0x80000400
+探针：COM220，IDCODE 0x1000563D
 ```
 
-随后把一次构建的 BIN、ELF、MAP 固定为同一组证据。最终 `demo.bin` 为 55,432 字节，SHA-256 为：
+给 AI 的请求保持简短即可：
+
+> 把这个 HPM5301 FreeRTOS 工程编译、下载，先看 RTT 和 PID，再定位一次 Trap，最后恢复并给出证据。
+
+## 关键代码
+
+### PID 和运行日志
+
+示例工程增加了可读的控制变量。AI 通过 ELF 符号或 MAP 地址读取这些变量，不需要在业务代码中增加串口协议。
+
+```c
+volatile float motor_target_rpm = 800.0f;
+volatile float motor_speed_rpm;
+volatile float motor_command_percent;
+volatile float pid_kp = 0.080f;
+volatile float pid_ki = 0.120f;
+volatile float pid_kd = 0.001f;
+volatile uint32_t alarm_code;
+
+motor_target_rpm = ((uptime_ms / 6000U) & 1U) == 0U ? 800.0f : 1600.0f;
+motor_command_percent = clampf(
+    pid_kp * error + pid_ki * pid_integral + pid_kd * derivative,
+    0.0f, 100.0f);
+motor_speed_rpm = clampf(
+    speed + (requested_speed - speed) * 0.035f,
+    0.0f, 2400.0f);
+```
+
+RTT 每 100 ms 输出一次摘要，适合确认程序路径和告警状态：
+
+```c
+SEGGER_RTT_printf(
+    0,
+    "HPM5301 t=%u target=%d speed=%d output=%d temp=%d state=%u alarm=%u\\n",
+    uptime_ms,
+    (int) motor_target_rpm,
+    (int) motor_speed_rpm,
+    (int) motor_command_percent,
+    (int) motor_temperature_c,
+    operating_state,
+    alarm_code);
+```
+
+### Trap 现场保存
+
+故障处理函数把硬件现场保存在 RAM 中。用户排查时只需读取这些字段，不需要了解故障触发保护机制。
+
+```c
+__attribute__((noinline)) static void trigger_illegal_instruction(void)
+{
+    __asm volatile(".word 0xffffffff");
+}
+
+void freertos_risc_v_application_exception_handler(uint32_t cause, uint32_t epc)
+{
+    trap_mcause = cause;
+    trap_mepc = epc;
+    trap_mtval = read_csr(CSR_MTVAL);
+    trap_mstatus = read_csr(CSR_MSTATUS);
+    trap_state = 2U;
+
+    for (;;) {
+        __asm volatile("nop");
+    }
+}
+```
+
+## 编译和下载
+
+使用 SES 的 `emBuild.exe` 构建 Debug 配置，构建退出码为 0。本文所用证据组必须来自同一时间的 BIN、ELF 和 MAP：
 
 ```text
-9133B8A7C99F826BE7FA4CD76BB1A18B1AF04FD87379EBA92BA373007F6333DB
+demo.bin  55,412 bytes
+demo.elf  617,621 bytes
+demo.map  220,783 bytes
+BIN SHA-256: CD472E4D019A1AB013431504838441C172198508F1BB40E040C6E9F5654514CA
+ELF SHA-256: FD4695CAD18487BC5EFD90DEFE39079E73AF4480E075B551AD3516DE0B8D698A
 ```
 
-这个摘要后面又被用于在线烧录、脱机部署和故障恢复，避免同名文件混淆。
-
-## AI 给 FreeRTOS 工程增加了什么
-
-为了让观测不是一条静态直线，AI 在示例中加入了一个 10 ms PID 速度环和一阶电机对象。目标转速每 6 秒在 800 rpm 与 1600 rpm 之间切换，输出限制在 0–100%。同时保留原有 FreeRTOS 三个任务和 SystemView 事件。
-
-新增变量包括目标、反馈、输出、温度、PID 参数、误差、积分、运行状态和告警码。RTT 每 100 ms 输出一帧，人可以看日志，SuperWatch 和 VOFA 可以看曲线，AI 则可以直接按 ELF 符号名读取。
-
-AI 还增加了一个双钥匙保护的 RISC-V Trap 演示入口。只有两个 32 位钥匙都匹配时，程序才执行一条非法指令；异常处理函数把 `mcause/mepc/mtval/mstatus` 保存到 RAM。正常固件不会自行触发。
-
-## 从编译到 ROM API 在线烧录
-
-AI 使用 HPM SDK 的 CMake 配置重新生成 SES 工程，再调用 SES 构建工具。构建零错误后，Web GUI 选择精确型号、板型和 BIN 基址，页面明确显示“HPM ROM API / 无需 FLM”。
-
-![HPM5301 在线烧录成功](../images/microlink/hpm5301/online-flash-succeeded.png)
-
-在线任务依次完成连接、擦除、编程、校验、复位和断开，用时约 13.9 秒。仅有 100% 进度还不算完成，后面必须证明 MCU 正在运行新代码。
-
-## 真机日志与 PID 曲线
-
-RTT 控制块由当前 MAP/ELF 定位为 `0x00087100`。AI 连续采集 12 秒，完整看到了升阶跃和降阶跃：
+HPM 不使用 FLM。AI 调用 MKLink MCP `flash` 时必须给出精确型号、BIN 基址和板型：
 
 ```text
-HPM5301 t=90000 target=1600 speed=847 output=100 temp=38 state=1 alarm=0
-HPM5301 t=92000 target=1600 speed=1571 output=74 temp=40 state=1 alarm=0
-HPM5301 t=96000 target=800 speed=1541 output=0 temp=42 state=1 alarm=0
+flash(
+  firmware=".../demo.bin",
+  target_part="HPM5301xEGx",
+  base_address=0x80000400,
+  board="hpm5301evklite",
+  verify=true,
+  reset_after=true
+)
 ```
 
-![HPM5301 RTT 真机日志](../images/microlink/hpm5301/rtt-view-running.png)
-
-SuperWatch 直接按 ELF 符号读取目标、反馈和输出，10 ms 配置下实测约 84 Hz，连续运行超过 20 秒，传输和后端均未丢样。
-
-![HPM5301 SuperWatch PID 阶跃](../images/microlink/hpm5301/superwatch-pid-step.png)
-
-同一组变量也可以交给第三方 VOFA+ 上位机。MKLink 从目标 RAM 采样，并通过 USB CDC 输出 JustFloat；VOFA+ 选择 MKLink 虚拟串口后直接显示曲线。它与 MKLink 内置 Web Viewer 是两个不同的上位机入口。
-
-![HPM5301 PID 在第三方 VOFA+ 中的实测曲线](../images/microlink/hpm5301/vofa-plus-pid-step.png)
-
-这里能看到 AI 调试控制系统的实际价值：它可以计算上升时间、超调、稳态误差和输出饱和比例，再提出参数调整建议。但真实电机或 FOC 调参不能只看曲线，电流、母线电压、温度、失速和急停边界仍由工程师定义。
-
-## FreeRTOS 时间线不是“看见曲线就算成功”
-
-SystemView 采集识别到 47,147 个事件、4 个任务和 360 MHz CPU 时钟，也看到了 MTimer、ECall 和 GPTMR ISR。
-
-![HPM5301 FreeRTOS SystemView](../images/microlink/hpm5301/systemview-freertos-running.png)
-
-这次 8 秒高事件率采集出现了 `session dropped: 1934`。AI 没有把它包装成零丢包结果，而是把结论限制为“任务和 ISR 结构有效，精确占用需要重采”，并给出三个处理方向：缩短窗口、降低事件率、增大 RTT/SystemView 缓冲。
-
-对工程调试来说，如实保留失败和限制比一张漂亮截图更重要。
-
-## 一次真正的 RISC-V Trap 定位
-
-HPM5301 是 RISC-V。这里不能照搬 STM32 的 CFSR/HFSR 和 Cortex-M 异常栈分析。AI 写入双钥匙后，目标进入非法指令 Trap，并立即读取保留 RAM：
+实机下载输出：
 
 ```text
-trap_state = 2
-mcause      = 2
-mepc        = 0x80008B1A
-mtval       = 0xFFFFFFFF
-mstatus     = 0x00001880
+open fileName: demo.bin success,file size: 55412 byte
+Download: 100% ,used 1792 ms
+demo.bin loaded successfully.
+algorithm_source: hpm-rom-api
+verified: true
 ```
 
-![RISC-V Trap RAM 现场](../images/microlink/hpm5301/riscv-trap-memory.png)
+## RTT 和 PID 证据
 
-`mcause=2` 表示非法指令，`mtval=0xFFFFFFFF` 正是故意执行的指令字。AI 再用同一次构建的 ELF 映射 `mepc`：
+本次 ELF 的 `_SEGGER_RTT` 地址为 `0x00087100`。启动 RTT 后读取 2 秒，得到：
 
 ```text
-0x80008B1A -> trigger_illegal_instruction() -> src/main.c:68
+HPM5301 t=2100 target=800 speed=770 output=37 temp=32 state=1 alarm=0
+HPM5301 t=2500 target=800 speed=781 output=38 temp=33 state=1 alarm=0
+HPM5301 t=3000 target=800 speed=789 output=38 temp=33 state=1 alarm=0
+HPM5301 t=3500 target=800 speed=793 output=38 temp=33 state=1 alarm=0
+HPM5301 t=4000 target=800 speed=796 output=38 temp=33 state=1 alarm=0
 ```
 
-这就形成了从 CSR、RAM、指令字到源码行的完整证据链，而不是“程序卡死，可能是非法指令”的猜测。
+判断依据很明确：速度向目标值收敛，`state=1` 表示正常运行，`alarm=0` 表示没有告警。需要观察控制环细节时，再用 SuperWatch 连续采样 `motor_target_rpm`、`motor_speed_rpm`、`motor_command_percent` 和 PID 参数；该操作和 STM32 完全相同。
 
-采集现场后，AI 重新通过 HPM ROM API 烧录默认安全固件。短 RTT 捕获再次看到 800→1600 rpm 阶跃，`state=1`、`alarm=0`，证明 FreeRTOS/PID 任务已经恢复。
+## RISC-V Trap：从现象定位到源码
 
-## AI 还制作了脱机烧录任务
+### 1. 先确认故障现象
 
-最后，AI 把同一份 BIN 和脚本部署到 MKLink V4。脚本核心只有 HPM ROM API：
-
-```python
-hpm.board("hpm5301evklite")
-hpm.program("demo.bin", 0x80000400)
-```
-
-没有 FLM。触发测试前再次核对 U 盘文件大小和 SHA-256，真实日志显示：
+触发后 RTT 停止输出，读取保留变量得到：
 
 ```text
-open fileName: demo.bin success,file size: 55432 byte
-Download: 100% ,used 1793 ms
+trap_state  = 0x00000002
+trap_mcause = 0x00000002
+trap_mepc   = 0x8000B6E2
+trap_mtval  = 0xFFFFFFFF
+trap_mstatus= 0x00001880
+```
+
+### 2. 按故障代码判断原因
+
+RISC-V `mcause=2` 的含义是 **Illegal instruction（非法指令）**。`mtval=0xFFFFFFFF` 是处理器报告的指令字，与代码中的 `.word 0xffffffff` 一致，因此故障类型不是看门狗、总线访问或栈溢出，而是执行到了非法指令。
+
+### 3. 用同一 ELF 映射 `mepc`
+
+使用构建时配套的 ELF 查询 `mepc`，不要拿旧版本 ELF 交叉解析：
+
+```text
+riscv32-unknown-elf-addr2line.exe -e demo.elf -f -C 0x8000B6E2
+trigger_illegal_instruction
+.../src/main.c:68
+```
+
+源码第 68 行正是 `.word 0xffffffff`。至此，CSR、指令字、函数名和源码行相互印证，定位完成。
+
+### 4. 恢复并验证
+
+重新用同一份 `demo.bin` 走 HPM ROM API 下载并复位。恢复后的现场为：
+
+```text
+trap_state/mcause/mepc/mtval/mstatus = 0
+alarm_code = 0
+```
+
+RTT 随后恢复输出，速度从 770 rpm 逐步回到 796 rpm，说明任务调度、控制环和 RTT 均已重新运行。若实际项目停在 Trap，应先保存 CSR、栈帧和 ELF 版本，再修复源码，不能只复位后继续使用。
+
+## 其他能力如何迁移
+
+HPM5301 的变量读取、内存读写、SuperWatch、RTT View、VOFA+ 和 SystemView 的调用方式与 ARM 目标一致：先连接并加载 ELF，再按变量名或地址采样。只有两点不同：
+
+1. 下载使用 HPM ROM API，不寻找 FLM；
+2. 异常定位读取 `mcause/mepc/mtval/mstatus`，而 Cortex-M 使用 CFSR/HFSR 和异常栈帧。
+
+## 脱机下载验收
+
+将已验证的 `demo.bin` 部署到下载器后，触发一次脱机任务。部署和触发都必须核对文件大小与 SHA-256，避免同名旧固件混入：
+
+```text
+demo.bin  55412 bytes
+SHA-256   CD472E4D019A1AB013431504838441C172198508F1BB40E040C6E9F5654514CA
+load.offline("Python/offline_download.py")
+IDCODE: 0x1000563D
+open fileName: demo.bin success,file size: 55412 byte
+Download: 100% ,used 1840 ms
 demo.bin loaded successfully.
 auto download finished
 ```
 
-![HPM5301 脱机触发成功](../images/microlink/hpm5301/offline-trigger-succeeded.png)
+触发完成后重新读取 `demo_build_id`、`alarm_code` 和 RTT 启动段，三项都匹配才算验收通过。本次部署的文件清单为 `G:\demo.bin` 和 `G:\python\offline_download.py`；HPM 脱机脚本没有复制或加载 FLM。
 
-中途确实发生过一次同名错误文件被选择的情况。AI 在触发前发现 U 盘文件只有 30,380 字节，于是停止操作，重新按正式构建路径部署并校验摘要。这个过程也说明自动化的价值不只是“更快点击”，还包括在关键步骤执行机器可验证的检查。
+## 验收清单
 
-## 这次测试说明了什么
+- [x] SES 构建退出码为 0，BIN/ELF/MAP 同一证据组
+- [x] HPM ROM API 下载，基址 `0x80000400`，校验通过
+- [x] RTT 输出正常，PID 速度收敛，`alarm=0`
+- [x] `mcause=2`、`mtval=0xffffffff` 与源码第 68 行吻合
+- [x] 重烧后 Trap 现场清零，RTT 和控制任务恢复
+- [x] 脱机部署使用相同摘要，并在目标上复核运行结果
 
-AI 已经可以完成大量操作级闭环：理解工程、修改代码、调用编译器、烧录固件、读取 RTT、采集变量时间线、解释 RTOS Trace、保存故障现场、定位源码并重新验证。
-
-但工程师仍然不可缺席。工程师决定测试目标、允许的硬件动作、安全边界和最终验收标准；AI 负责把重复、容易漏项的步骤执行完整，并留下可复核证据。
-
-更准确的分工是：
-
-```text
-工程师定义目标与边界
-        ↓
-AI 执行操作级闭环
-        ↓
-真机数据与构建产物
-        ↓
-工程师审核结论
-```
-
-购买下载器只是起点。真正有价值的是把编译、烧录、运行观测和故障定位连成稳定的工程流程，让 AI 不只会读代码，也能读取硬件现场。
-
-完整参数、操作步骤和全部截图见 [HPM5301 + FreeRTOS 全功能实战](../tools/microlink/hpm5301-freertos-case.md)。
+完整 GUI 页面和曲线请看 [HPM5301 + FreeRTOS 全功能实战](../tools/microlink/hpm5301-freertos-case.md)。

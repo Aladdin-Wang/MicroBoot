@@ -31,4 +31,4 @@
 4. 烧录问题同时提供目标型号、文件格式、基地址和校验结果；
 5. 运行问题优先附上 RTT、变量曲线或 Fault 现场。
 
-常用入口：[安装上位机](gui-install.md) · [固件升级](firmware-upgrade.md) · [资料下载](downloads.md) · [AI + MKLink](../../AI/AI.md)
+常用入口：[安装上位机](gui-install.md) · [固件升级](firmware-upgrade.md) · [资料下载](downloads.md) · [嵌入式 AI + MKLink](../../AI/AI.md)

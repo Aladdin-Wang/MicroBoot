@@ -1,5 +1,7 @@
 # RTOS Trace / SystemView
 
+> 本页介绍 Web GUI 手动观察时间线。自动采集与统计见[嵌入式 AI 分析 RTOS Trace](../../AI/systemview-workflow.md)。
+
 SystemView 用事件时间线显示任务切换、ISR 进出和 CPU 占用，适合定位优先级反转、任务饥饿、ISR 过长和调度抖动。MKLink Web GUI 内置采集、解码和分析，不依赖 J-Link 或 SEGGER PC 软件。
 
 本页使用“RTOS Trace”作为用户入口，“SystemView”是目标端事件协议和集成组件的名称。

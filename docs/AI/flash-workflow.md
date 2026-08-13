@@ -1,41 +1,69 @@
-# AI 编译、烧录与验证
+# AI 编译、在线烧录与运行验证
 
-## 推荐工作流
+构建成功只说明编译器生成了固件，下载成功也不等于应用已经正常运行。完整流程应包含：工程识别、构建、产物核对、下载校验和运行态验证。
 
-```text
-检查工程 -> 确认 Target/芯片 -> 选择 IDE -> 编译零错误
-         -> 下载 -> 复位/运行 -> RTT 或变量验证
+## 示例中的构建标识
+
+为了区分旧固件，在 `applications/main.c` 中加入：
+
+```c
+volatile rt_uint32_t g_mklink_demo_build_id = 20260813U;
+
+rt_kprintf("MKLink AI demo | build=%lu | target=STM32F103RET6 | rtos=RT-Thread 5.1.0\r\n",
+           (unsigned long)g_mklink_demo_build_id);
 ```
 
-## 工程师检查清单
+构建标识同时存在于 RAM 变量和 RTT 日志中，可用于烧录后的双重验证。
 
-1. 核对 Target、芯片、Flash Algorithm、链接脚本和输出目录。
-2. 构建到零错误，并确认 AXF/ELF、MAP、HEX/BIN 的时间戳和构建配置一致。
-3. 优先使用 Keil/IAR 原生命令行下载；失败时保留错误现场，不要静默切换路径。
-4. 在线烧录必须等到 `connect -> erase -> program -> verify -> reset -> disconnect` 全部完成。
-5. 用 RTT、变量、通信响应或板级行为验证新固件。
+## 构建并下载
 
-AI 可以代为执行上述检查，但最终报告必须包含实际命令、目标型号、镜像地址范围、校验状态和运行态证据。
+给AI 的提示词：
 
-## 路径优先级
+> 用 Keil 编译这个工程并烧录，完成后读 build 和 RTT 验证。
 
-1. IDE 工程存在且工具已安装：使用 IDE 原生构建和下载；
-2. 只有可信的预编译 BIN/HEX：使用在线烧录，精确选择器件和地址；
-3. 用户明确要求量产或无电脑操作：部署脱机脚本和固件。
+AI 识别到：
 
-HPM 目标是明确例外：在线和脱机均使用设备端 HPM ROM API，输入为 BIN、精确目标、基址以及板型或四字 Flash 配置，不查找或加载 FLM。
+```text
+目标：STM32F103RET6
+Keil Device：STM32F103RE
+Target：rt-thread
+编译器：Arm Compiler 6.24
+算法：STM32F10x_512.FLM
+```
 
-## AI 必须停下来的情况
+构建输出：
 
-- 工程中的芯片型号互相矛盾；
-- BIN 基地址未知；
-- FLM/Pack 与目标器件不匹配；
-- 当前构建产物和加载的 ELF 不是同一次构建；
-- 已开始的下载方式失败；
-- 擦除范围可能覆盖 BootLoader 或参数区。
+```text
+0 Error(s), 0 Warning(s)
+Code=94694  RO-data=20462  RW-data=2504  ZI-data=35392
+```
 
-## 验收证据
+同一次构建的产物：
 
-“编译成功”和“下载命令返回成功”都不等于目标运行正确。至少再验证一个运行态信号：RTT 版本日志、可观察变量、目标通信响应或明确的板级行为。
+```text
+build/keil/Obj/rt-thread.axf
+build/keil/Obj/rt-thread.hex
+build/keil/List/rt-thread.map
+HEX SHA-256：FD86D173977506E46C7CDEC2BD9C648940562B6FD86059433BEBC6FFECEF051E
+AXF SHA-256：ADCB3D772269C5B0D2CCD4777CBA6672E08328290539B9587529E540B96BEA98
+```
 
-HPM5301 的实际作业、摘要和 RTT 复验见 [HPM5301 + FreeRTOS 全功能实战](../tools/microlink/hpm5301-freertos-case.md)。
+Keil 原生下载输出：
+
+```text
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+```
+
+## 运行验证
+
+```text
+g_mklink_demo_build_id @ 0x200003C8 = 20260813
+MKLink AI demo | build=20260813 | target=STM32F103RET6 | rtos=RT-Thread 5.1.0
+```
+
+RAM 变量和 RTT 日志都包含 `20260813`，确认目标运行的是本次构建，而不是 Flash 中残留的旧版本。
+
+工程已有 Keil/IAR 时优先使用 IDE 原生下载；只有预编译镜像时才选择其他在线下载方式；量产任务见[AI 部署脱机下载](offline-workflow.md)。人工操作见[在线编译与烧录](../tools/microlink/online-flash.md)。

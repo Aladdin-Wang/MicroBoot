@@ -1,44 +1,40 @@
-# AI + MKLink 使用概览
+# AI + MKLink：让 AI 读到真实硬件
 
-MKLink AI Probe 让工程师在熟悉的 AI 编码环境中读取真实 RAM、寄存器、RTT、变量时间线和 RTOS Trace，并把采集结果与源码、构建产物和测试记录放在同一条工程流程中。
+写嵌入式程序时，AI 最容易遇到的障碍不是不会写 C，而是看不到板子上的真实状态。代码说 DMA 应该工作，AI 却不知道寄存器是否真的打开；日志说任务在运行，AI 却不知道任务是否已经饿死；HardFault 发生后，AI 甚至不知道 PC 停在了哪一行。
 
-## 从猜测到硬件闭环
+MKLink 把下载、运行观测和故障现场交给 AI 使用。工程师给出工程目录和目标，AI 读取 AXF/ELF、调用编译器和下载器，再把变量、RAM、寄存器、RTT 和 RTOS Trace 带回到代码分析中。
 
 ```text
-阅读工程 -> 提出假设 -> 编译 -> 烧录 -> 采集硬件证据
-    ^                                      |
-    +----------- 修改并重新验证 <----------+
+工程源码 -> 构建产物 -> 下载器 -> MCU 运行现场
+    ^                              |
+    +-------- AI 根据真实数据修改代码
 ```
 
-工程师仍负责目标、风险和最终判断；AI 负责重复操作、结构化采集与证据整理。涉及擦除、烧录、写内存、写寄存器和复位时，必须先说明目标、范围和影响。
+## 先看一篇完整实战
 
-## 你需要什么
+[STM32F103RET6 + RT-Thread 全功能实战](stm32f103-case.md)是一篇完整案例：从 `main.c` 增加构建标识开始，经过 Keil 构建、在线下载、脱机触发、RTT 日志、变量读取、PID 采样、HardFault 定位和 SystemView 分析，最后恢复安全固件。
 
-- 支持本机文件和终端操作的 AI 编码助手；
-- 完整安装的 MKLink AI Probe Skill；
-- MKLink 下载器和目标板；
-- 最好提供工程源码、IDE 工程文件以及匹配固件的 AXF/ELF 和 MAP。
+下面的文章把其中每项能力单独展开。每篇都包含可以直接复制的关键代码、简短提示词和本次测试中 AI 的真实关键输出。
 
-普通网页聊天窗口无法直接访问本机工程和 USB 下载器。
+## 你需要给 AI 什么
 
-## 第一次使用
+一次正常的输入不需要写成命令手册，像和工程师同事说话即可：
 
-1. [安装和更新完整 Skill](skill.md)；
-2. [了解 Skill、MCP、CLI 与 GUI 的分工](interfaces.md)；
-3. 把工程目录和目标交给 AI；
-4. 要求 AI 在写入硬件前报告识别结果和计划；
-5. 用 RTT、变量、寄存器或目标行为验证结果。
+> 看一下这个 STM32F103RET6 工程，先编译，再烧录，最后读 RTT 看新固件有没有跑起来。
 
-首次接入时，先让 AI 输出工程识别结果和验证计划，再决定是否写入目标板。提示词只是入口，实际执行仍以 GUI/CLI 的返回值和目标板证据为准。
+AI 会从工程文件中寻找 Keil Target、芯片和输出目录。第一次使用时，建议先让它报告识别结果，再允许写入目标板。
 
-## 常见任务
+## 按问题选择文章
 
-| 目标 | AI 应完成的闭环 |
+| 你遇到的问题 | 文章 |
 |---|---|
-| 编译并下载 | 识别 IDE Target -> 零错误构建 -> 下载 -> 运行验证 |
-| RTT 日志 | 定位控制块 -> 采集原始日志 -> 关联源码和时间 |
-| 变量异常 | 解析 ELF -> 连续采样 -> 对照状态机和寄存器 |
-| HardFault / RISC-V Trap | 保存现场 -> 解码 Fault/CSR -> 定位源码 -> 修改后复验 |
-| RTOS 卡顿 | 采集有效 SystemView -> 分析任务/ISR/CPU -> 验证优化 |
+| AI 不知道工程和芯片是否匹配 | [第一次让AI 接手工程](first-project.md) |
+| 修改后不知道是否真的烧进去了 | [AI 编译、在线烧录与运行验证](flash-workflow.md) |
+| 想把验证过的固件放进下载器量产 | [AI 部署和触发脱机下载](offline-workflow.md) |
+| 想看启动日志和状态变化 | [AI 采集和分析 RTT](rtt-workflow.md) |
+| 想确认变量、地址和寄存器 | [AI 读取变量、内存和寄存器](memory-workflow.md) |
+| 想调 PID 或 FOC 控制环 | [AI 使用 SuperWatch 调试 PID / FOC](pid-workflow.md) |
+| 程序进入 HardFault | [AI 定位 HardFault](hardfault-workflow.md) |
+| 怀疑任务调度或 ISR 占用过高 | [AI 分析 RTOS Trace / SystemView](systemview-workflow.md) |
 
-Arm Cortex-M 实战见 [STM32F103RET6 + RT-Thread 案例](stm32f103-case.md)。RISC-V 与 HPM ROM API 实战见 [HPM5301：AI 全程调试实录](hpm5301-ai-debug-article.md)。控制环和 FOC 变量的采样方法见[SuperWatch 与 PID 调试](../tools/microlink/superwatch.md)。
+AI 教程中的对应人工操作，可从 [MKLink 产品与功能总览](../tools/microlink/microlink.md) 进入。

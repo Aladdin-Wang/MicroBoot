@@ -1,5 +1,7 @@
 # Memory 内存与寄存器
 
+> 本页介绍 Web GUI 手动读取。自动读取和交叉验证见[嵌入式 AI 读取变量、RAM 和寄存器](../../AI/memory-workflow.md)。
+
 Memory 用于读取 RAM、Flash 和内存映射寄存器。它适合核对变量底层字节、DMA 缓冲、外设状态和 Fault 寄存器，但不能代替带类型的符号读取。
 
 ## 先确定地址来源

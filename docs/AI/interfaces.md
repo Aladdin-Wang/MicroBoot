@@ -1,33 +1,31 @@
-# Skill、MCP、CLI 与 GUI
+# AI 的 Skill、MCP、CLI 与 GUI
 
-四个入口共享同一套 MKLink 能力，但服务对象不同。
+MKLink 的四个入口共享底层能力，但使用者和用途不同。
 
-| 入口 | 谁使用 | 适合任务 |
+| 入口 | 使用者 | 作用 |
 |---|---|---|
-| Skill | AI | 决定何时调用什么能力、如何验证和处理风险 |
-| MCP | AI | 结构化连接、内存、变量、RTT、HardFault、SystemView 等原子操作 |
-| CLI | AI 或工程师 | 无 MCP 环境、项目初始化、报告生成和脚本化工作流 |
-| Web GUI | 工程师 | 配置、可视化、在线/脱机烧录和人工复核 |
+| Skill | AI | 读取操作规则，选择能力，处理风险并定义验收证据 |
+| MCP | AI | 用结构化参数连接设备、读取变量、RTT、Fault 和 SystemView |
+| CLI | AI / 工程师 | 无 MCP 环境、项目初始化、批量采样和报告生成 |
+| Web GUI | 工程师 | 手动配置、可视化曲线、烧录和人工复核 |
 
-## 推荐选择
+## AI 如何选择入口
 
-有 MCP 的 AI 环境优先使用 MCP；无 MCP 时使用 `python -m mklink`。Web GUI 适合人工观察和确认，不是 AI 获取结构化硬件数据的唯一入口。
+有 MCP 时优先调用 MCP；当前环境没有 MCP 时，使用 `python -m mklink`。Web GUI 供工程师手动配置和观察曲线。
 
-固件下载单独遵循：IDE 原生下载优先，其次在线烧录/pyOCD，最后才是脱机部署。不要因为 MCP 可用就绕过工程既有 IDE 配置。
+固件下载另有优先级：工程存在且 IDE 已安装时，先用 Keil/IAR 原生命令行；只有预编译镜像或 IDE 不适用时才使用在线下载工具；量产和无电脑场景使用脱机任务。已经开始的下载路径失败后，应先保留并解释错误，不能静默切换后端。
 
-## 同一工程如何协作
-
-Web GUI 和 AI 应使用同一个工程根目录、同一份 AXF/ELF 和 MAP。设备资源有互斥保护：RTT、SystemView、SuperWatch 或烧录占用探针时，另一入口会提示当前 owner。先正常停止当前会话，再交接设备。
-
-## MCP 的典型顺序
+## MCP 典型流程
 
 ```text
-ping -> discover_probes -> connect(axf=...)
-     -> read_variable / rtt_start / check_hardfault
+ping -> discover_probes -> connect(axf=本次构建产物)
+     -> read_variable / capture_rtt / check_hardfault
      -> disconnect
 ```
 
-## CLI 的典型顺序
+MCP 返回结构化字段，AI 应保留关键原始值，而不是只输出一句“正常”。
+
+## CLI 典型流程
 
 ```powershell
 python -m mklink project-init
@@ -36,4 +34,10 @@ python -m mklink rtt --duration 10
 python -m mklink systemview-analyze --duration 6
 ```
 
-命令只是入口。完成任务的标准始终是拿到可验证的硬件结果，而不是命令返回零。
+具体参数由 AI 根据工程、设备和当前 Skill 版本生成，不建议把文档中的端口或地址原样复制到其他工程。
+
+## AI 与 GUI 交接
+
+两者可以使用同一工程和同一份 AXF/ELF、MAP，但不能同时占用探针。切换入口前，应正常结束 RTT、SystemView、SuperWatch 或烧录会话，再释放设备。若提示 owner 冲突，先查清占用者，不要强制启动第二个作业。
+
+GUI 的完整人工操作从 [MKLink 产品与功能总览](../tools/microlink/microlink.md) 进入；AI 日常调试沿本章后续教程执行。

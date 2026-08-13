@@ -1,39 +1,60 @@
-# 第一次让 AI 操作工程
+# 第一次让AI 接手工程
 
-## 第一步：确认工程和目标
+第一次接入工程时，先确认芯片、IDE Target、链接地址、下载算法和构建产物。目录名和历史配置只能作为线索，最终应以芯片型号、IDE 工程和链接文件相互验证。
 
-告诉 AI 工程目录、目标板、希望解决的问题和允许执行的操作。不要只说“帮我烧一下”。
+## 提供工程目录
 
-先说明工程目录、目标板丝印、芯片型号、当前问题和允许的操作。对于本手册案例，芯片是 `STM32F103RET6`，Keil Device 是 `STM32F103RE`；工程目录名称不能代替芯片识别。
+给AI 的提示词：
 
-HPM 案例还要说明精确料号、开发板、BIN 基址和 Flash 配置来源。`HPM5301xEGx + hpm5301evklite + 0x80000400` 只适用于对应的 HPM SDK 构建，不能当作所有 HPM 工程的默认值。
+> 帮我检查这个工程，确认芯片、Keil Target、下载算法和输出文件。
 
-## 第二步：审核识别结果和产物
+本次工程目录为：
 
-AI 至少应报告：
+```text
+E:\PHDZ\PROJECT\liu\STM32F103_test\STM32F103RC
+```
 
-- 找到哪些 IDE 工程和 Target；
-- 不同配置中的芯片型号是否一致；
-- 本次要使用的 AXF/ELF、MAP、BIN/HEX；
-- 计划采用 IDE、在线烧录还是脱机下载；
-- 准备用什么证据确认新固件运行。
+目录名保留了旧型号 `STM32F103RC`，实际芯片是 STM32F103RET6，因此不能按目录名直接选择器件。
 
-型号、基地址或产物来源不清楚时，应停止并澄清。
+## AI 检查的工程信息
 
-## 第三步：建立基线
+Keil 工程中需要重点核对以下配置：
 
-修改代码前先采集基线，例如构建结果、固件版本、RTT 启动日志、关键变量和相关寄存器。没有基线，很难证明修改真正生效。
+```xml
+<Device>STM32F103RE</Device>
+<TargetName>rt-thread</TargetName>
+```
 
-## 第四步：执行、采集并复验
+链接后的向量表地址为：
 
-一次只改变与当前假设有关的内容。重新构建和下载后，用与基线相同的方式复测；控制环调参时还要固定采样周期、给定值和负载，并保存 SuperWatch CSV。
+```text
+SCB.VTOR = 0x08005000
+```
 
-- 已观察事实；
-- 基于事实的推断；
-- 尚未验证的可能性。
+这表示应用位于 `0x08005000`，烧录或分析内存时必须保留前面的 BootLoader 区域。
 
-## 完成标准
+## 本次识别输出
 
-AI 的最终报告应包含构建结果、烧录路径、硬件证据、结论、未解决风险，以及对目标板做过的状态改变。
+```text
+工程目录：E:\PHDZ\PROJECT\liu\STM32F103_test\STM32F103RC
+目标芯片：STM32F103RET6
+Keil Device：STM32F103RE
+Target：rt-thread
+编译器：Arm Compiler 6.24
+Flash：512 KiB
+SRAM：64 KiB
+应用向量表：0x08005000
+下载算法：STM32F10x_512.FLM
+下载器：MKLink V4，固件 V4.3.5，CDC COM228
+```
 
-完整示例：[STM32F103RET6 + RT-Thread](stm32f103-case.md) · [HPM5301 + FreeRTOS](../tools/microlink/hpm5301-freertos-case.md)
+AI 的判断：
+
+```text
+目录名与实际型号不一致，但芯片、Keil Device、Flash 容量和下载算法一致，
+本次按 STM32F103RET6 / STM32F103RE 处理。
+构建产物使用 build/keil 下同一次生成的 AXF、MAP 和 HEX。
+应用从 0x08005000 启动，下载时不能覆盖前置 BootLoader。
+```
+
+完成工程识别后，再进入[AI 编译、在线烧录与运行验证](flash-workflow.md)。工程师手动配置见[连接硬件与配置工程](../tools/microlink/project-config.md)。
