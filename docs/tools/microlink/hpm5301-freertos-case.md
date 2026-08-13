@@ -8,9 +8,9 @@
 |---|---|
 | MCU | `HPM5301xEGx` |
 | 开发板 | `hpm5301evklite` |
-| 工程 | HPM SDK `samples/segger_sysview/freertos` |
+| 工程 | HPM SDK v1.12.1 `samples/segger_sysview/freertos` |
 | IDE | SEGGER Embedded Studio 8.24 |
-| 内核 | FreeRTOS |
+| 系统 | FreeRTOS |
 | 探针 | MKLink V4 CMSIS-DAP |
 | 下载方式 | HPM ROM API，不使用 FLM |
 | BIN 基址 | `0x80000400` |
@@ -98,11 +98,7 @@ HPM5301 t=96000 target=800 speed=1541 output=0 temp=42 state=1 alarm=0
 
 ![HPM5301 SuperWatch PID 曲线](../../images/microlink/hpm5301/superwatch-pid-running.png)
 
-![HPM5301 PID 阶跃局部](../../images/microlink/hpm5301/superwatch-pid-step.png)
-
 本次实测约 84 Hz，传输和后端均未丢样。曲线历史较长时，阶跃会集中在右侧，可暂停后用滚轮放大局部。观察顺序是：目标值先改变，输出立即响应，速度随后收敛。
-
-调参时一次只改一个参数，并给 `Kp/Ki/Kd` 设上下限、步长和回滚值。真实电机或 FOC 系统还必须保留过流、过压、堵转、失速和温度保护。
 
 ## 6. 第三方 VOFA+
 
@@ -145,11 +141,13 @@ VOFA+ 适合已有数据引擎、触发和游标工作流的工程师；按符�
 
 ## 9. RISC-V Trap 现场定位
 
-HPM5301 是 RISC-V，不使用 Cortex-M 的 CFSR/HFSR。示例设置双钥匙后执行一条 `0xFFFFFFFF` 非法指令，异常处理函数把 CSR 保存到 RAM 并停留在现场。
+HPM5301 是 RISC-V内核。示例代码执行一条 `0xFFFFFFFF` 非法指令，异常处理函数把 CSR 保存到 RAM 并停留在现场。
 
-```text
-trap_unlock_key  = 0x48504D53
-trap_trigger_key = 0x54524150
+```c
+__attribute__((noinline)) static void trigger_illegal_instruction(void)
+{
+    __asm volatile(".word 0xffffffff");
+}
 ```
 
 触发后采集到：
@@ -172,7 +170,7 @@ trap_trigger_key = 0x54524150
 0x80008B1A -> trigger_illegal_instruction() -> src/main.c:68
 ```
 
-证据链由 `mcause=2`、`mtval=0xFFFFFFFF`、`mepc` 和源码行组成。现场保存后重新在线烧录默认安全 BIN，随后短采 RTT 再次看到 800→1600 rpm 阶跃、`state=1`、`alarm=0`，完成安全恢复。
+证据链由 `mcause=2`、`mtval=0xFFFFFFFF`、`mepc` 和源码行组成。
 
 ## 10. 制作 ROM API 脱机任务
 

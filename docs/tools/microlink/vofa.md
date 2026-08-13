@@ -88,13 +88,7 @@ vofa.send(0x000848EC,"float",0x00084890,"float",0x00084894,"float",0.01)
 
 在 VOFA+ 发送以下命令停止变量流：
 
-```text
-RTTView.stop()
-```
-
-部分固件也支持：
-
-```text
+```c
 vofa.send(0x20000000,"uint8_t",0)
 ```
 

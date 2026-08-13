@@ -95,16 +95,6 @@ Download: 100% ,used 10102 ms
 auto download finished
 ```
 
-烧录约 10.1 秒完成。触发后通过 RTT 连续采集，运行时间持续增长，温度、转速和告警状态正常变化：
-
-```text
-MKLink demo | uptime=41284 ms | temp=30.0 C | speed=1050 rpm | state=2 | alarm=1
-MKLink demo | uptime=42292 ms | temp=29.0 C | speed=1000 rpm | state=2 | alarm=0
-MKLink demo | uptime=44300 ms | temp=28.0 C | speed=950 rpm  | state=2 | alarm=0
-```
-
-这两组证据分别证明“脱机脚本完成”和“目标程序实际运行”。
-
 ## HPM5301 ROM API 脱机实测
 
 HPM 脱机任务不需要 FLM。实测配置为：
@@ -124,8 +114,6 @@ hpm.board("hpm5301evklite")
 hpm.program("demo.bin", 0x80000400)
 ```
 
-脚本中不能出现 `load.flm()`。
-
 ![HPM5301 ROM API 脱机预览](../../images/microlink/hpm5301/offline-rom-api-preview.png)
 
 本次部署前后均核对了固件大小和 SHA-256。点击“触发测试”后，设备端日志显示文件大小 55,432 字节，下载到 100%，最终返回：
@@ -137,15 +125,15 @@ auto download finished
 
 ![HPM5301 脱机触发成功](../../images/microlink/hpm5301/offline-trigger-succeeded.png)
 
-同名固件尤其需要摘要校验。本次测试曾发现另一份 `demo.bin` 只有 30,380 字节，因此在触发前停止并换回正式构建产物。文件名相同不能证明内容相同。
-
 ## 不连接电脑时如何触发
 
 ### V3 / V4 按键
 
-目标板接线和供电确认后，按下下载器外壳按键。执行期间不要拔线或切断目标电源。以显示、蜂鸣器、指示灯或生产工装返回信号判断结果。
+目标板接线和供电确认后，按下下载器外壳按键。执行期间不要拔线或切断目标电源。以显示、指示灯或生产工装返回信号判断结果。
 
 ![脱机下载按键](../../images/microlink/key.png)
+
+![脱机下载按键](../../images/microlink/V4_KEY.png)
 
 ### V2 机台引脚
 
@@ -153,7 +141,7 @@ V2 不带独立按键。机台可通过 TDI 与 GND 触发，TDO 用于输出成
 
 ### Web GUI 触发测试
 
-研发和建站阶段优先使用“触发测试”。它会显示设备端实时输出，适合验证脚本、算法和接线。通过后再转为按键或工装触发。
+研发阶段优先使用“触发测试”。它会显示设备端实时输出，适合验证脚本、算法和接线。通过后再转为按键或工装触发。
 
 ## 连续量产
 
@@ -182,7 +170,7 @@ V2 不带独立按键。机台可通过 TDI 与 GND 触发，TDO 用于输出成
 
 AI 提示词保持任务化即可：
 
-> 为 STM32F103RET6 生成并部署单次脱机任务，触发测试后用 RTT 验证固件运行。执行前报告固件、FLM、地址和摘要。
+> 为 STM32F103RET6 生成并部署单次脱机任务。执行前报告固件、FLM、地址和摘要。
 
 AI 应在部署前报告目标器件、文件摘要和擦写范围；触发失败时保留原始日志，不静默改用其他烧录后端。
 

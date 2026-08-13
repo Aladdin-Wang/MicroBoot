@@ -101,9 +101,11 @@ HPM5301 是 RISC-V，不能照搬 Cortex-M 的 CFSR/HFSR。该架构优先保存
 
 案例固件使用双钥匙受控触发，两个值都正确时才执行 `0xFFFFFFFF` 非法指令：
 
-```text
-trap_unlock_key  = 0x48504D53
-trap_trigger_key = 0x54524150
+```c
+__attribute__((noinline)) static void trigger_illegal_instruction(void)
+{
+    __asm volatile(".word 0xffffffff");
+}
 ```
 
 触发后先读取保留 RAM，不复位：
