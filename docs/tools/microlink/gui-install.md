@@ -25,9 +25,9 @@ AI 会根据自己的产品和操作系统选择正确的 Skill 目录，完成�
 
 双击 `MKLink Web GUI.html`。文件优先生成到卷标为 `MICROKEEN` 的下载器 U 盘；未检测到 U 盘时生成到当前用户桌面。
 
-启动页会调用当前用户安装的 `mklink-ai-probe://` 协议，等待本地后端健康后再打开真正的 Web GUI。进入 GUI 后，底部状态栏应显示“后端正常”和本次启动的端口。
+启动页会调用当前用户安装的 `mklink-ai-probe://` 协议，等待本地后端健康后再打开真正的 Web GUI。进入 GUI 后，顶部右侧状态栏应显示“后端正常”和本次启动的端口。
 
-![Web GUI 后端状态](../../images/microlink/gui/backend-status.png)
+![HPM5301 本地设备与串口配置](../../images/microlink/hpm5301/web-config-device.png)
 
 !!! note "端口不是固定配置"
     常见地址是 `http://127.0.0.1:8765`。端口被占用时可能选择其他端口，请以页面底部显示的实际端口为准。
