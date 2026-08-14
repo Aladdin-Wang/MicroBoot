@@ -34,7 +34,9 @@ nav:
       - 先楫生态:
           - 先楫生态概览: tools/microlink/先辑使用教程.md
           - HPM5301 + FreeRTOS 全功能实战: tools/microlink/hpm5301-freertos-case.md
-      - 安装上位机与快速启动: tools/microlink/gui-install.md
+      - 安装上位机与快速启动:
+          - 安装上位机与快速启动: tools/microlink/gui-install.md
+          - 用 AI 定制企业专属上位机: tools/microlink/custom-web-gui.md
       - 连接硬件与配置工程: tools/microlink/project-config.md
       - 烧录:
           - 在线编译与烧录: tools/microlink/online-flash.md
