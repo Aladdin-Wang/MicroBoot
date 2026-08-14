@@ -43,7 +43,7 @@ nav:
           - 脱机下载与量产: tools/microlink/offline_download.md
       - 运行观测:
           - RTT View 日志与终端: tools/microlink/RTT_printf.md
-          - SuperWatch 与 PID 调试: tools/microlink/superwatch.md
+          - SuperWatch 观察实时变量: tools/microlink/superwatch.md
           - VOFA+ 第三方上位机: tools/microlink/vofa.md
       - 故障定位:
           - Memory 内存与寄存器: tools/microlink/memory.md
