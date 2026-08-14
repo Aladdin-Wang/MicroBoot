@@ -4,6 +4,18 @@ MKLink（MicroKeen）把在线调试、固件烧录、串口、RTT、变量采�
 
 ![MKLink V4](../../images/microlink/MKLinkV3 LCD.jpg)
 
+## 支持的目标芯片
+
+MKLink 下载器基于 DAPLink / CMSIS-DAP 体系，支持所有基于 Arm Cortex-M 内核的单片机。在线调试使用标准 CMSIS-DAP 接口；在线烧录和脱机烧录使用与目标 Flash 匹配的 CMSIS-Pack / FLM 下载算法。因此，更换芯片时通常不需要更换下载器，只需要选择正确的器件和算法。
+
+| 目标 | 支持范围 | 下载方式 |
+|---|---|---|
+| Arm Cortex-M | Cortex-M0、M0+、M3、M4、M7、M23、M33、M55、M85 等 | CMSIS-DAP 在线调试；使用匹配的 Pack / FLM 完成在线和脱机烧录 |
+| 先楫 HPMicro | 支持 HPM 全系列； | 使用下载器设备端 HPM ROM API，不加载 FLM |
+
+!!! note "芯片内核支持与 Flash 算法是两件事"
+    CMSIS-DAP 负责连接和调试 Arm Cortex-M 内核；烧录片上或外置 Flash 还需要匹配目标器件和存储器的算法。没有内置板型的 HPM 项目需要提供板型。具体配置见[连接硬件与配置工程](project-config.md)和[先楫 HPM 生态](先辑使用教程.md)。
+
 ## 先按任务选择功能
 
 | 要完成的工作 | 使用功能 | 需要准备 | 主要入口 | 详细教程 |
