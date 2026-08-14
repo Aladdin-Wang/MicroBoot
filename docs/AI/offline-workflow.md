@@ -9,7 +9,6 @@
 ```text
 目标：STM32F103RET6
 固件：build/keil/Obj/rt-thread.hex
-SHA-256：FD86D173977506E46C7CDEC2BD9C648940562B6FD86059433BEBC6FFECEF051E
 ```
 
 STM32F103RET6 使用 512 KiB Flash，下载算法必须为 `STM32F10x_512.FLM`。
@@ -18,7 +17,7 @@ STM32F103RET6 使用 512 KiB Flash，下载算法必须为 `STM32F10x_512.FLM`�
 
 给AI 的提示词：
 
-> 把刚验证过的 HEX 做成脱机任务，检查算法和 SHA，部署后触发一次。
+> 把刚验证过的 HEX 做成脱机任务，检查算法，部署后触发一次。
 
 AI 的部署检查输出：
 

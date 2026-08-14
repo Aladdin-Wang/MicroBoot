@@ -57,13 +57,6 @@ nav:
       - 扩展阅读:
           - 选项字节: tools/microlink/如何利用opt下载算法文件自由更改单片机选项字节.md
           - 单片机的灵魂伴侣: tools/microlink/单片机的灵魂伴侣.md
-  - 第三方库:
-      - Arm-2D: 3rd-party/Arm-2D/arm_2d.md
-      - PLOOC: 3rd-party/plooc/plooc.md
-      - FSM: 3rd-party/fsm/fsm.md
-  - 参与项目:
-      - 如何贡献代码: contribute/code.md
-      - 如何贡献文档: contribute/document.md
   - 嵌入式 AI:
       - AI + MKLink 使用概览: AI/AI.md
       - 安装和更新完整 Skill: AI/skill.md
@@ -80,7 +73,14 @@ nav:
       - STM32F103RET6 + RT-Thread 全功能实战: AI/stm32f103-case.md
       - HPM5301：AI 全程调试实录: AI/hpm5301-ai-debug-article.md
       - 安全边界与排障: AI/safety.md
-      - 为什么嵌入式 AI 需要硬件闭环: AI/AI_MKLink.md
+      - 为什么嵌入式 AI 需要硬件闭环: AI/AI_MKLink.md  
+  - 第三方库:
+      - Arm-2D: 3rd-party/Arm-2D/arm_2d.md
+      - PLOOC: 3rd-party/plooc/plooc.md
+      - FSM: 3rd-party/fsm/fsm.md
+  - 参与项目:
+      - 如何贡献代码: contribute/code.md
+      - 如何贡献文档: contribute/document.md
   - About:
       - Overview: about/about.md
       - Team: about/team.md

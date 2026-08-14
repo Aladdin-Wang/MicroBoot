@@ -1,6 +1,6 @@
 # HPM5301：AI 全程调试实录
 
-本文以 HPM5301 EVK Lite 和 HPM SDK 的 `segger_sysview/freertos` 示例为例，记录一次完整的 AI 调试过程：读取工程、修改代码、编译、下载、观察控制量、定位 RISC-V Trap，最后恢复并复核固件。数据来自 2026-08-13 连接在 COM220 的实机，命令和输出可以直接作为自己的操作模板。
+本文以 HPM5301 EVK Lite 和 HPM sdk_env_v1.12.1的 `segger_sysview/freertos` 示例为例，记录一次完整的 AI 调试过程：读取工程、修改代码、编译、下载、观察控制量、定位 RISC-V Trap，最后恢复并复核固件。
 
 页面配置、曲线和人工操作见 [HPM5301 + FreeRTOS 全功能实战](../tools/microlink/hpm5301-freertos-case.md)。ARM 工程的 RTT、变量、Memory、SuperWatch 和 SystemView 操作与本文一致，差别只有下载后端和异常寄存器：HPM 使用 ROM API，故障现场读取 RISC-V CSR。
 
@@ -9,7 +9,7 @@
 ```text
 目标：HPM5301xEGx
 开发板：hpm5301evklite
-工程：hpm_sdk/samples/segger_sysview/freertos
+工程：sdk_env_v1.12.1/samples/segger_sysview/freertos
 IDE：SEGGER Embedded Studio 8.24
 RTOS：FreeRTOS
 下载基址：0x80000400
