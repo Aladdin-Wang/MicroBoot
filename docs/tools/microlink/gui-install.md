@@ -13,13 +13,15 @@
 
 ## 推荐安装方式
 
-可以直接这样告诉 AI：
+1. 可以直接这样告诉 AI：
 
 "请从仓库 https://github.com/Aladdin-Wang/Mklink-AI-Probe或者https://gitee.com/Aladdin-Wang/Mklink-AI-Probe安装或更新 MKLink AI Probe。读取仓库内的 Mklink-AI-Probe/SKILL.md 和完整安装说明，将完整 Skill 安装到当前用户的用户级 Skill 目录，不能只复制 SKILL.md。安装 Web GUI、MCP 以及运行 MKLink 所需的全部依赖，并运行依赖导入检查、Skill 自检和 MKLink 自检。然后执行 python -m mklink web-entry install --quick-launch 生成统一的快速启动网页：优先保存到卷标为 MICROKEEN 的下载器 U 盘，没有检测到下载器时保存到用户桌面。最后启动 Web GUI，等待后端健康后打开真实 Web GUI 页面，确认页面显示“后端正常”和当前后端端口，并向我报告 Skill 版本、源码提交、自检结果、快速启动网页位置和 Web GUI 地址。若启动失败，请继续检查并补齐依赖，不要在只生成网页或只打开启动页时结束。"
 
 AI 会根据自己的产品和操作系统选择正确的 Skill 目录，完成下载、依赖安装和验证。
 
+2. 通过安装包安装上位机
 
+安装包可以通过百度网盘获取，[下载 MKLink 开发资料](https://pan.baidu.com/s/1Dr8Ss16cBRWXtQpyOGrROg?pwd=zyo0)（提取码：`zyo0`），也欢迎加入[嵌入式 AI 圈子](https://microboot.readthedocs.io/zh-cn/latest/tools/microlink/after-sales/#ai_1)，可以及时获取最新固件以及安装包。
 
 ## 打开 Web GUI
 

@@ -6,7 +6,7 @@ MKLink（MicroKeen）把在线调试、固件烧录、串口、RTT、变量采�
 
 ## 支持的目标芯片
 
-MKLink 下载器基于 DAPLink / CMSIS-DAP 体系，支持所有基于 Arm Cortex-M 内核的单片机。在线调试使用标准 CMSIS-DAP 接口；在线烧录和脱机烧录使用与目标 Flash 匹配的 CMSIS-Pack / FLM 下载算法。因此，更换芯片时通常不需要更换下载器，只需要选择正确的器件和算法。
+MKLink 下载器基于 DAPLink / CMSIS-DAP 体系，支持所有基于 Arm Cortex-M 内核的单片机以及先楫 HPM全系列单片机。在线调试使用标准 CMSIS-DAP 接口；在线烧录和脱机烧录使用与目标 Flash 匹配的 CMSIS-Pack / FLM 下载算法。因此，更换芯片时通常不需要更换下载器，只需要选择正确的器件和算法。
 
 | 目标 | 支持范围 | 下载方式 |
 |---|---|---|
@@ -46,13 +46,19 @@ Web GUI 适合人工配置、操作和查看曲线；AI Skill 适合读取工程
 
 面向在线下载、调试和高速 USB 转串口。V2 可通过虚拟磁盘拖入固件，脱机机台触发使用 TDI/TDO 引脚。
 
+购买链接：[https://item.taobao.com/item.htm?ft=t&id=895964393739](https://item.taobao.com/item.htm?ft=t&id=895964393739)
+
 ### MKLink V3
 
 ![MKLink V3](../../images/microlink/MKLink V3.png)
 
 在在线功能基础上增加独立脱机下载、板载存储、目标电压跟随和按键触发，适合研发与小批量生产共用。
 
+购买链接：[https://item.taobao.com/item.htm?ft=t&id=1013104417098](https://item.taobao.com/item.htm?ft=t&id=1013104417098)
+
 ### MKLink V4
+
+![MKLink V3](../../images/microlink/MKLinkV3 LCD.png)
 
 V4 增加显示、RS485、功率监测、更大的存储空间和可选择的 Python 脱机脚本，适合调试台和量产工位。
 
@@ -69,6 +75,8 @@ V4 增加显示、RS485、功率监测、更大的存储空间和可选择的 Py
 
 !!! note "以设备实际版本为准"
     不同批次固件可能增加能力。连接下载器后可在 Web GUI 底部查看版本历史，也可读取 U 盘中的 `readme.txt`。升级方法见[固件升级](firmware-upgrade.md)。
+
+购买链接：[https://item.taobao.com/item.htm?ft=t&id=1020501356342](https://item.taobao.com/item.htm?ft=t&id=1020501356342)
 
 ## 一套工具覆盖产品生命周期
 
