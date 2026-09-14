@@ -10,7 +10,11 @@ MKLink 提供桌面应用和浏览器中的 Web GUI。想先手动使用，安�
 
 ## 让 AI 帮你安装
 
-> 从 https://github.com/Aladdin-Wang/Mklink-AI-Probe 的官方发布页安装完整 MKLink Skill，配好当前客户端的工具，检查设备连接并打开 Web GUI。
+> 请从仓库 [https://github.com/Aladdin-Wang/Mklink-AI-Probe](https://github.com/Aladdin-Wang/Mklink-AI-Probe) 或者 [https://gitee.com/Aladdin-Wang/Mklink-AI-Probe](https://gitee.com/Aladdin-Wang/Mklink-AI-Probe) 安装或更新 MKLink AI Probe。读取仓库内的 `Mklink-AI-Probe/SKILL.md` 和完整安装说明，将完整 Skill 安装到当前用户的用户级 Skill 目录，不能只复制 SKILL.md。安装 Web GUI、MCP 以及运行 MKLink 所需的全部依赖，并运行依赖导入检查、Skill 自检和 MKLink 自检。
+>
+> 然后执行 `python -m mklink web-entry install --quick-launch` 生成统一的快速启动网页：优先保存到卷标为 MICROKEEN 的下载器 U 盘，没有检测到下载器时保存到用户桌面。
+>
+> 最后启动 Web GUI，等待后端健康后打开真实 Web GUI 页面，确认页面显示“后端正常”和当前后端端口，并向我报告 Skill 版本、源码提交、自检结果、快速启动网页位置和 Web GUI 地址。若启动失败，请继续检查并补齐依赖，不要在只生成网页或只打开启动页时结束。
 
 详细说明见[安装 MKLink Skill](../../embedded-ai/getting-started/skill.md)。Skill 是 AI 的操作配套；桌面应用和 Skill 可以按需要分别安装。
 
