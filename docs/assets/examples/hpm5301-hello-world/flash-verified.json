@@ -1,0 +1,113 @@
+{
+  "firmware": "E:\\software\\HPM5300\\sdk_env_v1.11.0\\hpm_sdk\\samples\\hello_world\\hpm5301evklite_flash_xip_debug\\output\\demo.bin",
+  "size": 63232,
+  "sha256": "ffad168194ea6346ad1ba5f7d4659b481d8efb863e5ee7a391aa770f9a046e30",
+  "flash": {
+    "success": true,
+    "filename": "demo.bin",
+    "addr": "0x80000400",
+    "board": "hpm5301evklite",
+    "progress": [
+      {
+        "percent": 6,
+        "used_ms": 194
+      },
+      {
+        "percent": 12,
+        "used_ms": 316
+      },
+      {
+        "percent": 19,
+        "used_ms": 440
+      },
+      {
+        "percent": 25,
+        "used_ms": 564
+      },
+      {
+        "percent": 32,
+        "used_ms": 687
+      },
+      {
+        "percent": 38,
+        "used_ms": 811
+      },
+      {
+        "percent": 45,
+        "used_ms": 934
+      },
+      {
+        "percent": 51,
+        "used_ms": 1058
+      },
+      {
+        "percent": 58,
+        "used_ms": 1181
+      },
+      {
+        "percent": 64,
+        "used_ms": 1306
+      },
+      {
+        "percent": 71,
+        "used_ms": 1429
+      },
+      {
+        "percent": 77,
+        "used_ms": 1553
+      },
+      {
+        "percent": 84,
+        "used_ms": 1677
+      },
+      {
+        "percent": 90,
+        "used_ms": 1800
+      },
+      {
+        "percent": 97,
+        "used_ms": 1924
+      },
+      {
+        "percent": 100,
+        "used_ms": 2006
+      }
+    ],
+    "loaded_successfully": true,
+    "download_100_percent": true,
+    "time_ms": 2734,
+    "response": "hpm.board(\"hpm5301evklite\")\n\r\nboard name = hpm5301evklite \r\r\n0\r\n\nhpm.program(\"demo.bin\",0x80000400)\n\r\nfileName = demo.bin, FlashAddr = 0x80000400\nopen fileName: demo.bin success,file size: 63232 byte\nDownload:   6% ,used 194 ms \rDownload:  12% ,used 316 ms \rDownload:  19% ,used 440 ms \rDownload:  25% ,used 564 ms \rDownload:  32% ,used 687 ms \rDownload:  38% ,used 811 ms \rDownload:  45% ,used 934 ms \rDownload:  51% ,used 1058 ms \rDownload:  58% ,used 1181 ms \rDownload:  64% ,used 1306 ms \rDownload:  71% ,used 1429 ms \rDownload:  77% ,used 1553 ms \rDownload:  84% ,used 1677 ms \rDownload:  90% ,used 1800 ms \rDownload:  97% ,used 1924 ms \rDownload: 100% ,used 2006 ms \r demo.bin loaded successfully.\n0\r\n",
+    "algorithm_source": "hpm-rom-api",
+    "reset_handled_by_rom_api": true,
+    "verified": true
+  },
+  "flash_wall_s": 9.342484299995704,
+  "status_before": [
+    6799,
+    539363602,
+    360000000
+  ],
+  "status_after": [
+    7837,
+    539363602,
+    360000000
+  ],
+  "wave_snapshot": [
+    -71.1535873413086,
+    -38.848079681396484,
+    -0.6283544301986694,
+    37.687076568603516,
+    70.71068572998047,
+    92.38795471191406,
+    100.0,
+    92.387939453125,
+    70.26497650146484,
+    37.68706130981445,
+    -0.6282788515090942,
+    -38.84814453125,
+    -71.59362030029297,
+    -92.861572265625,
+    -99.99210357666016,
+    -91.89977264404297
+  ]
+}

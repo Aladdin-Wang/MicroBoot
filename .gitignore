@@ -1,1 +1,9 @@
 site/
+__pycache__/
+# Local safety copy and editor backups are not publication sources.
+maintenance/docs-organization/before-*.zip
+maintenance/docs-organization/editor-backups/
+
+# Publish migration records; keep local captures, editorial drafts and logs local.
+maintenance/*
+!maintenance/docs-organization/

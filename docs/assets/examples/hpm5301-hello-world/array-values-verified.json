@@ -1,0 +1,28 @@
+{
+  "build": "0x20260914",
+  "address": "0x82a40",
+  "elements": 16,
+  "values": [
+    -93.65499877929688,
+    -99.94029235839844,
+    -91.0105972290039,
+    -68.22534942626953,
+    -34.464256286621094,
+    4.082944393157959,
+    42.00859832763672,
+    73.538818359375,
+    94.08808135986328,
+    99.88898468017578,
+    90.4826889038086,
+    67.30120086669922,
+    33.28200149536133,
+    -5.338230609893799,
+    -43.14558792114258,
+    -74.38451385498047
+  ],
+  "opposite_channel_max_error": 1.2552862167358398,
+  "mean_square": 5009.488400791657,
+  "range_finite_pass": true,
+  "phase_opposition_pass": true,
+  "note": "Sequential 64-byte running-target read; not an atomic snapshot. Tolerances allow an update crossing the read."
+}

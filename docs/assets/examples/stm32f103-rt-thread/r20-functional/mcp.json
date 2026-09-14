@@ -1,0 +1,292 @@
+{
+  "connect": {
+    "connected": true,
+    "port": "COM488",
+    "idcode": "0x1BA01477",
+    "mcu": "STM32F10x",
+    "axf_loaded": true,
+    "elf_backend": "builtin",
+    "reused": false,
+    "limits": {
+      "one_probe_calls": "serial-only; never call hardware tools in parallel",
+      "connect": "reuse one session; disconnect when finished",
+      "direct_read_max_bytes": 4096,
+      "batch_read_max_regions": 16,
+      "batch_read_max_total_bytes": 4096,
+      "write_memory_max_bytes": 4096,
+      "flush_memory_max_regions": 8,
+      "flush_memory_max_item_bytes": 12288,
+      "flush_memory_max_total_bytes": 12288,
+      "capture_max_seconds": 30.0,
+      "rtt_search_max_bytes": 65536,
+      "rtt_write_max_utf8_bytes": 256,
+      "rtt_pattern_max_utf8_bytes": 256,
+      "failure_recovery": "a timed-out hardware tool quarantines the session; check device_status, then disconnect before reconnecting"
+    }
+  },
+  "low": {
+    "profile": {
+      "profile": "low",
+      "clock_hz": 4000000,
+      "profile_confirmed": true,
+      "interface": "SWD",
+      "qualification": "SWD profile confirmed; exact target and board stability not identified by IDCODE"
+    },
+    "4": {
+      "clock_hz": 4000000,
+      "duration_s": 1.0,
+      "warmup_us": 200000,
+      "period_s": 1e-06,
+      "regions": [
+        {
+          "address": "0x20008c98",
+          "size": 4
+        }
+      ],
+      "samples": 28725,
+      "sample_hz": 59999.164473409364,
+      "payload_bytes_per_second": 239996.65789363746,
+      "median_interval_us": 13,
+      "p99_interval_us": 161,
+      "max_interval_us": 367,
+      "integrity": {
+        "protocol_frames": 40640,
+        "complete_samples": 40640,
+        "parser_dropped_bytes": 47,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "timing_source": "probe sample timestamps; complete samples only"
+    },
+    "4096": {
+      "clock_hz": 4000000,
+      "duration_s": 1.0,
+      "warmup_us": 200000,
+      "period_s": 1e-06,
+      "regions": [
+        {
+          "address": "0x20008c98",
+          "size": 4096
+        }
+      ],
+      "samples": 32,
+      "sample_hz": 68.51040695181729,
+      "payload_bytes_per_second": 280618.6268746436,
+      "median_interval_us": 14576,
+      "p99_interval_us": 14712,
+      "max_interval_us": 14712,
+      "integrity": {
+        "protocol_frames": 92,
+        "complete_samples": 46,
+        "parser_dropped_bytes": 50,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "timing_source": "probe sample timestamps; complete samples only"
+    }
+  },
+  "medium": {
+    "profile": {
+      "profile": "medium",
+      "clock_hz": 10000000,
+      "profile_confirmed": true,
+      "interface": "SWD",
+      "qualification": "SWD profile confirmed; exact target and board stability not identified by IDCODE"
+    },
+    "4": {
+      "clock_hz": 10000000,
+      "duration_s": 1.0,
+      "warmup_us": 200000,
+      "period_s": 1e-06,
+      "regions": [
+        {
+          "address": "0x20008c98",
+          "size": 4
+        }
+      ],
+      "samples": 57406,
+      "sample_hz": 112226.54493558288,
+      "payload_bytes_per_second": 448906.1797423315,
+      "median_interval_us": 6,
+      "p99_interval_us": 127,
+      "max_interval_us": 323,
+      "integrity": {
+        "protocol_frames": 79744,
+        "complete_samples": 79744,
+        "parser_dropped_bytes": 47,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "timing_source": "probe sample timestamps; complete samples only"
+    },
+    "4096": {
+      "clock_hz": 10000000,
+      "duration_s": 1.0,
+      "warmup_us": 200000,
+      "period_s": 1e-06,
+      "regions": [
+        {
+          "address": "0x20008c98",
+          "size": 4096
+        }
+      ],
+      "samples": 69,
+      "sample_hz": 144.82968667801165,
+      "payload_bytes_per_second": 593222.3966331357,
+      "median_interval_us": 6929,
+      "p99_interval_us": 7015,
+      "max_interval_us": 7015,
+      "integrity": {
+        "protocol_frames": 196,
+        "complete_samples": 98,
+        "parser_dropped_bytes": 50,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "timing_source": "probe sample timestamps; complete samples only"
+    }
+  },
+  "high": {
+    "profile": {
+      "profile": "high",
+      "clock_hz": 20000000,
+      "profile_confirmed": true,
+      "interface": "SWD",
+      "qualification": "SWD profile confirmed; exact target and board stability not identified by IDCODE"
+    },
+    "4": {
+      "clock_hz": 20000000,
+      "duration_s": 1.0,
+      "warmup_us": 200000,
+      "period_s": 1e-06,
+      "regions": [
+        {
+          "address": "0x20008c98",
+          "size": 4
+        }
+      ],
+      "samples": 81515,
+      "sample_hz": 157810.16471389963,
+      "payload_bytes_per_second": 631240.6588555985,
+      "median_interval_us": 4,
+      "p99_interval_us": 113,
+      "max_interval_us": 369,
+      "integrity": {
+        "protocol_frames": 112896,
+        "complete_samples": 112896,
+        "parser_dropped_bytes": 47,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "timing_source": "probe sample timestamps; complete samples only"
+    },
+    "4096": {
+      "clock_hz": 20000000,
+      "duration_s": 1.0,
+      "warmup_us": 200000,
+      "period_s": 1e-06,
+      "regions": [
+        {
+          "address": "0x20008c98",
+          "size": 4096
+        }
+      ],
+      "samples": 105,
+      "sample_hz": 220.17618328820427,
+      "payload_bytes_per_second": 901841.6467484847,
+      "median_interval_us": 4517,
+      "p99_interval_us": 4656,
+      "max_interval_us": 4661,
+      "integrity": {
+        "protocol_frames": 298,
+        "complete_samples": 149,
+        "parser_dropped_bytes": 50,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "timing_source": "probe sample timestamps; complete samples only"
+    }
+  },
+  "ultra": {
+    "profile": {
+      "profile": "ultra",
+      "clock_hz": 30000000,
+      "profile_confirmed": true,
+      "interface": "SWD",
+      "qualification": "SWD profile confirmed; exact target and board stability not identified by IDCODE"
+    },
+    "4": {
+      "clock_hz": 30000000,
+      "duration_s": 1.0,
+      "warmup_us": 200000,
+      "period_s": 1e-06,
+      "regions": [
+        {
+          "address": "0x20008c98",
+          "size": 4
+        }
+      ],
+      "samples": 96220,
+      "sample_hz": 185623.39396090718,
+      "payload_bytes_per_second": 742493.5758436287,
+      "median_interval_us": 3,
+      "p99_interval_us": 100,
+      "max_interval_us": 326,
+      "integrity": {
+        "protocol_frames": 133248,
+        "complete_samples": 133248,
+        "parser_dropped_bytes": 47,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "timing_source": "probe sample timestamps; complete samples only"
+    },
+    "4096": {
+      "clock_hz": 30000000,
+      "duration_s": 1.0,
+      "warmup_us": 200000,
+      "period_s": 1e-06,
+      "regions": [
+        {
+          "address": "0x20008c98",
+          "size": 4096
+        }
+      ],
+      "samples": 126,
+      "sample_hz": 264.6068260093692,
+      "payload_bytes_per_second": 1083829.5593343761,
+      "median_interval_us": 3751,
+      "p99_interval_us": 3899,
+      "max_interval_us": 3904,
+      "integrity": {
+        "protocol_frames": 359,
+        "complete_samples": 179,
+        "parser_dropped_bytes": 50,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "timing_source": "probe sample timestamps; complete samples only"
+    }
+  },
+  "passed": true,
+  "disconnect": {
+    "disconnected": true,
+    "was_connected": true
+  }
+}

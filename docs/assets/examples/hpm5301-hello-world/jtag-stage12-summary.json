@@ -1,0 +1,302 @@
+[
+  {
+    "case": "baseline20-released",
+    "profile": 20000000,
+    "layout": "ram4",
+    "seconds": 3.0,
+    "samples": 256560,
+    "ksa_s": 94.55872119609519,
+    "mib_s": 0.3607128951877411,
+    "median_us": 7,
+    "p99_us": 78,
+    "max_us": 279,
+    "dmi": {
+      "scans": 540953,
+      "reserved": 0,
+      "failed": 0,
+      "busy": 0
+    },
+    "stats": {
+      "protocol_frames": 256560,
+      "complete_samples": 256560,
+      "parser_dropped_bytes": 47,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "batch_analysis": {
+      "within_median_us": 7,
+      "boundary_median_us": 61.0,
+      "boundary_time_fraction": 0.27152514066445316,
+      "note": "24-record batch alignment from initial parsed record; wall gap includes encoding, scheduling and USB handoff, not USB blocking alone"
+    }
+  },
+  {
+    "case": "control20-long",
+    "profile": 20000000,
+    "layout": "ram4",
+    "seconds": 30.0,
+    "samples": 2571720,
+    "ksa_s": 86.84189841785819,
+    "mib_s": 0.33127555243628765,
+    "median_us": 7.0,
+    "p99_us": 96,
+    "max_us": 300,
+    "dmi": {
+      "scans": 5364153,
+      "reserved": 0,
+      "failed": 0,
+      "busy": 0
+    },
+    "stats": {
+      "protocol_frames": 2571720,
+      "complete_samples": 2571720,
+      "parser_dropped_bytes": 47,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "batch_analysis": {
+      "within_median_us": 7,
+      "boundary_median_us": 81,
+      "boundary_time_fraction": 0.33166591329171,
+      "note": "24-record batch alignment from initial parsed record; wall gap includes encoding, scheduling and USB handoff, not USB blocking alone"
+    }
+  },
+  {
+    "case": "trial25delay3-ram4-long",
+    "profile": 25000000,
+    "layout": "ram4",
+    "seconds": 30.0,
+    "samples": 2837664,
+    "ksa_s": 95.65413479486753,
+    "mib_s": 0.3648915664477063,
+    "median_us": 7.0,
+    "p99_us": 91,
+    "max_us": 301,
+    "dmi": {
+      "scans": 5918853,
+      "reserved": 0,
+      "failed": 0,
+      "busy": 0
+    },
+    "stats": {
+      "protocol_frames": 2837664,
+      "complete_samples": 2837664,
+      "parser_dropped_bytes": 47,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "batch_analysis": {
+      "within_median_us": 7.0,
+      "boundary_median_us": 77.0,
+      "boundary_time_fraction": 0.3495906105896073,
+      "note": "24-record batch alignment from initial parsed record; wall gap includes encoding, scheduling and USB handoff, not USB blocking alone"
+    }
+  },
+  {
+    "case": "trial30lag-ram4-long",
+    "profile": 30000000,
+    "layout": "ram4",
+    "seconds": 30.0,
+    "samples": 3240912,
+    "ksa_s": 109.23607639884118,
+    "mib_s": 0.41670256194626304,
+    "median_us": 6.0,
+    "p99_us": 71,
+    "max_us": 274,
+    "dmi": {
+      "scans": 6759303,
+      "reserved": 0,
+      "failed": 0,
+      "busy": 0
+    },
+    "stats": {
+      "protocol_frames": 3240912,
+      "complete_samples": 3240912,
+      "parser_dropped_bytes": 47,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "batch_analysis": {
+      "within_median_us": 6.0,
+      "boundary_median_us": 57.0,
+      "boundary_time_fraction": 0.3021009148588754,
+      "note": "24-record batch alignment from initial parsed record; wall gap includes encoding, scheduling and USB handoff, not USB blocking alone"
+    }
+  },
+  {
+    "case": "trial30lag-ram4-repeat",
+    "profile": 30000000,
+    "layout": "ram4",
+    "seconds": 30.0,
+    "samples": 3232488,
+    "ksa_s": 108.9552735159069,
+    "mib_s": 0.415631383956554,
+    "median_us": 6,
+    "p99_us": 70,
+    "max_us": 277,
+    "dmi": {
+      "scans": 6741703,
+      "reserved": 0,
+      "failed": 0,
+      "busy": 0
+    },
+    "stats": {
+      "protocol_frames": 3232488,
+      "complete_samples": 3232488,
+      "parser_dropped_bytes": 47,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "batch_analysis": {
+      "within_median_us": 6.0,
+      "boundary_median_us": 57,
+      "boundary_time_fraction": 0.30086101612322513,
+      "note": "24-record batch alignment from initial parsed record; wall gap includes encoding, scheduling and USB handoff, not USB blocking alone"
+    }
+  },
+  {
+    "case": "trial25delay3-flash64-long",
+    "profile": 25000000,
+    "layout": "flash64",
+    "seconds": 30.0,
+    "samples": 256848,
+    "ksa_s": 8.674816795179764,
+    "mib_s": 0.5294687985339211,
+    "median_us": 101,
+    "p99_us": 333,
+    "max_us": 476,
+    "dmi": {
+      "scans": 8251323,
+      "reserved": 0,
+      "failed": 0,
+      "busy": 0
+    },
+    "stats": {
+      "protocol_frames": 256848,
+      "complete_samples": 256848,
+      "parser_dropped_bytes": 48,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    }
+  },
+  {
+    "case": "trial30lag-flash64-long",
+    "profile": 30000000,
+    "layout": "flash64",
+    "seconds": 30.0,
+    "samples": 270312,
+    "ksa_s": 9.12245467770423,
+    "mib_s": 0.5567904466372211,
+    "median_us": 96.0,
+    "p99_us": 327,
+    "max_us": 462,
+    "dmi": {
+      "scans": 8683293,
+      "reserved": 0,
+      "failed": 0,
+      "busy": 0
+    },
+    "stats": {
+      "protocol_frames": 270312,
+      "complete_samples": 270312,
+      "parser_dropped_bytes": 48,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    }
+  },
+  {
+    "case": "control20-flash4096",
+    "profile": 20000000,
+    "layout": "flash4096",
+    "seconds": 3.0,
+    "samples": 561,
+    "ksa_s": 0.20618663187581765,
+    "mib_s": 0.8054165307649127,
+    "median_us": 4834,
+    "p99_us": 4967,
+    "max_us": 4987,
+    "dmi": {
+      "scans": 664592,
+      "reserved": 0,
+      "failed": 0,
+      "busy": 0
+    },
+    "stats": {
+      "protocol_frames": 1122,
+      "complete_samples": 561,
+      "parser_dropped_bytes": 50,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    }
+  },
+  {
+    "case": "trial25delay3-flash4096",
+    "profile": 25000000,
+    "layout": "flash4096",
+    "seconds": 3.0,
+    "samples": 623,
+    "ksa_s": 0.23084487624394182,
+    "mib_s": 0.9017377978278978,
+    "median_us": 4321,
+    "p99_us": 4458,
+    "max_us": 4479,
+    "dmi": {
+      "scans": 739344,
+      "reserved": 0,
+      "failed": 0,
+      "busy": 0
+    },
+    "stats": {
+      "protocol_frames": 1247,
+      "complete_samples": 623,
+      "parser_dropped_bytes": 50,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    }
+  },
+  {
+    "case": "trial30lag-flash4096",
+    "profile": 30000000,
+    "layout": "flash4096",
+    "seconds": 3.0,
+    "samples": 663,
+    "ksa_s": 0.24268199173142138,
+    "mib_s": 0.9479765302008648,
+    "median_us": 4091.0,
+    "p99_us": 4251,
+    "max_us": 4272,
+    "dmi": {
+      "scans": 786648,
+      "reserved": 0,
+      "failed": 0,
+      "busy": 0
+    },
+    "stats": {
+      "protocol_frames": 1327,
+      "complete_samples": 663,
+      "parser_dropped_bytes": 50,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    }
+  }
+]

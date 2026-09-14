@@ -1,0 +1,27 @@
+[
+  {
+    "old": "docs/images/microlink/ARMLINK.png",
+    "new": "docs/images/pending-review/armlink.png",
+    "reason": "缺少清晰的引用或用途证据；保留原图，等待补充说明。"
+  },
+  {
+    "old": "docs/images/microlink/ARMLINK1.jpg",
+    "new": "docs/images/pending-review/armlink1.jpg",
+    "reason": "缺少清晰的引用或用途证据；保留原图，等待补充说明。"
+  },
+  {
+    "old": "docs/images/microlink/jscope.jpg",
+    "new": "docs/images/pending-review/jscope.jpg",
+    "reason": "缺少清晰的引用或用途证据；保留原图，等待补充说明。"
+  },
+  {
+    "old": "docs/images/microlink/microlink.pack.png",
+    "new": "docs/images/pending-review/microlink.pack.png",
+    "reason": "缺少清晰的引用或用途证据；保留原图，等待补充说明。"
+  },
+  {
+    "old": "docs/images/microlink/SJTB.png",
+    "new": "docs/images/pending-review/sjtb.png",
+    "reason": "缺少清晰的引用或用途证据；保留原图，等待补充说明。"
+  }
+]

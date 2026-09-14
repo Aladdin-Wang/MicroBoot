@@ -1,0 +1,7 @@
+{
+  "sha256": "b7b0c514d9d59d30a8c9bb6f556a7740aa9bf703851710a8afd5112527407b71",
+  "build": "Sep 14 2026 10:08:38",
+  "phase": 3,
+  "read_data_mhz_measured": 19.947419704741417,
+  "scope": "Read-data-only acceleration; request/ACK/write retain legacy timing."
+}

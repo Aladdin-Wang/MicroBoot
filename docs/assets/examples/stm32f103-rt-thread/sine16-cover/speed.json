@@ -1,0 +1,11 @@
+{
+  "profile": "ultra",
+  "clock_hz": 30000000,
+  "default": "medium",
+  "profiles": {
+    "low": 4000000,
+    "medium": 10000000,
+    "high": 20000000,
+    "ultra": 30000000
+  }
+}

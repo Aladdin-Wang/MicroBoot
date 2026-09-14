@@ -1,0 +1,32 @@
+{
+  "probe_rebooted": true,
+  "private_overrides_cleared": true,
+  "low": {
+    "profile": 4000000,
+    "scans": 205,
+    "reserved": 1,
+    "failed": 0,
+    "busy": 0,
+    "wait": 0,
+    "fault": 0,
+    "error": 0,
+    "invalid": 1,
+    "exhausted": 0,
+    "raw": "cmd.set_swd_clock(4000000)\n\r\nSWD LAB revision=pipe-r12 low_rd=17 low_wr=16; clock requires LA measurement\r\nset clock 4000000\r\nSWD profile=4000000\r\nSWD requested=4000000 transfers=205 wait=0 fault=0 error=0 invalid=1 exhausted=0\r\nSWD parity request=0 value=00000000 bit=0\r\nDUMP batch=64 fastpack=1 batches=0 collect_avg_cycles=0 pack_avg_cycles=0 gap_avg_cycles=0 queue_avg_cycles=0\r\nDUMP perf=disabled\r\nUSB starts=162 completes=162 errors=0 full=0 inflight_us=55 blocked_us=0 size=0 stat=00000000 prime=00000000 complete=00000000\r\r\nUSB copy_mode=1 calls=1261 bytes=1261 misaligned_bytes=945 copy_avg_cycles=164 copy_max_cycles=1328\r\r\n0\r\n",
+    "legacy_no_counters": false
+  },
+  "final_medium": {
+    "profile": 10000000,
+    "scans": 205,
+    "reserved": 1,
+    "failed": 0,
+    "busy": 0,
+    "wait": 0,
+    "fault": 0,
+    "error": 0,
+    "invalid": 1,
+    "exhausted": 0,
+    "raw": "cmd.set_swd_clock(10000000)\n\r\nSWD LAB revision=pipe-r12 low_rd=5 low_wr=4; clock requires LA measurement\r\nset clock 10000000\r\nSWD profile=10000000\r\nSWD requested=10000000 transfers=205 wait=0 fault=0 error=0 invalid=1 exhausted=0\r\nSWD parity request=0 value=00000000 bit=0\r\nDUMP batch=64 fastpack=1 batches=0 collect_avg_cycles=0 pack_avg_cycles=0 gap_avg_cycles=0 queue_avg_cycles=0\r\nDUMP perf=disabled\r\nUSB starts=204 completes=204 errors=0 full=0 inflight_us=61 blocked_us=0 size=0 stat=00000000 prime=00000000 complete=00000000\r\r\nUSB copy_mode=1 calls=1673 bytes=1673 misaligned_bytes=1254 copy_avg_cycles=161 copy_max_cycles=1328\r\r\n0\r\n",
+    "legacy_no_counters": false
+  }
+}

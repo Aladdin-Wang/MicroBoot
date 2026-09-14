@@ -1,0 +1,301 @@
+Browser tab: 978072955, Title: "MKLink AI Probe", URL: "http://127.0.0.1:8765/?build=7354f9b#/offline-flash".
+1 AXWebArea MKLink AI Probe, URL: 127.0.0.1:8765/?build=7354f9b#/offline-flash
+	2 container app
+		3 container
+			4 heading MKLink, Value: 1
+				5 text MKLink
+			6 button 配置
+			7 button 仪表盘
+			8 button 脱机烧录
+			9 button 在线烧录
+			10 link Description: 在线文档, Value: microboot.readthedocs.io/zh-cn/latest/tools/microlink/microlink/
+			11 container
+				12 button (collapsed) 淘宝店铺, Secondary Actions: Expand
+					13 text 淘宝店铺
+			14 button 切换到 English
+			15 text 后端正常  · 8765 未连接
+		33 container
+			34 text 下载器
+			35 text V4
+			36 text U 盘
+			108 text G:\
+			38 text 脚本
+			39 text HPM5301_DOC_RTOS.py
+			40 button 刷新 U 盘
+			234 text 脱机下载执行完成 01
+			42 heading 器件与下载算法, Value: 2
+				43 text 器件与下载算法
+			44 text 输入型号并从联想结果中选定器件
+			46 container
+				47 combo box (collapsed, settable) Value: HPM5301xEGx, Secondary Actions: Expand
+				48 button 搜索器件
+			110 text 已选器件
+			111 text HPM5301xEGx
+			112 text HPM ROM API · 无需 Pack 或 FLM
+			50 text 02
+			51 heading 烧录顺序, Value: 2
+				52 text 烧录顺序
+			53 text 固件按从上到下顺序依次写入
+			54 button 添加固件
+			55 button 选择文件
+			113 text 1
+			114 text field (settable) demo.bin
+			115 text HPM ROM API
+			116 text field (settable) 0x80000400
+			117 button (disabled) ↑, Help: 上移
+			118 button (disabled) ↓, Help: 下移
+			119 button ×, Help: 移除固件
+			57 text 03
+			58 heading 量产配置与部署, Value: 2
+				59 text 量产配置与部署
+			60 text 确认安全选项，部署后再触发一次真机验证
+			61 container
+				62 text 下载器型号
+				63 pop up button (collapsed, settable) 下载器型号, Value: V4, Secondary Actions: Expand
+					64 menu
+						65 (disabled) 请选择
+						66 V2
+						67 V3
+						68 (selected) V4
+			120 container
+				121 text HPM 板卡
+				122 pop up button (collapsed, settable) HPM 板卡, Value: hpm5301evklite, Secondary Actions: Expand
+					123 menu
+						124 hpm5300evk
+						125 (selected) hpm5301evklite
+						126 hpm5e00evk
+						127 hpm6e00evk
+						128 hpm6p00evk
+						129 hpm6200evk
+						130 hpm6300evk
+						131 hpm6750evk2
+						132 hpm6750evkmini
+						133 hpm6800evk
+			69 container
+				70 text 脚本文件名
+				71 text field (settable) 脚本文件名, Value: HPM5301_DOC_RTOS.py
+			72 container
+				73 text 自动烧录次数
+				74 stepper (settable, integer) 自动烧录次数, Value: 1
+			75 container
+				76 text IDCODE 超时
+				77 stepper (settable, integer) IDCODE 超时 ms, Value: 10000
+				78 text ms
+			79 container
+				80 text SWD 速率
+				81 pop up button (collapsed, settable) SWD 速率, Value: 10 MHz, Secondary Actions: Expand
+					82 menu
+						83 1 MHz
+						84 5 MHz
+						85 8 MHz
+						86 (selected) 10 MHz
+			87 text 选项字节 / OTP 配置
+			88 button 读取配置
+			134 text 公开 OTP 配置只读；熔丝值与影子值分别显示，永久写入暂不支持。
+			135 table
+				136 row
+					137 cell
+						138 text 字段
+					139 cell
+						140 text 熔丝值
+					141 cell
+						142 text 影子值
+					143 cell
+						144 text 配置目标
+				145 row
+					146 cell 锁定位仅解释原始位图，不修改
+						147 text HARD_LOCK
+						148 text 永久锁定位
+						149 text 锁定位仅解释原始位图，不修改
+					150 cell
+						151 text —
+					152 cell
+						153 text —
+					154 cell
+						155 text 只读
+				156 row
+					157 cell 原始编码；生命周期转换需专用流程
+						158 text LIFECYCLE_A
+						159 text 生命周期 A
+						160 text 原始编码；生命周期转换需专用流程
+					161 cell
+						162 text —
+					163 cell
+						164 text —
+					165 cell
+						166 text 只读
+				167 row
+					168 cell 原始编码；不推断可逆状态
+						169 text LIFECYCLE_B
+						170 text 生命周期 B
+						171 text 原始编码；不推断可逆状态
+					172 cell
+						173 text —
+					174 cell
+						175 text —
+					176 cell
+						177 text 只读
+				178 row
+					179 cell 永久禁用可能阻断调试访问
+						180 text JTAG_DISABLE
+						181 text JTAG 禁用位
+						182 text 永久禁用可能阻断调试访问
+					183 cell
+						184 text —
+					185 cell
+						186 text —
+					187 cell
+						188 text 只读
+				189 row
+					190 cell 永久禁用可能阻断调试访问
+						191 text DEBUG_DISABLE
+						192 text 调试禁用位
+						193 text 永久禁用可能阻断调试访问
+					194 cell
+						195 text —
+					196 cell
+						197 text —
+					198 cell
+						199 text 只读
+				200 row
+					201 cell 原始版本位图，不解释为普通版本序号
+						202 text SW_VER
+						203 text 软件版本字段
+						204 text 原始版本位图，不解释为普通版本序号
+					205 cell
+						206 text —
+					207 cell
+						208 text —
+					209 cell
+						210 text 只读
+				211 row
+					212 cell USB 厂商标识
+						213 text USB_VID
+						214 text USB VID
+						215 text USB 厂商标识
+					216 cell
+						217 text —
+					218 cell
+						219 text —
+					220 cell
+						221 text 只读
+				222 row
+					223 cell USB 产品标识
+						224 text USB_PID
+						225 text USB PID
+						226 text USB 产品标识
+					227 cell
+						228 text —
+					229 cell
+						230 text —
+					231 cell
+						232 text 只读
+			90 text 擦除与安全操作
+			91 container
+				92 checkbox (disabled, settable, integer) Description: 下载前全片擦除（第一个固件对应的 Flash）, Value: 0
+				93 text 下载前全片擦除（第一个固件对应的 Flash）
+			95 container
+				96 checkbox (disabled, settable, integer) Description: 下载前解锁（永久擦除全部 Flash）, Value: 0
+				97 text 下载前解锁（永久擦除全部 Flash）
+			98 container
+				99 checkbox (disabled, settable, integer) Description: 下载成功后加锁, Value: 0
+				100 text 下载成功后加锁
+			101 button 生成预览
+			102 button 部署到 U 盘
+			103 button 触发测试
+			104 text 建议流程：先生成预览检查脚本 → 部署到 U 盘 → 点击“触发测试”验证目标板。
+			105 text HPM5301_DOC_RTOS.py V4
+			233 text import PikaStdLib
+import time
+import cmd
+import hpm
+
+AUTO_DOWNLOAD_COUNT = 1
+WAIT_IDCODE_TIMEOUT = 10000
+cmd.set_swd_clock(10000000)
+
+abort = False
+for i in range(AUTO_DOWNLOAD_COUNT):
+    if abort:
+        break
+    print("=== Auto Download Round:", i + 1, "===")
+    elapsed = 0
+    while True:
+        idcode = cmd.get_idcode()
+        if idcode not in (0, 0xFFFFFFFF):
+            break
+        if elapsed >= WAIT_IDCODE_TIMEOUT:
+            print("wait idcode online timeout")
+            abort = True
+            break
+        time.sleep_ms(500)
+        elapsed += 500
+    if abort:
+        break
+    print("IDCODE: 0x%08X" % idcode)
+    if hpm.board("hpm5301evklite") != 0:
+        print("HPM flash configuration failed")
+        abort = True
+        break
+    if hpm.program("demo.bin", 0x80000400) != 0:
+        print("HPM program failed: demo.bin")
+        abort = True
+        break
+    if abort or i + 1 >= AUTO_DOWNLOAD_COUNT:
+        break
+    elapsed = 0
+    while True:
+        idcode = cmd.get_idcode()
+        if idcode in (0, 0xFFFFFFFF):
+            break
+        if elapsed >= WAIT_IDCODE_TIMEOUT:
+            print("wait idcode offline timeout")
+            abort = True
+            break
+        time.sleep_ms(500)
+        elapsed += 500
+if not abort:
+    print("auto download finished")
+    cmd.set_beep_on()
+    time.sleep_ms(1000)
+    cmd.set_beep_off()
+else:
+    print("auto download aborted")
+
+			235 text load.offline("Python/HPM5301_DOC_RTOS.py")
+set clock 10000000
+JTAG profile=10000000 scans=14158095 reserved=0 failed=0 busy=0
+DUMP perf=disabled
+USB starts=199777 completes=199777 errors=0 full=0 inflight_us=793 blocked_us=0 size=0 stat=00000000 prime=00000000 complete=00000000
+=== Auto Download Round: 1 ===
+idcode = 0X1000563D
+IDCODE: <masked>
+board name = hpm5301evklite
+fileName = demo.bin, FlashAddr = 0x80000400
+open fileName: demo.bin success,file size: 78464 byte
+Download:   5% ,used 156 ms
+Download:  10% ,used 252 ms
+Download:  15% ,used 348 ms
+Download:  20% ,used 444 ms
+Download:  26% ,used 540 ms
+Download:  31% ,used 636 ms
+Download:  36% ,used 732 ms
+Download:  41% ,used 828 ms
+Download:  46% ,used 924 ms
+Download:  52% ,used 1020 ms
+Download:  57% ,used 1116 ms
+Download:  62% ,used 1212 ms
+Download:  67% ,used 1308 ms
+Download:  73% ,used 1405 ms
+Download:  78% ,used 1501 ms
+Download:  83% ,used 1596 ms
+Download:  88% ,used 1693 ms
+Download:  93% ,used 1788 ms
+Download:  99% ,used 1885 ms
+Download: 100% ,used 1943 ms
+demo.bin loaded successfully.
+auto download finished
+			107 button 选择文件
+		32 pop up button (collapsed) v0.2.0 · 7354f9bca571, Help: 查看版本更新记录, Secondary Actions: Expand
+
+The focused UI element is 1 AXWebArea MKLink AI Probe, URL: 127.0.0.1:8765/?build=7354f9b#/offline-flash

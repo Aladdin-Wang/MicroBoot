@@ -1,0 +1,12 @@
+{
+  "mcause": "0x2",
+  "mtval": "0xffffffff",
+  "mstatus": "0x1880",
+  "marker": "0x54524150",
+  "instruction_hex": "01008280",
+  "illegal_instruction_pass": true,
+  "handler_return_pc": "0x800062ee",
+  "fault_pc": "0x800062ea",
+  "pc_note": "SDK1.11.0 FreeRTOS portASM adds 4 to a1 before application exception handler; recorded a1 is return PC, not raw mepc.",
+  "elf_fault_instruction_hex": "ffffffff"
+}

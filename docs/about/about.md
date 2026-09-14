@@ -1,3 +1,0 @@
-# About
-
-Learn more about our project and its goals...

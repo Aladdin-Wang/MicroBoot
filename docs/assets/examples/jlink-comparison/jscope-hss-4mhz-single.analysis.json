@@ -1,0 +1,15 @@
+{
+  "file": "E:\\software\\MicroBoot\\maintenance\\jlink-comparison\\jscope-hss-4mhz-single.csv",
+  "rows": 33289,
+  "first_timestamp": 0,
+  "last_timestamp": 66576133,
+  "median_delta": 1999.0,
+  "max_delta": 2245,
+  "min_delta": 1782,
+  "rate_if_microseconds": 499.99900114354796,
+  "last_nonzero_index": 17285,
+  "last_nonzero_time": 34570133,
+  "leading_nonzero_rate_if_microseconds": 499.9980763741927,
+  "zero_tail_rows": 16003,
+  "caveat": "includes flat-zero tail after sampling UI pause; confirm timestamp unit from JScope manual; not genuine PLUS device"
+}

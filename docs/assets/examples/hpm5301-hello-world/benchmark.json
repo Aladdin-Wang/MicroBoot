@@ -1,0 +1,362 @@
+[
+  {
+    "clock_hz": 4000000,
+    "duration_s": 5,
+    "warmup_us": 200000,
+    "period_s": 1e-06,
+    "regions": [
+      {
+        "address": "0x804f8",
+        "size": 4
+      }
+    ],
+    "samples": 149525,
+    "sample_hz": 33182.699919198116,
+    "payload_bytes_per_second": 132730.79967679246,
+    "median_interval_us": 24,
+    "p99_interval_us": 139,
+    "max_interval_us": 323,
+    "integrity": {
+      "protocol_frames": 156096,
+      "complete_samples": 156096,
+      "parser_dropped_bytes": 47,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "timing_source": "probe sample timestamps; complete samples only",
+    "case": "float1",
+    "speed": "low"
+  },
+  {
+    "clock_hz": 4000000,
+    "duration_s": 5,
+    "warmup_us": 200000,
+    "period_s": 1e-06,
+    "regions": [
+      {
+        "address": "0x804f8",
+        "size": 8
+      }
+    ],
+    "samples": 81717,
+    "sample_hz": 18028.265963032743,
+    "payload_bytes_per_second": 144226.12770426195,
+    "median_interval_us": 47,
+    "p99_interval_us": 177,
+    "max_interval_us": 332,
+    "integrity": {
+      "protocol_frames": 85296,
+      "complete_samples": 85296,
+      "parser_dropped_bytes": 47,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "timing_source": "probe sample timestamps; complete samples only",
+    "case": "float2",
+    "speed": "low"
+  },
+  {
+    "clock_hz": 4000000,
+    "duration_s": 5,
+    "warmup_us": 200000,
+    "period_s": 1e-06,
+    "regions": [
+      {
+        "address": "0x804f8",
+        "size": 64
+      }
+    ],
+    "samples": 11287,
+    "sample_hz": 2493.6135124422167,
+    "payload_bytes_per_second": 159591.26479630187,
+    "median_interval_us": 377,
+    "p99_interval_us": 671,
+    "max_interval_us": 759,
+    "integrity": {
+      "protocol_frames": 11784,
+      "complete_samples": 11784,
+      "parser_dropped_bytes": 48,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "timing_source": "probe sample timestamps; complete samples only",
+    "case": "float16",
+    "speed": "low"
+  },
+  {
+    "clock_hz": 4000000,
+    "duration_s": 5,
+    "warmup_us": 200000,
+    "period_s": 1e-06,
+    "regions": [
+      {
+        "address": "0x80544",
+        "size": 4096
+      }
+    ],
+    "samples": 304,
+    "sample_hz": 67.71120700924962,
+    "payload_bytes_per_second": 277345.10390988644,
+    "median_interval_us": 14760,
+    "p99_interval_us": 14912,
+    "max_interval_us": 14953,
+    "integrity": {
+      "protocol_frames": 637,
+      "complete_samples": 318,
+      "parser_dropped_bytes": 50,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "timing_source": "probe sample timestamps; complete samples only",
+    "case": "ram4096",
+    "speed": "low"
+  },
+  {
+    "clock_hz": 10000000,
+    "duration_s": 5,
+    "warmup_us": 200000,
+    "period_s": 1e-06,
+    "regions": [
+      {
+        "address": "0x804f8",
+        "size": 4
+      }
+    ],
+    "samples": 271212,
+    "sample_hz": 60118.174414547655,
+    "payload_bytes_per_second": 240472.69765819062,
+    "median_interval_us": 12,
+    "p99_interval_us": 107,
+    "max_interval_us": 296,
+    "integrity": {
+      "protocol_frames": 283128,
+      "complete_samples": 283128,
+      "parser_dropped_bytes": 47,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "timing_source": "probe sample timestamps; complete samples only",
+    "case": "float1",
+    "speed": "medium"
+  },
+  {
+    "clock_hz": 10000000,
+    "duration_s": 5,
+    "warmup_us": 200000,
+    "period_s": 1e-06,
+    "regions": [
+      {
+        "address": "0x804f8",
+        "size": 8
+      }
+    ],
+    "samples": 152601,
+    "sample_hz": 33795.71751120895,
+    "payload_bytes_per_second": 270365.7400896716,
+    "median_interval_us": 24,
+    "p99_interval_us": 133,
+    "max_interval_us": 312,
+    "integrity": {
+      "protocol_frames": 159288,
+      "complete_samples": 159288,
+      "parser_dropped_bytes": 47,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "timing_source": "probe sample timestamps; complete samples only",
+    "case": "float2",
+    "speed": "medium"
+  },
+  {
+    "clock_hz": 10000000,
+    "duration_s": 5,
+    "warmup_us": 200000,
+    "period_s": 1e-06,
+    "regions": [
+      {
+        "address": "0x804f8",
+        "size": 64
+      }
+    ],
+    "samples": 22293,
+    "sample_hz": 4941.718885537314,
+    "payload_bytes_per_second": 316270.0086743881,
+    "median_interval_us": 187,
+    "p99_interval_us": 378,
+    "max_interval_us": 488,
+    "integrity": {
+      "protocol_frames": 23280,
+      "complete_samples": 23280,
+      "parser_dropped_bytes": 48,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "timing_source": "probe sample timestamps; complete samples only",
+    "case": "float16",
+    "speed": "medium"
+  },
+  {
+    "clock_hz": 10000000,
+    "duration_s": 5,
+    "warmup_us": 200000,
+    "period_s": 1e-06,
+    "regions": [
+      {
+        "address": "0x80544",
+        "size": 4096
+      }
+    ],
+    "samples": 597,
+    "sample_hz": 132.59170963661418,
+    "payload_bytes_per_second": 543095.6426715717,
+    "median_interval_us": 7560,
+    "p99_interval_us": 7629,
+    "max_interval_us": 7648,
+    "integrity": {
+      "protocol_frames": 1249,
+      "complete_samples": 624,
+      "parser_dropped_bytes": 50,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "timing_source": "probe sample timestamps; complete samples only",
+    "case": "ram4096",
+    "speed": "medium"
+  },
+  {
+    "clock_hz": 20000000,
+    "duration_s": 5,
+    "warmup_us": 200000,
+    "period_s": 1e-06,
+    "regions": [
+      {
+        "address": "0x804f8",
+        "size": 4
+      }
+    ],
+    "samples": 398401,
+    "sample_hz": 88306.22933509,
+    "payload_bytes_per_second": 353224.91734036,
+    "median_interval_us": 7,
+    "p99_interval_us": 93,
+    "max_interval_us": 287,
+    "integrity": {
+      "protocol_frames": 416040,
+      "complete_samples": 416040,
+      "parser_dropped_bytes": 47,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "timing_source": "probe sample timestamps; complete samples only",
+    "case": "float1",
+    "speed": "high"
+  },
+  {
+    "clock_hz": 20000000,
+    "duration_s": 5,
+    "warmup_us": 200000,
+    "period_s": 1e-06,
+    "regions": [
+      {
+        "address": "0x804f8",
+        "size": 8
+      }
+    ],
+    "samples": 231228,
+    "sample_hz": 51168.65338812225,
+    "payload_bytes_per_second": 409349.227104978,
+    "median_interval_us": 14,
+    "p99_interval_us": 115,
+    "max_interval_us": 309,
+    "integrity": {
+      "protocol_frames": 241368,
+      "complete_samples": 241368,
+      "parser_dropped_bytes": 47,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "timing_source": "probe sample timestamps; complete samples only",
+    "case": "float2",
+    "speed": "high"
+  },
+  {
+    "clock_hz": 20000000,
+    "duration_s": 5,
+    "warmup_us": 200000,
+    "period_s": 1e-06,
+    "regions": [
+      {
+        "address": "0x804f8",
+        "size": 64
+      }
+    ],
+    "samples": 35788,
+    "sample_hz": 7916.351722531507,
+    "payload_bytes_per_second": 506646.51024201646,
+    "median_interval_us": 114,
+    "p99_interval_us": 277,
+    "max_interval_us": 398,
+    "integrity": {
+      "protocol_frames": 37368,
+      "complete_samples": 37368,
+      "parser_dropped_bytes": 48,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "timing_source": "probe sample timestamps; complete samples only",
+    "case": "float16",
+    "speed": "high"
+  },
+  {
+    "clock_hz": 20000000,
+    "duration_s": 5,
+    "warmup_us": 200000,
+    "period_s": 1e-06,
+    "regions": [
+      {
+        "address": "0x80544",
+        "size": 4096
+      }
+    ],
+    "samples": 944,
+    "sample_hz": 209.49470898119145,
+    "payload_bytes_per_second": 858090.3279869602,
+    "median_interval_us": 4754,
+    "p99_interval_us": 4884,
+    "max_interval_us": 4910,
+    "integrity": {
+      "protocol_frames": 1973,
+      "complete_samples": 986,
+      "parser_dropped_bytes": 50,
+      "parser_dropped_frames": 0,
+      "parser_crc_errors": 0,
+      "firmware_flagged_frames": 0,
+      "firmware_sample_drop_flags": 0
+    },
+    "timing_source": "probe sample timestamps; complete samples only",
+    "case": "ram4096",
+    "speed": "high"
+  }
+]

@@ -1,0 +1,91 @@
+{
+  "symbols": {
+    "superwatch_tick": "0x80530",
+    "superwatch_build_id": "0x80534",
+    "superwatch_wave": "0x804f0",
+    "_SEGGER_RTT": "0x8153c"
+  },
+  "bin_size": 62664,
+  "sha256": "359f85a68b668d375a54dd5ec4f07e0d1b54b9243335b484ea102f026b8b42f0",
+  "flash": {
+    "success": true,
+    "filename": "demo.bin",
+    "addr": "0x80000400",
+    "board": "hpm5301evklite",
+    "progress": [
+      {
+        "percent": 6,
+        "used_ms": 198
+      },
+      {
+        "percent": 13,
+        "used_ms": 322
+      },
+      {
+        "percent": 19,
+        "used_ms": 445
+      },
+      {
+        "percent": 26,
+        "used_ms": 568
+      },
+      {
+        "percent": 32,
+        "used_ms": 692
+      },
+      {
+        "percent": 39,
+        "used_ms": 815
+      },
+      {
+        "percent": 45,
+        "used_ms": 939
+      },
+      {
+        "percent": 52,
+        "used_ms": 1062
+      },
+      {
+        "percent": 58,
+        "used_ms": 1186
+      },
+      {
+        "percent": 65,
+        "used_ms": 1310
+      },
+      {
+        "percent": 71,
+        "used_ms": 1434
+      },
+      {
+        "percent": 78,
+        "used_ms": 1557
+      },
+      {
+        "percent": 84,
+        "used_ms": 1680
+      },
+      {
+        "percent": 91,
+        "used_ms": 1804
+      },
+      {
+        "percent": 98,
+        "used_ms": 1927
+      },
+      {
+        "percent": 100,
+        "used_ms": 2001
+      }
+    ],
+    "loaded_successfully": true,
+    "download_100_percent": true,
+    "time_ms": 2728,
+    "response": "hpm.board(\"hpm5301evklite\")\n\r\nboard name = hpm5301evklite \r\r\n0\r\n\nhpm.program(\"demo.bin\",0x80000400)\n\r\nfileName = demo.bin, FlashAddr = 0x80000400\nopen fileName: demo.bin success,file size: 62664 byte\nDownload:   6% ,used 198 ms \rDownload:  13% ,used 322 ms \rDownload:  19% ,used 445 ms \rDownload:  26% ,used 568 ms \rDownload:  32% ,used 692 ms \rDownload:  39% ,used 815 ms \rDownload:  45% ,used 939 ms \rDownload:  52% ,used 1062 ms \rDownload:  58% ,used 1186 ms \rDownload:  65% ,used 1310 ms \rDownload:  71% ,used 1434 ms \rDownload:  78% ,used 1557 ms \rDownload:  84% ,used 1680 ms \rDownload:  91% ,used 1804 ms \rDownload:  98% ,used 1927 ms \rDownload: 100% ,used 2001 ms \r demo.bin loaded successfully.\n0\r\n",
+    "algorithm_source": "hpm-rom-api",
+    "reset_handled_by_rom_api": true,
+    "verified": true
+  },
+  "build_id": "0x20260913",
+  "rtt_signature_pass": true
+}

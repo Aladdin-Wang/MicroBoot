@@ -1,0 +1,12 @@
+{
+  "backend": "offline HPM ROM API",
+  "bytes_verified": 78464,
+  "sha256": "e1cd3528a4de56f903cc3e6a0b2ac59e77e8280435b739bf12d12a298830576a",
+  "flash_readback_pass": true,
+  "build": "0x20260914",
+  "ticks": [
+    26822,
+    26959
+  ],
+  "running_pass": true
+}

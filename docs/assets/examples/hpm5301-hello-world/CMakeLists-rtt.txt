@@ -1,0 +1,20 @@
+# Copyright (c) 2021 HPMicro
+# SPDX-License-Identifier: BSD-3-Clause
+
+cmake_minimum_required(VERSION 3.13)
+
+option(HPM_DOC_RTT "Enable RTT documentation fixture" OFF)
+if(HPM_DOC_RTT)
+    set(CONFIG_SEGGER_RTT 1)
+endif()
+
+find_package(hpm-sdk REQUIRED HINTS $ENV{HPM_SDK_BASE})
+
+project(hello_world)
+
+if(HPM_DOC_RTT)
+    sdk_compile_definitions(-DHPM_DOC_RTT=1 -DCONFIG_NDEBUG_CONSOLE=1)
+endif()
+sdk_app_src(src/hello_world.c)
+sdk_ld_options("-lm")
+generate_ide_projects()

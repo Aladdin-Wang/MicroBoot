@@ -1,0 +1,762 @@
+# 下载器内部 Python API
+
+![](../../images/mklink/development/python-api-overview.png)
+
+PikaPython 开发文档：https://pikapython.com/doc/#pikapython
+
+本页汇总运行在下载器内部 PikaPython 环境中的 API，主要用于脱机烧录和设备端自动化。它不同于电脑端的 `python -m mklink` CLI、MCP tool 和 Web REST API。
+
+普通调试优先使用 Web GUI、MCP 或 CLI；只有编排脱机流程、下载器端 GPIO/蜂鸣器或兼容旧串口工作流时，才直接调用本页接口。写 RAM、擦除或写 Flash 前必须确认地址和影响。
+
+### PC/AI 调用边界
+
+下载器命令口一次只允许一个控制方。同一只下载器不得并行运行 MCP、CLI、Web GUI
+或自定义串口脚本；建立连接后应复用到本次普通命令结束，避免每个变量重新连接。
+AI/MCP 读取多个变量时优先使用 `read_memory_regions`：最多 16 个请求区域、返回总量
+不超过 4096B，连续或重叠地址由上位机合并为一次 `read_ram`。单个 `read_memory` /
+CLI `read-ram` 限制为 4096B；更大只读范围使用有限时长的 `dump-memory` 并保存文件，
+不要把大段 hexdump 直接送入模型上下文。
+
+MCP 单次 RTT/SystemView/串口采集最长 30 秒。工具超时后只检查一次连接状态，不得
+并行或原样循环重试；先断开，REPL 仍响应时可发送一次 `reboot()`，否则停止自动操作
+并重新插拔 USB。流式功能结束后释放当前连接，普通命令重新连接后再执行。
+
+---
+
+![](../../images/mklink/development/python-api.png)
+
+
+
+## 1.cmd api列表
+
+### 1.1 读取Ram数据
+
+`cmd.read_ram(addr,size,path)`
+
+**参数**:
+
+- `addr`：读取地址
+- `size`：读取的字节数
+- `path`：可选参数，保存数据到文件系统
+
+**示例**:
+
+- `cmd.read_ram(0x20000000,128)`
+- `cmd.read_ram(0x20000000,128,"ram.bin")`
+
+**注意：数据保存到文件后，需要重启下载器，U盘中才能刷新出新文件**
+
+通过命令口直接返回文本 hexdump 时，单次建议且上位机默认限制为 `1..4096B`。
+更大范围改用 `cmd.dump_memory` 的二进制分块协议或保存到文件，避免 USB 文本输出和
+上位机/AI 上下文被大量十六进制文本占满。
+
+`read_ram` 只用于单次内存检查、故障分析和写后回读，不用于 SuperWatch 连续画波形。
+持续采样必须使用下文的 `dump_memory` 二进制流；上位机不会在流功能不可用时静默退回
+逐次 `read_ram`，以免低吞吐文本协议掩盖固件或连接问题。
+
+```c++
+cmd.read_ram(0x20000000,128)
+         00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+20000000 01 00 00 00 00 00 00 00 00 00 00 00 04 1a 00 20 
+20000010 01 00 00 00 00 00 00 00 00 a2 4a 04 01 00 00 00 
+20000020 0f 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+20000030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+20000040 53 45 47 47 45 52 20 52 54 54 00 00 00 00 00 00 
+20000050 03 00 00 00 03 00 00 00 8b 49 00 08 f8 00 00 20 
+20000060 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+20000070 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+```
+
+### 1.2 写入Ram数据
+
+`cmd.write_ram(addr,byte1,byte2,byte3,byte4,...N)`
+
+**参数**:
+
+- `addr`：写入地址
+- `byte`：N 个待写入的字节数据
+
+V4.3.8 在 STM32H743 上复测 `cmd.write_ram`、`flush_memory` bytes 字面量及重复字节
+折叠表达式，均能把非零哨兵正确清为全零。PC 端仍应在写后回读比对；MKLink CLI
+`write-ram` 已统一走 `Device.write_memory` 并强制回读验证，避免旧固件的静默失败被
+命令回显掩盖。
+
+**示例**:
+
+- cmd.write_ram(0x20001000,0xA5,0x5A)
+
+```c++
+cmd.write_ram(0x20001000,0xA5,0x5A)
+         00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+20001000 a5 5a 
+    
+cmd.read_ram(0x20001000,2)
+         00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+20001000 a5 5a 
+```
+
+
+
+### 1.3 读取Flash数据
+
+`cmd.read_flash(addr,size,path)`
+
+**参数**:
+
+- `addr`：读取地址
+- `size`：读取的字节数
+- `path`：可选参数，保存数据到文件系统
+
+**示例**:
+
+- `cmd.read_flash(0x08000000,128)`
+- `cmd.read_flash(0x08000000,128,"flash.bin")`
+
+**注意：数据保存到文件后，需要重启下载器，U盘中才能刷新出新文件资源。**
+
+```c++
+cmd.read_flash(0x08000000,128)
+         00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+08000000 b0 1f 00 20 49 01 00 08 f1 0f 00 08 e9 0f 00 08 
+08000010 ed 0f 00 08 1d 09 00 08 fd 0f 00 08 00 00 00 00 
+08000020 00 00 00 00 00 00 00 00 00 00 00 00 f5 0f 00 08 
+08000030 1f 09 00 08 00 00 00 00 f3 0f 00 08 f7 0f 00 08 
+08000040 63 01 00 08 63 01 00 08 63 01 00 08 63 01 00 08 
+08000050 63 01 00 08 63 01 00 08 63 01 00 08 63 01 00 08 
+08000060 63 01 00 08 63 01 00 08 63 01 00 08 63 01 00 08 
+08000070 63 01 00 08 63 01 00 08 63 01 00 08 63 01 00 08 
+```
+
+### 1.4 擦除Flash扇区
+
+- 擦除扇区：`cmd.erase_sector_flash(addr)`
+
+- 整片擦除：`cmd.erase_chip_flash(addr)`
+
+**参数**:
+
+- `addr`：扇区地址，必须对齐扇区
+
+**示例**:
+
+- cmd.erase_sector_flash(0x08005000)
+- cmd.erase_chip_flash(0x08000000)
+
+**注意：擦写flash 需要调用flash下载算法的函数接口，所以需要先使用load.flm()加载flash下载算法**
+
+```c++
+load.flm("FLM/STM32F10x_1024.FLM",0x08000000,0x20000000)
+0
+>>> 
+cmd.erase_sector_flash(0x08005000)
+0
+cmd.erase_chip_flash(0x08000000)
+0    
+>>> 
+```
+
+### 1.5 写入Flash数据
+
+`cmd.write_flash(addr,byte1,byte2,byte3,byte4,...N)`
+
+**参数**:
+
+- `addr`：写入地址
+- `byte`：N 个待写入的字节数据
+
+**示例**:
+
+- cmd.write_flash(0x08005000,0xA5,0x5A)
+
+**注意：擦写flash 需要调用flash下载算法的函数接口，所以需要先使用load.flm()加载flash下载算法**
+
+```c++
+
+cmd.write_flash(0x08005000,0xA5,0x5A)
+         00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+08005000 a5 5a 
+    
+cmd.read_flash(0x08005000,16)
+         00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+08005000 a5 5a ff ff ff ff ff ff ff ff ff ff ff ff ff ff 
+```
+
+### 1.6 读取cpu reg数据
+
+`cmd.read_cpu_reg(addr,size,path)`
+
+**参数**:
+
+- `addr`：读取地址
+- `size`：读取的字节数
+- `path`：可选参数，保存数据到文件系统
+
+**示例**:
+
+- `cmd.read_cpu_reg(0,16)`
+- `cmd.read_cpu_reg(0,16,"reg.bin")`
+
+**注意：数据保存到文件后，需要重启下载器，U盘中才能刷新出新文件**
+
+```c++
+cmd.read_cpu_reg(0,16)
+         00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+00000000 d0 1f 00 20 49 01 00 08 f1 0f 00 08 e9 0f 00 08 
+```
+
+### 1.7 dump任意地址数据
+
+`cmd.dump_memory(addr1, size1, addr2, size2, ..., period)`
+
+**参数**:
+
+- `addr`：读取地址，字节地址，按 `(addr, size)` 成对传入，可一次读取多个区域
+- `size`：读取的字节数
+- `period`：采样周期，单位秒；`>0` 持续采样，`0` 单次输出后回到 idle，`-1` 显式停止
+
+**数据协议**:
+
+`dump_memory` 返回二进制流，所有多字节字段均为小端。总读取数据量 `total_size <= 2048` 时返回普通帧，`total_size > 2048` 时返回大数据分块帧，每个 block 的数据负载最大为 2048 字节。
+
+**使用边界**:
+
+| 项目 | 边界 | 说明 |
+|---|---:|---|
+| 固件内部 region 容量 | `16` | 数据结构和帧协议可表示 16 个 region，不等于 Pika 文本入口可安全传 16 组参数 |
+| Pika/CLI 安全 region 数量 | `<= 15` | 15 组含 30 个地址/长度参数，加 period 共 31 个；16 组加 period 共 33 个参数，正好触及当前 `PIKA_ARG_NUM_MAX=33`，V4.3.8 实测可能使 REPL 失去响应；此边界与剩余堆大小无关 |
+| 普通帧 | `total_size <= 2048 bytes` | 单帧返回 |
+| 大数据分块帧 | `total_size > 2048 bytes` | B1 分块返回，每个 block 负载最大 2048 bytes |
+
+连续的 16 个变量应合并为一个连续 region；上位机 `read_memory_regions` 会自动完成
+这种合并。16 个完全离散地址的一次性快照可由上位机拆分读取，但当前 Pika 文本 API
+不得用一条 `cmd.dump_memory` 命令提交 16 个离散 region。不得从串口脚本绕过限制。
+
+SuperWatch 连续采样固定使用本协议，最多提交 15 个 region。相邻变量只有地址实际连续
+或重叠时才合并；上位机不跨空隙扩大读取范围。`read_ram` 不属于 SuperWatch 的降级路径。
+
+持续流停止后至少等待 50ms 排空已排队的二进制帧并关闭连接。V4.3.8 实测将停止
+等待压到 10ms 会让残留帧污染后续普通命令；默认 50ms、每轮释放连接连续 20 次通过，
+CRC/flags 均为 0。不要快速反复 start/stop；下一条普通 `read_ram` 应重新连接后执行。
+
+**普通帧格式**:
+
+| 偏移 |  长度 | 字段           | 说明                                                        |
+| ---- | ----: | -------------- | ----------------------------------------------------------- |
+| 0x00 |     8 | `magic`        | 固定同步头 `4D 50 4D 44 4D 50 4D 44`（ASCII 为 `MPMDMPMD`） |
+| 0x08 |     8 | `timestamp_us` | 设备端时间戳，单位 us                                       |
+| 0x10 |     2 | `frame_length` | 整帧长度，包含头、数据、`flags` 和 `crc32`                  |
+| 0x12 |     1 | `region_count` | 本帧区域数量，最大 16                                       |
+| 0x13 | 3 + n | `region[i]`    | 区域数据，格式见 region 结构                                |
+| ...  |     2 | `flags`        | 状态位，小端                                                |
+| ...  |     4 | `crc32`        | 对 `magic` 到 `flags` 的所有字节计算 CRC32，结果小端存放    |
+
+**大数据分块帧格式**:
+
+| 偏移 |  长度 | 字段           | 说明                                                        |
+| ---- | ----: | -------------- | ----------------------------------------------------------- |
+| 0x00 |     8 | `magic`        | 固定同步头 `4D 50 4D 44 4D 50 4D 44`                       |
+| 0x08 |     8 | `timestamp_us` | 设备端时间戳，单位 us                                       |
+| 0x10 |     2 | `frame_length` | 整帧长度，包含头、数据和帧 `crc32`                          |
+| 0x12 |     1 | `region_count` | 当前 block 中包含的区域数量                                 |
+| 0x13 |     2 | `flags`        | 状态位，小端                                                |
+| 0x15 |     4 | `total_size`   | 本次 dump 请求的总数据量                                    |
+| 0x19 |     2 | `block_size`   | block 数据负载大小，当前固定为 2048                         |
+| 0x1B |     2 | `block_index`  | 当前 block 序号，从 0 开始                                  |
+| 0x1D |     2 | `block_count`  | 总 block 数量                                               |
+| 0x1F |     4 | `block_crc32`  | 对当前 block 的原始数据负载计算 CRC32                       |
+| 0x23 | 3 + n | `region[i]`    | 当前 block 内的区域数据，格式见 region 结构                 |
+| ...  |     4 | `crc32`        | 对 `magic` 到最后一个 `region_data` 的所有字节计算 CRC32    |
+
+**region 结构**:
+
+| 字段           |          长度 | 说明                                                         |
+| -------------- | ------------: | ------------------------------------------------------------ |
+| `region_index` |             1 | 区域序号，从 0 开始，对应命令里第几个 `(addr, size)`         |
+| `region_size`  |             2 | 当前帧/当前 block 中该区域读取到的字节数                     |
+| `region_data`  | `region_size` | 原始内存数据                                                 |
+
+**flags**:
+
+- `0x0001`：Tick overflow
+- `0x0002`：Timing violation
+- `0x0004`：Region error
+- `0x0008`：Sample dropped
+- 其余位保留
+
+**示例**:
+
+- `cmd.dump_memory(0x20000054, 4, 0x2000006C, 2, 0.1)`
+- `cmd.dump_memory(0x20002000, 17408, 0)`
+
+```c++
+[10:26:24.946]收←◆4D 50 4D 44 4D 50 4D 44 2E 83 A4 31 00 00 00 00 25 00 02 00 04 00 68 3D 00 20 01 02 00 6C 00 00 00 DC EF ED 86 
+```
+
+```text
+4D 50 4D 44 4D 50 4D 44   // magic
+2E 83 A4 31 00 00 00 00   // timestamp_us
+25 00                     // frame_length = 37
+02                        // region_count = 2
+00 04 00 68 3D 00 20      // region 0: size=4, data=4 bytes
+01 02 00 6C 00            // region 1: size=2, data=2 bytes
+00 00                     // flags
+DC EF ED 86               // CRC32
+```
+
+### 1.8 flush写入任意地址数据
+
+`cmd.flush_memory(addr, byte1, byte2, byte3, ..., byteN)`
+
+`cmd.flush_memory((addr, data))`
+
+`cmd.flush_memory([(addr1, data1), (addr2, data2), ..., (addrN, dataN)])`
+
+**参数**:
+
+- `addr`：写入地址，字节地址
+- `byte`：待写入的单字节数据，取值范围 `0x00` 到 `0xFF`
+- `data`：待写入的数据，支持 `bytes`、`bytearray`、整型 `list` 或整型 `tuple`
+
+**说明**:
+
+- 第一种写法，只能向一个连续地址写入少量字节
+- 第二种写法支持单地址 `bytes/list/tuple` 数据写入，适合中大块连续数据
+- 第三种写法支持一次向多个地址写入多段数据，按列表顺序依次写入
+- 写入过程内部按小块分批写 RAM，失败时会输出 `flush fail`
+
+**示例**:
+
+- `cmd.flush_memory(0x20002000, 0x11, 0x22, 0x33)`
+- `cmd.flush_memory((0x20002000, bytes([0x11, 0x22, 0x33])))`
+- `cmd.flush_memory([(0x20001080, bytes([0x11, 0x22, 0x33])), (0x20002000, bytes([0x44, 0x55, 0x66, 0x77])), (0x20003000, bytes([0x88]))])`
+
+```c++
+cmd.flush_memory([
+    (0x20001080, bytes([0x11, 0x22, 0x33])),
+    (0x20002000, bytes([0x44, 0x55, 0x66, 0x77])),
+    (0x20003000, bytes([0x88]))
+])
+```
+
+**大块数据示例**:
+
+```python
+# 重复字节填充
+cmd.flush_memory([
+    (0x20002000, bytes([0x5A]) * 1024)
+])
+
+# 16 字节实际 pattern 循环
+cmd.flush_memory([
+    (
+        0x20002000,
+        bytes([
+            0x01, 0x05, 0x00, 0x01,
+            0x00, 0x01, 0x5D, 0xCA,
+            0x10, 0x20, 0x30, 0x40,
+            0x55, 0xAA, 0x7E, 0x81,
+        ]) * 64
+    )
+])
+```
+
+**使用边界**:
+
+| 接口形式 | 推荐稳定边界 | 实测上限 | 说明 |
+|---|---:|---:|---|
+| `cmd.flush_memory(addr, b0, b1, ...)` | `<= 20 bytes` | `20 bytes` | 适合少量字节 |
+| `cmd.flush_memory((addr, data))` | `<= 16KB` | `16300B` | 适合大量字节 |
+| `cmd.flush_memory([(addr, data)])` | `<= 16KB` | `16300B` | 单地址 batch 形式，边界按单地址 tuple 形式控制 |
+| `cmd.flush_memory([(addr1, data1), ...])` | `<= 8 个地址项` | `8 个地址项` | 多地址多数据写入； |
+| 多地址总数据量 | `<= 16KB` | 参考单地址 `16300B` | 地址项数未超出 8 项时，总数据量按单地址边界控制 |
+
+**注意事项**:
+
+- `cmd.flush_memory` 成功时通常只返回 `>>>`，不会打印成功文本。
+- 失败时可能打印 `flush fail`，也可能导致 CDC 端口异常或短暂消失，需要复位或重插设备后继续。
+- 大数据优先使用短表达式，例如 `bytes([0x5A]) * N` 或短 pattern 乘法。
+- 写入地址必须确认是目标 RAM 空闲区，避免覆盖目标程序栈、堆、RTOS 对象、DMA 缓冲或显示缓冲。
+- 边界与固件版本、目标 RAM 布局、下载器状态有关，升级固件后应复测。
+- 大块数据写入后建议用 `cmd.read_ram(addr, 16)`、`cmd.read_ram(addr + size // 2, 16)`、`cmd.read_ram(addr + size - 16, 16)` 读取头部、中间、尾部进行校验。
+
+### 1.9 设置复位单片机
+
+`cmd.set_reset()`
+
+**参数**:
+
+- 无
+
+**说明**:
+
+- 通过下载器控制目标芯片的复位脚，对目标单片机执行一次软件和硬件复位。
+
+**示例**:
+
+- `cmd.set_reset()`
+
+### 1.10 设置下载频率
+
+`cmd.set_swd_clock(int clock)`
+
+**参数**:
+
+- `clock`：SWD 下载时钟频率，单位 Hz
+
+**说明**:
+
+- 设置 MKLink 访问目标芯片时使用的 SWD 时钟频率。
+- 频率越高，下载和读写速度通常越快，但对连线质量、目标板电源和目标芯片调试接口稳定性要求也越高。
+- 如果出现下载失败、读写不稳定、偶发无法连接等问题，建议先降低频率再测试。
+
+**示例**:
+
+- `cmd.set_swd_clock(1000000)`：设置为 1 MHz
+- `cmd.set_swd_clock(5000000)`：设置为 5 MHz
+- `cmd.set_swd_clock(10000000)`：设置为 10 MHz
+
+```c++
+cmd.set_swd_clock(5000000)
+```
+
+**注意事项**:
+
+- 建议先使用较低频率确认连线和芯片连接正常，再逐步提高频率。
+- 长排线、杜邦线、目标板供电不稳或目标芯片低功耗运行时，都可能需要降低 SWD 频率。
+
+### 1.11 设置是否开启vref电压跟随(V4)
+
+`cmd.set_auto_follow_vref(bool enable)`
+
+**参数**:
+
+- `enable`：是否开启 VREF 电压跟随
+  - `1`：开启 VREF 电压跟随
+  - `0`：关闭 VREF 电压跟随
+
+**说明**:
+
+- 该接口适用于 MKLink V4。
+- 开启 VREF 跟随后，下载器会根据目标板 VREF 输入电压调整接口电平，用于适配不同目标板电压。
+- 关闭 VREF 跟随后，可配合 `cmd.set_power_on(mv)` 手动设置 VCC 输出电压。
+
+**示例**:
+
+- `cmd.set_auto_follow_vref(1)`：开启 VREF 电压跟随
+- `cmd.set_auto_follow_vref(0)`：关闭 VREF 电压跟随
+
+**注意事项**:
+
+- VREF 是电压输入脚，用来检测目标板电压，不建议把它当作供电脚使用。
+- VCC 是电压输出脚，可以给目标板提供电源，默认输出 3.3V，可设置为 1.8V 到 5V。
+- 如果关闭 VREF 跟随并将 VCC 与 VREF 短接，需要确认 `cmd.set_power_on(mv)` 设置的电压符合目标芯片允许范围。
+
+### 1.12 设置VCC电压(V3/V4)
+
+`cmd.set_power_on(int mv)`
+
+**参数**:
+
+- `mv`：VCC 输出电压，单位 mV
+
+**说明**:
+
+- 该接口适用于 MKLink V3/V4。
+- 设置下载器 VCC 引脚的输出电压，可用于给目标板供电。
+- 支持的电压范围为 1.8V 到 5V，即 `1800` 到 `5000`。
+
+**示例**:
+
+- `cmd.set_power_on(1800)`：VCC 输出 1.8V
+- `cmd.set_power_on(3300)`：VCC 输出 3.3V
+- `cmd.set_power_on(5000)`：VCC 输出 5V
+
+**注意事项**:
+
+- 设置电压前请确认目标板可以接受该供电电压，错误电压可能损坏目标芯片或外设。
+- 如果目标板已经由外部电源供电，也可以使用下载器的VCC供电，下载器的VCC输出有二极管防倒灌。
+- 如果使用 VREF 跟随模式，优先按目标板 VREF 电压适配接口电平；需要手动输出固定电压时，可先关闭 VREF 跟随。
+
+### 1.13 设置自动扫描芯片(V3/V4)
+
+`cmd.set_auto_scan(bool enable)`
+
+**参数**:
+
+- `enable`：是否开启自动扫描芯片
+  - `1`：开启自动扫描
+  - `0`：关闭自动扫描
+
+**说明**:
+
+- 该接口适用于 MKLink V3/V4。
+- 开启后，下载器会自动扫描目标芯片连接状态，适合脱机下载、批量烧录或需要插上目标板后自动识别的场景。
+- 关闭后，下载器不再主动执行自动扫描，适合手动控制下载流程或避免脚本执行期间被自动扫描打断的场景。
+
+**示例**:
+
+- `cmd.set_auto_scan(1)`：开启自动扫描芯片
+- `cmd.set_auto_scan(0)`：关闭自动扫描芯片
+
+**注意事项**:
+
+- 自动扫描依赖 SWD 接线和目标板供电状态，开启后仍需要保证 `SWDIO`、`SWCLK`、`GND`、`RST` 等信号连接可靠。
+- 批量烧录时通常会配合 `cmd.set_swd_clock(clock)`、`load.flm()`、`load.bin()` 或 `load.hex()` 一起使用。
+
+### 1.14 设置蜂鸣器(V4)
+
+`cmd.set_beep_on()`
+
+`cmd.set_beep_off()`
+
+**参数**:
+
+- 无
+
+**说明**:
+
+- 该接口适用于 MKLink V4。
+- `cmd.set_beep_on()` 用于打开蜂鸣器。
+- `cmd.set_beep_off()` 用于关闭蜂鸣器。
+- 常用于脱机下载或自动化脚本中提示任务状态，例如下载成功后短鸣提示。
+
+**示例**:
+
+- `cmd.set_beep_on()`：打开蜂鸣器
+- `cmd.set_beep_off()`：关闭蜂鸣器
+
+```c++
+cmd.set_beep_on()
+time.sleep_ms(200)
+cmd.set_beep_off()
+```
+
+**注意事项**:
+
+- 蜂鸣器打开后需要主动调用 `cmd.set_beep_off()` 关闭。
+- 如果脚本中需要延时，请确认当前固件的 Python 运行环境中已经导入或支持对应的延时接口。
+
+## 2 load api列表
+
+### 2.1 加载下载算法
+
+`load.flm(path,flash_addr,ram_addr)`
+
+**参数**:
+
+- `path`：FLM文件的目录
+- `flash_addr`：flash的基地址
+- `ram_addr`：ram的基地址
+
+**示例**:
+
+- load.flm("FLM/STM32F10x_1024.FLM",0x08000000,0x20000000)
+
+```c
+load.flm("FLM/STM32F10x_1024.FLM",0x08000000,0x20000000)
+0
+```
+
+### 2.2 烧录bin文件
+
+`load.bin(path,addr,path,addr,...)`
+
+**参数**:
+
+- `path`：bin文件目录
+- `addr`：addr烧录地址
+- 可选参数，可依次烧录多个文件到不同地址
+
+**示例**:
+
+- load.bin("bootloader.bin",0x08000000,"app.bin",0x08005000)
+
+```c
+ load.bin("bootloader.bin",0x08000000,"app.bin",0x08005000)
+fileName bootloader.bin, Addr 0x8000000
+Download:   5% ,used 234 msDownload:  11% ,used 508 msDownload:  17% ,used 780 msDownload:  23% ,used 1053 msDownload:  29% ,used 1327 msDownload:  34% ,used 1600 msDownload:  40% ,used 1873 msDownload:  46% ,used 2147 msDownload:  52% ,used 2421 msDownload:  58% ,used 2694 msDownload:  63% ,used 2967 msDownload:  69% ,used 3241 msDownload:  75% ,used 3514 msDownload:  81% ,used 3788 msDownload:  87% ,used 4062 msDownload:  93% ,used 4335 msDownload:  98% ,used 4609 msDownload: 100% ,used 4686 ms
+ /bootloader.bin loaded success.
+fileName app.bin, Addr 0x8005000
+Download:   2% ,used 234 msDownload:   5% ,used 507 msDownload:   8% ,used 779 msDownload:  11% ,used 1053 msDownload:  13% ,used 1327 msDownload:  16% ,used 1600 msDownload:  19% ,used 1874 msDownload:  22% ,used 2147 msDownload:  24% ,used 2421 msDownload:  27% ,used 2694 msDownload:  30% ,used 2968 msDownload:  33% ,used 3241 msDownload:  35% ,used 3514 msDownload:  38% ,used 3788 msDownload:  41% ,used 4062 msDownload:  44% ,used 4336 msDownload:  46% ,used 4609 msDownload:  49% ,used 4881 msDownload:  52% ,used 5154 msDownload:  55% ,used 5428 msDownload:  57% ,used 5701 msDownload:  60% ,used 5974 msDownload:  63% ,used 6248 msDownload:  66% ,used 6521 msDownload:  68% ,used 6795 msDownload:  71% ,used 7069 msDownload:  74% ,used 7342 msDownload:  77% ,used 7616 msDownload:  79% ,used 7890 msDownload:  82% ,used 8163 msDownload:  85% ,used 8437 msDownload:  88% ,used 8710 msDownload:  90% ,used 8984 msDownload:  93% ,used 9257 msDownload:  96% ,used 9531 msDownload:  99% ,used 9805 msDownload: 100% ,used 9882 ms
+ /app.bin loaded success.
+```
+
+### 2.3 烧录hex文件
+
+`load.hex(path,...)`
+
+**参数**:
+
+- `path`：hex文件目录
+- 可选参数，可依次烧录多个文件到不同地址
+
+**示例**:
+
+- load.hex("bootloader.hex","app.hex")
+
+```c
+load.hex("bootloader.hex","app.hex")
+fileName bootloader.hex
+Download:   7% ,used 44 ms Download:  15% ,used 208 ms Download:  22% ,used 371 ms Download:  30% ,used 424 ms Download:  37% ,used 588 ms Download:  45% ,used 751 ms Download:  52% ,used 804 ms Download:  60% ,used 967 ms Download:  67% ,used 1131 ms Download:  75% ,used 1294 ms Download:  82% ,used 1347 ms Download:  90% ,used 1510 ms Download:  97% ,used 1674 ms Download: 100% ,used 1726 ms 
+ /bootloader.hex loaded success
+fileName app.hex
+Download:   2% ,used 48 ms Download:   4% ,used 212 ms Download:   6% ,used 375 ms Download:   8% ,used 428 ms Download:  10% ,used 591 ms Download:  12% ,used 755 ms Download:  14% ,used 808 ms Download:  16% ,used 971 ms Download:  18% ,used 1134 ms Download:  20% ,used 1298 ms Download:  22% ,used 1351 ms Download:  24% ,used 1514 ms Download:  26% ,used 1678 ms Download:  28% ,used 1731 ms Download:  31% ,used 1894 ms Download:  33% ,used 2057 ms Download:  35% ,used 2221 ms Download:  37% ,used 2274 ms Download:  39% ,used 2437 ms Download:  41% ,used 2601 ms Download:  43% ,used 2654 ms Download:  45% ,used 2817 ms Download:  47% ,used 2981 ms Download:  49% ,used 3144 ms Download:  51% ,used 3197 ms Download:  53% ,used 3360 ms Download:  55% ,used 3524 ms Download:  57% ,used 3577 ms Download:  59% ,used 3740 ms Download:  62% ,used 3904 ms Download:  64% ,used 4067 ms Download:  66% ,used 4120 ms Download:  68% ,used 4283 ms Download:  70% ,used 4447 ms Download:  72% ,used 4500 ms Download:  74% ,used 4663 ms Download:  76% ,used 4827 ms Download:  78% ,used 4990 ms Download:  80% ,used 5043 ms Download:  82% ,used 5206 ms Download:  84% ,used 5370 ms Download:  86% ,used 5423 ms Download:  88% ,used 5586 ms Download:  90% ,used 5750 ms Download:  93% ,used 5803 ms Download:  95% ,used 5966 ms Download:  97% ,used 6130 ms Download:  99% ,used 6293 ms Download: 100% ,used 6345 ms 
+ /app.hex loaded success
+0
+```
+
+## 3 SEGGER RTT api列表
+
+### 3.1 启动RTT
+
+RTTView.start(addr,size,Channel)
+
+**参数**:
+
+- `addr`：_SEGGER_RTT控制块的地址
+- size，搜寻范围
+- Channel，指定RTT的通道
+
+**示例**:
+
+- RTTView.start(0x20000200,1024,0)
+
+```c
+RTTView.start(0x20000200,1024,0)
+Find SEGGER RTT addr 0x20000200
+UpBuffer Channel 0 Size: 2048 Mode: 0
+UpBuffer Channel 1 Size: 0 Mode: 0
+UpBuffer Channel 2 Size: 0 Mode: 0
+DownBuffer Channel 0 Size: 16 Mode: 0
+DownBuffer Channel 1 Size: 0 Mode: 0
+DownBuffer Channel 2 Size: 0 Mode: 0
+```
+
+### 3.2 停止RTT
+
+`RTTView.stop()`
+
+## 4 SEGGER SystemView api列表
+
+### 4.1 启动SystemView
+
+`SystemView.start(addr,size,Channel)`
+
+**参数**:
+
+- `addr`：_SEGGER_RTT控制块的地址
+- size，搜寻范围
+- Channel，指定RTT的通道
+
+**示例**:
+
+- SystemView.start(0x20000200,1024,1)
+
+```c
+>>> SystemView.start(0x20000200,1024,1)
+Addr = 0x20000200,wSize = 1024,Channel = 1
+Find SEGGER RTT addr 0x20000200
+UpBuffer Channel 0 Size: 2048 Mode: 0
+UpBuffer Channel 1 Size: 0 Mode: 0
+UpBuffer Channel 2 Size: 0 Mode: 0
+DownBuffer Channel 0 Size: 16 Mode: 0
+DownBuffer Channel 1 Size: 0 Mode: 0
+DownBuffer Channel 2 Size: 0 Mode: 0
+```
+
+## 4 VOFA+ api列表
+
+### 4.1 启动VOFA
+
+vofa.send(addr,num,time)
+
+**参数**:
+
+- addr：变量的地址
+- num，连续读取的变量个数
+- 周期，读取周期，单位秒，0为停止
+
+**示例**:
+
+- vofa.send(0x20000030,5,0.00001)
+
+## 5 串口API列表（V4）
+
+V4 提供两路独立串口对象：
+
+| 接口 | 说明 |
+|---|---|
+| `serial.uart(baud)` | 打开 UART 串口，`baud` 为波特率 |
+| `serial.rs485(baud)` | 打开 RS485 串口，`baud` 为波特率 |
+| `write_bytes(data, length)` | 发送 `bytes` 数据，`length` 为发送字节数，返回底层发送接口的返回值 |
+| `read_bytes(length)` | 从接收队列读取最多 `length` 字节，返回实际读到的 `bytes` 数据 |
+
+**说明**:
+
+- `write_bytes()` 的 `data` 参数必须是 `bytes` 类型；字符串需要先使用 `encode()` 转成字节。
+- `read_bytes()` 返回的是 `bytes` 类型；如果接收内容是字符串协议，可以使用 `bytearray(rx_bytes).decode()` 转成字符串后再上报。
+- `read_bytes(length)` 最多读取 `length` 字节；当前接收队列数据不足时，返回实际已收到的数据，可能为空。
+- UART 与 RS485 的 API 完全一致，只是创建对象不同：`serial.uart(baud)` / `serial.rs485(baud)`。
+
+### 5.1 UART 发送和接收数据
+
+```python
+import PikaStdLib
+import cmd
+
+uart = serial.uart(115200)
+
+# 发送字符串数据
+tx_str = 'uart string data\r\n'
+tx_str_bytes = tx_str.encode()
+uart_tx_str_len = uart.write_bytes(tx_str_bytes, len(tx_str_bytes))
+print('uart send string:', tx_str)
+print('uart send string bytes:', tx_str_bytes)
+print('uart send string len:', uart_tx_str_len)
+
+# 发送 bytes 数据
+tx_bytes = bytes([0x55, 0xAA, 0x01, 0x02, 0x0D, 0x0A])
+uart_tx_bytes_len = uart.write_bytes(tx_bytes, len(tx_bytes))
+print('uart send bytes:', tx_bytes)
+print('uart send bytes len:', uart_tx_bytes_len)
+
+# 接收数据，返回值为 bytes
+rx_bytes = uart.read_bytes(128)
+print('uart recv bytes:', rx_bytes)
+
+# 如果接收的是字符串数据，可以 decode 后上报
+rx_str = bytearray(rx_bytes).decode()
+print('uart recv string:', rx_str)
+```
+
+### 5.2 RS485 发送和接收数据
+
+```python
+import PikaStdLib
+import cmd
+
+rs485 = serial.rs485(115200)
+
+# 发送字符串数据
+tx_str = 'rs485 string data\r\n'
+tx_str_bytes = tx_str.encode()
+rs485_tx_str_len = rs485.write_bytes(tx_str_bytes, len(tx_str_bytes))
+print('rs485 send string:', tx_str)
+print('rs485 send string bytes:', tx_str_bytes)
+print('rs485 send string len:', rs485_tx_str_len)
+
+# 发送 bytes 数据
+tx_bytes = bytes([0x01, 0x03, 0x00, 0x00, 0x00, 0x02])
+rs485_tx_bytes_len = rs485.write_bytes(tx_bytes, len(tx_bytes))
+print('rs485 send bytes:', tx_bytes)
+print('rs485 send bytes len:', rs485_tx_bytes_len)
+
+# 接收数据，返回值为 bytes
+rx_bytes = rs485.read_bytes(128)
+print('rs485 recv bytes:', rx_bytes)
+
+# 如果接收的是字符串数据，可以 decode 后上报
+rx_str = bytearray(rx_bytes).decode()
+print('rs485 recv string:', rx_str)
+```
+

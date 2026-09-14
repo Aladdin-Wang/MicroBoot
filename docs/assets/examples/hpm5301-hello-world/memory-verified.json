@@ -1,0 +1,9 @@
+{
+  "bytes_checked": 4096,
+  "initial_pattern_pass": true,
+  "write_address": "0x00080544",
+  "write_hex": "12345678a5a55a5a",
+  "write_readback_pass": true,
+  "unchanged_neighbors_pass": true,
+  "restored_full_region_pass": true
+}

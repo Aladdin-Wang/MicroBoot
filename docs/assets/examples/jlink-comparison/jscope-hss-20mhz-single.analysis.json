@@ -1,0 +1,16 @@
+{
+  "file": "jscope-hss-20mhz-single.jraw",
+  "channels": 1,
+  "raw_records": 13515,
+  "csv_rows": 13515,
+  "same_record_count": true,
+  "mismatch_records": 0,
+  "time_span_s": 27.028911,
+  "complete_groups_per_s": 499.98314767472505,
+  "timestamps_strictly_increasing": true,
+  "min_dt_us": 1798,
+  "max_dt_us": 2939,
+  "median_dt_us": 1999.0,
+  "median_wave_period_us": 4000004.0,
+  "identity": "Self-reported JLink PLUS device 601012352 with official SEGGER clone warning; not genuine PLUS results"
+}

@@ -1,0 +1,36 @@
+# 安装 MKLink，打开网页开始用
+
+MKLink 提供桌面应用和浏览器中的 Web GUI。想先手动使用，安装桌面应用；想让 AI 操作设备，再安装配套 Skill。
+
+## 使用桌面安装包
+
+从[官方发布页](https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases)下载适合系统的安装包。桌面应用自带后端和网页资源，**不需要另外安装 Python 或编译前端**。
+
+安装后连接 MKLink，打开应用，在“配置”中选择设备和符号文件。设备连接与工程配置见[配置第一个工程](project-config.md)。
+
+## 让 AI 帮你安装
+
+> 从 https://github.com/Aladdin-Wang/Mklink-AI-Probe 的官方发布页安装完整 MKLink Skill，配好当前客户端的工具，检查设备连接并打开 Web GUI。
+
+详细说明见[安装 MKLink Skill](../../embedded-ai/getting-started/skill.md)。Skill 是 AI 的操作配套；桌面应用和 Skill 可以按需要分别安装。
+
+## 打开浏览器版
+
+使用安装时生成的快速启动网页，或让 AI 打开 Web GUI。快速入口通常保存在下载器 U 盘或用户桌面，按安装结果提供的位置打开即可。
+
+启动后应该看到 **配置、仪表盘、脱机烧录、在线烧录**，以及“后端正常”的状态。端口以本次启动地址为准，不用记固定端口。
+
+![MKLink 配置页面](../../images/mklink/cases/hpm5301/web-config-device.png)
+
+## 遇到启动问题
+
+| 现象 | 怎么处理 |
+| --- | --- |
+| 点击入口没反应 | 允许浏览器打开本地应用；仍无反应时让 AI 修复启动入口 |
+| 一直停在启动页 | 让 AI 检查本地服务，不只重新打开网页 |
+| 旧地址打不开 | 使用本次启动生成的地址 |
+| 页面正常但设备不在线 | 检查数据线、供电与是否被其他工具占用 |
+
+> 网页没有正常打开，帮我检查安装和本地服务，修好后再打开。
+
+[下一步：配置第一个工程](project-config.md)

@@ -1,0 +1,1361 @@
+{
+  "note": "Selected measurement fields; local device identifiers and raw command text omitted.",
+  "suite": {
+    "passed": true,
+    "completed": [
+      "preflight30",
+      "single30-1800s",
+      "multi30-300s",
+      "block30-120s",
+      "dynamic30-120s",
+      "cycle00-4000000",
+      "cycle00-10000000",
+      "cycle00-20000000",
+      "cycle00-30000000",
+      "cycle01-4000000",
+      "cycle01-10000000",
+      "cycle01-20000000",
+      "cycle01-30000000",
+      "cycle02-4000000",
+      "cycle02-10000000",
+      "cycle02-20000000",
+      "cycle02-30000000",
+      "cycle03-4000000",
+      "cycle03-10000000",
+      "cycle03-20000000",
+      "cycle03-30000000",
+      "cycle04-4000000",
+      "cycle04-10000000",
+      "cycle04-20000000",
+      "cycle04-30000000",
+      "cycle05-4000000",
+      "cycle05-10000000",
+      "cycle05-20000000",
+      "cycle05-30000000",
+      "cycle06-4000000",
+      "cycle06-10000000",
+      "cycle06-20000000",
+      "cycle06-30000000",
+      "cycle07-4000000",
+      "cycle07-10000000",
+      "cycle07-20000000",
+      "cycle07-30000000",
+      "cycle08-4000000",
+      "cycle08-10000000",
+      "cycle08-20000000",
+      "cycle08-30000000",
+      "cycle09-4000000",
+      "cycle09-10000000",
+      "cycle09-20000000",
+      "cycle09-30000000"
+    ],
+    "target_sha256": "e1cd3528a4de56f903cc3e6a0b2ac59e77e8280435b739bf12d12a298830576a"
+  },
+  "cases": [
+    {
+      "name": "preflight30",
+      "profile": 30000000,
+      "requested_seconds": 3,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 268704,
+        "complete_samples": 268704,
+        "parser_dropped_bytes": 47,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 268704,
+      "measured_samples": 248938,
+      "value_changes": 0,
+      "hz": 99008.70781221289,
+      "p99_us": 93,
+      "max_us": 295,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 567103,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "single30-1800s",
+      "profile": 30000000,
+      "requested_seconds": 1800,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 178976184,
+        "complete_samples": 178976184,
+        "parser_dropped_bytes": 47,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 178976184,
+      "measured_samples": 178956288,
+      "value_changes": 0,
+      "hz": 99674.6045664985,
+      "p99_us": 92,
+      "max_us": 306,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 372874353,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "multi30-300s",
+      "profile": 30000000,
+      "requested_seconds": 300,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 2731176,
+        "complete_samples": 2731176,
+        "parser_dropped_bytes": 48,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 2731176,
+      "measured_samples": 2729379,
+      "value_changes": 0,
+      "hz": 9130.923602708779,
+      "p99_us": 329,
+      "max_us": 468,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 87636783,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "block30-120s",
+      "profile": 30000000,
+      "requested_seconds": 120,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 59065,
+        "complete_samples": 29532,
+        "parser_dropped_bytes": 50,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 29532,
+      "measured_samples": 29483,
+      "value_changes": 0,
+      "hz": 247.21901044255884,
+      "p99_us": 4179,
+      "max_us": 8453,
+      "gaps_over_1ms": 29482,
+      "dmi_delta": {
+        "scans": 34505056,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "dynamic30-120s",
+      "profile": 30000000,
+      "requested_seconds": 120,
+      "dynamic": true,
+      "stats": {
+        "protocol_frames": 11950344,
+        "complete_samples": 11950344,
+        "parser_dropped_bytes": 47,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 11950344,
+      "measured_samples": 11930619,
+      "value_changes": 119706,
+      "hz": 100059.42030772255,
+      "p99_us": 91,
+      "max_us": 299,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 24903903,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle00-4000000",
+      "profile": 4000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 5976,
+        "complete_samples": 5976,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 5976,
+      "measured_samples": 4126,
+      "value_changes": 0,
+      "hz": 9310.356502014423,
+      "p99_us": 292,
+      "max_us": 421,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 54129,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle00-10000000",
+      "profile": 10000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 12216,
+        "complete_samples": 12216,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 12216,
+      "measured_samples": 8709,
+      "value_changes": 0,
+      "hz": 17623.42774455339,
+      "p99_us": 215,
+      "max_us": 349,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 109807,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle00-20000000",
+      "profile": 20000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 18456,
+        "complete_samples": 18456,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 18456,
+      "measured_samples": 13176,
+      "value_changes": 0,
+      "hz": 26638.871927178323,
+      "p99_us": 181,
+      "max_us": 344,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 165485,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle00-30000000",
+      "profile": 30000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 21840,
+        "complete_samples": 21840,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 21840,
+      "measured_samples": 15594,
+      "value_changes": 0,
+      "hz": 31493.438951040054,
+      "p99_us": 165,
+      "max_us": 346,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 195555,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle01-4000000",
+      "profile": 4000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 5832,
+        "complete_samples": 5832,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 5832,
+      "measured_samples": 3979,
+      "value_changes": 0,
+      "hz": 9280.255312001344,
+      "p99_us": 297,
+      "max_us": 411,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 53159,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle01-10000000",
+      "profile": 10000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 12264,
+        "complete_samples": 12264,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 12264,
+      "measured_samples": 8741,
+      "value_changes": 0,
+      "hz": 17680.60413451015,
+      "p99_us": 208,
+      "max_us": 362,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 110195,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle01-20000000",
+      "profile": 20000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 18432,
+        "complete_samples": 18432,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 18432,
+      "measured_samples": 13129,
+      "value_changes": 0,
+      "hz": 26610.828791100535,
+      "p99_us": 179,
+      "max_us": 358,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 165291,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle01-30000000",
+      "profile": 30000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 21792,
+        "complete_samples": 21792,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 21792,
+      "measured_samples": 15552,
+      "value_changes": 0,
+      "hz": 31460.3331950921,
+      "p99_us": 165,
+      "max_us": 329,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 195167,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle02-4000000",
+      "profile": 4000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 5976,
+        "complete_samples": 5976,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 5976,
+      "measured_samples": 4090,
+      "value_changes": 0,
+      "hz": 9462.846351979006,
+      "p99_us": 247,
+      "max_us": 365,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 54129,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle02-10000000",
+      "profile": 10000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 12216,
+        "complete_samples": 12216,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 12216,
+      "measured_samples": 8721,
+      "value_changes": 0,
+      "hz": 17614.951700287253,
+      "p99_us": 213,
+      "max_us": 351,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 109613,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle02-20000000",
+      "profile": 20000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 18456,
+        "complete_samples": 18456,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 18456,
+      "measured_samples": 13167,
+      "value_changes": 0,
+      "hz": 26632.52137115208,
+      "p99_us": 179,
+      "max_us": 352,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 165485,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle02-30000000",
+      "profile": 30000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 21744,
+        "complete_samples": 21744,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 21744,
+      "measured_samples": 15508,
+      "value_changes": 0,
+      "hz": 31301.2199946711,
+      "p99_us": 166,
+      "max_us": 341,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 194779,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle03-4000000",
+      "profile": 4000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 5856,
+        "complete_samples": 5856,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 5856,
+      "measured_samples": 4004,
+      "value_changes": 0,
+      "hz": 9297.51826173803,
+      "p99_us": 291,
+      "max_us": 424,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 53159,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle03-10000000",
+      "profile": 10000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 12552,
+        "complete_samples": 12552,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 12552,
+      "measured_samples": 8957,
+      "value_changes": 0,
+      "hz": 18139.0280753916,
+      "p99_us": 179,
+      "max_us": 307,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 112523,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle03-20000000",
+      "profile": 20000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 19152,
+        "complete_samples": 19152,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 19152,
+      "measured_samples": 13652,
+      "value_changes": 0,
+      "hz": 27637.015906822504,
+      "p99_us": 155,
+      "max_us": 325,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 171499,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle03-30000000",
+      "profile": 30000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 22968,
+        "complete_samples": 22968,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 22968,
+      "measured_samples": 16392,
+      "value_changes": 0,
+      "hz": 33086.86234969005,
+      "p99_us": 129,
+      "max_us": 304,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 204867,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle04-4000000",
+      "profile": 4000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 5904,
+        "complete_samples": 5904,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 5904,
+      "measured_samples": 4048,
+      "value_changes": 0,
+      "hz": 9313.918404827496,
+      "p99_us": 293,
+      "max_us": 414,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 53741,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle04-10000000",
+      "profile": 10000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 12192,
+        "complete_samples": 12192,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 12192,
+      "measured_samples": 8687,
+      "value_changes": 0,
+      "hz": 17597.815164186846,
+      "p99_us": 211,
+      "max_us": 343,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 109613,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle04-20000000",
+      "profile": 20000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 18360,
+        "complete_samples": 18360,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 18360,
+      "measured_samples": 13104,
+      "value_changes": 0,
+      "hz": 26493.02543759086,
+      "p99_us": 189,
+      "max_us": 358,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 164709,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle04-30000000",
+      "profile": 30000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 21816,
+        "complete_samples": 21816,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 21816,
+      "measured_samples": 15563,
+      "value_changes": 0,
+      "hz": 31473.672501491572,
+      "p99_us": 166,
+      "max_us": 350,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 195749,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle05-4000000",
+      "profile": 4000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 5856,
+        "complete_samples": 5856,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 5856,
+      "measured_samples": 4002,
+      "value_changes": 0,
+      "hz": 9321.060564761685,
+      "p99_us": 299,
+      "max_us": 421,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 53159,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle05-10000000",
+      "profile": 10000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 12288,
+        "complete_samples": 12288,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 12288,
+      "measured_samples": 8760,
+      "value_changes": 0,
+      "hz": 17705.036000307246,
+      "p99_us": 211,
+      "max_us": 354,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 110195,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle05-20000000",
+      "profile": 20000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 18408,
+        "complete_samples": 18408,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 18408,
+      "measured_samples": 13152,
+      "value_changes": 0,
+      "hz": 26615.100036833308,
+      "p99_us": 182,
+      "max_us": 363,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 165291,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle05-30000000",
+      "profile": 30000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 21816,
+        "complete_samples": 21816,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 21816,
+      "measured_samples": 15576,
+      "value_changes": 0,
+      "hz": 31442.858786739693,
+      "p99_us": 166,
+      "max_us": 329,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 195361,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle06-4000000",
+      "profile": 4000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 6024,
+        "complete_samples": 6024,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 6024,
+      "measured_samples": 4138,
+      "value_changes": 0,
+      "hz": 9485.63855521137,
+      "p99_us": 252,
+      "max_us": 389,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 54711,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle06-10000000",
+      "profile": 10000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 12264,
+        "complete_samples": 12264,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 12264,
+      "measured_samples": 8738,
+      "value_changes": 0,
+      "hz": 17658.63872652454,
+      "p99_us": 208,
+      "max_us": 365,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 110195,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle06-20000000",
+      "profile": 20000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 18432,
+        "complete_samples": 18432,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 18432,
+      "measured_samples": 13174,
+      "value_changes": 0,
+      "hz": 26587.360054575434,
+      "p99_us": 181,
+      "max_us": 355,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 165097,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle06-30000000",
+      "profile": 30000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 21768,
+        "complete_samples": 21768,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 21768,
+      "measured_samples": 15517,
+      "value_changes": 0,
+      "hz": 31380.63889815854,
+      "p99_us": 164,
+      "max_us": 324,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 194973,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle07-4000000",
+      "profile": 4000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 5928,
+        "complete_samples": 5928,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 5928,
+      "measured_samples": 4071,
+      "value_changes": 0,
+      "hz": 9359.74298651691,
+      "p99_us": 289,
+      "max_us": 414,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 53935,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle07-10000000",
+      "profile": 10000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 12528,
+        "complete_samples": 12528,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 12528,
+      "measured_samples": 8937,
+      "value_changes": 0,
+      "hz": 18058.581261594798,
+      "p99_us": 182,
+      "max_us": 324,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 112329,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle07-20000000",
+      "profile": 20000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 19176,
+        "complete_samples": 19176,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 19176,
+      "measured_samples": 13678,
+      "value_changes": 0,
+      "hz": 27639.73962827713,
+      "p99_us": 154,
+      "max_us": 313,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 171111,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle07-30000000",
+      "profile": 30000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 22752,
+        "complete_samples": 22752,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 22752,
+      "measured_samples": 16245,
+      "value_changes": 0,
+      "hz": 32845.42390291148,
+      "p99_us": 131,
+      "max_us": 327,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 203121,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle08-4000000",
+      "profile": 4000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 5856,
+        "complete_samples": 5856,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 5856,
+      "measured_samples": 3998,
+      "value_changes": 0,
+      "hz": 9339.003247739432,
+      "p99_us": 288,
+      "max_us": 432,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 53353,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle08-10000000",
+      "profile": 10000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 12216,
+        "complete_samples": 12216,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 12216,
+      "measured_samples": 8718,
+      "value_changes": 0,
+      "hz": 17611.666491566928,
+      "p99_us": 214,
+      "max_us": 369,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 109613,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle08-20000000",
+      "profile": 20000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 18360,
+        "complete_samples": 18360,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 18360,
+      "measured_samples": 13116,
+      "value_changes": 0,
+      "hz": 26493.557914129764,
+      "p99_us": 185,
+      "max_us": 350,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 164515,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle08-30000000",
+      "profile": 30000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 21792,
+        "complete_samples": 21792,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 21792,
+      "measured_samples": 15564,
+      "value_changes": 0,
+      "hz": 31440.912176358404,
+      "p99_us": 170,
+      "max_us": 333,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 195555,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle09-4000000",
+      "profile": 4000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 5784,
+        "complete_samples": 5784,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 5784,
+      "measured_samples": 3923,
+      "value_changes": 0,
+      "hz": 9343.590158974444,
+      "p99_us": 295,
+      "max_us": 425,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 52771,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle09-10000000",
+      "profile": 10000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 12264,
+        "complete_samples": 12264,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 12264,
+      "measured_samples": 8746,
+      "value_changes": 0,
+      "hz": 17671.236198451315,
+      "p99_us": 212,
+      "max_us": 355,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 110001,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle09-20000000",
+      "profile": 20000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 18408,
+        "complete_samples": 18408,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 18408,
+      "measured_samples": 13152,
+      "value_changes": 0,
+      "hz": 26602.986185705067,
+      "p99_us": 179,
+      "max_us": 344,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 164903,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "cycle09-30000000",
+      "profile": 30000000,
+      "requested_seconds": 1,
+      "dynamic": false,
+      "stats": {
+        "protocol_frames": 21720,
+        "complete_samples": 21720,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "samples": 21720,
+      "measured_samples": 15495,
+      "value_changes": 0,
+      "hz": 31334.940460781774,
+      "p99_us": 164,
+      "max_us": 341,
+      "gaps_over_1ms": 0,
+      "dmi_delta": {
+        "scans": 194585,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "passed": true
+    }
+  ]
+}

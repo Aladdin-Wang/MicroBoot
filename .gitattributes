@@ -1,0 +1,2 @@
+# Preserve exported build/flash evidence, including the tools' trailing spaces.
+docs/assets/**/*.log -whitespace

@@ -1,0 +1,107 @@
+{
+  "symbols": {
+    "superwatch_tick": "0x82a80",
+    "superwatch_build_id": "0x82a84",
+    "superwatch_wave": "0x82a40",
+    "_SEGGER_RTT": "0x82a88"
+  },
+  "bin_size": 78464,
+  "sha256": "e1cd3528a4de56f903cc3e6a0b2ac59e77e8280435b739bf12d12a298830576a",
+  "flash": {
+    "success": true,
+    "filename": "demo.bin",
+    "addr": "0x80000400",
+    "board": "hpm5301evklite",
+    "progress": [
+      {
+        "percent": 5,
+        "used_ms": 214
+      },
+      {
+        "percent": 10,
+        "used_ms": 338
+      },
+      {
+        "percent": 15,
+        "used_ms": 461
+      },
+      {
+        "percent": 20,
+        "used_ms": 584
+      },
+      {
+        "percent": 26,
+        "used_ms": 708
+      },
+      {
+        "percent": 31,
+        "used_ms": 831
+      },
+      {
+        "percent": 36,
+        "used_ms": 955
+      },
+      {
+        "percent": 41,
+        "used_ms": 1079
+      },
+      {
+        "percent": 46,
+        "used_ms": 1203
+      },
+      {
+        "percent": 52,
+        "used_ms": 1327
+      },
+      {
+        "percent": 57,
+        "used_ms": 1451
+      },
+      {
+        "percent": 62,
+        "used_ms": 1574
+      },
+      {
+        "percent": 67,
+        "used_ms": 1698
+      },
+      {
+        "percent": 73,
+        "used_ms": 1821
+      },
+      {
+        "percent": 78,
+        "used_ms": 1944
+      },
+      {
+        "percent": 83,
+        "used_ms": 2068
+      },
+      {
+        "percent": 88,
+        "used_ms": 2192
+      },
+      {
+        "percent": 93,
+        "used_ms": 2315
+      },
+      {
+        "percent": 99,
+        "used_ms": 2439
+      },
+      {
+        "percent": 100,
+        "used_ms": 2501
+      }
+    ],
+    "loaded_successfully": true,
+    "download_100_percent": true,
+    "time_ms": 3227,
+    "response": "hpm.board(\"hpm5301evklite\")\n\r\nboard name = hpm5301evklite \r\r\n0\r\n\nhpm.program(\"demo.bin\",0x80000400)\n\r\nfileName = demo.bin, FlashAddr = 0x80000400\nopen fileName: demo.bin success,file size: 78464 byte\nDownload:   5% ,used 214 ms \rDownload:  10% ,used 338 ms \rDownload:  15% ,used 461 ms \rDownload:  20% ,used 584 ms \rDownload:  26% ,used 708 ms \rDownload:  31% ,used 831 ms \rDownload:  36% ,used 955 ms \rDownload:  41% ,used 1079 ms \rDownload:  46% ,used 1203 ms \rDownload:  52% ,used 1327 ms \rDownload:  57% ,used 1451 ms \rDownload:  62% ,used 1574 ms \rDownload:  67% ,used 1698 ms \rDownload:  73% ,used 1821 ms \rDownload:  78% ,used 1944 ms \rDownload:  83% ,used 2068 ms \rDownload:  88% ,used 2192 ms \rDownload:  93% ,used 2315 ms \rDownload:  99% ,used 2439 ms \rDownload: 100% ,used 2501 ms \r demo.bin loaded successfully.\n0\r\n",
+    "algorithm_source": "hpm-rom-api",
+    "reset_handled_by_rom_api": true,
+    "verified": true
+  },
+  "build_id": "0x20260914",
+  "rtt_signature_pass": true
+}

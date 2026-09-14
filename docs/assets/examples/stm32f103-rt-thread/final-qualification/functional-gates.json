@@ -1,0 +1,22 @@
+[
+  {
+    "script": "usb_stress_r20.py",
+    "exit_code": 0
+  },
+  {
+    "script": "line_coding_r20.py",
+    "exit_code": 0
+  },
+  {
+    "script": "functional_streams_r20.py",
+    "exit_code": 0
+  },
+  {
+    "script": "cli_r20.py",
+    "exit_code": 0
+  },
+  {
+    "script": "mcp_r20.py",
+    "exit_code": 0
+  }
+]

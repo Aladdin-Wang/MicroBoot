@@ -1,80 +1,79 @@
 # 站点信息
 site_name: MicroKeen  # 文档站点名称
-site_description: A sample documentation site  # 文档站点描述
-site_author: kk  # 文档作者
+site_description: MicroKeen MKLink、嵌入式 AI 与 MicroBoot 技术文档
+site_author: 洛阳智沐科技有限公司
 
 # 导航栏
 nav:
-  - 开发神器:
-      - MKLink 产品与功能总览: tools/microlink/microlink.md
-      - 安装上位机与快速启动:
-          - 安装上位机与快速启动: tools/microlink/gui-install.md
-          - 用 AI 定制企业专属上位机: tools/microlink/custom-web-gui.md
-      - 连接硬件与配置工程: tools/microlink/project-config.md
-      - 烧录:
-          - 在线编译与烧录: tools/microlink/online-flash.md
-          - 脱机下载与量产: tools/microlink/offline_download.md
-      - 运行观测:
-          - RTT View 日志与终端: tools/microlink/RTT_printf.md
-          - SuperWatch 观察实时变量: tools/microlink/superwatch.md
-          - VOFA+ 第三方上位机: tools/microlink/vofa.md
-      - 故障定位:
-          - Memory 内存与寄存器: tools/microlink/memory.md
-          - HardFault 与 RISC-V Trap: tools/microlink/hardfault.md
-          - RTOS Trace / SystemView: tools/microlink/SystemView.md
-      - 串口与 Modbus: tools/microlink/serial-modbus.md
-      - 固件升级: tools/microlink/firmware-upgrade.md
-      - 资料下载: tools/microlink/downloads.md
-      - 下载器内部 Python API: tools/microlink/python_api.md
-      - IAP / YModem: tools/microlink/ymodem.md
-      - 常见问题: tools/microlink/questions.md
-      - 售后服务: tools/microlink/after-sales.md
-      - 扩展阅读:
-          - 选项字节: tools/microlink/如何利用opt下载算法文件自由更改单片机选项字节.md
-          - 单片机的灵魂伴侣: tools/microlink/单片机的灵魂伴侣.md      
-  - 嵌入式 AI:
-      - AI + MKLink 使用概览: AI/AI.md
-      - 安装和更新完整 Skill: AI/skill.md
-      - Skill、MCP、CLI 与 GUI: AI/interfaces.md
-      - 第一次让 AI 接手工程: AI/first-project.md
-      - AI 编译、在线烧录与运行验证: AI/flash-workflow.md
-      - AI 部署和触发脱机下载: AI/offline-workflow.md
-      - AI 采集和分析 RTT: AI/rtt-workflow.md
-      - AI 读取变量、内存和寄存器: AI/memory-workflow.md
-      - AI 使用 SuperWatch 调试 PID / FOC: AI/pid-workflow.md
-      - AI 定位 HardFault: AI/hardfault-workflow.md
-      - AI 分析 RTOS Trace / SystemView: AI/systemview-workflow.md
-      - AI 调试工作流: AI/debug-workflow.md
-      - STM32F103RET6 + RT-Thread 全功能实战: AI/stm32f103-case.md
-      - HPM5301：AI 全程调试实录: AI/hpm5301-ai-debug-article.md
-      - 安全边界与排障: AI/safety.md
-      - 为什么嵌入式 AI 需要硬件闭环: AI/AI_MKLink.md  
-  - 先楫生态:
-      - 先楫概览: tools/microlink/HPM.md
-      - HPM5301 + FreeRTOS 全功能实战: tools/microlink/hpm5301-freertos-case.md          
-  - MicroBoot:
-      - 简介: index.md
-      - 快速移植:
-          - 基于 CMSIS-PACK 移植 : quick-start/cmsis-pack.md
-          - 基于源码移植: quick-start/quick-start.md
-          - 移植常见问题: quick-start/troubleshooting.md
-          - RT-Thread: quick-start/RT-Thread.md
-          - 配置: usage-guide/config.md
-  - 知识库: 
-      - 变参函数和可变参数宏: utilities/ParameterMacro.md
-      - queue:  components/queue/queue.md
-      - 信号槽: components/signals_slots/signals_slots.md
-      - 发布订阅: components/subscribe_publish/subscribe_publish.md
-      - multiple_delay: components/multiple_delay/multiple_delay.md
-      - shell: components/shell/shell.md
-      - ymodem: components/ymodem/ymodem.md
-      - BootLoader: components/bootloader/bootloader.md
-      - Flash Blob: components/flash_blob/flash_blob.md
-      - Message Map: components/msg_map/msg_map.md    
-  - 参与项目:
-      - 如何贡献代码: contribute/code.md
-      - 如何贡献文档: contribute/document.md
-  - 淘宝: https://shop330265532.taobao.com/category.htm?spm=pc_detail.30350276.shop_block.dshopinfo.1a0cf2c0rjEbBf
+- MKLink:
+  - 产品与功能总览: mklink/overview.md
+  - MKLink 与 J-Link 对比: mklink/mklink-vs-jlink.md
+  - 开始使用:
+    - 安装与打开界面: mklink/getting-started/gui-install.md
+    - 连接硬件与配置工程: mklink/getting-started/project-config.md
+  - 烧录与升级:
+    - 在线编译与烧录: mklink/flashing/online-flash.md
+    - 脱机下载与量产: mklink/flashing/offline-flash.md
+    - 固件升级: mklink/flashing/firmware-upgrade.md
+    - IAP / YModem: mklink/flashing/ymodem.md
+  - 运行观测:
+    - RTT 日志与终端: mklink/observation/rtt.md
+    - SuperWatch 实时变量: mklink/observation/superwatch.md
+    - VOFA+ 第三方上位机: mklink/observation/vofa.md
+    - RTOS Trace / SystemView: mklink/observation/systemview.md
+  - 故障定位:
+    - 内存与寄存器: mklink/debugging/memory.md
+    - HardFault / RISC-V Trap: mklink/debugging/hardfault.md
+  - 串口与 Modbus: mklink/communication/serial-modbus.md
+  - 开发与定制:
+    - 下载器内部 Python API: mklink/development/python-api.md
+    - 用 AI 定制企业上位机: mklink/development/custom-web-gui.md
+  - 下载与支持:
+    - 资料下载: mklink/support/downloads.md
+    - 常见问题: mklink/support/faq.md
+    - 售后服务: mklink/support/after-sales.md
+  - 原理与扩展阅读:
+    - 选项字节: mklink/articles/option-bytes.md
+    - RTT的使用原理: mklink/articles/mcu-debugging-companion.md
+- 嵌入式 AI:
+  - 使用概览: embedded-ai/overview.md
+  - 接入工程:
+    - 安装和更新 Skill: embedded-ai/getting-started/skill.md
+    - AI 操作与网页观察: embedded-ai/getting-started/interfaces.md
+    - 第一次接手工程: embedded-ai/getting-started/first-project.md
+    - 连接与使用排障: embedded-ai/getting-started/safety.md
+  - 工作流:
+    - 遇到问题，先看哪一项: embedded-ai/workflows/debug-workflow.md
+    - 编译、下载与运行检查: embedded-ai/workflows/flash-workflow.md
+    - 准备脱机任务: embedded-ai/workflows/offline-workflow.md
+    - RTT 命令行与日志: embedded-ai/workflows/rtt-workflow.md
+    - 变量、内存与寄存器: embedded-ai/workflows/memory-workflow.md
+    - 用曲线调 PID / FOC: embedded-ai/workflows/pid-workflow.md
+    - HardFault 定位: embedded-ai/workflows/hardfault-workflow.md
+    - 看任务时间线: embedded-ai/workflows/systemview-workflow.md
+  - 实战案例:
+    - MKLink × STM32: embedded-ai/cases/stm32f103-rt-thread.md
+    - MKLink × 先楫 HPM: mklink/hpm/overview.md
+  - 让 AI 的判断回到板子上验证: embedded-ai/articles/hardware-feedback-loop.md
+- 先楫生态:
+  - 先楫 HPM 概览: mklink/hpm/overview.md
+  - HPM5301 + FreeRTOS 实战: mklink/hpm/hpm5301-freertos.md
+  - HPM5301 四档采样（开发版）: mklink/hpm/mem-dump-profiles.md
+  - HPM6E80 使用与四档采样: mklink/hpm/hpm6e80.md
+  - 高频 JTAG 实验（25/30 MHz）: mklink/hpm/jtag-high-frequency-experiment.md
+- MicroBoot:
+  - 简介: index.md
+  - CMSIS-Pack 移植: microboot/getting-started/cmsis-pack.md
+  - 源码移植: microboot/getting-started/source-porting.md
+  - 移植常见问题: microboot/getting-started/troubleshooting.md
+  - 配置: microboot/configuration.md
+- 组件与知识库:
+  - 环形队列: components/queue.md
+  - 信号槽: components/signals-slots.md
+  - 多路延时: components/multiple-delay.md
+  - 变参函数与可变参数宏: knowledge/c/variadic-macros.md
+- 待补充资料: drafts/index.md
+- 淘宝: https://shop330265532.taobao.com/category.htm?spm=pc_detail.30350276.shop_block.dshopinfo.1a0cf2c0rjEbBf
 
 # 主题配置
 theme:
@@ -96,6 +95,81 @@ extra_javascript:
 plugins:
   - search
   - awesome-pages
+  - redirects:
+      redirect_maps:
+        tools/microlink/hpm5301-mem-dump-profiles.md: mklink/hpm/mem-dump-profiles.md
+        tools/microlink/microlink.md: mklink/overview.md
+        tools/microlink/gui-install.md: mklink/getting-started/gui-install.md
+        tools/microlink/project-config.md: mklink/getting-started/project-config.md
+        tools/microlink/online-flash.md: mklink/flashing/online-flash.md
+        tools/microlink/offline_download.md: mklink/flashing/offline-flash.md
+        tools/microlink/firmware-upgrade.md: mklink/flashing/firmware-upgrade.md
+        tools/microlink/ymodem.md: mklink/flashing/ymodem.md
+        tools/microlink/RTT_printf.md: mklink/observation/rtt.md
+        tools/microlink/superwatch.md: mklink/observation/superwatch.md
+        tools/microlink/vofa.md: mklink/observation/vofa.md
+        tools/microlink/SystemView.md: mklink/observation/systemview.md
+        tools/microlink/memory.md: mklink/debugging/memory.md
+        tools/microlink/hardfault.md: mklink/debugging/hardfault.md
+        tools/microlink/serial-modbus.md: mklink/communication/serial-modbus.md
+        tools/microlink/python_api.md: mklink/development/python-api.md
+        tools/microlink/custom-web-gui.md: mklink/development/custom-web-gui.md
+        tools/microlink/downloads.md: mklink/support/downloads.md
+        tools/microlink/questions.md: mklink/support/faq.md
+        tools/microlink/after-sales.md: mklink/support/after-sales.md
+        tools/microlink/HPM.md: mklink/hpm/overview.md
+        tools/microlink/hpm5301-freertos-case.md: mklink/hpm/hpm5301-freertos.md
+        tools/microlink/USB_MTP.md: mklink/articles/usb-mtp.md
+        tools/microlink/Mlink_PikaPython.md: mklink/articles/daplink-pikapython.md
+        tools/microlink/一个调试器，干掉四套工具链.md: mklink/articles/one-probe-four-toolchains.md
+        tools/microlink/单片机的灵魂伴侣.md: mklink/articles/mcu-debugging-companion.md
+        tools/microlink/如何利用opt下载算法文件自由更改单片机选项字节.md: mklink/articles/option-bytes.md
+        tools/microlink/memory-hardfault.md: mklink/legacy/memory-hardfault.md
+        tools/microlink/symbols-superwatch.md: mklink/legacy/symbols-superwatch.md
+        AI/AI.md: embedded-ai/overview.md
+        AI/AI_MKLink.md: embedded-ai/articles/hardware-feedback-loop.md
+        AI/debug-workflow.md: embedded-ai/workflows/debug-workflow.md
+        AI/first-project.md: embedded-ai/getting-started/first-project.md
+        AI/flash-workflow.md: embedded-ai/workflows/flash-workflow.md
+        AI/hardfault-workflow.md: embedded-ai/workflows/hardfault-workflow.md
+        AI/hpm5301-ai-debug-article.md: mklink/hpm/overview.md
+        embedded-ai/cases/hpm5301-debug-session.md: mklink/hpm/overview.md
+        AI/interfaces.md: embedded-ai/getting-started/interfaces.md
+        AI/memory-workflow.md: embedded-ai/workflows/memory-workflow.md
+        AI/offline-workflow.md: embedded-ai/workflows/offline-workflow.md
+        AI/pid-workflow.md: embedded-ai/workflows/pid-workflow.md
+        AI/rtt-workflow.md: embedded-ai/workflows/rtt-workflow.md
+        AI/safety.md: embedded-ai/getting-started/safety.md
+        AI/skill.md: embedded-ai/getting-started/skill.md
+        AI/stm32f103-case.md: embedded-ai/cases/stm32f103-rt-thread.md
+        AI/systemview-workflow.md: embedded-ai/workflows/systemview-workflow.md
+        quick-start/cmsis-pack.md: microboot/getting-started/cmsis-pack.md
+        quick-start/quick-start.md: microboot/getting-started/source-porting.md
+        quick-start/RT-Thread.md: drafts/microboot/rt-thread.md
+        quick-start/troubleshooting.md: microboot/getting-started/troubleshooting.md
+        usage-guide/config.md: microboot/configuration.md
+        components/bootloader/bootloader.md: drafts/components/bootloader.md
+        components/flash_blob/flash_blob.md: drafts/components/flash-blob.md
+        components/msgmap/msgmap.md: drafts/components/message-map-legacy.md
+        components/msg_map/msg_map.md: drafts/components/message-map.md
+        components/multiple_delay/multiple_delay.md: components/multiple-delay.md
+        components/queue/queue.md: components/queue.md
+        components/shell/shell.md: drafts/components/shell.md
+        components/signals_slots/signals_slots.md: components/signals-slots.md
+        components/subscribe_publish/subscribe_publish.md: drafts/components/publish-subscribe.md
+        components/ymodem/ymodem.md: drafts/components/ymodem.md
+        utilities/ParameterMacro.md: knowledge/c/variadic-macros.md
+        utilities/ThreadSafety.md: drafts/knowledge/thread-safety.md
+        utilities/FLM.md: drafts/knowledge/flash-algorithms.md
+        bootloader/BootLoader.md: drafts/microboot/bootloader-legacy.md
+        3rd-party/Arm-2D/arm_2d.md: drafts/third-party/arm-2d.md
+        3rd-party/fsm/fsm.md: drafts/third-party/fsm.md
+        3rd-party/plooc/plooc.md: drafts/third-party/plooc.md
+        about/about.md: drafts/about/project.md
+        about/team.md: drafts/about/team.md
+        contribute/code.md: drafts/contributing/code.md
+        contribute/document.md: drafts/contributing/documentation.md
+        tools/microlink/先辑使用教程.md: mklink/hpm/overview.md
 
 markdown_extensions:
   - toc:
@@ -119,3 +193,7 @@ repo_url: https://github.com/Aladdin-Wang/MicroBoot  # GitHub 仓库的 URL
 edit_uri: ""  # 如果您的文档在仓库的根目录，可以留空
 
 
+
+# Preserve previously published image URLs without duplicate source images.
+hooks:
+  - scripts/docs_asset_aliases.py

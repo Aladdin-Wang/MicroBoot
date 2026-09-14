@@ -1,0 +1,8 @@
+{
+  "source_image": "E:\\PHDZ\\PROJECT\\liu\\STM32F103_test\\STM32F103RC\\.mklink\\arm_deferred_20260914\\r20-chrome-16ch-cover\\zoomed-window.png",
+  "image_sha256": "3c3aa34b2c404af76f852a929b006c77c0c715fc10fab582c17806e8a88b52cd",
+  "capture": "Chrome real SuperWatch; paused viewport; 16 float channels superwatch_ch00..15",
+  "clock_hz": 30000000,
+  "waveform": "Existing target program: phase-shifted sine with slow amplitude modulation and third harmonic, not pure single-frequency sine",
+  "integrity_note": "status is cumulative; parser_crc_errors=1 and parser_dropped_frames=1. Not a zero-error qualification or single-variable performance measurement."
+}

@@ -1,0 +1,162 @@
+- banner:
+  - heading "MKLink" [level=1]
+  - navigation:
+    - button "配置"
+    - button "仪表盘"
+    - button "脱机烧录"
+    - button "在线烧录"
+    - link "在线文档":
+      - /url: https://microboot.readthedocs.io/zh-cn/latest/tools/microlink/microlink/
+    - generic "淘宝店铺"
+  - button "切换到 English":
+    - generic: EN
+  - generic: 后端正常 · 8765
+  - generic: 已连接
+  - generic: "0x1000563d"
+- button "RTT View"
+- button "SuperWatch"
+- button "HardFault"
+- button "Memory"
+- button "串口助手"
+- button "Modbus"
+- button "RTOS Trace"
+- button "符号表"
+- button "断开":
+  - generic: 断开
+- button "重启 MCU":
+  - generic: 重启 MCU
+- button "重启 MKLink":
+  - generic: 重启 MKLink
+- text: · · · · · · ·
+- generic: RTT 地址
+- textbox "RTT 地址":
+  - /placeholder: "0x20000000"
+  - text: "0x00082a88"
+- button "自动搜索":
+  - generic: 自动搜索
+- button "▶ 开始"
+- button "实时保存" [disabled]:
+  - generic: 实时保存
+- button "导入 JSONL"
+- button "导出 JSONL" [disabled]
+- button "导出摘要" [disabled]
+- text: 窗口
+- combobox "窗口":
+  - option "0.5s"
+  - option "1s"
+  - option "2s"
+  - option "5s"
+  - option "10s" [selected]
+  - option "30s"
+  - option "60s"
+- generic: Events
+- generic: 16,577
+- generic: Tasks
+- generic: "3"
+- generic: Runtime Drop
+- generic "runtime dropped": "0"
+- generic: CPU Clock
+- generic "hpm_core_clock": 360MHz
+- generic: Sync
+- generic: Ready
+- generic: Analysis Buffer
+- generic: 16,668
+- generic: Events List
+- generic: 最近 120 条
+- button "清除"
+- button "展开" [active]
+- generic: Timeline
+- generic: 微秒标尺与任务运行区间
+- button "全览"
+- generic "滚轮缩放，按住鼠标左键拖动，双击恢复全览"
+- generic: Runtime
+- generic: 单次运行片段分布
+- table:
+  - rowgroup:
+    - row "Task Count Min 25% 50% 75% Max CPU":
+      - columnheader "Task"
+      - columnheader "Count"
+      - columnheader "Min"
+      - columnheader "25%"
+      - columnheader "50%"
+      - columnheader "75%"
+      - columnheader "Max"
+      - columnheader "CPU"
+  - rowgroup:
+    - row "Idle 4,163次调度 828us 854us 855us 857us 868us 85.6%":
+      - cell "Idle": Idle
+      - cell "4,163次调度"
+      - cell "828us"
+      - cell "854us"
+      - cell "855us"
+      - cell "857us"
+      - cell "868us"
+      - cell "85.6%":
+        - emphasis: 85.6%
+    - row "Wave16 4,164次调度 132us 143us 145us 146us 157us 14.4%":
+      - cell "Wave16": Wave16
+      - cell "4,164次调度"
+      - cell "132us"
+      - cell "143us"
+      - cell "145us"
+      - cell "146us"
+      - cell "157us"
+      - cell "14.4%":
+        - emphasis: 14.4%
+    - row "Telemetry 4次调度 31us 31us 31us 31us 33us 0.0%":
+      - cell "Telemetry": Telemetry
+      - cell "4次调度"
+      - cell "31us"
+      - cell "31us"
+      - cell "31us"
+      - cell "31us"
+      - cell "33us"
+      - cell "0.0%":
+        - emphasis: 0.0%
+- generic: Context
+- generic: 任务活动概览
+- table:
+  - rowgroup:
+    - row "Name Type Prio Activations Total Run CPU Load":
+      - columnheader "Name"
+      - columnheader "Type"
+      - columnheader "Prio"
+      - columnheader "Activations"
+      - columnheader "Total Run"
+      - columnheader "CPU Load"
+  - rowgroup:
+    - row "Idle Idle - 4,163次调度 3.564s 85.6%":
+      - cell "Idle": Idle
+      - cell "Idle"
+      - cell "-"
+      - cell "4,163次调度"
+      - cell "3.564s"
+      - cell "85.6%":
+        - emphasis: 85.6%
+    - row "Wave16 Task - 4,164次调度 599.37ms 14.4%":
+      - cell "Wave16": Wave16
+      - cell "Task"
+      - cell "-"
+      - cell "4,164次调度"
+      - cell "599.37ms"
+      - cell "14.4%":
+        - emphasis: 14.4%
+    - row "Telemetry Task - 4次调度 126us 0.0%":
+      - cell "Telemetry": Telemetry
+      - cell "Task"
+      - cell "-"
+      - cell "4次调度"
+      - cell "126us"
+      - cell "0.0%":
+        - emphasis: 0.0%
+    - row "Tmr Svc Task - 0次调度 - 0.0%":
+      - cell "Tmr Svc": Tmr Svc
+      - cell "Task"
+      - cell "-"
+      - cell "0次调度"
+      - cell "-"
+      - cell "0.0%":
+        - emphasis: 0.0%
+- contentinfo:
+  - button "v0.2.0 · f4a5ca2cc4b7":
+    - generic: v0.2.0 · f4a5ca2cc4b7

@@ -1,0 +1,295 @@
+Browser tab: 978072955, Title: "MKLink AI Probe", URL: "http://127.0.0.1:8765/#/dashboard".
+0 AXWebArea MKLink AI Probe, URL: 127.0.0.1:8765/#/dashboard
+	1 container app
+		2 container
+			3 heading MKLink, Value: 1
+				4 text MKLink
+			5 button 配置
+			6 button 仪表盘
+			7 button 脱机烧录
+			8 button 在线烧录
+			9 link Description: 在线文档, Value: microboot.readthedocs.io/zh-cn/latest/tools/microlink/microlink/
+			10 container
+				11 button (collapsed) 淘宝店铺, Secondary Actions: Expand
+					12 text 淘宝店铺
+			13 button 切换到 English
+			14 text 后端正常  · 8765 已连接 0x1000563d
+		70 button RTT View
+		71 button SuperWatch
+		72 button HardFault
+		73 button Memory
+		74 button 串口助手
+		75 button Modbus
+		76 button RTOS Trace
+		77 button 符号表
+		78 container
+			79 button 断开, Help: 断开 MKLink 设备
+			80 button 重启 MCU
+			81 button 重启 MKLink, Help: 重启 MKLink 探针
+		82 button 程序变量
+		83 button 芯片外设
+		84 container
+			85 text field (settable)
+			86 button 手动添加变量
+			87 button 粘贴 C 结构定义
+			88 button 重新解析符号
+			89 checkbox (settable, integer) Description: 仅已选, Value: 0
+			90 text 已选 16
+			91 button 置顶已选
+			92 heading 常用变量 · 0, Value: 3
+				93 text 常用变量 · 0
+			94 text 点击图钉，或置顶已选变量；取消采样不影响置顶。
+			95 heading 全局变量, Value: 3
+				96 text 全局变量
+			97 container
+				98 container _acDownBuffer
+					99 button (collapsed) _acDownBuffer 0 / 16, Secondary Actions: Expand
+						100 text _acDownBuffer
+						101 text 0 / 16
+					102 checkbox Description: 设置 _acDownBuffer 快照范围, Help: 设置数组快照范围, Value: 0
+				103 container _acUpBuffer
+					104 button (collapsed) _acUpBuffer 0 / 1024, Secondary Actions: Expand
+						105 text _acUpBuffer
+						106 text 0 / 1024
+					107 checkbox Description: 设置 _acUpBuffer 快照范围, Help: 设置数组快照范围, Value: 0
+				108 button (collapsed) _SEGGER_RTT 0 / 5, Secondary Actions: Expand
+					109 text _SEGGER_RTT
+					110 text 0 / 5
+				111 container benchmark_words
+					112 button (collapsed) benchmark_words 0 / 1024, Secondary Actions: Expand
+						113 text benchmark_words
+						114 text 0 / 1024
+					115 checkbox Description: 设置 benchmark_words 快照范围, Help: 设置数组快照范围, Value: 0
+				116 checkbox (settable, integer) 0
+				117 button hpm_core_clock
+				118 text --
+				119 button 编辑, Help: 设置变量
+				120 button Description: 置顶 hpm_core_clock, Help: 置顶
+					121 image
+				122 checkbox (settable, integer) 0
+				123 button superwatch_build_id
+				124 text --
+				125 button 编辑, Help: 设置变量
+				126 button Description: 置顶 superwatch_build_id, Help: 置顶
+					127 image
+				128 checkbox (settable, integer) 0
+				129 button superwatch_cpu_hz
+				130 text --
+				131 button 编辑, Help: 设置变量
+				132 button Description: 置顶 superwatch_cpu_hz, Help: 置顶
+					133 image
+				134 checkbox (settable, integer) 0
+				135 button superwatch_tick
+				136 text --
+				137 button 编辑, Help: 设置变量
+				138 button Description: 置顶 superwatch_tick, Help: 置顶
+					139 image
+				140 container superwatch_wave
+					141 button (expanded) superwatch_wave 16 / 16, Secondary Actions: Collapse
+						142 text superwatch_wave
+						234 text 16 / 16
+					144 checkbox Description: 设置 superwatch_wave 快照范围, Help: 设置数组快照范围, Value: 0
+				235 checkbox (settable, integer) 1
+				236 checkbox Description: 隐藏 superwatch_wave[0] 波形, Help: 隐藏波形, Value: 1
+				237 button [0], Help: superwatch_wave[0]
+				380 text 39.71478
+				239 button 编辑, Help: 设置变量
+				240 button Description: 置顶 superwatch_wave[0], Help: 置顶
+					241 image
+				242 checkbox (settable, integer) 1
+				243 checkbox Description: 隐藏 superwatch_wave[1] 波形, Help: 隐藏波形, Value: 1
+				244 button [1], Help: superwatch_wave[1]
+				381 text 1.570724
+				246 button 编辑, Help: 设置变量
+				247 button Description: 置顶 superwatch_wave[1], Help: 置顶
+					248 image
+				249 checkbox (settable, integer) 1
+				250 checkbox Description: 隐藏 superwatch_wave[2] 波形, Help: 隐藏波形, Value: 1
+				251 button [2], Help: superwatch_wave[2]
+				382 text -36.81248
+				253 button 编辑, Help: 设置变量
+				254 button Description: 置顶 superwatch_wave[2], Help: 置顶
+					255 image
+				256 checkbox (settable, integer) 1
+				257 checkbox Description: 隐藏 superwatch_wave[3] 波形, Help: 隐藏波形, Value: 1
+				258 button [3], Help: superwatch_wave[3]
+				383 text -69.59129
+				260 button 编辑, Help: 设置变量
+				261 button Description: 置顶 superwatch_wave[3], Help: 置顶
+					262 image
+				263 checkbox (settable, integer) 1
+				264 checkbox Description: 隐藏 superwatch_wave[4] 波形, Help: 隐藏波形, Value: 1
+				265 button [4], Help: superwatch_wave[4]
+				384 text -91.77547
+				267 button 编辑, Help: 设置变量
+				268 button Description: 置顶 superwatch_wave[4], Help: 置顶
+					269 image
+				270 checkbox (settable, integer) 1
+				271 checkbox Description: 隐藏 superwatch_wave[5] 波形, Help: 隐藏波形, Value: 1
+				272 button [5], Help: superwatch_wave[5]
+				385 text -99.98766
+				274 button 编辑, Help: 设置变量
+				275 button Description: 置顶 superwatch_wave[5], Help: 置顶
+					276 image
+				277 checkbox (settable, integer) 1
+				278 checkbox Description: 隐藏 superwatch_wave[6] 波形, Help: 隐藏波形, Value: 1
+				279 button [6], Help: superwatch_wave[6]
+				386 text -92.97765
+				281 button 编辑, Help: 设置变量
+				282 button Description: 置顶 superwatch_wave[6], Help: 置顶
+					283 image
+				284 checkbox (settable, integer) 1
+				285 checkbox Description: 隐藏 superwatch_wave[7] 波形, Help: 隐藏波形, Value: 1
+				286 button [7], Help: superwatch_wave[7]
+				387 text -71.81261
+				288 button 编辑, Help: 设置变量
+				289 button Description: 置顶 superwatch_wave[7], Help: 置顶
+					290 image
+				291 checkbox (settable, integer) 1
+				292 checkbox Description: 隐藏 superwatch_wave[8] 波形, Help: 隐藏波形, Value: 1
+				293 button [8], Help: superwatch_wave[8]
+				388 text -39.71474
+				295 button 编辑, Help: 设置变量
+				296 button Description: 置顶 superwatch_wave[8], Help: 置顶
+					297 image
+				298 checkbox (settable, integer) 1
+				299 checkbox Description: 隐藏 superwatch_wave[9] 波形, Help: 隐藏波形, Value: 1
+				300 button [9], Help: superwatch_wave[9]
+				389 text -1.570715
+				302 button 编辑, Help: 设置变量
+				303 button Description: 置顶 superwatch_wave[9], Help: 置顶
+					304 image
+				305 checkbox (settable, integer) 1
+				306 checkbox Description: 隐藏 superwatch_wave[10] 波形, Help: 隐藏波形, Value: 1
+				307 button [10], Help: superwatch_wave[10]
+				390 text 36.81248
+				309 button 编辑, Help: 设置变量
+				310 button Description: 置顶 superwatch_wave[10], Help: 置顶
+					311 image
+				312 checkbox (settable, integer) 1
+				313 checkbox Description: 隐藏 superwatch_wave[11] 波形, Help: 隐藏波形, Value: 1
+				314 button [11], Help: superwatch_wave[11]
+				391 text 69.59132
+				316 button 编辑, Help: 设置变量
+				317 button Description: 置顶 superwatch_wave[11], Help: 置顶
+					318 image
+				319 checkbox (settable, integer) 1
+				320 checkbox Description: 隐藏 superwatch_wave[12] 波形, Help: 隐藏波形, Value: 1
+				321 button [12], Help: superwatch_wave[12]
+				392 text 91.77547
+				323 button 编辑, Help: 设置变量
+				324 button Description: 置顶 superwatch_wave[12], Help: 置顶
+					325 image
+				326 checkbox (settable, integer) 1
+				327 checkbox Description: 隐藏 superwatch_wave[13] 波形, Help: 隐藏波形, Value: 1
+				328 button [13], Help: superwatch_wave[13]
+				393 text 99.98766
+				330 button 编辑, Help: 设置变量
+				331 button Description: 置顶 superwatch_wave[13], Help: 置顶
+					332 image
+				333 checkbox (settable, integer) 1
+				334 checkbox Description: 隐藏 superwatch_wave[14] 波形, Help: 隐藏波形, Value: 1
+				335 button [14], Help: superwatch_wave[14]
+				394 text 92.97763
+				337 button 编辑, Help: 设置变量
+				338 button Description: 置顶 superwatch_wave[14], Help: 置顶
+					339 image
+				340 checkbox (settable, integer) 1
+				341 checkbox Description: 隐藏 superwatch_wave[15] 波形, Help: 隐藏波形, Value: 1
+				342 button [15], Help: superwatch_wave[15]
+				395 text 71.81258
+				344 button 编辑, Help: 设置变量
+				345 button Description: 置顶 superwatch_wave[15], Help: 置顶
+					346 image
+		145 text 采样调试速率
+		146 pop up button (collapsed, settable) 采样调试速率, Value: 中速 · 10 MHz（默认）, ID: superwatch-speed, Secondary Actions: Expand
+			147 menu
+				148 低速 · 4 MHz
+				149 (selected) 中速 · 10 MHz（默认）
+				150 高速 · 20 MHz
+		151 button 应用档位
+		152 text 已应用；可开始采样
+		153 container
+			154 heading MKLink SuperWatch, Value: 1
+				155 text MKLink SuperWatch
+			156 text SuperWatch
+			396 text 已停止
+			397 text 6619 pts
+			398 text 998.20 Hz
+			399 text transport stopped
+			400 text transport 0 / backend 0/0 / buffer 6725
+			162 button 光标, Help: 切换 A/B 测量光标 (C), ID: btn-cursor-toggle
+			163 button 保存, Help: 保存项目, ID: btn-save-project
+			164 button 加载, Help: 加载项目, ID: btn-load-project
+			165 button 阈值, Help: 配置阈值, ID: btn-thresholds
+			166 button CSV, Help: 导出 CSV (Ctrl+E), ID: btn-export-csv
+			167 button PNG, Help: 导出 PNG, ID: btn-export-png
+			168 button ?, Help: 使用说明, ID: btn-help
+			169 button 选择文件, ID: project-load-input
+		170 container control-toolbar
+			171 button 开始, ID: btn-start
+			172 button (disabled) 暂停, ID: btn-pause
+			173 button (disabled) 停止, ID: btn-stop
+			401 text 已停止
+			175 text 缓冲区
+			176 stepper (settable, integer) Value: 50000, ID: buffer-input
+			177 text pts/ch
+			178 text ~3.4 MB
+			179 button 应用, ID: btn-apply-buffer
+			180 container interval-group
+				181 text 间隔
+				182 stepper (settable, float) Value: 0.0010000000474974513, Details: 0.001, ID: interval-input
+				183 text s
+				184 button 应用, ID: btn-apply-interval
+		185 container trigger-toolbar
+			186 button 触发, ID: trigger-enable-btn
+			378 text Idle
+			188 text 源
+			189 pop up button (collapsed, settable) Value: superwatch_wave[0], ID: trigger-source, Secondary Actions: Expand
+				190 menu
+					191 --
+					192 (selected) superwatch_wave[0]
+					193 superwatch_wave[10]
+					194 superwatch_wave[11]
+					195 superwatch_wave[12]
+					196 superwatch_wave[13]
+					197 superwatch_wave[14]
+					198 superwatch_wave[15]
+					199 superwatch_wave[1]
+					200 superwatch_wave[2]
+					201 superwatch_wave[3]
+					202 superwatch_wave[4]
+					203 superwatch_wave[5]
+					204 superwatch_wave[6]
+					205 superwatch_wave[7]
+					206 superwatch_wave[8]
+					207 superwatch_wave[9]
+			208 text 边沿
+			209 pop up button (collapsed, settable) Value: 上升沿, ID: trigger-edge, Secondary Actions: Expand
+				210 menu
+					211 (selected) 上升沿
+					212 下降沿
+					213 双边沿
+			214 text 电平
+			215 stepper (settable, integer) Value: 0, ID: trigger-level
+			216 text 模式
+			217 pop up button (collapsed, settable) Value: 单次, ID: trigger-mode, Secondary Actions: Expand
+				218 menu
+					219 自动
+					220 普通
+					221 (selected) 单次
+			222 text 预触发
+			223 stepper (settable, integer) Value: 100, ID: trigger-pretrig
+		224 container debug-main
+			225 container chart-wrap
+				226 image chart
+				227 button (collapsed) Description: 显示通道列表, ID: chart-legend-toggle, Secondary Actions: Expand
+			228 container
+				229 text 原始日志
+				230 text 0 lines
+				231 button 保存, Help: 保存带时间戳的原始数据, ID: raw-log-save
+				232 button 清除, Help: 清除日志, ID: raw-log-clear
+				233 button ✕, Help: 关闭面板, ID: raw-log-close
+		69 pop up button (collapsed) v0.2.0 · b0eed3672d87, Help: 查看版本更新记录, Secondary Actions: Expand
+
+The focused UI element is 0 AXWebArea MKLink AI Probe, URL: 127.0.0.1:8765/#/dashboard

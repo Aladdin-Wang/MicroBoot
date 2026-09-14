@@ -1,0 +1,112 @@
+[
+  {
+    "file": "jscope-hss-10mhz-four.csv",
+    "sha256": "a043123bce39366818813f0ade098e3d9db35049b182047bb793e19c40cf5f15",
+    "channels": 4,
+    "records": 11230,
+    "span_seconds": 22.457611,
+    "complete_groups_per_second": 500.00866076093314,
+    "nonmonotonic_timestamps": 0,
+    "zero_rows": 0,
+    "raw_verified": true
+  },
+  {
+    "file": "jscope-hss-10mhz-single.csv",
+    "sha256": "27d96b44071fa058da9716841559f0b41a5845275650715cd169af36cbc50680",
+    "channels": 1,
+    "records": 18899,
+    "span_seconds": 37.794876,
+    "complete_groups_per_second": 500.01486974054365,
+    "nonmonotonic_timestamps": 0,
+    "zero_rows": 0,
+    "raw_verified": true
+  },
+  {
+    "file": "jscope-hss-20mhz-four.csv",
+    "sha256": "e4779082501b7fdb23bc23df38e2a3872981d57bef0a9bda974b44fd00c0bc69",
+    "channels": 4,
+    "records": 14835,
+    "span_seconds": 29.66843,
+    "complete_groups_per_second": 499.99275323972313,
+    "nonmonotonic_timestamps": 0,
+    "zero_rows": 0,
+    "raw_verified": true
+  },
+  {
+    "file": "jscope-hss-20mhz-single.csv",
+    "sha256": "a3a708b6bd7002d3d2795ce8a3f33262300269aef20413158ee45a47be27c1b6",
+    "channels": 1,
+    "records": 13515,
+    "span_seconds": 27.028911,
+    "complete_groups_per_second": 499.98314767472505,
+    "nonmonotonic_timestamps": 0,
+    "zero_rows": 7,
+    "raw_verified": true
+  },
+  {
+    "file": "jscope-hss-30mhz-four.csv",
+    "sha256": "34a7cfa04d64c5ca20f4712902ad5f4a16121ec2dcd121352b8c0e2c17e6200b",
+    "channels": 4,
+    "records": 16051,
+    "span_seconds": 32.099419,
+    "complete_groups_per_second": 500.00905000803914,
+    "nonmonotonic_timestamps": 0,
+    "zero_rows": 0,
+    "raw_verified": true
+  },
+  {
+    "file": "jscope-hss-30mhz-single.csv",
+    "sha256": "d25067d90522428aec19e5a1bb29ff3e7d57e18df78199814faea3e44533215f",
+    "channels": 1,
+    "records": 17097,
+    "span_seconds": 34.192013,
+    "complete_groups_per_second": 499.9998098971242,
+    "nonmonotonic_timestamps": 0,
+    "zero_rows": 0,
+    "raw_verified": true
+  },
+  {
+    "file": "jscope-hss-4mhz-four.csv",
+    "sha256": "008dfa7970f81ac14c678262d53ccc373eb6d3ceda0088025598ea373df7c103",
+    "channels": 4,
+    "records": 72712,
+    "span_seconds": 145.421345,
+    "complete_groups_per_second": 500.0022520765435,
+    "nonmonotonic_timestamps": 0,
+    "zero_rows": 0,
+    "raw_verified": true
+  },
+  {
+    "file": "jscope-hss-4mhz-single-clean.csv",
+    "sha256": "3fb1c776c4155ac1ea419d968b9f08ac73c392d5a928763c9a8d3f9b548b9014",
+    "channels": 1,
+    "records": 7649,
+    "span_seconds": 15.296594,
+    "complete_groups_per_second": 499.98058391299395,
+    "nonmonotonic_timestamps": 0,
+    "zero_rows": 0,
+    "raw_verified": false
+  },
+  {
+    "file": "jscope-hss-4mhz-single.csv",
+    "sha256": "a9a968a25da51ae78bd678ee514ade0de95498d0948b1e4512965a4c022794cd",
+    "channels": 1,
+    "records": 33289,
+    "span_seconds": 66.576133,
+    "complete_groups_per_second": 499.99900114354796,
+    "nonmonotonic_timestamps": 0,
+    "zero_rows": 16012,
+    "raw_verified": false
+  },
+  {
+    "file": "jscope-hss-50mhz-single.csv",
+    "sha256": "a355e4d628f0b42d8d7baed4a6a8bde8cb3bfa117a7d292207986b8083ed1f81",
+    "channels": 1,
+    "records": 17483,
+    "span_seconds": 34.96334,
+    "complete_groups_per_second": 500.00943845753864,
+    "nonmonotonic_timestamps": 0,
+    "zero_rows": 0,
+    "raw_verified": true
+  }
+]

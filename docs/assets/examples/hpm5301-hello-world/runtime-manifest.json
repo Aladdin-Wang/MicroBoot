@@ -1,0 +1,15 @@
+{
+  "probe_firmware_sha256": "9a3380469ca2e92a816656805df1e941ce69a9eaa7896602fcc50c2a2090384a",
+  "probe_uf2_bytes": 1563136,
+  "gui_footer": "f4a5ca2cc4b7",
+  "installed_files_sha256": {
+    "mklink/systemview_parser.py": "915cc18380984c733db6098e9dcb7ce458b73adb28bd6f588915291bdf6a45dd",
+    "mklink/systemview.py": "d848944325a2361206bed421f1690684097f76f41027342f0c5eb4b458db5c82",
+    "mklink/offline_download.py": "0cbb750a125b28e648caee68bdb1f2b8ca04ef675cb6b754efbb5f603c26d00c",
+    "mklink/remote/api.py": "d24bcc78effdae5978c18f629f61791ba76af9949f258bdc6752cf6e21cbc19f",
+    "mklink/remote/dashboards.py": "3f823eda9b804b80f849f38164464b9d427bda163df0aaa7b611b949ac600d39",
+    "mklink/remote/stream_protocol.py": "03f2f445a2fb01d6249c9a5d08b4f1a6ea4606e83162b69c6defe04e0f978d8b",
+    "gui/dist/index.html": "950707f9864010b7365f7cb8f85a7448a82a39e895c69a3c15983db594720ac9"
+  },
+  "note": "Development installation; original sampling matrix used probe 9836a48e... and base upper-layer b0eed367... ."
+}

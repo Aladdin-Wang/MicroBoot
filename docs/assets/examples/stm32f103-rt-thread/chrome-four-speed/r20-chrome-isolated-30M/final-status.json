@@ -1,0 +1,52 @@
+{
+  "state": "running",
+  "interval": 1E-06,
+  "items": [
+    {
+      "name": "superwatch_ch00",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A204"
+    }
+  ],
+  "metadata_version": 2,
+  "read_cycles": 21248026,
+  "read_drops": 0,
+  "read_errors": 0,
+  "actual_rate": 113880.068329,
+  "binary_drops": {
+    "batches": 0,
+    "items": 0
+  },
+  "binary_batch_policy": {
+    "max_samples": 512,
+    "max_bytes": 65536,
+    "max_latency_ms": 20.0
+  },
+  "acquisition_mode": "dump-memory",
+  "stream_integrity": {
+    "parser_dropped_bytes": 282,
+    "parser_crc_errors": 1,
+    "parser_dropped_frames": 1,
+    "firmware_sample_drop_flags": 0,
+    "firmware_flagged_frames": 0,
+    "protocol_frames": 21248026,
+    "complete_samples": 21248026
+  },
+  "stream": {
+    "produced_batches": 41742,
+    "produced_items": 21247771,
+    "produced_bytes": 254996083,
+    "delivered_batches": 41743,
+    "delivered_items": 21247771,
+    "delivered_bytes": 254996208,
+    "dropped_batches": 0,
+    "dropped_items": 0,
+    "dropped_bytes": 0,
+    "active_clients": 1,
+    "queue_high_water_mark": 27,
+    "last_sequence": 41742
+  }
+}

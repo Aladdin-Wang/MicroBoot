@@ -1,0 +1,1874 @@
+{
+  "online-4000000": {
+    "result": {
+      "job_id": "9a2010f4-7168-455e-8150-e2a0946d82be",
+      "state": "succeeded",
+      "actions": [
+        "connect",
+        "erase",
+        "program",
+        "verify",
+        "reset",
+        "disconnect"
+      ],
+      "image_id": "PlZuMDcscTcDO-y_gbgFVTD9ltS9_iGz",
+      "created_at": 278541.201371,
+      "updated_at": 278550.2884299,
+      "probe_id": "2411953D4BB4FB02",
+      "target_part": "STM32F103RE",
+      "frequency": 4000000,
+      "connect_mode": "halt",
+      "reset_mode": "default",
+      "reset_voltage_mv": null,
+      "file_path": null,
+      "image_format": "bin",
+      "image_start": 134238208,
+      "image_end": 134353448,
+      "image_size": 115240,
+      "image_sha256": "16c5e4fe438f47cf4041b6f5c137183816bb1b823a5684576b50dd0ca7179015",
+      "current_action": "disconnect",
+      "stage_progress": 1.0,
+      "total_progress": 1.0,
+      "speed_bytes_per_second": 0.0,
+      "elapsed_seconds": 9.087058900040574,
+      "error_code": null,
+      "error_message": null
+    },
+    "timing": {
+      "packets": {
+        "write": 1046,
+        "read": 1716
+      },
+      "scope": "Parity-valid packet timing, excludes idle gaps; not exhaustive protocol validation",
+      "phases": {
+        "write_data": {
+          "periods": 32426,
+          "mean_ns": 254.4267563066675,
+          "mhz": 3.930404233093601,
+          "mode_ns": [
+            [
+              254,
+              17641
+            ],
+            [
+              252,
+              6805
+            ],
+            [
+              256,
+              3955
+            ],
+            [
+              258,
+              2306
+            ],
+            [
+              260,
+              1719
+            ]
+          ]
+        },
+        "write_header": {
+          "periods": 7322,
+          "mean_ns": 258.5848128926523,
+          "mhz": 3.86720313855066,
+          "mode_ns": [
+            [
+              254,
+              3572
+            ],
+            [
+              252,
+              1259
+            ],
+            [
+              256,
+              786
+            ],
+            [
+              258,
+              456
+            ],
+            [
+              260,
+              343
+            ],
+            [
+              286,
+              189
+            ],
+            [
+              288,
+              179
+            ],
+            [
+              296,
+              178
+            ]
+          ]
+        },
+        "write_ack": {
+          "periods": 2092,
+          "mean_ns": 272.8977055449331,
+          "mhz": 3.6643767231503825,
+          "mode_ns": [
+            [
+              282,
+              510
+            ],
+            [
+              280,
+              332
+            ],
+            [
+              254,
+              331
+            ],
+            [
+              284,
+              176
+            ],
+            [
+              278,
+              173
+            ],
+            [
+              256,
+              116
+            ],
+            [
+              252,
+              98
+            ],
+            [
+              286,
+              77
+            ]
+          ]
+        },
+        "read_data": {
+          "periods": 53196,
+          "mean_ns": 255.41089555605686,
+          "mhz": 3.9152597535938822,
+          "mode_ns": [
+            [
+              254,
+              26308
+            ],
+            [
+              252,
+              10520
+            ],
+            [
+              256,
+              8871
+            ],
+            [
+              258,
+              3229
+            ],
+            [
+              260,
+              1884
+            ],
+            [
+              272,
+              654
+            ],
+            [
+              274,
+              634
+            ],
+            [
+              284,
+              269
+            ]
+          ]
+        },
+        "read_header": {
+          "periods": 12012,
+          "mean_ns": 254.3856143856144,
+          "mhz": 3.9310398994659126,
+          "mode_ns": [
+            [
+              254,
+              6750
+            ],
+            [
+              252,
+              2416
+            ],
+            [
+              256,
+              1511
+            ],
+            [
+              258,
+              787
+            ],
+            [
+              260,
+              545
+            ],
+            [
+              262,
+              3
+            ]
+          ]
+        },
+        "read_ack": {
+          "periods": 3432,
+          "mean_ns": 268.4755244755245,
+          "mhz": 3.724734319649927,
+          "mode_ns": [
+            [
+              254,
+              913
+            ],
+            [
+              282,
+              815
+            ],
+            [
+              280,
+              467
+            ],
+            [
+              252,
+              297
+            ],
+            [
+              256,
+              289
+            ],
+            [
+              284,
+              255
+            ],
+            [
+              258,
+              117
+            ],
+            [
+              260,
+              80
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "online-10000000": {
+    "result": {
+      "job_id": "9f8863a2-0757-411e-a707-89369884cfd5",
+      "state": "succeeded",
+      "actions": [
+        "connect",
+        "erase",
+        "program",
+        "verify",
+        "reset",
+        "disconnect"
+      ],
+      "image_id": "PlZuMDcscTcDO-y_gbgFVTD9ltS9_iGz",
+      "created_at": 278553.3281546,
+      "updated_at": 278561.7471878,
+      "probe_id": "2411953D4BB4FB02",
+      "target_part": "STM32F103RE",
+      "frequency": 10000000,
+      "connect_mode": "halt",
+      "reset_mode": "default",
+      "reset_voltage_mv": null,
+      "file_path": null,
+      "image_format": "bin",
+      "image_start": 134238208,
+      "image_end": 134353448,
+      "image_size": 115240,
+      "image_sha256": "16c5e4fe438f47cf4041b6f5c137183816bb1b823a5684576b50dd0ca7179015",
+      "current_action": "disconnect",
+      "stage_progress": 1.0,
+      "total_progress": 1.0,
+      "speed_bytes_per_second": 0.0,
+      "elapsed_seconds": 8.419033200014383,
+      "error_code": null,
+      "error_message": null
+    },
+    "timing": {
+      "packets": {
+        "read": 2155,
+        "write": 1265
+      },
+      "scope": "Parity-valid packet timing, excludes idle gaps; not exhaustive protocol validation",
+      "phases": {
+        "read_data": {
+          "periods": 66805,
+          "mean_ns": 101.94901579223112,
+          "mhz": 9.808824462199503,
+          "mode_ns": [
+            [
+              100,
+              48717
+            ],
+            [
+              102,
+              9282
+            ],
+            [
+              108,
+              2607
+            ],
+            [
+              104,
+              1634
+            ],
+            [
+              128,
+              1473
+            ],
+            [
+              110,
+              1196
+            ],
+            [
+              98,
+              695
+            ],
+            [
+              130,
+              328
+            ]
+          ]
+        },
+        "read_header": {
+          "periods": 15085,
+          "mean_ns": 100.68637719588996,
+          "mhz": 9.931830182492853,
+          "mode_ns": [
+            [
+              100,
+              11721
+            ],
+            [
+              102,
+              2462
+            ],
+            [
+              104,
+              391
+            ],
+            [
+              112,
+              165
+            ],
+            [
+              98,
+              117
+            ],
+            [
+              110,
+              114
+            ],
+            [
+              108,
+              105
+            ],
+            [
+              114,
+              10
+            ]
+          ]
+        },
+        "read_ack": {
+          "periods": 4310,
+          "mean_ns": 119.09002320185616,
+          "mhz": 8.397009028245902,
+          "mode_ns": [
+            [
+              100,
+              1127
+            ],
+            [
+              128,
+              684
+            ],
+            [
+              136,
+              399
+            ],
+            [
+              108,
+              379
+            ],
+            [
+              138,
+              270
+            ],
+            [
+              140,
+              262
+            ],
+            [
+              102,
+              251
+            ],
+            [
+              110,
+              221
+            ]
+          ]
+        },
+        "write_data": {
+          "periods": 39215,
+          "mean_ns": 100.36384036720642,
+          "mhz": 9.963747863187058,
+          "mode_ns": [
+            [
+              100,
+              32198
+            ],
+            [
+              102,
+              5862
+            ],
+            [
+              104,
+              645
+            ],
+            [
+              98,
+              437
+            ],
+            [
+              112,
+              50
+            ],
+            [
+              110,
+              17
+            ],
+            [
+              108,
+              3
+            ],
+            [
+              114,
+              2
+            ]
+          ]
+        },
+        "write_header": {
+          "periods": 8855,
+          "mean_ns": 109.33280632411068,
+          "mhz": 9.146385550879932,
+          "mode_ns": [
+            [
+              100,
+              4487
+            ],
+            [
+              102,
+              942
+            ],
+            [
+              112,
+              932
+            ],
+            [
+              110,
+              453
+            ],
+            [
+              120,
+              446
+            ],
+            [
+              154,
+              295
+            ],
+            [
+              144,
+              216
+            ],
+            [
+              152,
+              213
+            ]
+          ]
+        },
+        "write_ack": {
+          "periods": 2530,
+          "mean_ns": 125.38577075098814,
+          "mhz": 7.975386632873724,
+          "mode_ns": [
+            [
+              128,
+              495
+            ],
+            [
+              136,
+              319
+            ],
+            [
+              108,
+              282
+            ],
+            [
+              134,
+              197
+            ],
+            [
+              100,
+              175
+            ],
+            [
+              110,
+              150
+            ],
+            [
+              138,
+              128
+            ],
+            [
+              126,
+              102
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "online-20000000": {
+    "result": {
+      "job_id": "55b3516d-89d1-4e95-ae73-0e694c0fa40a",
+      "state": "succeeded",
+      "actions": [
+        "connect",
+        "erase",
+        "program",
+        "verify",
+        "reset",
+        "disconnect"
+      ],
+      "image_id": "PlZuMDcscTcDO-y_gbgFVTD9ltS9_iGz",
+      "created_at": 278564.6281816,
+      "updated_at": 278572.9130498,
+      "probe_id": "2411953D4BB4FB02",
+      "target_part": "STM32F103RE",
+      "frequency": 20000000,
+      "connect_mode": "halt",
+      "reset_mode": "default",
+      "reset_voltage_mv": null,
+      "file_path": null,
+      "image_format": "bin",
+      "image_start": 134238208,
+      "image_end": 134353448,
+      "image_size": 115240,
+      "image_sha256": "16c5e4fe438f47cf4041b6f5c137183816bb1b823a5684576b50dd0ca7179015",
+      "current_action": "disconnect",
+      "stage_progress": 1.0,
+      "total_progress": 1.0,
+      "speed_bytes_per_second": 0.0,
+      "elapsed_seconds": 8.284868199960329,
+      "error_code": null,
+      "error_message": null
+    },
+    "timing": {
+      "packets": {
+        "write": 1234,
+        "read": 2092
+      },
+      "scope": "Parity-valid packet timing, excludes idle gaps; not exhaustive protocol validation",
+      "phases": {
+        "write_data": {
+          "periods": 38254,
+          "mean_ns": 50.12134678726407,
+          "mhz": 19.95157880023491,
+          "mode_ns": [
+            [
+              50,
+              31751
+            ],
+            [
+              52,
+              4412
+            ],
+            [
+              48,
+              2091
+            ]
+          ]
+        },
+        "write_header": {
+          "periods": 8638,
+          "mean_ns": 51.2428802963649,
+          "mhz": 19.514906153137115,
+          "mode_ns": [
+            [
+              50,
+              6104
+            ],
+            [
+              52,
+              949
+            ],
+            [
+              58,
+              934
+            ],
+            [
+              48,
+              421
+            ],
+            [
+              60,
+              207
+            ],
+            [
+              56,
+              23
+            ]
+          ]
+        },
+        "write_ack": {
+          "periods": 2468,
+          "mean_ns": 50.17179902755267,
+          "mhz": 19.931515699702803,
+          "mode_ns": [
+            [
+              50,
+              2035
+            ],
+            [
+              52,
+              312
+            ],
+            [
+              48,
+              118
+            ],
+            [
+              62,
+              3
+            ]
+          ]
+        },
+        "read_data": {
+          "periods": 64852,
+          "mean_ns": 50.50413248627645,
+          "mhz": 19.800359906622123,
+          "mode_ns": [
+            [
+              50,
+              52821
+            ],
+            [
+              52,
+              7609
+            ],
+            [
+              48,
+              3249
+            ],
+            [
+              72,
+              717
+            ],
+            [
+              74,
+              266
+            ],
+            [
+              58,
+              126
+            ],
+            [
+              60,
+              37
+            ],
+            [
+              62,
+              16
+            ]
+          ]
+        },
+        "read_header": {
+          "periods": 14644,
+          "mean_ns": 50.12004916689429,
+          "mhz": 19.95209535150513,
+          "mode_ns": [
+            [
+              50,
+              11965
+            ],
+            [
+              52,
+              1779
+            ],
+            [
+              48,
+              900
+            ]
+          ]
+        },
+        "read_ack": {
+          "periods": 4184,
+          "mean_ns": 50.169216061185466,
+          "mhz": 19.93254187548831,
+          "mode_ns": [
+            [
+              50,
+              3454
+            ],
+            [
+              52,
+              542
+            ],
+            [
+              48,
+              188
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "online-30000000": {
+    "result": {
+      "job_id": "9c2384d6-bb0b-4a03-adc0-b0ec2c926335",
+      "state": "succeeded",
+      "actions": [
+        "connect",
+        "erase",
+        "program",
+        "verify",
+        "reset",
+        "disconnect"
+      ],
+      "image_id": "PlZuMDcscTcDO-y_gbgFVTD9ltS9_iGz",
+      "created_at": 278575.9124634,
+      "updated_at": 278584.1924261,
+      "probe_id": "2411953D4BB4FB02",
+      "target_part": "STM32F103RE",
+      "frequency": 30000000,
+      "connect_mode": "halt",
+      "reset_mode": "default",
+      "reset_voltage_mv": null,
+      "file_path": null,
+      "image_format": "bin",
+      "image_start": 134238208,
+      "image_end": 134353448,
+      "image_size": 115240,
+      "image_sha256": "16c5e4fe438f47cf4041b6f5c137183816bb1b823a5684576b50dd0ca7179015",
+      "current_action": "disconnect",
+      "stage_progress": 1.0,
+      "total_progress": 1.0,
+      "speed_bytes_per_second": 0.0,
+      "elapsed_seconds": 8.279962700034957,
+      "error_code": null,
+      "error_message": null
+    },
+    "timing": {
+      "packets": {
+        "write": 1218,
+        "read": 2060
+      },
+      "scope": "Parity-valid packet timing, excludes idle gaps; not exhaustive protocol validation",
+      "phases": {
+        "write_data": {
+          "periods": 37758,
+          "mean_ns": 33.42719423698289,
+          "mhz": 29.91576238527458,
+          "mode_ns": [
+            [
+              34,
+              26920
+            ],
+            [
+              32,
+              10826
+            ],
+            [
+              36,
+              12
+            ]
+          ]
+        },
+        "write_header": {
+          "periods": 8526,
+          "mean_ns": 33.40206427398546,
+          "mhz": 29.938269437402116,
+          "mode_ns": [
+            [
+              34,
+              5953
+            ],
+            [
+              32,
+              2561
+            ],
+            [
+              36,
+              12
+            ]
+          ]
+        },
+        "write_ack": {
+          "periods": 2436,
+          "mean_ns": 41.45648604269294,
+          "mhz": 24.121677823107696,
+          "mode_ns": [
+            [
+              34,
+              844
+            ],
+            [
+              54,
+              619
+            ],
+            [
+              32,
+              574
+            ],
+            [
+              52,
+              372
+            ],
+            [
+              44,
+              14
+            ],
+            [
+              46,
+              7
+            ],
+            [
+              36,
+              6
+            ]
+          ]
+        },
+        "read_data": {
+          "periods": 63860,
+          "mean_ns": 33.421077356717824,
+          "mhz": 29.921237706569457,
+          "mode_ns": [
+            [
+              34,
+              44691
+            ],
+            [
+              32,
+              18827
+            ],
+            [
+              36,
+              342
+            ]
+          ]
+        },
+        "read_header": {
+          "periods": 14420,
+          "mean_ns": 33.40818307905687,
+          "mhz": 29.9327861570205,
+          "mode_ns": [
+            [
+              34,
+              10141
+            ],
+            [
+              32,
+              4273
+            ],
+            [
+              36,
+              6
+            ]
+          ]
+        },
+        "read_ack": {
+          "periods": 4120,
+          "mean_ns": 33.43495145631068,
+          "mhz": 29.908821650502354,
+          "mode_ns": [
+            [
+              34,
+              2836
+            ],
+            [
+              32,
+              1224
+            ],
+            [
+              36,
+              60
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "offline-4000000": {
+    "result": {
+      "status": "completed",
+      "lines": [
+        "load.offline(\"Python/STM32_CLOCK_4000000.py\")",
+        "SWD revision=pipe-r20 calibrated=4000000",
+        "set clock 4000000",
+        "SWD profile=4000000",
+        "SWD requested=4000000 transfers=94061226 wait=2839998 fault=0 error=0 invalid=2 exhausted=0",
+        "SWD parity request=0 value=00000000 bit=0",
+        "DUMP batch=64 fastpack=1 batches=41600 collect_avg_cycles=86756 pack_avg_cycles=30210 gap_avg_cycles=40692 queue_avg_cycles=8373",
+        "DUMP perf=disabled",
+        "USB starts=1531160 completes=1531160 errors=0 full=64365 inflight_us=1775289 blocked_us=1775203 size=2048 stat=008002b4 prime=00000000 complete=00000000",
+        "USB copy_mode=1 calls=2402334 bytes=1866869835 misaligned_bytes=1055789662 copy_avg_cycles=2115 copy_max_cycles=8322",
+        "=== Auto Download Round: 1 ===",
+        "idcode = 0X1BA01477",
+        "IDCODE: <masked>",
+        "fileName stm32_clock_cal.bin, Addr 0x8005000",
+        "Download:   3% ,used 265 ms",
+        "Download:   7% ,used 570 ms",
+        "Download:  10% ,used 875 ms",
+        "Download:  14% ,used 1180 ms",
+        "Download:  17% ,used 1484 ms",
+        "Download:  21% ,used 1789 ms",
+        "Download:  24% ,used 2094 ms",
+        "Download:  28% ,used 2399 ms",
+        "Download:  31% ,used 2703 ms",
+        "Download:  35% ,used 3008 ms",
+        "Download:  39% ,used 3313 ms",
+        "Download:  42% ,used 3617 ms",
+        "Download:  46% ,used 3922 ms",
+        "Download:  49% ,used 4226 ms",
+        "Download:  53% ,used 4532 ms",
+        "Download:  56% ,used 4836 ms",
+        "Download:  60% ,used 5141 ms",
+        "Download:  63% ,used 5446 ms",
+        "Download:  67% ,used 5752 ms",
+        "Download:  71% ,used 6056 ms",
+        "Download:  74% ,used 6361 ms",
+        "Download:  78% ,used 6666 ms",
+        "Download:  81% ,used 6971 ms",
+        "Download:  85% ,used 7275 ms",
+        "Download:  88% ,used 7580 ms",
+        "Download:  92% ,used 7885 ms",
+        "Download:  95% ,used 8191 ms",
+        "Download:  99% ,used 8496 ms",
+        "Download: 100% ,used 8601 ms",
+        "/stm32_clock_cal.bin loaded success.",
+        "auto download finished"
+      ]
+    },
+    "timing": {
+      "packets": {
+        "read": 5430,
+        "write": 3606
+      },
+      "scope": "Parity-valid packet timing, excludes idle gaps; not exhaustive protocol validation",
+      "phases": {
+        "read_data": {
+          "periods": 168330,
+          "mean_ns": 253.80144953365414,
+          "mhz": 3.940087819976772,
+          "mode_ns": [
+            [
+              254,
+              117688
+            ],
+            [
+              252,
+              42567
+            ],
+            [
+              246,
+              2117
+            ],
+            [
+              272,
+              2055
+            ],
+            [
+              274,
+              2012
+            ],
+            [
+              244,
+              1601
+            ],
+            [
+              282,
+              120
+            ],
+            [
+              256,
+              96
+            ]
+          ]
+        },
+        "read_header": {
+          "periods": 38010,
+          "mean_ns": 253.5581162851881,
+          "mhz": 3.943869021629958,
+          "mode_ns": [
+            [
+              254,
+              28461
+            ],
+            [
+              252,
+              9424
+            ],
+            [
+              256,
+              38
+            ],
+            [
+              278,
+              20
+            ],
+            [
+              262,
+              16
+            ],
+            [
+              280,
+              13
+            ],
+            [
+              288,
+              12
+            ],
+            [
+              286,
+              11
+            ]
+          ]
+        },
+        "read_ack": {
+          "periods": 10860,
+          "mean_ns": 265.62007366482504,
+          "mhz": 3.7647757046474526,
+          "mode_ns": [
+            [
+              254,
+              4345
+            ],
+            [
+              282,
+              2899
+            ],
+            [
+              252,
+              1399
+            ],
+            [
+              280,
+              1303
+            ],
+            [
+              274,
+              403
+            ],
+            [
+              272,
+              367
+            ],
+            [
+              246,
+              71
+            ],
+            [
+              244,
+              47
+            ]
+          ]
+        },
+        "write_data": {
+          "periods": 111786,
+          "mean_ns": 253.50033098956936,
+          "mhz": 3.944768024942525,
+          "mode_ns": [
+            [
+              254,
+              82157
+            ],
+            [
+              252,
+              29488
+            ],
+            [
+              256,
+              70
+            ],
+            [
+              270,
+              29
+            ],
+            [
+              262,
+              26
+            ],
+            [
+              260,
+              4
+            ],
+            [
+              272,
+              3
+            ],
+            [
+              286,
+              2
+            ]
+          ]
+        },
+        "write_header": {
+          "periods": 25242,
+          "mean_ns": 253.60589493700974,
+          "mhz": 3.9431260075732015,
+          "mode_ns": [
+            [
+              254,
+              18928
+            ],
+            [
+              252,
+              6151
+            ],
+            [
+              262,
+              48
+            ],
+            [
+              256,
+              35
+            ],
+            [
+              278,
+              24
+            ],
+            [
+              280,
+              16
+            ],
+            [
+              270,
+              11
+            ],
+            [
+              288,
+              9
+            ]
+          ]
+        },
+        "write_ack": {
+          "periods": 7212,
+          "mean_ns": 263.9217970049917,
+          "mhz": 3.7890011789404667,
+          "mode_ns": [
+            [
+              254,
+              3080
+            ],
+            [
+              282,
+              1598
+            ],
+            [
+              252,
+              958
+            ],
+            [
+              280,
+              759
+            ],
+            [
+              272,
+              291
+            ],
+            [
+              274,
+              252
+            ],
+            [
+              246,
+              141
+            ],
+            [
+              244,
+              92
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "offline-10000000": {
+    "result": {
+      "status": "completed",
+      "lines": [
+        "load.offline(\"Python/STM32_CLOCK_10000000.py\")",
+        "SWD revision=pipe-r20 calibrated=10000000",
+        "set clock 10000000",
+        "SWD profile=10000000",
+        "SWD requested=10000000 transfers=94627667 wait=2968880 fault=0 error=0 invalid=2 exhausted=0",
+        "SWD parity request=0 value=00000000 bit=0",
+        "DUMP batch=64 fastpack=1 batches=41600 collect_avg_cycles=86756 pack_avg_cycles=30210 gap_avg_cycles=40692 queue_avg_cycles=8373",
+        "DUMP perf=disabled",
+        "USB starts=1531266 completes=1531266 errors=0 full=64365 inflight_us=1775289 blocked_us=1775203 size=2048 stat=008002b4 prime=00000000 complete=00000000",
+        "USB copy_mode=1 calls=2403742 bytes=1866871243 misaligned_bytes=1055790717 copy_avg_cycles=2114 copy_max_cycles=8322",
+        "=== Auto Download Round: 1 ===",
+        "idcode = 0X1BA01477",
+        "IDCODE: <masked>",
+        "fileName stm32_clock_cal.bin, Addr 0x8005000",
+        "Download:   3% ,used 224 ms",
+        "Download:   7% ,used 487 ms",
+        "Download:  10% ,used 752 ms",
+        "Download:  14% ,used 1015 ms",
+        "Download:  17% ,used 1278 ms",
+        "Download:  21% ,used 1542 ms",
+        "Download:  24% ,used 1806 ms",
+        "Download:  28% ,used 2070 ms",
+        "Download:  31% ,used 2333 ms",
+        "Download:  35% ,used 2597 ms",
+        "Download:  39% ,used 2860 ms",
+        "Download:  42% ,used 3124 ms",
+        "Download:  46% ,used 3387 ms",
+        "Download:  49% ,used 3650 ms",
+        "Download:  53% ,used 3914 ms",
+        "Download:  56% ,used 4177 ms",
+        "Download:  60% ,used 4441 ms",
+        "Download:  63% ,used 4704 ms",
+        "Download:  67% ,used 4968 ms",
+        "Download:  71% ,used 5231 ms",
+        "Download:  74% ,used 5495 ms",
+        "Download:  78% ,used 5758 ms",
+        "Download:  81% ,used 6021 ms",
+        "Download:  85% ,used 6285 ms",
+        "Download:  88% ,used 6548 ms",
+        "Download:  92% ,used 6812 ms",
+        "Download:  95% ,used 7076 ms",
+        "Download:  99% ,used 7340 ms",
+        "Download: 100% ,used 7437 ms",
+        "/stm32_clock_cal.bin loaded success.",
+        "auto download finished"
+      ]
+    },
+    "timing": {
+      "packets": {
+        "write": 6755,
+        "read": 11431
+      },
+      "scope": "Parity-valid packet timing, excludes idle gaps; not exhaustive protocol validation",
+      "phases": {
+        "write_data": {
+          "periods": 209405,
+          "mean_ns": 100.26599173849716,
+          "mhz": 9.973471390061059,
+          "mode_ns": [
+            [
+              100,
+              177577
+            ],
+            [
+              102,
+              29798
+            ],
+            [
+              98,
+              2016
+            ],
+            [
+              108,
+              6
+            ],
+            [
+              110,
+              4
+            ],
+            [
+              112,
+              4
+            ]
+          ]
+        },
+        "write_header": {
+          "periods": 47285,
+          "mean_ns": 100.64324838743788,
+          "mhz": 9.93608628519604,
+          "mode_ns": [
+            [
+              100,
+              38254
+            ],
+            [
+              102,
+              6992
+            ],
+            [
+              108,
+              844
+            ],
+            [
+              110,
+              485
+            ],
+            [
+              98,
+              362
+            ],
+            [
+              112,
+              268
+            ],
+            [
+              134,
+              35
+            ],
+            [
+              120,
+              14
+            ]
+          ]
+        },
+        "write_ack": {
+          "periods": 13510,
+          "mean_ns": 103.96491487786824,
+          "mhz": 9.618629526843169,
+          "mode_ns": [
+            [
+              100,
+              9670
+            ],
+            [
+              102,
+              1781
+            ],
+            [
+              128,
+              1048
+            ],
+            [
+              120,
+              209
+            ],
+            [
+              130,
+              189
+            ],
+            [
+              108,
+              162
+            ],
+            [
+              110,
+              87
+            ],
+            [
+              98,
+              86
+            ]
+          ]
+        },
+        "read_data": {
+          "periods": 354361,
+          "mean_ns": 100.37294736158888,
+          "mhz": 9.96284383677154,
+          "mode_ns": [
+            [
+              100,
+              298329
+            ],
+            [
+              102,
+              50056
+            ],
+            [
+              98,
+              3472
+            ],
+            [
+              108,
+              949
+            ],
+            [
+              120,
+              499
+            ],
+            [
+              110,
+              438
+            ],
+            [
+              128,
+              370
+            ],
+            [
+              130,
+              73
+            ]
+          ]
+        },
+        "read_header": {
+          "periods": 80017,
+          "mean_ns": 100.60692102928128,
+          "mhz": 9.939674028081564,
+          "mode_ns": [
+            [
+              100,
+              64821
+            ],
+            [
+              102,
+              11830
+            ],
+            [
+              108,
+              1810
+            ],
+            [
+              110,
+              915
+            ],
+            [
+              98,
+              566
+            ],
+            [
+              134,
+              37
+            ],
+            [
+              142,
+              8
+            ],
+            [
+              124,
+              6
+            ]
+          ]
+        },
+        "read_ack": {
+          "periods": 22862,
+          "mean_ns": 112.10480272942,
+          "mhz": 8.920224429756452,
+          "mode_ns": [
+            [
+              100,
+              7563
+            ],
+            [
+              120,
+              4456
+            ],
+            [
+              128,
+              3825
+            ],
+            [
+              108,
+              2486
+            ],
+            [
+              102,
+              1417
+            ],
+            [
+              110,
+              1218
+            ],
+            [
+              130,
+              667
+            ],
+            [
+              118,
+              578
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "offline-20000000": {
+    "result": {
+      "status": "completed",
+      "lines": [
+        "load.offline(\"Python/STM32_CLOCK_20000000.py\")",
+        "SWD revision=pipe-r20 calibrated=20000000",
+        "set clock 20000000",
+        "SWD profile=20000000",
+        "SWD requested=20000000 transfers=95602498 wait=3209671 fault=0 error=0 invalid=2 exhausted=0",
+        "SWD parity request=0 value=00000000 bit=0",
+        "DUMP batch=64 fastpack=1 batches=41600 collect_avg_cycles=86756 pack_avg_cycles=30210 gap_avg_cycles=40692 queue_avg_cycles=8373",
+        "DUMP perf=disabled",
+        "USB starts=1531356 completes=1531356 errors=0 full=64365 inflight_us=1775289 blocked_us=1775203 size=2048 stat=008002b4 prime=00000000 complete=00000000",
+        "USB copy_mode=1 calls=2405150 bytes=1866872651 misaligned_bytes=1055791772 copy_avg_cycles=2113 copy_max_cycles=8322",
+        "=== Auto Download Round: 1 ===",
+        "idcode = 0X1BA01477",
+        "IDCODE: <masked>",
+        "fileName stm32_clock_cal.bin, Addr 0x8005000",
+        "Download:   3% ,used 211 ms",
+        "Download:   7% ,used 462 ms",
+        "Download:  10% ,used 713 ms",
+        "Download:  14% ,used 965 ms",
+        "Download:  17% ,used 1216 ms",
+        "Download:  21% ,used 1467 ms",
+        "Download:  24% ,used 1718 ms",
+        "Download:  28% ,used 1969 ms",
+        "Download:  31% ,used 2220 ms",
+        "Download:  35% ,used 2472 ms",
+        "Download:  39% ,used 2723 ms",
+        "Download:  42% ,used 2974 ms",
+        "Download:  46% ,used 3225 ms",
+        "Download:  49% ,used 3476 ms",
+        "Download:  53% ,used 3727 ms",
+        "Download:  56% ,used 3979 ms",
+        "Download:  60% ,used 4230 ms",
+        "Download:  63% ,used 4481 ms",
+        "Download:  67% ,used 4732 ms",
+        "Download:  71% ,used 4983 ms",
+        "Download:  74% ,used 5234 ms",
+        "Download:  78% ,used 5485 ms",
+        "Download:  81% ,used 5737 ms",
+        "Download:  85% ,used 5988 ms",
+        "Download:  88% ,used 6239 ms",
+        "Download:  92% ,used 6490 ms",
+        "Download:  95% ,used 6741 ms",
+        "Download:  99% ,used 6992 ms",
+        "Download: 100% ,used 7087 ms",
+        "/stm32_clock_cal.bin loaded success.",
+        "auto download finished"
+      ]
+    },
+    "timing": {
+      "packets": {
+        "write": 10599,
+        "read": 18606
+      },
+      "scope": "Parity-valid packet timing, excludes idle gaps; not exhaustive protocol validation",
+      "phases": {
+        "write_data": {
+          "periods": 328569,
+          "mean_ns": 50.114161713369185,
+          "mhz": 19.954439340311772,
+          "mode_ns": [
+            [
+              50,
+              272096
+            ],
+            [
+              52,
+              37614
+            ],
+            [
+              48,
+              18859
+            ]
+          ]
+        },
+        "write_header": {
+          "periods": 74193,
+          "mean_ns": 50.10769210033292,
+          "mhz": 19.957015741169126,
+          "mode_ns": [
+            [
+              50,
+              60766
+            ],
+            [
+              52,
+              8711
+            ],
+            [
+              48,
+              4716
+            ]
+          ]
+        },
+        "write_ack": {
+          "periods": 21198,
+          "mean_ns": 50.16539296160015,
+          "mhz": 19.934060932513077,
+          "mode_ns": [
+            [
+              50,
+              17513
+            ],
+            [
+              52,
+              2719
+            ],
+            [
+              48,
+              966
+            ]
+          ]
+        },
+        "read_data": {
+          "periods": 576786,
+          "mean_ns": 50.14013516278134,
+          "mhz": 19.94410259871602,
+          "mode_ns": [
+            [
+              50,
+              478129
+            ],
+            [
+              52,
+              68698
+            ],
+            [
+              48,
+              29796
+            ],
+            [
+              72,
+              80
+            ],
+            [
+              62,
+              42
+            ],
+            [
+              74,
+              25
+            ],
+            [
+              60,
+              16
+            ]
+          ]
+        },
+        "read_header": {
+          "periods": 130242,
+          "mean_ns": 50.11079375316718,
+          "mhz": 19.955780483656707,
+          "mode_ns": [
+            [
+              50,
+              106593
+            ],
+            [
+              52,
+              15432
+            ],
+            [
+              48,
+              8217
+            ]
+          ]
+        },
+        "read_ack": {
+          "periods": 37212,
+          "mean_ns": 50.16693539718371,
+          "mhz": 19.933448038688415,
+          "mode_ns": [
+            [
+              50,
+              30712
+            ],
+            [
+              52,
+              4803
+            ],
+            [
+              48,
+              1697
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "offline-30000000": {
+    "result": {
+      "status": "completed",
+      "lines": [
+        "load.offline(\"Python/STM32_CLOCK_30000000.py\")",
+        "SWD revision=pipe-r20 calibrated=30000000",
+        "set clock 30000000",
+        "SWD profile=30000000",
+        "SWD requested=30000000 transfers=96922927 wait=3539539 fault=0 error=0 invalid=2 exhausted=0",
+        "SWD parity request=0 value=00000000 bit=0",
+        "DUMP batch=64 fastpack=1 batches=41600 collect_avg_cycles=86756 pack_avg_cycles=30210 gap_avg_cycles=40692 queue_avg_cycles=8373",
+        "DUMP perf=disabled",
+        "USB starts=1531445 completes=1531445 errors=0 full=64365 inflight_us=1775289 blocked_us=1775203 size=2048 stat=008002b4 prime=00000000 complete=00000000",
+        "USB copy_mode=1 calls=2406557 bytes=1866874058 misaligned_bytes=1055792826 copy_avg_cycles=2112 copy_max_cycles=8322",
+        "=== Auto Download Round: 1 ===",
+        "idcode = 0X1BA01477",
+        "IDCODE: <masked>",
+        "fileName stm32_clock_cal.bin, Addr 0x8005000",
+        "Download:   3% ,used 214 ms",
+        "Download:   7% ,used 463 ms",
+        "Download:  10% ,used 713 ms",
+        "Download:  14% ,used 963 ms",
+        "Download:  17% ,used 1213 ms",
+        "Download:  21% ,used 1463 ms",
+        "Download:  24% ,used 1713 ms",
+        "Download:  28% ,used 1963 ms",
+        "Download:  31% ,used 2213 ms",
+        "Download:  35% ,used 2463 ms",
+        "Download:  39% ,used 2714 ms",
+        "Download:  42% ,used 2964 ms",
+        "Download:  46% ,used 3214 ms",
+        "Download:  49% ,used 3464 ms",
+        "Download:  53% ,used 3714 ms",
+        "Download:  56% ,used 3964 ms",
+        "Download:  60% ,used 4214 ms",
+        "Download:  63% ,used 4464 ms",
+        "Download:  67% ,used 4715 ms",
+        "Download:  71% ,used 4965 ms",
+        "Download:  74% ,used 5215 ms",
+        "Download:  78% ,used 5465 ms",
+        "Download:  81% ,used 5716 ms",
+        "Download:  85% ,used 5966 ms",
+        "Download:  88% ,used 6215 ms",
+        "Download:  92% ,used 6466 ms",
+        "Download:  95% ,used 6716 ms",
+        "Download:  99% ,used 6966 ms",
+        "Download: 100% ,used 7061 ms",
+        "/stm32_clock_cal.bin loaded success.",
+        "auto download finished"
+      ]
+    },
+    "timing": {
+      "packets": {
+        "write": 11846,
+        "read": 20808
+      },
+      "scope": "Parity-valid packet timing, excludes idle gaps; not exhaustive protocol validation",
+      "phases": {
+        "write_data": {
+          "periods": 367226,
+          "mean_ns": 33.416528241464384,
+          "mhz": 29.925310995029264,
+          "mode_ns": [
+            [
+              34,
+              259843
+            ],
+            [
+              32,
+              107258
+            ],
+            [
+              36,
+              125
+            ]
+          ]
+        },
+        "write_header": {
+          "periods": 82922,
+          "mean_ns": 33.389619160174625,
+          "mhz": 29.949428150194272,
+          "mode_ns": [
+            [
+              34,
+              57513
+            ],
+            [
+              32,
+              25358
+            ],
+            [
+              36,
+              51
+            ]
+          ]
+        },
+        "write_ack": {
+          "periods": 23692,
+          "mean_ns": 33.430356238392704,
+          "mhz": 29.912932810795525,
+          "mode_ns": [
+            [
+              34,
+              15824
+            ],
+            [
+              32,
+              7482
+            ],
+            [
+              36,
+              346
+            ],
+            [
+              54,
+              28
+            ],
+            [
+              52,
+              12
+            ]
+          ]
+        },
+        "read_data": {
+          "periods": 645048,
+          "mean_ns": 33.41081593927894,
+          "mhz": 29.93042737469828,
+          "mode_ns": [
+            [
+              34,
+              445250
+            ],
+            [
+              32,
+              194912
+            ],
+            [
+              36,
+              4886
+            ]
+          ]
+        },
+        "read_header": {
+          "periods": 145656,
+          "mean_ns": 33.39627615752183,
+          "mhz": 29.943458225200068,
+          "mode_ns": [
+            [
+              34,
+              101584
+            ],
+            [
+              32,
+              44020
+            ],
+            [
+              36,
+              52
+            ]
+          ]
+        },
+        "read_ack": {
+          "periods": 41616,
+          "mean_ns": 33.41580161476355,
+          "mhz": 29.925961721001674,
+          "mode_ns": [
+            [
+              34,
+              28154
+            ],
+            [
+              32,
+              12926
+            ],
+            [
+              36,
+              509
+            ],
+            [
+              54,
+              18
+            ],
+            [
+              52,
+              9
+            ]
+          ]
+        }
+      }
+    }
+  }
+}

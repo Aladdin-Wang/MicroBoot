@@ -1,0 +1,17 @@
+{
+  "symbols": {
+    "demo_illegal_instruction": "0x800062ea",
+    "trap_record": "0x82a90",
+    "superwatch_tick": "0x82a80",
+    "superwatch_build_id": "0x82a84",
+    "trap_unlock": "0x82a88",
+    "trap_request": "0x82a8c",
+    "superwatch_wave": "0x82a40",
+    "_SEGGER_RTT": "0x82aa4"
+  },
+  "bin_size": 78624,
+  "sha256": "2d97cb55bc6ab130f0339969f2083dbe7514dcbfd52d61fa2ec56e6c1811c966",
+  "flash": "ROM API program completed; post-flash checks resumed after local report-script KeyError",
+  "build_id": "0x20260915",
+  "rtt_signature_pass": true
+}

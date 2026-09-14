@@ -1,0 +1,34 @@
+# Copyright (c) 2021 HPMicro
+# SPDX-License-Identifier: BSD-3-Clause
+
+cmake_minimum_required(VERSION 3.13)
+
+option(HPM_DOC_RTOS "Enable FreeRTOS SystemView test" OFF)
+if(HPM_DOC_RTOS)
+    set(CONFIG_FREERTOS 1)
+    set(CONFIG_SEGGER_RTT 1)
+endif()
+
+option(HPM_DOC_RTT "Enable RTT documentation fixture" OFF)
+if(HPM_DOC_RTT)
+    set(CONFIG_SEGGER_RTT 1)
+endif()
+
+find_package(hpm-sdk REQUIRED HINTS $ENV{HPM_SDK_BASE})
+
+project(hello_world)
+
+if(HPM_DOC_RTT)
+    sdk_compile_definitions(-DHPM_DOC_RTT=1 -DCONFIG_NDEBUG_CONSOLE=1)
+endif()
+if(HPM_DOC_RTOS)
+    sdk_inc(src/rtos)
+    sdk_compile_definitions(-DCONFIG_NDEBUG_CONSOLE=1 -DUSE_NONVECTOR_MODE=1 -DDISABLE_IRQ_PREEMPTIVE=1)
+    sdk_compile_definitions(-DSEGGER_SYSVIEW_RTT_BUFFER_SIZE=16384)
+    add_subdirectory(third_party/segger_sysview)
+    sdk_app_src(src/rtos/main.c)
+else()
+    sdk_app_src(src/hello_world.c)
+endif()
+sdk_ld_options("-lm")
+generate_ide_projects()

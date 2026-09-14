@@ -1,0 +1,29 @@
+{
+  "package": "E:\\software\\HPM5300\\MicroLink_Plus\\MicroLink\\microlink_app\\.build\\stage8\\arm-deferred-pipe-r20\\HPMLink.uf2",
+  "sha256": "85b51a4fb19eef7a0414bf9d09f8f5d70c0a6eded9b69ed88667f15319a2ec00",
+  "bytes": 1575424,
+  "blocks": 3077,
+  "revision": "pipe-r20",
+  "ilm_used": 125856,
+  "ilm_free": 5216,
+  "rt_heap_bytes": 12288,
+  "main_stack_bytes": 6144,
+  "laboratory": false,
+  "electrical_qualification": "ARM 4/10/20/30 MHz mem_dump, Chrome profile/config, online/offline; Keil 1/2/5/10 MHz measured",
+  "instruction_model": {
+    "passed": true,
+    "cases": 6024,
+    "functions": 10,
+    "checks": "Exact clock count, bit order, raw parity, read aperture ordering, unrelated GPIO preservation, high exit and ABI; ideal inputs only, not electrical latency."
+  },
+  "phase_recipes": [
+    "PIPE_READER mklink_swd_window_1, 2, 1, 5, 0",
+    "PIPE_READER mklink_swd_window_3, 0, 4, 0, 2"
+  ],
+  "note": "Public ARM/HPM four profiles, default10M. r19 clock calibration plus r20 REPL/RTT/SystemView execution gate. Independent 2KiB aligned USB DMA stage. No private phase override required. HPM batching/timestamp software changes await current-firmware physical HPM target regression.",
+  "official_release": false,
+  "freeze_scope": "STM32F103RET6 qualified baseline; HPM current-firmware physical regression pending",
+  "host_source_commit": "0bc525069ff96244a188ff1f9d89dba77dba99a2",
+  "source_hashes_verified": 77,
+  "frozen_at": "2026-09-14T06:42:07.314888+00:00"
+}

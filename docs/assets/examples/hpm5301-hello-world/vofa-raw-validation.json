@@ -1,0 +1,13 @@
+{
+  "raw_bytes": 39680,
+  "sha256": "e6b28bc60708774769c9481c4cf7eb2de746de489f7b226a997d4e46c32d7cd8",
+  "prefix_bytes": 68,
+  "prefix_ascii": "vofa.send(0x00082A40, \"float\", 0x00082A44, \"float\", 0.001)\n\r\n0\r\n>>> ",
+  "frames": 3301,
+  "tail_errors": 0,
+  "trailing_bytes": 0,
+  "finite_range_pass": true,
+  "value_min": -100.0,
+  "value_max": 100.0,
+  "scope": "This new RTOS build14 capture only; earlier captures did not retain raw bytes. JustFloat has no CRC; complete tails do not prove absence of bit corruption."
+}

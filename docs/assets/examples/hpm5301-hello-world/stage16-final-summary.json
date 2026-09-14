@@ -1,0 +1,1879 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "name": "block20-600s",
+      "profile_hz": 20000000,
+      "seconds": 600,
+      "samples": 124590,
+      "measured_samples": 124549,
+      "sample_hz": 208.233851517313,
+      "payload_MiB_s": 0.813413482489504,
+      "median_us": 4787,
+      "p99_us": 4913,
+      "max_us": 9057,
+      "gaps_over_1ms": 124548,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 145534104,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 249180,
+        "complete_samples": 124590,
+        "parser_dropped_bytes": 50,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 313500,
+        "completes": 313500,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 829,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 7,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "fixed20-30s",
+      "profile_hz": 20000000,
+      "seconds": 30,
+      "samples": 2561088,
+      "measured_samples": 2544006,
+      "sample_hz": 86410.7419210361,
+      "payload_MiB_s": 0.32963082092680396,
+      "median_us": 7,
+      "p99_us": 100,
+      "max_us": 312,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 5342203,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 2561088,
+        "complete_samples": 2561088,
+        "parser_dropped_bytes": 47,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 365900,
+        "completes": 365900,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 829,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "dynamic20-120s",
+      "profile_hz": 20000000,
+      "seconds": 120,
+      "samples": 10384584,
+      "measured_samples": 10367445,
+      "sample_hz": 86952.96560153132,
+      "payload_MiB_s": 0.3316992401181462,
+      "median_us": 7,
+      "p99_us": 101,
+      "max_us": 304,
+      "gaps_over_1ms": 0,
+      "value_changes": 119711,
+      "dmi": {
+        "scans": 21641253,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 10384584,
+        "complete_samples": 10384584,
+        "parser_dropped_bytes": 47,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 577513,
+        "completes": 577513,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "multi20-30s",
+      "profile_hz": 20000000,
+      "seconds": 30,
+      "samples": 229584,
+      "measured_samples": 228044,
+      "sample_hz": 7746.031603692095,
+      "payload_MiB_s": 0.4727802492487851,
+      "median_us": 114,
+      "p99_us": 366,
+      "max_us": 488,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 7375833,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 229584,
+        "complete_samples": 229584,
+        "parser_dropped_bytes": 48,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 589843,
+        "completes": 589843,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "block30-300s",
+      "profile_hz": 30000000,
+      "seconds": 300,
+      "samples": 72836,
+      "measured_samples": 72787,
+      "sample_hz": 243.62052839634467,
+      "payload_MiB_s": 0.9516426890482214,
+      "median_us": 4078,
+      "p99_us": 4246,
+      "max_us": 4298,
+      "gaps_over_1ms": 72786,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 85084128,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 145673,
+        "complete_samples": 72836,
+        "parser_dropped_bytes": 50,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 773119,
+        "completes": 773119,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": true
+    },
+    {
+      "name": "fixed30-30s",
+      "profile_hz": 30000000,
+      "seconds": 30,
+      "samples": 2916936,
+      "measured_samples": 2897423,
+      "sample_hz": 98429.9967400874,
+      "payload_MiB_s": 0.3754806394198891,
+      "median_us": 6,
+      "p99_us": 96,
+      "max_us": 303,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 6084253,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 2916936,
+        "complete_samples": 2916936,
+        "parser_dropped_bytes": 47,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 837081,
+        "completes": 837081,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "dynamic30-30s",
+      "profile_hz": 30000000,
+      "seconds": 30,
+      "samples": 2907864,
+      "measured_samples": 2888448,
+      "sample_hz": 98134.81317299472,
+      "payload_MiB_s": 0.3743546034736432,
+      "median_us": 6,
+      "p99_us": 98,
+      "max_us": 298,
+      "gaps_over_1ms": 0,
+      "value_changes": 29706,
+      "dmi": {
+        "scans": 6065353,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 2907864,
+        "complete_samples": 2907864,
+        "parser_dropped_bytes": 47,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 900674,
+        "completes": 900674,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "multi30-30s",
+      "profile_hz": 30000000,
+      "seconds": 30,
+      "samples": 269400,
+      "measured_samples": 267598,
+      "sample_hz": 9091.920963004233,
+      "payload_MiB_s": 0.5549268165896138,
+      "median_us": 96,
+      "p99_us": 338,
+      "max_us": 469,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 8654803,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 269400,
+        "complete_samples": 269400,
+        "parser_dropped_bytes": 48,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 915108,
+        "completes": 915108,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle00-4000000",
+      "profile_hz": 4000000,
+      "seconds": 1,
+      "samples": 6024,
+      "measured_samples": 4154,
+      "sample_hz": 9371.01596434817,
+      "payload_MiB_s": 0.14299035590130874,
+      "median_us": 95,
+      "p99_us": 255,
+      "max_us": 402,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 54711,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 6024,
+        "complete_samples": 6024,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 915744,
+        "completes": 915744,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle00-10000000",
+      "profile_hz": 10000000,
+      "seconds": 1,
+      "samples": 12168,
+      "measured_samples": 8677,
+      "sample_hz": 17556.88889338581,
+      "payload_MiB_s": 0.26789686421792314,
+      "median_us": 47,
+      "p99_us": 210,
+      "max_us": 354,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 109419,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 12168,
+        "complete_samples": 12168,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 916610,
+        "completes": 916610,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle00-20000000",
+      "profile_hz": 20000000,
+      "seconds": 1,
+      "samples": 18552,
+      "measured_samples": 13237,
+      "sample_hz": 26792.979899192324,
+      "payload_MiB_s": 0.4088284286375782,
+      "median_us": 29,
+      "p99_us": 178,
+      "max_us": 340,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 166455,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 18552,
+        "complete_samples": 18552,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 917733,
+        "completes": 917733,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle00-30000000",
+      "profile_hz": 30000000,
+      "seconds": 1,
+      "samples": 21576,
+      "measured_samples": 15414,
+      "sample_hz": 31180.711777177166,
+      "payload_MiB_s": 0.4757799038265559,
+      "median_us": 24,
+      "p99_us": 167,
+      "max_us": 334,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 193809,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 21576,
+        "complete_samples": 21576,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 918882,
+        "completes": 918882,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle01-4000000",
+      "profile_hz": 4000000,
+      "seconds": 1,
+      "samples": 5856,
+      "measured_samples": 4008,
+      "sample_hz": 9287.45926451296,
+      "payload_MiB_s": 0.14171538184376464,
+      "median_us": 95,
+      "p99_us": 304,
+      "max_us": 432,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 53353,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 5856,
+        "complete_samples": 5856,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 919509,
+        "completes": 919509,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle01-10000000",
+      "profile_hz": 10000000,
+      "seconds": 1,
+      "samples": 12384,
+      "measured_samples": 8827,
+      "sample_hz": 17903.653757211363,
+      "payload_MiB_s": 0.2731880761293238,
+      "median_us": 47,
+      "p99_us": 184,
+      "max_us": 328,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 111359,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 12384,
+        "complete_samples": 12384,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 920383,
+        "completes": 920383,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle01-20000000",
+      "profile_hz": 20000000,
+      "seconds": 1,
+      "samples": 19200,
+      "measured_samples": 13705,
+      "sample_hz": 27697.102354374965,
+      "payload_MiB_s": 0.4226242424678797,
+      "median_us": 29,
+      "p99_us": 158,
+      "max_us": 345,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 171887,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 19200,
+        "complete_samples": 19200,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 921513,
+        "completes": 921513,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle01-30000000",
+      "profile_hz": 30000000,
+      "seconds": 1,
+      "samples": 22296,
+      "measured_samples": 15900,
+      "sample_hz": 32121.78761920155,
+      "payload_MiB_s": 0.49013958159182053,
+      "median_us": 24,
+      "p99_us": 150,
+      "max_us": 311,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 199241,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 22296,
+        "complete_samples": 22296,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 922684,
+        "completes": 922684,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle02-4000000",
+      "profile_hz": 4000000,
+      "seconds": 1,
+      "samples": 5880,
+      "measured_samples": 4032,
+      "sample_hz": 9292.643343230733,
+      "payload_MiB_s": 0.14179448460740254,
+      "median_us": 95,
+      "p99_us": 302,
+      "max_us": 435,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 53547,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 5880,
+        "complete_samples": 5880,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 923313,
+        "completes": 923313,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle02-10000000",
+      "profile_hz": 10000000,
+      "seconds": 1,
+      "samples": 12144,
+      "measured_samples": 8660,
+      "sample_hz": 17516.355206356784,
+      "payload_MiB_s": 0.2672783692376218,
+      "median_us": 47,
+      "p99_us": 218,
+      "max_us": 359,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 109225,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 12144,
+        "complete_samples": 12144,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 924176,
+        "completes": 924176,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle02-20000000",
+      "profile_hz": 20000000,
+      "seconds": 1,
+      "samples": 18504,
+      "measured_samples": 13193,
+      "sample_hz": 26679.556122727576,
+      "payload_MiB_s": 0.40709771915783044,
+      "median_us": 29,
+      "p99_us": 183,
+      "max_us": 353,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 166261,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 18504,
+        "complete_samples": 18504,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 925300,
+        "completes": 925300,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle02-30000000",
+      "profile_hz": 30000000,
+      "seconds": 1,
+      "samples": 21384,
+      "measured_samples": 15240,
+      "sample_hz": 30837.254009207263,
+      "payload_MiB_s": 0.47053915419322606,
+      "median_us": 24,
+      "p99_us": 172,
+      "max_us": 373,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 192063,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 21384,
+        "complete_samples": 21384,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 926454,
+        "completes": 926454,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle03-4000000",
+      "profile_hz": 4000000,
+      "seconds": 1,
+      "samples": 5880,
+      "measured_samples": 4034,
+      "sample_hz": 9253.119744501013,
+      "payload_MiB_s": 0.14119140235139485,
+      "median_us": 95,
+      "p99_us": 316,
+      "max_us": 421,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 53547,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 5880,
+        "complete_samples": 5880,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 927083,
+        "completes": 927083,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle03-10000000",
+      "profile_hz": 10000000,
+      "seconds": 1,
+      "samples": 12144,
+      "measured_samples": 8650,
+      "sample_hz": 17546.244263844877,
+      "payload_MiB_s": 0.2677344400611096,
+      "median_us": 47,
+      "p99_us": 212,
+      "max_us": 355,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 109225,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 12144,
+        "complete_samples": 12144,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 927944,
+        "completes": 927944,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle03-20000000",
+      "profile_hz": 20000000,
+      "seconds": 1,
+      "samples": 18552,
+      "measured_samples": 13225,
+      "sample_hz": 26730.59585942585,
+      "payload_MiB_s": 0.407876523733915,
+      "median_us": 29,
+      "p99_us": 184,
+      "max_us": 343,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 166649,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 18552,
+        "complete_samples": 18552,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 929081,
+        "completes": 929081,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle03-30000000",
+      "profile_hz": 30000000,
+      "seconds": 1,
+      "samples": 21528,
+      "measured_samples": 15341,
+      "sample_hz": 31051.563002892613,
+      "payload_MiB_s": 0.47380924992206747,
+      "median_us": 24,
+      "p99_us": 173,
+      "max_us": 366,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 193227,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 21528,
+        "complete_samples": 21528,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 930229,
+        "completes": 930229,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle04-4000000",
+      "profile_hz": 4000000,
+      "seconds": 1,
+      "samples": 6024,
+      "measured_samples": 4154,
+      "sample_hz": 9378.38027039905,
+      "payload_MiB_s": 0.1431027262939308,
+      "median_us": 95,
+      "p99_us": 264,
+      "max_us": 373,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 54517,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 6024,
+        "complete_samples": 6024,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 930867,
+        "completes": 930867,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle04-10000000",
+      "profile_hz": 10000000,
+      "seconds": 1,
+      "samples": 12168,
+      "measured_samples": 8679,
+      "sample_hz": 17576.265762536103,
+      "payload_MiB_s": 0.2681925317769791,
+      "median_us": 47,
+      "p99_us": 213,
+      "max_us": 360,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 109419,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 12168,
+        "complete_samples": 12168,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 931739,
+        "completes": 931739,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle04-20000000",
+      "profile_hz": 20000000,
+      "seconds": 1,
+      "samples": 18480,
+      "measured_samples": 13186,
+      "sample_hz": 26688.87872298219,
+      "payload_MiB_s": 0.4072399707486296,
+      "median_us": 29,
+      "p99_us": 182,
+      "max_us": 364,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 165873,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 18480,
+        "complete_samples": 18480,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 932864,
+        "completes": 932864,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle04-30000000",
+      "profile_hz": 30000000,
+      "seconds": 1,
+      "samples": 21480,
+      "measured_samples": 15329,
+      "sample_hz": 31025.262676374205,
+      "payload_MiB_s": 0.4734079387874482,
+      "median_us": 24,
+      "p99_us": 172,
+      "max_us": 336,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 192839,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 21480,
+        "complete_samples": 21480,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 934030,
+        "completes": 934030,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle05-4000000",
+      "profile_hz": 4000000,
+      "seconds": 1,
+      "samples": 5880,
+      "measured_samples": 4036,
+      "sample_hz": 9273.346540478675,
+      "payload_MiB_s": 0.14150003876462822,
+      "median_us": 95,
+      "p99_us": 313,
+      "max_us": 409,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 53547,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 5880,
+        "complete_samples": 5880,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 934659,
+        "completes": 934659,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle05-10000000",
+      "profile_hz": 10000000,
+      "seconds": 1,
+      "samples": 12456,
+      "measured_samples": 8874,
+      "sample_hz": 17979.663709569566,
+      "payload_MiB_s": 0.27434789595900827,
+      "median_us": 47,
+      "p99_us": 172,
+      "max_us": 309,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 111747,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 12456,
+        "complete_samples": 12456,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 935537,
+        "completes": 935537,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle05-20000000",
+      "profile_hz": 20000000,
+      "seconds": 1,
+      "samples": 19128,
+      "measured_samples": 13652,
+      "sample_hz": 27685.780286329093,
+      "payload_MiB_s": 0.4224514814198165,
+      "median_us": 29,
+      "p99_us": 157,
+      "max_us": 319,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 171305,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 19128,
+        "complete_samples": 19128,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 936671,
+        "completes": 936671,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle05-30000000",
+      "profile_hz": 30000000,
+      "seconds": 1,
+      "samples": 22272,
+      "measured_samples": 15878,
+      "sample_hz": 32140.066478540226,
+      "payload_MiB_s": 0.4904184948507725,
+      "median_us": 24,
+      "p99_us": 148,
+      "max_us": 335,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 199435,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 22272,
+        "complete_samples": 22272,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 937842,
+        "completes": 937842,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle06-4000000",
+      "profile_hz": 4000000,
+      "seconds": 1,
+      "samples": 5808,
+      "measured_samples": 3965,
+      "sample_hz": 9247.033904235814,
+      "payload_MiB_s": 0.1410985397985201,
+      "median_us": 95,
+      "p99_us": 317,
+      "max_us": 427,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 52965,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 5808,
+        "complete_samples": 5808,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 938468,
+        "completes": 938468,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle06-10000000",
+      "profile_hz": 10000000,
+      "seconds": 1,
+      "samples": 12144,
+      "measured_samples": 8659,
+      "sample_hz": 17533.662891130494,
+      "payload_MiB_s": 0.2675424635487441,
+      "median_us": 47,
+      "p99_us": 214,
+      "max_us": 369,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 109225,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 12144,
+        "complete_samples": 12144,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 939332,
+        "completes": 939332,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle06-20000000",
+      "profile_hz": 20000000,
+      "seconds": 1,
+      "samples": 18504,
+      "measured_samples": 13197,
+      "sample_hz": 26699.25502684898,
+      "payload_MiB_s": 0.40739830058058135,
+      "median_us": 29,
+      "p99_us": 182,
+      "max_us": 369,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 166067,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 18504,
+        "complete_samples": 18504,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 940444,
+        "completes": 940444,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle06-30000000",
+      "profile_hz": 30000000,
+      "seconds": 1,
+      "samples": 21432,
+      "measured_samples": 15263,
+      "sample_hz": 30920.462165891055,
+      "payload_MiB_s": 0.4718088099043435,
+      "median_us": 24,
+      "p99_us": 171,
+      "max_us": 371,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 192451,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 21432,
+        "complete_samples": 21432,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 941605,
+        "completes": 941605,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle07-4000000",
+      "profile_hz": 4000000,
+      "seconds": 1,
+      "samples": 5832,
+      "measured_samples": 3986,
+      "sample_hz": 9269.317280473026,
+      "payload_MiB_s": 0.14143855713612405,
+      "median_us": 95,
+      "p99_us": 309,
+      "max_us": 426,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 52965,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 5832,
+        "complete_samples": 5832,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 942234,
+        "completes": 942234,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle07-10000000",
+      "profile_hz": 10000000,
+      "seconds": 1,
+      "samples": 12144,
+      "measured_samples": 8658,
+      "sample_hz": 17519.539234296768,
+      "payload_MiB_s": 0.26732695364832715,
+      "median_us": 47,
+      "p99_us": 213,
+      "max_us": 356,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 109225,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 12144,
+        "complete_samples": 12144,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 943098,
+        "completes": 943098,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle07-20000000",
+      "profile_hz": 20000000,
+      "seconds": 1,
+      "samples": 18408,
+      "measured_samples": 13123,
+      "sample_hz": 26567.2167590911,
+      "payload_MiB_s": 0.405383556504686,
+      "median_us": 29,
+      "p99_us": 184,
+      "max_us": 341,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 165485,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 18408,
+        "complete_samples": 18408,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 944212,
+        "completes": 944212,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle07-30000000",
+      "profile_hz": 30000000,
+      "seconds": 1,
+      "samples": 21480,
+      "measured_samples": 15300,
+      "sample_hz": 30930.5029062421,
+      "payload_MiB_s": 0.47196201944339145,
+      "median_us": 24,
+      "p99_us": 173,
+      "max_us": 348,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 192839,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 21480,
+        "complete_samples": 21480,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 945378,
+        "completes": 945378,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle08-4000000",
+      "profile_hz": 4000000,
+      "seconds": 1,
+      "samples": 5928,
+      "measured_samples": 4054,
+      "sample_hz": 9386.246474078396,
+      "payload_MiB_s": 0.14322275503659662,
+      "median_us": 95,
+      "p99_us": 266,
+      "max_us": 400,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 53741,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 5928,
+        "complete_samples": 5928,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 946010,
+        "completes": 946010,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle08-10000000",
+      "profile_hz": 10000000,
+      "seconds": 1,
+      "samples": 12168,
+      "measured_samples": 8673,
+      "sample_hz": 17555.011235045244,
+      "payload_MiB_s": 0.267868213425373,
+      "median_us": 47,
+      "p99_us": 215,
+      "max_us": 355,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 109419,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 12168,
+        "complete_samples": 12168,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 946873,
+        "completes": 946873,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle08-20000000",
+      "profile_hz": 20000000,
+      "seconds": 1,
+      "samples": 18480,
+      "measured_samples": 13186,
+      "sample_hz": 26686.447899188577,
+      "payload_MiB_s": 0.40720287932111476,
+      "median_us": 29,
+      "p99_us": 179,
+      "max_us": 365,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 165873,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 18480,
+        "complete_samples": 18480,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 947993,
+        "completes": 947993,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle08-30000000",
+      "profile_hz": 30000000,
+      "seconds": 1,
+      "samples": 21360,
+      "measured_samples": 15226,
+      "sample_hz": 30868.70308869506,
+      "payload_MiB_s": 0.47101902906334014,
+      "median_us": 24,
+      "p99_us": 173,
+      "max_us": 364,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 191675,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 21360,
+        "complete_samples": 21360,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 949154,
+        "completes": 949154,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle09-4000000",
+      "profile_hz": 4000000,
+      "seconds": 1,
+      "samples": 5808,
+      "measured_samples": 3953,
+      "sample_hz": 9319.435928877989,
+      "payload_MiB_s": 0.14220330702023298,
+      "median_us": 94,
+      "p99_us": 307,
+      "max_us": 421,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 52965,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 5808,
+        "complete_samples": 5808,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 949779,
+        "completes": 949779,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle09-10000000",
+      "profile_hz": 10000000,
+      "seconds": 1,
+      "samples": 12408,
+      "measured_samples": 8856,
+      "sample_hz": 17928.948316845315,
+      "payload_MiB_s": 0.2735740404792071,
+      "median_us": 47,
+      "p99_us": 182,
+      "max_us": 310,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 111165,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 12408,
+        "complete_samples": 12408,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 950657,
+        "completes": 950657,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle09-20000000",
+      "profile_hz": 20000000,
+      "seconds": 1,
+      "samples": 19032,
+      "measured_samples": 13560,
+      "sample_hz": 27463.880106055665,
+      "payload_MiB_s": 0.4190655533760935,
+      "median_us": 29,
+      "p99_us": 160,
+      "max_us": 344,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 170529,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 19032,
+        "complete_samples": 19032,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 951789,
+        "completes": 951789,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    },
+    {
+      "name": "cycle09-30000000",
+      "profile_hz": 30000000,
+      "seconds": 1,
+      "samples": 22368,
+      "measured_samples": 15960,
+      "sample_hz": 32301.156316223038,
+      "payload_MiB_s": 0.4928765307040869,
+      "median_us": 24,
+      "p99_us": 150,
+      "max_us": 318,
+      "gaps_over_1ms": 0,
+      "value_changes": 0,
+      "dmi": {
+        "scans": 200211,
+        "reserved": 0,
+        "failed": 0,
+        "busy": 0
+      },
+      "integrity": {
+        "protocol_frames": 22368,
+        "complete_samples": 22368,
+        "parser_dropped_bytes": 92,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      },
+      "usb": {
+        "starts": 952952,
+        "completes": 952952,
+        "errors": 0,
+        "full": 0,
+        "inflight_us": 930,
+        "blocked_us": 0
+      },
+      "sba_busy_recoveries": 0,
+      "trailing_partial_block": false
+    }
+  ],
+  "total_samples": 20052146,
+  "total_dmi_scans": 291041390
+}

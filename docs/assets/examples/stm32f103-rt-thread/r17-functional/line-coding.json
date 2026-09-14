@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "completed": [
+    "line-coding-20000000",
+    "line-coding-30000000"
+  ],
+  "line_coding_changes": [
+    {
+      "profile": 20000000,
+      "baud": 57600
+    },
+    {
+      "profile": 20000000,
+      "baud": 115200
+    },
+    {
+      "profile": 20000000,
+      "baud": 57600
+    },
+    {
+      "profile": 20000000,
+      "baud": 115200
+    },
+    {
+      "profile": 20000000,
+      "baud": 57600
+    },
+    {
+      "profile": 20000000,
+      "baud": 115200
+    },
+    {
+      "profile": 30000000,
+      "baud": 57600
+    },
+    {
+      "profile": 30000000,
+      "baud": 115200
+    },
+    {
+      "profile": 30000000,
+      "baud": 57600
+    },
+    {
+      "profile": 30000000,
+      "baud": 115200
+    },
+    {
+      "profile": 30000000,
+      "baud": 57600
+    },
+    {
+      "profile": 30000000,
+      "baud": 115200
+    }
+  ],
+  "transport": "direct pyserial for real Windows SetCommState"
+}

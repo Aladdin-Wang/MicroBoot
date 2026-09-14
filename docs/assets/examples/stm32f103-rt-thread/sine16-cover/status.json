@@ -1,0 +1,172 @@
+{
+  "state": "running",
+  "interval": 1E-06,
+  "items": [
+    {
+      "name": "superwatch_ch00",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A204"
+    },
+    {
+      "name": "superwatch_ch01",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A208"
+    },
+    {
+      "name": "superwatch_ch02",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A20C"
+    },
+    {
+      "name": "superwatch_ch03",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A210"
+    },
+    {
+      "name": "superwatch_ch04",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A214"
+    },
+    {
+      "name": "superwatch_ch05",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A218"
+    },
+    {
+      "name": "superwatch_ch06",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A21C"
+    },
+    {
+      "name": "superwatch_ch07",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A220"
+    },
+    {
+      "name": "superwatch_ch08",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A224"
+    },
+    {
+      "name": "superwatch_ch09",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A228"
+    },
+    {
+      "name": "superwatch_ch10",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A22C"
+    },
+    {
+      "name": "superwatch_ch11",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A230"
+    },
+    {
+      "name": "superwatch_ch12",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A234"
+    },
+    {
+      "name": "superwatch_ch13",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A238"
+    },
+    {
+      "name": "superwatch_ch14",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A23C"
+    },
+    {
+      "name": "superwatch_ch15",
+      "type": "float",
+      "size": 4,
+      "unit": "",
+      "source": "ram",
+      "address": "0x2000A240"
+    }
+  ],
+  "metadata_version": 17,
+  "read_cycles": 22998673,
+  "read_drops": 0,
+  "read_errors": 0,
+  "actual_rate": 12988.494361,
+  "binary_drops": {
+    "batches": 0,
+    "items": 0
+  },
+  "binary_batch_policy": {
+    "max_samples": 512,
+    "max_bytes": 65536,
+    "max_latency_ms": 20.0
+  },
+  "acquisition_mode": "dump-memory",
+  "stream_integrity": {
+    "parser_dropped_bytes": 330,
+    "parser_crc_errors": 1,
+    "parser_dropped_frames": 1,
+    "firmware_sample_drop_flags": 0,
+    "firmware_flagged_frames": 0,
+    "protocol_frames": 22998673,
+    "complete_samples": 22998673
+  },
+  "stream": {
+    "produced_batches": 45487,
+    "produced_items": 22998441,
+    "produced_bytes": 285650645,
+    "delivered_batches": 45472,
+    "delivered_items": 22998441,
+    "delivered_bytes": 285636882,
+    "dropped_batches": 0,
+    "dropped_items": 0,
+    "dropped_bytes": 0,
+    "active_clients": 1,
+    "queue_high_water_mark": 27,
+    "last_sequence": 45487
+  }
+}

@@ -1,0 +1,9 @@
+*** Using Compiler 'V6.24', folder: 'D:\Users\akqbd\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin'
+Build target 'rt-thread'
+compiling afe_task.c...
+linking...
+Program Size: Code=94424 RO-data=19828 RW-data=2608 ZI-data=41112  
+FromELF: creating hex file...
+After Build - User command #1: fromelf --bin .\build\keil\Obj\rt-thread.axf --output rtthread.bin
+".\build\keil\Obj\rt-thread.axf" - 0 Error(s), 0 Warning(s).
+Build Time Elapsed:  00:00:02

@@ -27,7 +27,7 @@ github：https://github.com/Aladdin-Wang/MicroBootRom
 
 程序复位执行流程如下图所示：
 
-![updata](./images/updata.png)
+![updata](images/microboot/diagrams/reset-startup-flow.png)
 
 设置标志位的常见方法
 
@@ -253,7 +253,7 @@ FLASH空间占用如下：
 
 用户数据在FLASH中的位置，以及变化过程如下图所示：
 
-![flash_user](./images/flash_user.png)
+![flash_user](images/microboot/diagrams/flash-user-data.png)
 
 bootloader在升级app程序的不同阶段数据变化：
 
@@ -554,7 +554,7 @@ MicroBoot 从一开始就没有试图“包打天下”，而是只做一件事�
 
 
 
-![框架.drawio](./images/frame.png)
+![框架.drawio](images/microboot/diagrams/framework.png)
 
 
 
@@ -562,11 +562,11 @@ MicroBoot 从一开始就没有试图“包打天下”，而是只做一件事�
 
 - 环形队列
 
-[一个用C语言编写的支持多类型、函数重载与线程安全的环形队列](./components/queue/queue.md)
+[一个用C语言编写的支持多类型、函数重载与线程安全的环形队列](components/queue.md)
 
 - 信号槽
 
-[一个用C语言模拟QT的信号槽的功能](./components/signals_slots/signals_slots.md)
+[一个用C语言模拟QT的信号槽的功能](components/signals-slots.md)
 
 - 发布订阅
 
@@ -582,10 +582,10 @@ MicroBoot 从一开始就没有试图“包打天下”，而是只做一件事�
 
 - multiple_delay
 
-[一个基于统一 tick 的轻量级多路软件延时服务，支持同时管理多个延时请求，并按高/中/低优先级分别在中断或主循环中分发超时回调](./components/multiple_delay/multiple_delay.md)
+[一个基于统一 tick 的轻量级多路软件延时服务，支持同时管理多个延时请求，并按高/中/低优先级分别在中断或主循环中分发超时回调](components/multiple-delay.md)
 
 ## 4、MicroBoot移植教程
 
-- [基于 CMSIS-PACK 移植](./quick-start/cmsis-pack.md)
-- [基于源码移植](./quick-start/quick-start.md)
-- [移植常见问题](./quick-start/troubleshooting.md)
+- [基于 CMSIS-PACK 移植](microboot/getting-started/cmsis-pack.md)
+- [基于源码移植](microboot/getting-started/source-porting.md)
+- [移植常见问题](microboot/getting-started/troubleshooting.md)

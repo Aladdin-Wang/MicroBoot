@@ -1,0 +1,1553 @@
+Browser tab: 978072955, Title: "MKLink AI Probe", URL: "http://127.0.0.1:8765/?build=array-index#/dashboard".
+0 AXWebArea MKLink AI Probe, URL: 127.0.0.1:8765/?build=array-index#/dashboard
+	1 container app
+		2 container
+			3 heading MKLink, Value: 1
+				4 text MKLink
+			5 button 配置
+			6 button 仪表盘
+			7 button 脱机烧录
+			8 button 在线烧录
+			9 link Description: 在线文档, Value: microboot.readthedocs.io/zh-cn/latest/tools/microlink/microlink/
+			10 container
+				11 button (collapsed) 淘宝店铺, Secondary Actions: Expand
+					12 text 淘宝店铺
+			13 button 切换到 English
+			14 text 后端正常  · 8765 已连接 0x1000563d
+		70 container
+			71 button RTT View
+			72 button SuperWatch
+			73 button HardFault
+			74 button Memory
+			75 button 串口助手
+			76 button Modbus
+			77 button RTOS Trace
+			78 button 符号表
+			167 text RTOS Trace
+			79 button 断开, Help: 断开 MKLink 设备
+			80 button 重启 MCU
+			81 button 重启 MKLink, Help: 重启 MKLink 探针
+			82 text RTT 地址
+			83 text field (settable) RTT 地址, Value: 0x00082a88, ID: systemview-rtt-address
+			84 button 自动搜索
+				85 image
+				86 text 自动搜索
+			168 button ⏸ 暂停
+			169 button ⏹ 停止
+			88 button 实时保存, Help: 将后续事件实时保存为 JSONL
+				89 image
+				90 text 实时保存
+			91 button 导入 JSONL
+			92 button (disabled) 导出 JSONL
+			93 button (disabled) 导出摘要
+			94 text 窗口
+			95 pop up button (collapsed, settable) 窗口, Value: 10s, Secondary Actions: Expand
+				96 menu
+					97 0.5s
+					98 1s
+					99 2s
+					100 5s
+					101 (selected) 10s
+					102 30s
+					103 60s
+			104 text Events 16,449 Tasks 3 Runtime Drop
+			105 text 0
+			106 text CPU Clock
+			170 text 360MHz
+			108 text Sync Ready Analysis Buffer 19,605 Events List 最近 120 条
+			171 button 清除
+			109 button 折叠
+			110 table
+				111 row
+					112 cell
+						113 text #
+					114 cell
+						115 text Time
+					116 cell
+						117 text Context
+					118 cell
+						119 text Event
+					120 cell
+						121 text Resource
+					122 cell
+						123 text Detail
+				172 row
+					173 cell
+						174 text 16330
+					175 cell
+						176 text 4.826000s
+					177 cell
+						178 text Wave16
+					179 cell
+						180 text Task Start Ready
+					181 cell
+						182 text Task
+					183 cell
+						184 text 0x81010
+				185 row
+					186 cell
+						187 text 16331
+					188 cell
+						189 text 4.826005s
+					190 cell
+						191 text Wave16
+					192 cell
+						193 text Task Start Exec
+					194 cell
+						195 text Task
+					196 cell
+						197 text 0x81010 Runs for 141.586 us
+				198 row
+					199 cell
+						200 text 16332
+					201 cell
+						202 text 4.826141s
+					203 cell
+						204 text Raw 36
+				205 row
+					206 cell
+						207 text 16333
+					208 cell
+						209 text 4.826147s
+					210 cell
+						211 text Idle
+					212 cell
+						213 text System Idle
+					214 cell
+						215 text Idle for 858.425 us
+				216 row
+					217 cell
+						218 text 16334
+					219 cell
+						220 text 4.827000s
+					221 cell
+						222 text Wave16
+					223 cell
+						224 text Task Start Ready
+					225 cell
+						226 text Task
+					227 cell
+						228 text 0x81010
+				229 row
+					230 cell
+						231 text 16335
+					232 cell
+						233 text 4.827005s
+					234 cell
+						235 text Wave16
+					236 cell
+						237 text Task Start Exec
+					238 cell
+						239 text Task
+					240 cell
+						241 text 0x81010 Runs for 141.700 us
+				242 row
+					243 cell
+						244 text 16336
+					245 cell
+						246 text 4.827141s
+					247 cell
+						248 text Raw 36
+				249 row
+					250 cell
+						251 text 16337
+					252 cell
+						253 text 4.827147s
+					254 cell
+						255 text Idle
+					256 cell
+						257 text System Idle
+					258 cell
+						259 text Idle for 858.306 us
+				260 row
+					261 cell
+						262 text 16338
+					263 cell
+						264 text 4.828000s
+					265 cell
+						266 text Wave16
+					267 cell
+						268 text Task Start Ready
+					269 cell
+						270 text Task
+					271 cell
+						272 text 0x81010
+				273 row
+					274 cell
+						275 text 16339
+					276 cell
+						277 text 4.828005s
+					278 cell
+						279 text Wave16
+					280 cell
+						281 text Task Start Exec
+					282 cell
+						283 text Task
+					284 cell
+						285 text 0x81010 Runs for 141.858 us
+				286 row
+					287 cell
+						288 text 16340
+					289 cell
+						290 text 4.828141s
+					291 cell
+						292 text Raw 36
+				293 row
+					294 cell
+						295 text 16341
+					296 cell
+						297 text 4.828147s
+					298 cell
+						299 text Idle
+					300 cell
+						301 text System Idle
+					302 cell
+						303 text Idle for 858.125 us
+				304 row
+					305 cell
+						306 text 16342
+					307 cell
+						308 text 4.829000s
+					309 cell
+						310 text Wave16
+					311 cell
+						312 text Task Start Ready
+					313 cell
+						314 text Task
+					315 cell
+						316 text 0x81010
+				317 row
+					318 cell
+						319 text 16343
+					320 cell
+						321 text 4.829005s
+					322 cell
+						323 text Wave16
+					324 cell
+						325 text Task Start Exec
+					326 cell
+						327 text Task
+					328 cell
+						329 text 0x81010 Runs for 141.517 us
+				330 row
+					331 cell
+						332 text 16344
+					333 cell
+						334 text 4.829141s
+					335 cell
+						336 text Raw 36
+				337 row
+					338 cell
+						339 text 16345
+					340 cell
+						341 text 4.829146s
+					342 cell
+						343 text Idle
+					344 cell
+						345 text System Idle
+					346 cell
+						347 text Idle for 858.500 us
+				348 row
+					349 cell
+						350 text 16346
+					351 cell
+						352 text 4.830000s
+					353 cell
+						354 text Wave16
+					355 cell
+						356 text Task Start Ready
+					357 cell
+						358 text Task
+					359 cell
+						360 text 0x81010
+				361 row
+					362 cell
+						363 text 16347
+					364 cell
+						365 text 4.830005s
+					366 cell
+						367 text Wave16
+					368 cell
+						369 text Task Start Exec
+					370 cell
+						371 text Task
+					372 cell
+						373 text 0x81010 Runs for 141.358 us
+				374 row
+					375 cell
+						376 text 16348
+					377 cell
+						378 text 4.830141s
+					379 cell
+						380 text Raw 36
+				381 row
+					382 cell
+						383 text 16349
+					384 cell
+						385 text 4.830146s
+					386 cell
+						387 text Idle
+					388 cell
+						389 text System Idle
+					390 cell
+						391 text Idle for 858.614 us
+				392 row
+					393 cell
+						394 text 16350
+					395 cell
+						396 text 4.831000s
+					397 cell
+						398 text Wave16
+					399 cell
+						400 text Task Start Ready
+					401 cell
+						402 text Task
+					403 cell
+						404 text 0x81010
+				405 row
+					406 cell
+						407 text 16351
+					408 cell
+						409 text 4.831005s
+					410 cell
+						411 text Wave16
+					412 cell
+						413 text Task Start Exec
+					414 cell
+						415 text Task
+					416 cell
+						417 text 0x81010 Runs for 141.278 us
+				418 row
+					419 cell
+						420 text 16352
+					421 cell
+						422 text 4.831141s
+					423 cell
+						424 text Raw 36
+				425 row
+					426 cell
+						427 text 16353
+					428 cell
+						429 text 4.831146s
+					430 cell
+						431 text Idle
+					432 cell
+						433 text System Idle
+					434 cell
+						435 text Idle for 858.733 us
+				436 row
+					437 cell
+						438 text 16354
+					439 cell
+						440 text 4.832000s
+					441 cell
+						442 text Wave16
+					443 cell
+						444 text Task Start Ready
+					445 cell
+						446 text Task
+					447 cell
+						448 text 0x81010
+				449 row
+					450 cell
+						451 text 16355
+					452 cell
+						453 text 4.832005s
+					454 cell
+						455 text Wave16
+					456 cell
+						457 text Task Start Exec
+					458 cell
+						459 text Task
+					460 cell
+						461 text 0x81010 Runs for 141.642 us
+				462 row
+					463 cell
+						464 text 16356
+					465 cell
+						466 text 4.832141s
+					467 cell
+						468 text Raw 36
+				469 row
+					470 cell
+						471 text 16357
+					472 cell
+						473 text 4.832147s
+					474 cell
+						475 text Idle
+					476 cell
+						477 text System Idle
+					478 cell
+						479 text Idle for 858.381 us
+				480 row
+					481 cell
+						482 text 16358
+					483 cell
+						484 text 4.833000s
+					485 cell
+						486 text Wave16
+					487 cell
+						488 text Task Start Ready
+					489 cell
+						490 text Task
+					491 cell
+						492 text 0x81010
+				493 row
+					494 cell
+						495 text 16359
+					496 cell
+						497 text 4.833005s
+					498 cell
+						499 text Wave16
+					500 cell
+						501 text Task Start Exec
+					502 cell
+						503 text Task
+					504 cell
+						505 text 0x81010 Runs for 141.994 us
+				506 row
+					507 cell
+						508 text 16360
+					509 cell
+						510 text 4.833141s
+					511 cell
+						512 text Raw 36
+				513 row
+					514 cell
+						515 text 16361
+					516 cell
+						517 text 4.833147s
+					518 cell
+						519 text Idle
+					520 cell
+						521 text System Idle
+					522 cell
+						523 text Idle for 857.953 us
+				524 row
+					525 cell
+						526 text 16362
+					527 cell
+						528 text 4.834000s
+					529 cell
+						530 text Wave16
+					531 cell
+						532 text Task Start Ready
+					533 cell
+						534 text Task
+					535 cell
+						536 text 0x81010
+				537 row
+					538 cell
+						539 text 16363
+					540 cell
+						541 text 4.834005s
+					542 cell
+						543 text Wave16
+					544 cell
+						545 text Task Start Exec
+					546 cell
+						547 text Task
+					548 cell
+						549 text 0x81010 Runs for 142.322 us
+				550 row
+					551 cell
+						552 text 16364
+					553 cell
+						554 text 4.834142s
+					555 cell
+						556 text Raw 36
+				557 row
+					558 cell
+						559 text 16365
+					560 cell
+						561 text 4.834147s
+					562 cell
+						563 text Idle
+					564 cell
+						565 text System Idle
+					566 cell
+						567 text Idle for 857.708 us
+				568 row
+					569 cell
+						570 text 16366
+					571 cell
+						572 text 4.835000s
+					573 cell
+						574 text Wave16
+					575 cell
+						576 text Task Start Ready
+					577 cell
+						578 text Task
+					579 cell
+						580 text 0x81010
+				581 row
+					582 cell
+						583 text 16367
+					584 cell
+						585 text 4.835005s
+					586 cell
+						587 text Wave16
+					588 cell
+						589 text Task Start Exec
+					590 cell
+						591 text Task
+					592 cell
+						593 text 0x81010 Runs for 142.208 us
+				594 row
+					595 cell
+						596 text 16368
+					597 cell
+						598 text 4.835141s
+					599 cell
+						600 text Raw 36
+				601 row
+					602 cell
+						603 text 16369
+					604 cell
+						605 text 4.835147s
+					606 cell
+						607 text Idle
+					608 cell
+						609 text System Idle
+					610 cell
+						611 text Idle for 857.792 us
+				612 row
+					613 cell
+						614 text 16370
+					615 cell
+						616 text 4.836000s
+					617 cell
+						618 text Wave16
+					619 cell
+						620 text Task Start Ready
+					621 cell
+						622 text Task
+					623 cell
+						624 text 0x81010
+				625 row
+					626 cell
+						627 text 16371
+					628 cell
+						629 text 4.836005s
+					630 cell
+						631 text Wave16
+					632 cell
+						633 text Task Start Exec
+					634 cell
+						635 text Task
+					636 cell
+						637 text 0x81010 Runs for 141.900 us
+				638 row
+					639 cell
+						640 text 16372
+					641 cell
+						642 text 4.836141s
+					643 cell
+						644 text Raw 36
+				645 row
+					646 cell
+						647 text 16373
+					648 cell
+						649 text 4.836147s
+					650 cell
+						651 text Idle
+					652 cell
+						653 text System Idle
+					654 cell
+						655 text Idle for 858.081 us
+				656 row
+					657 cell
+						658 text 16374
+					659 cell
+						660 text 4.837000s
+					661 cell
+						662 text Wave16
+					663 cell
+						664 text Task Start Ready
+					665 cell
+						666 text Task
+					667 cell
+						668 text 0x81010
+				669 row
+					670 cell
+						671 text 16375
+					672 cell
+						673 text 4.837005s
+					674 cell
+						675 text Wave16
+					676 cell
+						677 text Task Start Exec
+					678 cell
+						679 text Task
+					680 cell
+						681 text 0x81010 Runs for 141.564 us
+				682 row
+					683 cell
+						684 text 16376
+					685 cell
+						686 text 4.837141s
+					687 cell
+						688 text Raw 36
+				689 row
+					690 cell
+						691 text 16377
+					692 cell
+						693 text 4.837147s
+					694 cell
+						695 text Idle
+					696 cell
+						697 text System Idle
+					698 cell
+						699 text Idle for 858.436 us
+				700 row
+					701 cell
+						702 text 16378
+					703 cell
+						704 text 4.838000s
+					705 cell
+						706 text Wave16
+					707 cell
+						708 text Task Start Ready
+					709 cell
+						710 text Task
+					711 cell
+						712 text 0x81010
+				713 row
+					714 cell
+						715 text 16379
+					716 cell
+						717 text 4.838005s
+					718 cell
+						719 text Wave16
+					720 cell
+						721 text Task Start Exec
+					722 cell
+						723 text Task
+					724 cell
+						725 text 0x81010 Runs for 141.022 us
+				726 row
+					727 cell
+						728 text 16380
+					729 cell
+						730 text 4.838140s
+					731 cell
+						732 text Raw 36
+				733 row
+					734 cell
+						735 text 16381
+					736 cell
+						737 text 4.838146s
+					738 cell
+						739 text Idle
+					740 cell
+						741 text System Idle
+					742 cell
+						743 text Idle for 859.014 us
+				744 row
+					745 cell
+						746 text 16382
+					747 cell
+						748 text 4.839000s
+					749 cell
+						750 text Wave16
+					751 cell
+						752 text Task Start Ready
+					753 cell
+						754 text Task
+					755 cell
+						756 text 0x81010
+				757 row
+					758 cell
+						759 text 16383
+					760 cell
+						761 text 4.839005s
+					762 cell
+						763 text Wave16
+					764 cell
+						765 text Task Start Exec
+					766 cell
+						767 text Task
+					768 cell
+						769 text 0x81010 Runs for 141.636 us
+				770 row
+					771 cell
+						772 text 16384
+					773 cell
+						774 text 4.839141s
+					775 cell
+						776 text Raw 36
+				777 row
+					778 cell
+						779 text 16385
+					780 cell
+						781 text 4.839147s
+					782 cell
+						783 text Idle
+					784 cell
+						785 text System Idle
+					786 cell
+						787 text Idle for 858.356 us
+				788 row
+					789 cell
+						790 text 16386
+					791 cell
+						792 text 4.840000s
+					793 cell
+						794 text Wave16
+					795 cell
+						796 text Task Start Ready
+					797 cell
+						798 text Task
+					799 cell
+						800 text 0x81010
+				801 row
+					802 cell
+						803 text 16387
+					804 cell
+						805 text 4.840005s
+					806 cell
+						807 text Wave16
+					808 cell
+						809 text Task Start Exec
+					810 cell
+						811 text Task
+					812 cell
+						813 text 0x81010 Runs for 140.336 us
+				814 row
+					815 cell
+						816 text 16388
+					817 cell
+						818 text 4.840140s
+					819 cell
+						820 text Raw 36
+				821 row
+					822 cell
+						823 text 16389
+					824 cell
+						825 text 4.840145s
+					826 cell
+						827 text Idle
+					828 cell
+						829 text System Idle
+					830 cell
+						831 text Idle for 859.656 us
+				832 row
+					833 cell
+						834 text 16390
+					835 cell
+						836 text 4.841000s
+					837 cell
+						838 text Wave16
+					839 cell
+						840 text Task Start Ready
+					841 cell
+						842 text Task
+					843 cell
+						844 text 0x81010
+				845 row
+					846 cell
+						847 text 16391
+					848 cell
+						849 text 4.841005s
+					850 cell
+						851 text Wave16
+					852 cell
+						853 text Task Start Exec
+					854 cell
+						855 text Task
+					856 cell
+						857 text 0x81010 Runs for 140.294 us
+				858 row
+					859 cell
+						860 text 16392
+					861 cell
+						862 text 4.841140s
+					863 cell
+						864 text Raw 36
+				865 row
+					866 cell
+						867 text 16393
+					868 cell
+						869 text 4.841145s
+					870 cell
+						871 text Idle
+					872 cell
+						873 text System Idle
+					874 cell
+						875 text Idle for 859.689 us
+				876 row
+					877 cell
+						878 text 16394
+					879 cell
+						880 text 4.842000s
+					881 cell
+						882 text Wave16
+					883 cell
+						884 text Task Start Ready
+					885 cell
+						886 text Task
+					887 cell
+						888 text 0x81010
+				889 row
+					890 cell
+						891 text 16395
+					892 cell
+						893 text 4.842005s
+					894 cell
+						895 text Wave16
+					896 cell
+						897 text Task Start Exec
+					898 cell
+						899 text Task
+					900 cell
+						901 text 0x81010 Runs for 140.567 us
+				902 row
+					903 cell
+						904 text 16396
+					905 cell
+						906 text 4.842140s
+					907 cell
+						908 text Raw 36
+				909 row
+					910 cell
+						911 text 16397
+					912 cell
+						913 text 4.842146s
+					914 cell
+						915 text Idle
+					916 cell
+						917 text System Idle
+					918 cell
+						919 text Idle for 859.444 us
+				920 row
+					921 cell
+						922 text 16398
+					923 cell
+						924 text 4.843000s
+					925 cell
+						926 text Wave16
+					927 cell
+						928 text Task Start Ready
+					929 cell
+						930 text Task
+					931 cell
+						932 text 0x81010
+				933 row
+					934 cell
+						935 text 16399
+					936 cell
+						937 text 4.843005s
+					938 cell
+						939 text Wave16
+					940 cell
+						941 text Task Start Exec
+					942 cell
+						943 text Task
+					944 cell
+						945 text 0x81010 Runs for 140.731 us
+				946 row
+					947 cell
+						948 text 16400
+					949 cell
+						950 text 4.843140s
+					951 cell
+						952 text Raw 36
+				953 row
+					954 cell
+						955 text 16401
+					956 cell
+						957 text 4.843146s
+					958 cell
+						959 text Idle
+					960 cell
+						961 text System Idle
+					962 cell
+						963 text Idle for 859.231 us
+				964 row
+					965 cell
+						966 text 16402
+					967 cell
+						968 text 4.844000s
+					969 cell
+						970 text Wave16
+					971 cell
+						972 text Task Start Ready
+					973 cell
+						974 text Task
+					975 cell
+						976 text 0x81010
+				977 row
+					978 cell
+						979 text 16403
+					980 cell
+						981 text 4.844005s
+					982 cell
+						983 text Wave16
+					984 cell
+						985 text Task Start Exec
+					986 cell
+						987 text Task
+					988 cell
+						989 text 0x81010 Runs for 141.072 us
+				990 row
+					991 cell
+						992 text 16404
+					993 cell
+						994 text 4.844140s
+					995 cell
+						996 text Raw 36
+				997 row
+					998 cell
+						999 text 16405
+					1000 cell
+						1001 text 4.844146s
+					1002 cell
+						1003 text Idle
+					1004 cell
+						1005 text System Idle
+					1006 cell
+						1007 text Idle for 858.972 us
+				1008 row
+					1009 cell
+						1010 text 16406
+					1011 cell
+						1012 text 4.845000s
+					1013 cell
+						1014 text Wave16
+					1015 cell
+						1016 text Task Start Ready
+					1017 cell
+						1018 text Task
+					1019 cell
+						1020 text 0x81010
+				1021 row
+					1022 cell
+						1023 text 16407
+					1024 cell
+						1025 text 4.845005s
+					1026 cell
+						1027 text Wave16
+					1028 cell
+						1029 text Task Start Exec
+					1030 cell
+						1031 text Task
+					1032 cell
+						1033 text 0x81010 Runs for 141.511 us
+				1034 row
+					1035 cell
+						1036 text 16408
+					1037 cell
+						1038 text 4.845141s
+					1039 cell
+						1040 text Raw 36
+				1041 row
+					1042 cell
+						1043 text 16409
+					1044 cell
+						1045 text 4.845146s
+					1046 cell
+						1047 text Idle
+					1048 cell
+						1049 text System Idle
+					1050 cell
+						1051 text Idle for 858.472 us
+				1052 row
+					1053 cell
+						1054 text 16410
+					1055 cell
+						1056 text 4.846000s
+					1057 cell
+						1058 text Wave16
+					1059 cell
+						1060 text Task Start Ready
+					1061 cell
+						1062 text Task
+					1063 cell
+						1064 text 0x81010
+				1065 row
+					1066 cell
+						1067 text 16411
+					1068 cell
+						1069 text 4.846005s
+					1070 cell
+						1071 text Wave16
+					1072 cell
+						1073 text Task Start Exec
+					1074 cell
+						1075 text Task
+					1076 cell
+						1077 text 0x81010 Runs for 142.011 us
+				1078 row
+					1079 cell
+						1080 text 16412
+					1081 cell
+						1082 text 4.846141s
+					1083 cell
+						1084 text Raw 36
+				1085 row
+					1086 cell
+						1087 text 16413
+					1088 cell
+						1089 text 4.846147s
+					1090 cell
+						1091 text Idle
+					1092 cell
+						1093 text System Idle
+					1094 cell
+						1095 text Idle for 858.014 us
+				1096 row
+					1097 cell
+						1098 text 16414
+					1099 cell
+						1100 text 4.847000s
+					1101 cell
+						1102 text Wave16
+					1103 cell
+						1104 text Task Start Ready
+					1105 cell
+						1106 text Task
+					1107 cell
+						1108 text 0x81010
+				1109 row
+					1110 cell
+						1111 text 16415
+					1112 cell
+						1113 text 4.847005s
+					1114 cell
+						1115 text Wave16
+					1116 cell
+						1117 text Task Start Exec
+					1118 cell
+						1119 text Task
+					1120 cell
+						1121 text 0x81010 Runs for 140.786 us
+				1122 row
+					1123 cell
+						1124 text 16416
+					1125 cell
+						1126 text 4.847140s
+					1127 cell
+						1128 text Raw 36
+				1129 row
+					1130 cell
+						1131 text 16417
+					1132 cell
+						1133 text 4.847146s
+					1134 cell
+						1135 text Idle
+					1136 cell
+						1137 text System Idle
+					1138 cell
+						1139 text Idle for 859.214 us
+				1140 row
+					1141 cell
+						1142 text 16418
+					1143 cell
+						1144 text 4.848000s
+					1145 cell
+						1146 text Wave16
+					1147 cell
+						1148 text Task Start Ready
+					1149 cell
+						1150 text Task
+					1151 cell
+						1152 text 0x81010
+				1153 row
+					1154 cell
+						1155 text 16419
+					1156 cell
+						1157 text 4.848005s
+					1158 cell
+						1159 text Wave16
+					1160 cell
+						1161 text Task Start Exec
+					1162 cell
+						1163 text Task
+					1164 cell
+						1165 text 0x81010 Runs for 142.542 us
+				1166 row
+					1167 cell
+						1168 text 16420
+					1169 cell
+						1170 text 4.848142s
+					1171 cell
+						1172 text Raw 36
+				1173 row
+					1174 cell
+						1175 text 16421
+					1176 cell
+						1177 text 4.848148s
+					1178 cell
+						1179 text Idle
+					1180 cell
+						1181 text System Idle
+					1182 cell
+						1183 text Idle for 857.442 us
+				1184 row
+					1185 cell
+						1186 text 16422
+					1187 cell
+						1188 text 4.849000s
+					1189 cell
+						1190 text Wave16
+					1191 cell
+						1192 text Task Start Ready
+					1193 cell
+						1194 text Task
+					1195 cell
+						1196 text 0x81010
+				1197 row
+					1198 cell
+						1199 text 16423
+					1200 cell
+						1201 text 4.849005s
+					1202 cell
+						1203 text Wave16
+					1204 cell
+						1205 text Task Start Exec
+					1206 cell
+						1207 text Task
+					1208 cell
+						1209 text 0x81010 Runs for 143.208 us
+				1210 row
+					1211 cell
+						1212 text 16424
+					1213 cell
+						1214 text 4.849143s
+					1215 cell
+						1216 text Raw 36
+				1217 row
+					1218 cell
+						1219 text 16425
+					1220 cell
+						1221 text 4.849148s
+					1222 cell
+						1223 text Idle
+					1224 cell
+						1225 text System Idle
+					1226 cell
+						1227 text Idle for 856.806 us
+				1228 row
+					1229 cell
+						1230 text 16426
+					1231 cell
+						1232 text 4.850000s
+					1233 cell
+						1234 text Wave16
+					1235 cell
+						1236 text Task Start Ready
+					1237 cell
+						1238 text Task
+					1239 cell
+						1240 text 0x81010
+				1241 row
+					1242 cell
+						1243 text 16427
+					1244 cell
+						1245 text 4.850005s
+					1246 cell
+						1247 text Wave16
+					1248 cell
+						1249 text Task Start Exec
+					1250 cell
+						1251 text Task
+					1252 cell
+						1253 text 0x81010 Runs for 142.189 us
+				1254 row
+					1255 cell
+						1256 text 16428
+					1257 cell
+						1258 text 4.850141s
+					1259 cell
+						1260 text Raw 36
+				1261 row
+					1262 cell
+						1263 text 16429
+					1264 cell
+						1265 text 4.850147s
+					1266 cell
+						1267 text Idle
+					1268 cell
+						1269 text System Idle
+					1270 cell
+						1271 text Idle for 857.806 us
+				1272 row
+					1273 cell
+						1274 text 16430
+					1275 cell
+						1276 text 4.851000s
+					1277 cell
+						1278 text Wave16
+					1279 cell
+						1280 text Task Start Ready
+					1281 cell
+						1282 text Task
+					1283 cell
+						1284 text 0x81010
+				1285 row
+					1286 cell
+						1287 text 16431
+					1288 cell
+						1289 text 4.851005s
+					1290 cell
+						1291 text Wave16
+					1292 cell
+						1293 text Task Start Exec
+					1294 cell
+						1295 text Task
+					1296 cell
+						1297 text 0x81010 Runs for 142.558 us
+				1298 row
+					1299 cell
+						1300 text 16432
+					1301 cell
+						1302 text 4.851142s
+					1303 cell
+						1304 text Raw 36
+				1305 row
+					1306 cell
+						1307 text 16433
+					1308 cell
+						1309 text 4.851148s
+					1310 cell
+						1311 text Idle
+					1312 cell
+						1313 text System Idle
+					1314 cell
+						1315 text Idle for 857.450 us
+				1316 row
+					1317 cell
+						1318 text 16434
+					1319 cell
+						1320 text 4.852000s
+					1321 cell
+						1322 text Wave16
+					1323 cell
+						1324 text Task Start Ready
+					1325 cell
+						1326 text Task
+					1327 cell
+						1328 text 0x81010
+				1329 row
+					1330 cell
+						1331 text 16435
+					1332 cell
+						1333 text 4.852005s
+					1334 cell
+						1335 text Wave16
+					1336 cell
+						1337 text Task Start Exec
+					1338 cell
+						1339 text Task
+					1340 cell
+						1341 text 0x81010 Runs for 142.328 us
+				1342 row
+					1343 cell
+						1344 text 16436
+					1345 cell
+						1346 text 4.852142s
+					1347 cell
+						1348 text Raw 36
+				1349 row
+					1350 cell
+						1351 text 16437
+					1352 cell
+						1353 text 4.852147s
+					1354 cell
+						1355 text Idle
+					1356 cell
+						1357 text System Idle
+					1358 cell
+						1359 text Idle for 857.656 us
+				1360 row
+					1361 cell
+						1362 text 16438
+					1363 cell
+						1364 text 4.853000s
+					1365 cell
+						1366 text Wave16
+					1367 cell
+						1368 text Task Start Ready
+					1369 cell
+						1370 text Task
+					1371 cell
+						1372 text 0x81010
+				1373 row
+					1374 cell
+						1375 text 16439
+					1376 cell
+						1377 text 4.853005s
+					1378 cell
+						1379 text Wave16
+					1380 cell
+						1381 text Task Start Exec
+					1382 cell
+						1383 text Task
+					1384 cell
+						1385 text 0x81010 Runs for 143.058 us
+				1386 row
+					1387 cell
+						1388 text 16440
+					1389 cell
+						1390 text 4.853142s
+					1391 cell
+						1392 text Raw 36
+				1393 row
+					1394 cell
+						1395 text 16441
+					1396 cell
+						1397 text 4.853148s
+					1398 cell
+						1399 text Idle
+					1400 cell
+						1401 text System Idle
+					1402 cell
+						1403 text Idle for 857.008 us
+				1404 row
+					1405 cell
+						1406 text 16442
+					1407 cell
+						1408 text 4.854000s
+					1409 cell
+						1410 text Wave16
+					1411 cell
+						1412 text Task Start Ready
+					1413 cell
+						1414 text Task
+					1415 cell
+						1416 text 0x81010
+				1417 row
+					1418 cell
+						1419 text 16443
+					1420 cell
+						1421 text 4.854005s
+					1422 cell
+						1423 text Wave16
+					1424 cell
+						1425 text Task Start Exec
+					1426 cell
+						1427 text Task
+					1428 cell
+						1429 text 0x81010 Runs for 143.444 us
+				1430 row
+					1431 cell
+						1432 text 16444
+					1433 cell
+						1434 text 4.854143s
+					1435 cell
+						1436 text Raw 36
+				1437 row
+					1438 cell
+						1439 text 16445
+					1440 cell
+						1441 text 4.854148s
+					1442 cell
+						1443 text Idle
+					1444 cell
+						1445 text System Idle
+					1446 cell
+						1447 text Idle for 856.511 us
+				1448 row
+					1449 cell
+						1450 text 16446
+					1451 cell
+						1452 text 4.855000s
+					1453 cell
+						1454 text Wave16
+					1455 cell
+						1456 text Task Start Ready
+					1457 cell
+						1458 text Task
+					1459 cell
+						1460 text 0x81010
+				1461 row
+					1462 cell
+						1463 text 16447
+					1464 cell
+						1465 text 4.855005s
+					1466 cell
+						1467 text Wave16
+					1468 cell
+						1469 text Task Start Exec
+					1470 cell
+						1471 text Task
+					1472 cell
+						1473 text 0x81010 Runs for 143.094 us
+				1474 row
+					1475 cell
+						1476 text 16448
+					1477 cell
+						1478 text 4.855142s
+					1479 cell
+						1480 text Raw 36
+				1481 row
+					1482 cell
+						1483 text 16449
+					1484 cell
+						1485 text 4.855148s
+					1486 cell
+						1487 text Idle
+					1488 cell
+						1489 text System Idle
+					1490 cell
+						1491 text Idle for 856.881 us
+			127 text Timeline 微秒标尺与任务运行区间
+			128 button 全览
+			129 image 滚轮缩放，按住鼠标左键拖动，双击恢复全览
+			130 text Runtime 单次运行片段分布
+			131 table
+				132 row
+					133 cell
+						134 text Task
+					135 cell
+						136 text Count
+					137 cell
+						138 text Min
+					139 cell
+						140 text 25%
+					141 cell
+						142 text 50%
+					143 cell
+						144 text 75%
+					145 cell
+						146 text Max
+					147 cell
+						148 text CPU
+				1492 row
+					1493 cell
+						1494 text Idle
+					1495 cell
+						1496 text 4,936次调度
+					1497 cell
+						1498 text 826us
+					1499 cell
+						1500 text 854us
+					1501 cell
+						1502 text 855us
+					1503 cell
+						1504 text 857us
+					1505 cell
+						1506 text 876us
+					1507 cell
+						1508 text 85.6%
+				1509 row
+					1510 cell
+						1511 text Wave16
+					1512 cell
+						1513 text 4,936次调度
+					1514 cell
+						1515 text 132us
+					1516 cell
+						1517 text 143us
+					1518 cell
+						1519 text 145us
+					1520 cell
+						1521 text 146us
+					1522 cell
+						1523 text 158us
+					1524 cell
+						1525 text 14.4%
+				1526 row
+					1527 cell
+						1528 text Telemetry
+					1529 cell
+						1530 text 5次调度
+					1531 cell
+						1532 text 31us
+					1533 cell
+						1534 text 31us
+					1535 cell
+						1536 text 31us
+					1537 cell
+						1538 text 31us
+					1539 cell
+						1540 text 33us
+					1541 cell
+						1542 text 0.0%
+				1543 row
+					1544 cell
+						1545 text Tmr Svc
+					1546 cell
+						1547 text 0次调度
+					1548 cell
+						1549 text -
+					1550 cell
+						1551 text -
+					1552 cell
+						1553 text -
+					1554 cell
+						1555 text -
+					1556 cell
+						1557 text -
+					1558 cell
+						1559 text 0.0%
+			152 text Context 任务活动概览
+			153 table
+				154 row
+					155 cell
+						156 text Name
+					157 cell
+						158 text Type
+					159 cell
+						160 text Prio
+					161 cell
+						162 text Activations
+					163 cell
+						164 text Total Run
+					165 cell
+						166 text CPU Load
+				1560 row
+					1561 cell
+						1562 text Idle
+					1563 cell
+						1564 text Idle
+					1565 cell
+						1566 text -
+					1567 cell
+						1568 text 4,936次调度
+					1569 cell
+						1570 text 4.225s
+					1571 cell
+						1572 text 85.6%
+				1573 row
+					1574 cell
+						1575 text Wave16
+					1576 cell
+						1577 text Task
+					1578 cell
+						1579 text 3
+					1580 cell
+						1581 text 4,936次调度
+					1582 cell
+						1583 text 710.50ms
+					1584 cell
+						1585 text 14.4%
+				1586 row
+					1587 cell
+						1588 text Telemetry
+					1589 cell
+						1590 text Task
+					1591 cell
+						1592 text 2
+					1593 cell
+						1594 text 5次调度
+					1595 cell
+						1596 text 156us
+					1597 cell
+						1598 text 0.0%
+				1599 row
+					1600 cell
+						1601 text Tmr Svc
+					1602 cell
+						1603 text Task
+					1604 cell
+						1605 text 31
+					1606 cell
+						1607 text 0次调度
+					1608 cell
+						1609 text -
+					1610 cell
+						1611 text 0.0%
+		69 pop up button (collapsed) v0.2.0 · f4a5ca2cc4b7, Help: 查看版本更新记录, Secondary Actions: Expand
+
+The focused UI element is 169 button ⏹ 停止

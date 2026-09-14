@@ -1,0 +1,142 @@
+[
+  {
+    "name": "4000000-flash4",
+    "hz": 51740.35558941654,
+    "samples": 242136,
+    "requested_seconds": 5,
+    "median_us": 14,
+    "p99_us": 130,
+    "max_us": 304,
+    "passed": true
+  },
+  {
+    "name": "4000000-ram4",
+    "hz": 50000.19450702397,
+    "samples": 2978952,
+    "requested_seconds": 60,
+    "median_us": 14,
+    "p99_us": 147,
+    "max_us": 326,
+    "passed": true
+  },
+  {
+    "name": "4000000-dynamic",
+    "hz": 51688.39020273672,
+    "samples": 500496,
+    "requested_seconds": 10,
+    "median_us": 14,
+    "p99_us": 131,
+    "max_us": 307,
+    "passed": true
+  },
+  {
+    "name": "4000000-ram64",
+    "hz": 3522.403706800384,
+    "samples": 16535,
+    "requested_seconds": 5,
+    "median_us": 265,
+    "p99_us": 418,
+    "max_us": 447,
+    "passed": true
+  },
+  {
+    "name": "4000000-ram4096",
+    "hz": 64.71199288603117,
+    "samples": 1918,
+    "requested_seconds": 30,
+    "median_us": 15451,
+    "p99_us": 15596,
+    "max_us": 15652,
+    "passed": true
+  },
+  {
+    "name": "4000000-flash4096",
+    "hz": 65.60213860852247,
+    "samples": 634,
+    "requested_seconds": 10,
+    "median_us": 15239,
+    "p99_us": 15388,
+    "max_us": 15450,
+    "passed": true
+  },
+  {
+    "name": "4000000-multi4",
+    "hz": 4556.953314422285,
+    "samples": 44081,
+    "requested_seconds": 10,
+    "median_us": 203,
+    "p99_us": 362,
+    "max_us": 393,
+    "passed": true
+  },
+  {
+    "name": "10000000-flash4",
+    "hz": 109427.21604752861,
+    "samples": 513960,
+    "requested_seconds": 5,
+    "median_us": 5,
+    "p99_us": 89,
+    "max_us": 273,
+    "passed": true
+  },
+  {
+    "name": "10000000-ram4",
+    "hz": 101293.0308542172,
+    "samples": 6034416,
+    "requested_seconds": 60,
+    "median_us": 5,
+    "p99_us": 107,
+    "max_us": 292,
+    "passed": true
+  },
+  {
+    "name": "10000000-dynamic",
+    "hz": 100234.54290172232,
+    "samples": 970704,
+    "requested_seconds": 10,
+    "median_us": 5,
+    "p99_us": 109,
+    "max_us": 284,
+    "passed": true
+  },
+  {
+    "name": "10000000-ram64",
+    "hz": 8305.967075077117,
+    "samples": 38991,
+    "requested_seconds": 5,
+    "median_us": 110,
+    "p99_us": 257,
+    "max_us": 293,
+    "passed": true
+  },
+  {
+    "name": "10000000-ram4096",
+    "hz": 157.58501324043758,
+    "samples": 4670,
+    "requested_seconds": 30,
+    "median_us": 6363,
+    "p99_us": 6437,
+    "max_us": 6467,
+    "passed": true
+  },
+  {
+    "name": "10000000-flash4096",
+    "hz": 159.0976438019266,
+    "samples": 1539,
+    "requested_seconds": 10,
+    "median_us": 6305,
+    "p99_us": 6375,
+    "max_us": 6391,
+    "passed": true
+  },
+  {
+    "name": "10000000-multi4",
+    "hz": 10557.981806164318,
+    "samples": 102114,
+    "requested_seconds": 10,
+    "median_us": 87,
+    "p99_us": 184,
+    "max_us": 277,
+    "passed": true
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "rows": 7649,
+  "time_span_us": 15296594,
+  "complete_samples_per_s": 499.98058391299395,
+  "median_delta_us": 1999.0,
+  "min": -99.999878,
+  "max": 99.999878,
+  "trailing_zeros": 0
+}

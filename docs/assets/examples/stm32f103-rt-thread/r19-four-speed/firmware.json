@@ -1,0 +1,24 @@
+{
+  "package": "E:\\software\\HPM5300\\MicroLink_Plus\\MicroLink\\microlink_app\\.build\\stage8\\arm-deferred-pipe-r19\\HPMLink.uf2",
+  "sha256": "4176f69b67772f0efffbf645be01db1ae3ba704c91934cb8a8f068856e7c5554",
+  "bytes": 1575424,
+  "blocks": 3077,
+  "revision": "pipe-r19",
+  "ilm_used": 125856,
+  "ilm_free": 5216,
+  "rt_heap_bytes": 12288,
+  "main_stack_bytes": 6144,
+  "laboratory": true,
+  "electrical_qualification": "pending",
+  "instruction_model": {
+    "passed": true,
+    "cases": 6024,
+    "functions": 10,
+    "checks": "Exact clock count, bit order, raw parity, read aperture ordering, unrelated GPIO preservation, high exit and ABI; ideal inputs only, not electrical latency."
+  },
+  "phase_recipes": [
+    "PIPE_READER mklink_swd_window_1, 2, 1, 5, 0",
+    "PIPE_READER mklink_swd_window_3, 0, 4, 0, 2"
+  ],
+  "note": "Private cmd.swd_window=0..3 plus cmd.set_swd_clock(20000000) selects laboratory reader; this command value is not a measurement or certification of the candidate clock. cmd.swd_full=0 retains legacy header/ACK/write; 1 accelerates header and write; 2 also accelerates ACK. Turnarounds remain conservative."
+}

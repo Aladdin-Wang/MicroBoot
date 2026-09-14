@@ -1,0 +1,10 @@
+Observed in Chrome 8770 HardFault page on the functional-demo build:
+Fault function: mklink_hardfault_demo_entry
+Source: applications/main.c:145 (udf #0)
+Flags: UNDEFINSTR; FORCED
+Exception PC: 0x0801289C
+LR: 0x0800BCAF
+PSP: 0x2000DC1C, exception frame 0x2000DC40
+EXC_RETURN: 0xFFFFFFFD
+After GUI MCU reset: No HardFault.
+Only the exception PC is exact; stack-scan candidates in the GUI are labelled inferred.

@@ -1,0 +1,27 @@
+{
+  "bin_sha256": "16c5e4fe438f47cf4041b6f5c137183816bb1b823a5684576b50dd0ca7179015",
+  "profile": {
+    "profile": "medium",
+    "clock_hz": 10000000,
+    "profile_confirmed": true,
+    "interface": "SWD",
+    "qualification": "SWD profile confirmed; exact target and board stability not identified by IDCODE"
+  },
+  "clock_hz": 72000000,
+  "flash_4k_match": true,
+  "pattern_match": true,
+  "stats": {
+    "profile": 10000000,
+    "scans": 35700324,
+    "reserved": 3,
+    "failed": 0,
+    "busy": 0,
+    "wait": 2246226,
+    "fault": 0,
+    "error": 0,
+    "invalid": 3,
+    "exhausted": 0,
+    "raw": "cmd.set_swd_clock(10000000)\n\r\nset clock 10000000\r\nSWD profile=10000000\r\nSWD requested=10000000 transfers=35700324 wait=2246226 fault=0 error=0 invalid=3 exhausted=0\r\nSWD parity request=0 value=00000000 bit=0\r\nDUMP perf=disabled\r\nUSB starts=605708 completes=605708 errors=0 full=0 inflight_us=1071 blocked_us=0 size=0 stat=00000000 prime=00000000 complete=00000000\r\r\n0\r\n",
+    "legacy_no_counters": false
+  }
+}
