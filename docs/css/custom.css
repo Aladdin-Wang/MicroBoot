@@ -68,3 +68,12 @@
     border-color: #000000; /* 聚焦时边框颜色 */
     outline: none;
 }
+
+/* 图片路径交由 MkDocs 重写，二维码保留居中与响应式宽度。 */
+.md-typeset img[src$="/wechat-contact.jpg"] {
+    display: block;
+    width: 320px;
+    max-width: 100%;
+    height: auto;
+    margin: 1rem auto;
+}

@@ -17,9 +17,7 @@
 
 欢迎扫码添加微信，备注 **“加群”**。群内围绕嵌入式工程实践交流：固件构建与烧录、RTOS、RTT 与变量观测、HardFault 分析、量产流程，以及如何让 AI 参与真实硬件闭环。
 
-<p align="center">
-  <img src="../../../images/microlink/weixin.jpg" alt="微信二维码，添加时备注加群" width="320">
-</p>
+![微信二维码，添加时备注加群](../../images/mklink/support/wechat-contact.jpg)
 
 这里不只讨论某一款下载器。购买工具只是开始，一起学习嵌入式 AI、分享可复现的工程经验并共同进步，才是建立这个圈子的目的。
 
