@@ -42,14 +42,6 @@ Web GUI 适合人工配置、操作和查看曲线；AI Skill 适合读取工程
 
 ## 产品型号
 
-### MKLink V2
-
-![MKLink V2](../images/mklink/products/mklink-v2-front.png)
-
-面向在线下载、调试和高速 USB 转串口。V2 可通过虚拟磁盘拖入固件，脱机机台触发使用 TDI/TDO 引脚。
-
-购买链接：[https://item.taobao.com/item.htm?ft=t&id=895964393739](https://item.taobao.com/item.htm?ft=t&id=895964393739)
-
 ### MKLink V3
 
 ![MKLink V3](../images/mklink/products/mklink-v3-front.png)
@@ -62,23 +54,23 @@ Web GUI 适合人工配置、操作和查看曲线；AI Skill 适合读取工程
 
 ![MKLink V3](../images/mklink/products/mklink-lcd-front.png)
 
-V4 增加显示、RS485、功率监测、更大的存储空间和可选择的 Python 脱机脚本，适合调试台和量产工位。
-
-| 能力 | V2 | V3 | V4 |
-|---|:---:|:---:|:---:|
-| CMSIS-DAP 在线下载和调试 | 支持 | 支持 | 支持 |
-| USB 转 UART | 支持 | 支持 | 支持 |
-| RTT、SystemView、VOFA+ | 支持 | 支持 | 支持 |
-| 下载器内部 Python API | 支持 | 支持 | 支持 |
-| 脱机 HEX/BIN + FLM | 机台/拖拽场景 | 支持 | 支持 |
-| 按键触发脱机烧录 | - | 支持 | 支持 |
-| 可选择多个脱机脚本 | - | - | 支持 |
-| RS485、功率显示 | - | - | 支持 |
-
-!!! note "以设备实际版本为准"
-    不同批次固件可能增加能力。连接下载器后可在 Web GUI 底部查看版本历史，也可读取 U 盘中的 `readme.txt`。升级方法见[固件升级](flashing/firmware-upgrade.md)。
+V4 增加显示、RS485、功率监测、更大的存储空间和可选择的 Python 脱机脚本，适合研发与小批量生产共用。
 
 购买链接：[https://item.taobao.com/item.htm?ft=t&id=1020501356342](https://item.taobao.com/item.htm?ft=t&id=1020501356342)
+
+| 能力 | V3 | V4 |
+|---|:---:|:---:|
+| CMSIS-DAP 在线下载和调试 | 支持 | 支持 |
+| USB 转 UART | 支持 | 支持 |
+| RTT、SystemView、VOFA+ | 支持 | 支持 |
+| 下载器内部 Python API | 支持 | 支持 |
+| 脱机 HEX/BIN + FLM | 支持 | 支持 |
+| 按键触发脱机烧录 | 支持 | 支持 |
+| 可选择多个脱机脚本 | - | 支持 |
+| RS485、功率显示 | - | 支持 |
+
+!!! note "以设备实际版本为准"
+    不同批次固件可能增加能力。升级方法见[固件升级](flashing/firmware-upgrade.md)。
 
 ## 一套工具覆盖产品生命周期
 
@@ -138,7 +130,6 @@ AI 可以读取工程、选择操作入口、采集日志和整理证据。写 F
 
 官方店铺：
 
-- [MKLink V2](https://item.taobao.com/item.htm?ft=t&id=895964393739)
 - [MKLink V3](https://item.taobao.com/item.htm?ft=t&id=1013104417098)
 - [MKLink V4](https://item.taobao.com/item.htm?ft=t&id=1020501356342)
 
