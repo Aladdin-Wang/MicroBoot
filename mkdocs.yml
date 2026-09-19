@@ -53,13 +53,15 @@ nav:
     - 看任务时间线: embedded-ai/workflows/systemview-workflow.md
   - 实战案例:
     - MKLink × STM32: embedded-ai/cases/stm32f103-rt-thread.md
-    - MKLink × 先楫 HPM: mklink/hpm/overview.md
+    - 'MKLink x 先楫MCU：性能与 AI 调试': mklink/hpm/overview.md
   - 让 AI 的判断回到板子上验证: embedded-ai/articles/hardware-feedback-loop.md
 - 先楫生态:
   - 先楫 HPM 概览: mklink/hpm/overview.md
+  - GUI 配置选项字节与用户 OTP: mklink/hpm/gui-otp.md
   - HPM5301 + FreeRTOS 实战: mklink/hpm/hpm5301-freertos.md
   - HPM5301 四档采样（开发版）: mklink/hpm/mem-dump-profiles.md
   - HPM6E80 使用与四档采样: mklink/hpm/hpm6e80.md
+  - HPM6E80 20/30 MHz 验证记录: mklink/hpm/hpm6e80-performance-validation.md
   - 高频 JTAG 实验（25/30 MHz）: mklink/hpm/jtag-high-frequency-experiment.md
 - MicroBoot:
   - 简介: index.md

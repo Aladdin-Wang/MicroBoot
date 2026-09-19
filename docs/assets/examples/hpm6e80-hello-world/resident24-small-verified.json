@@ -1,0 +1,212 @@
+[
+  {
+    "success": true,
+    "filename": "pipeline-512k.bin",
+    "addr": "0x80000400",
+    "board": "hpm6e00evk",
+    "progress": [
+      {
+        "percent": 4,
+        "used_ms": 2180
+      },
+      {
+        "percent": 9,
+        "used_ms": 2243
+      },
+      {
+        "percent": 14,
+        "used_ms": 2305
+      },
+      {
+        "percent": 18,
+        "used_ms": 2367
+      },
+      {
+        "percent": 23,
+        "used_ms": 2429
+      },
+      {
+        "percent": 28,
+        "used_ms": 2491
+      },
+      {
+        "percent": 32,
+        "used_ms": 2553
+      },
+      {
+        "percent": 37,
+        "used_ms": 2615
+      },
+      {
+        "percent": 42,
+        "used_ms": 2677
+      },
+      {
+        "percent": 46,
+        "used_ms": 2740
+      },
+      {
+        "percent": 51,
+        "used_ms": 2802
+      },
+      {
+        "percent": 56,
+        "used_ms": 2864
+      },
+      {
+        "percent": 60,
+        "used_ms": 2926
+      },
+      {
+        "percent": 65,
+        "used_ms": 2988
+      },
+      {
+        "percent": 70,
+        "used_ms": 3050
+      },
+      {
+        "percent": 75,
+        "used_ms": 3112
+      },
+      {
+        "percent": 79,
+        "used_ms": 3178
+      },
+      {
+        "percent": 84,
+        "used_ms": 3240
+      },
+      {
+        "percent": 89,
+        "used_ms": 3302
+      },
+      {
+        "percent": 93,
+        "used_ms": 3365
+      },
+      {
+        "percent": 98,
+        "used_ms": 3427
+      },
+      {
+        "percent": 100,
+        "used_ms": 3480
+      }
+    ],
+    "loaded_successfully": true,
+    "download_100_percent": true,
+    "time_ms": 5191,
+    "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"pipeline-512k.bin\",0x80000400)\n\r\nfileName = pipeline-512k.bin, FlashAddr = 0x80000400\nopen fileName: pipeline-512k.bin success,file size: 524288 byte\nFLASH_BUFFER SBA verified base=01180000\r\nFLASH_PIPELINE resident ready\r\nFLASH_CHUNK bytes=24576 cache=4096\r\nDownload:   4% ,used 2180 ms \rDownload:   9% ,used 2243 ms \rDownload:  14% ,used 2305 ms \rDownload:  18% ,used 2367 ms \rDownload:  23% ,used 2429 ms \rDownload:  28% ,used 2491 ms \rDownload:  32% ,used 2553 ms \rDownload:  37% ,used 2615 ms \rDownload:  42% ,used 2677 ms \rDownload:  46% ,used 2740 ms \rDownload:  51% ,used 2802 ms \rDownload:  56% ,used 2864 ms \rDownload:  60% ,used 2926 ms \rDownload:  65% ,used 2988 ms \rDownload:  70% ,used 3050 ms \rDownload:  75% ,used 3112 ms \rDownload:  79% ,used 3178 ms \rDownload:  84% ,used 3240 ms \rDownload:  89% ,used 3302 ms \rDownload:  93% ,used 3365 ms \rDownload:  98% ,used 3427 ms \rDownload: 100% ,used 3480 ms \rFLASH_PROFILE staging_write_us=474411 staging_check_us=589\r\nFLASH_SD hz=25000000 calls=1056 word_calls=1056 read_us=180398\r\nFLASH_IO file_read_us=227070\r\n\nFLASH_TIMING bytes=524288 erase_ms=2104 write_ms=1367 erase_write_ms=3471 program_active_ms=490 refresh_wait_ms=644\nFLASH_VERIFY bytes=524288 verify_ms=971 erase_write_verify_ms=4442\n pipeline-512k.bin loaded successfully.\n0\r\n",
+    "algorithm_source": "hpm-rom-api",
+    "reset_handled_by_rom_api": true,
+    "verified": true,
+    "hz": 20000000,
+    "sha256": "666e9e28362797b64150bf28c6e052acb6867886489e68db65fb217b680c733e"
+  },
+  {
+    "success": true,
+    "filename": "pipeline-512k.bin",
+    "addr": "0x80000400",
+    "board": "hpm6e00evk",
+    "progress": [
+      {
+        "percent": 4,
+        "used_ms": 2166
+      },
+      {
+        "percent": 9,
+        "used_ms": 2224
+      },
+      {
+        "percent": 14,
+        "used_ms": 2282
+      },
+      {
+        "percent": 18,
+        "used_ms": 2339
+      },
+      {
+        "percent": 23,
+        "used_ms": 2396
+      },
+      {
+        "percent": 28,
+        "used_ms": 2453
+      },
+      {
+        "percent": 32,
+        "used_ms": 2510
+      },
+      {
+        "percent": 37,
+        "used_ms": 2567
+      },
+      {
+        "percent": 42,
+        "used_ms": 2624
+      },
+      {
+        "percent": 46,
+        "used_ms": 2682
+      },
+      {
+        "percent": 51,
+        "used_ms": 2739
+      },
+      {
+        "percent": 56,
+        "used_ms": 2796
+      },
+      {
+        "percent": 60,
+        "used_ms": 2853
+      },
+      {
+        "percent": 65,
+        "used_ms": 2910
+      },
+      {
+        "percent": 70,
+        "used_ms": 2967
+      },
+      {
+        "percent": 75,
+        "used_ms": 3024
+      },
+      {
+        "percent": 79,
+        "used_ms": 3085
+      },
+      {
+        "percent": 84,
+        "used_ms": 3142
+      },
+      {
+        "percent": 89,
+        "used_ms": 3199
+      },
+      {
+        "percent": 93,
+        "used_ms": 3256
+      },
+      {
+        "percent": 98,
+        "used_ms": 3313
+      },
+      {
+        "percent": 100,
+        "used_ms": 3366
+      }
+    ],
+    "loaded_successfully": true,
+    "download_100_percent": true,
+    "time_ms": 4947,
+    "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"pipeline-512k.bin\",0x80000400)\n\r\nfileName = pipeline-512k.bin, FlashAddr = 0x80000400\nopen fileName: pipeline-512k.bin success,file size: 524288 byte\nFLASH_BUFFER SBA verified base=01180000\r\nFLASH_PIPELINE resident ready\r\nFLASH_CHUNK bytes=24576 cache=4096\r\nDownload:   4% ,used 2166 ms \rDownload:   9% ,used 2224 ms \rDownload:  14% ,used 2282 ms \rDownload:  18% ,used 2339 ms \rDownload:  23% ,used 2396 ms \rDownload:  28% ,used 2453 ms \rDownload:  32% ,used 2510 ms \rDownload:  37% ,used 2567 ms \rDownload:  42% ,used 2624 ms \rDownload:  46% ,used 2682 ms \rDownload:  51% ,used 2739 ms \rDownload:  56% ,used 2796 ms \rDownload:  60% ,used 2853 ms \rDownload:  65% ,used 2910 ms \rDownload:  70% ,used 2967 ms \rDownload:  75% ,used 3024 ms \rDownload:  79% ,used 3085 ms \rDownload:  84% ,used 3142 ms \rDownload:  89% ,used 3199 ms \rDownload:  93% ,used 3256 ms \rDownload:  98% ,used 3313 ms \rDownload: 100% ,used 3366 ms \rFLASH_PROFILE staging_write_us=370162 staging_check_us=361\r\nFLASH_SD hz=25000000 calls=1056 word_calls=1056 read_us=180384\r\nFLASH_IO file_read_us=227233\r\n\nFLASH_TIMING bytes=524288 erase_ms=2098 write_ms=1260 erase_write_ms=3358 program_active_ms=391 refresh_wait_ms=642\nFLASH_VERIFY bytes=524288 verify_ms=843 erase_write_verify_ms=4201\n pipeline-512k.bin loaded successfully.\n0\r\n",
+    "algorithm_source": "hpm-rom-api",
+    "reset_handled_by_rom_api": true,
+    "verified": true,
+    "hz": 30000000,
+    "sha256": "666e9e28362797b64150bf28c6e052acb6867886489e68db65fb217b680c733e"
+  }
+]

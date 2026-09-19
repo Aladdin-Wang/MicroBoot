@@ -1,0 +1,10 @@
+{
+  "size": 8388608,
+  "sha256": "b2c203360ee23028c3eadf7d56a4ec679dd4624a214ecb2234e370272f5ae7c0",
+  "readback_sha256": "b2c203360ee23028c3eadf7d56a4ec679dd4624a214ecb2234e370272f5ae7c0",
+  "verified": true,
+  "verify_s": 40.97181089999867,
+  "erase_ms": 31588,
+  "write_ms": 58302,
+  "erase_write_ms": 89890
+}

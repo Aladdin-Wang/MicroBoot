@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-19",
+  "unit": "KiB/s (1024 bytes)",
+  "probe_firmware_sha256": "4adecdd4aaa69bbd4d5ae5f738bb831b676a71ea9dde511f6498c1aa1815a8c5",
+  "timing": "Probe-local erase, write, verify; write includes file I/O and progress waits. Host independent readback is additional qualification.",
+  "rows": [
+    {
+      "stage": "常驻编程循环＋24 KiB动态缓冲",
+      "hz": 20000000,
+      "bytes": 8388608,
+      "erase_ms": 32265,
+      "write_ms": 14230,
+      "erase_write_ms": 46495,
+      "program_active_ms": 7723,
+      "refresh_wait_ms": 2933,
+      "verify_ms": 15484,
+      "erase_write_verify_ms": 61979,
+      "write_kib_s": 575.6851721714687,
+      "erase_write_kib_s": 176.1909882783095,
+      "all_phases_kib_s": 132.17380080349795,
+      "verified": true,
+      "sha256": "9b5e1d1fd43e7d45b82721f832d37f0d3e3e8c9ecf9cb7de33417e308bd9890b",
+      "readback_sha256": "9b5e1d1fd43e7d45b82721f832d37f0d3e3e8c9ecf9cb7de33417e308bd9890b",
+      "host_qualification_verify_s": 42.324407999996765
+    },
+    {
+      "stage": "常驻编程循环＋24 KiB动态缓冲",
+      "hz": 30000000,
+      "bytes": 8388608,
+      "erase_ms": 32136,
+      "write_ms": 12952,
+      "erase_write_ms": 45088,
+      "program_active_ms": 6462,
+      "refresh_wait_ms": 2927,
+      "verify_ms": 13404,
+      "erase_write_verify_ms": 58492,
+      "write_kib_s": 632.4891908585547,
+      "erase_write_kib_s": 181.6891412349184,
+      "all_phases_kib_s": 140.05334062777817,
+      "verified": true,
+      "sha256": "b2c203360ee23028c3eadf7d56a4ec679dd4624a214ecb2234e370272f5ae7c0",
+      "readback_sha256": "b2c203360ee23028c3eadf7d56a4ec679dd4624a214ecb2234e370272f5ae7c0",
+      "host_qualification_verify_s": 40.59319669999968
+    }
+  ]
+}

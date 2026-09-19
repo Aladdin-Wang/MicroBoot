@@ -7,3 +7,11 @@ maintenance/docs-organization/editor-backups/
 # Publish migration records; keep local captures, editorial drafts and logs local.
 maintenance/*
 !maintenance/docs-organization/
+
+# Disposable OS, Python and editor temporary files.
+*.py[cod]
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+*.swo

@@ -1,0 +1,38 @@
+[
+  {
+    "hz": 20000000,
+    "size": 51073,
+    "verified": true,
+    "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"boundary-1.bin\",0x80000400)\n\r\nfileName = boundary-1.bin, FlashAddr = 0x80000400\nopen fileName: boundary-1.bin success,file size: 51073 byte\nFLASH_BUFFER SBA verified base=01180000\r\nDownload:   8% ,used 367 ms \rDownload:  16% ,used 412 ms \rDownload:  24% ,used 456 ms \rDownload:  32% ,used 501 ms \rDownload:  40% ,used 546 ms \rDownload:  48% ,used 590 ms \rDownload:  56% ,used 635 ms \rDownload:  64% ,used 680 ms \rDownload:  72% ,used 725 ms \rDownload:  80% ,used 769 ms \rDownload:  88% ,used 814 ms \rDownload:  96% ,used 859 ms \rDownload: 100% ,used 906 ms \rFLASH_PROFILE staging_write_us=60197 staging_check_us=74998\r\n\nFLASH_TIMING bytes=51073 erase_ms=312 write_ms=584 erase_write_ms=896 program_active_ms=150 refresh_wait_ms=383\n boundary-1.bin loaded successfully.\n0\r\n"
+  },
+  {
+    "hz": 20000000,
+    "size": 51074,
+    "verified": true,
+    "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"boundary-2.bin\",0x80000400)\n\r\nfileName = boundary-2.bin, FlashAddr = 0x80000400\nopen fileName: boundary-2.bin success,file size: 51074 byte\nFLASH_BUFFER SBA verified base=01180000\r\nDownload:   8% ,used 367 ms \rDownload:  16% ,used 413 ms \rDownload:  24% ,used 457 ms \rDownload:  32% ,used 502 ms \rDownload:  40% ,used 547 ms \rDownload:  48% ,used 592 ms \rDownload:  56% ,used 636 ms \rDownload:  64% ,used 681 ms \rDownload:  72% ,used 726 ms \rDownload:  80% ,used 771 ms \rDownload:  88% ,used 815 ms \rDownload:  96% ,used 860 ms \rDownload: 100% ,used 907 ms \rFLASH_PROFILE staging_write_us=60426 staging_check_us=74928\r\n\nFLASH_TIMING bytes=51074 erase_ms=313 write_ms=585 erase_write_ms=898 program_active_ms=150 refresh_wait_ms=384\n boundary-2.bin loaded successfully.\n0\r\n"
+  },
+  {
+    "hz": 20000000,
+    "size": 51075,
+    "verified": true,
+    "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"boundary-3.bin\",0x80000400)\n\r\nfileName = boundary-3.bin, FlashAddr = 0x80000400\nopen fileName: boundary-3.bin success,file size: 51075 byte\nFLASH_BUFFER SBA verified base=01180000\r\nDownload:   8% ,used 367 ms \rDownload:  16% ,used 413 ms \rDownload:  24% ,used 458 ms \rDownload:  32% ,used 502 ms \rDownload:  40% ,used 547 ms \rDownload:  48% ,used 592 ms \rDownload:  56% ,used 636 ms \rDownload:  64% ,used 681 ms \rDownload:  72% ,used 726 ms \rDownload:  80% ,used 771 ms \rDownload:  88% ,used 815 ms \rDownload:  96% ,used 860 ms \rDownload: 100% ,used 907 ms \rFLASH_PROFILE staging_write_us=60207 staging_check_us=75185\r\n\nFLASH_TIMING bytes=51075 erase_ms=314 write_ms=585 erase_write_ms=899 program_active_ms=151 refresh_wait_ms=383\n boundary-3.bin loaded successfully.\n0\r\n"
+  },
+  {
+    "hz": 30000000,
+    "size": 51073,
+    "verified": true,
+    "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"boundary-1.bin\",0x80000400)\n\r\nfileName = boundary-1.bin, FlashAddr = 0x80000400\nopen fileName: boundary-1.bin success,file size: 51073 byte\nFLASH_BUFFER SBA verified base=01180000\r\nDownload:   8% ,used 361 ms \rDownload:  16% ,used 404 ms \rDownload:  24% ,used 447 ms \rDownload:  32% ,used 489 ms \rDownload:  40% ,used 532 ms \rDownload:  48% ,used 575 ms \rDownload:  56% ,used 617 ms \rDownload:  64% ,used 660 ms \rDownload:  72% ,used 703 ms \rDownload:  80% ,used 746 ms \rDownload:  88% ,used 788 ms \rDownload:  96% ,used 831 ms \rDownload: 100% ,used 876 ms \rFLASH_PROFILE staging_write_us=49885 staging_check_us=62627\r\n\nFLASH_TIMING bytes=51073 erase_ms=310 write_ms=557 erase_write_ms=867 program_active_ms=124 refresh_wait_ms=380\n boundary-1.bin loaded successfully.\n0\r\n"
+  },
+  {
+    "hz": 30000000,
+    "size": 51074,
+    "verified": true,
+    "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"boundary-2.bin\",0x80000400)\n\r\nfileName = boundary-2.bin, FlashAddr = 0x80000400\nopen fileName: boundary-2.bin success,file size: 51074 byte\nFLASH_BUFFER SBA verified base=01180000\r\nDownload:   8% ,used 361 ms \rDownload:  16% ,used 404 ms \rDownload:  24% ,used 446 ms \rDownload:  32% ,used 489 ms \rDownload:  40% ,used 532 ms \rDownload:  48% ,used 574 ms \rDownload:  56% ,used 617 ms \rDownload:  64% ,used 660 ms \rDownload:  72% ,used 703 ms \rDownload:  80% ,used 746 ms \rDownload:  88% ,used 788 ms \rDownload:  96% ,used 831 ms \rDownload: 100% ,used 876 ms \rFLASH_PROFILE staging_write_us=49866 staging_check_us=62582\r\n\nFLASH_TIMING bytes=51074 erase_ms=310 write_ms=558 erase_write_ms=868 program_active_ms=127 refresh_wait_ms=380\n boundary-2.bin loaded successfully.\n0\r\n"
+  },
+  {
+    "hz": 30000000,
+    "size": 51075,
+    "verified": true,
+    "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"boundary-3.bin\",0x80000400)\n\r\nfileName = boundary-3.bin, FlashAddr = 0x80000400\nopen fileName: boundary-3.bin success,file size: 51075 byte\nFLASH_BUFFER SBA verified base=01180000\r\nDownload:   8% ,used 363 ms \rDownload:  16% ,used 406 ms \rDownload:  24% ,used 449 ms \rDownload:  32% ,used 492 ms \rDownload:  40% ,used 534 ms \rDownload:  48% ,used 577 ms \rDownload:  56% ,used 620 ms \rDownload:  64% ,used 663 ms \rDownload:  72% ,used 705 ms \rDownload:  80% ,used 748 ms \rDownload:  88% ,used 791 ms \rDownload:  96% ,used 833 ms \rDownload: 100% ,used 878 ms \rFLASH_PROFILE staging_write_us=49574 staging_check_us=62632\r\n\nFLASH_TIMING bytes=51075 erase_ms=311 write_ms=559 erase_write_ms=870 program_active_ms=126 refresh_wait_ms=381\n boundary-3.bin loaded successfully.\n0\r\n"
+  }
+]

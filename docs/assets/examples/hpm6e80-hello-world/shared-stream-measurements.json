@@ -1,0 +1,122 @@
+[
+  {
+    "channels": [
+      {
+        "name": "wave_reference",
+        "type": "float",
+        "size": 4,
+        "unit": "",
+        "source": "ram",
+        "address": "0x0120553C"
+      },
+      {
+        "name": "wave_response",
+        "type": "float",
+        "size": 4,
+        "unit": "",
+        "source": "ram",
+        "address": "0x01205538"
+      },
+      {
+        "name": "wave_error",
+        "type": "float",
+        "size": 4,
+        "unit": "",
+        "source": "ram",
+        "address": "0x01205540"
+      }
+    ],
+    "sample_count": 510134,
+    "sample_span_s": 11.851172,
+    "sample_timeline_hz": 43044.94104043043,
+    "host_elapsed_s": 12.01290119999976,
+    "host_receive_hz": 42465.51199472199,
+    "sequence_missing": 0,
+    "interval_us": {
+      "median": 18.000000000029104,
+      "p99": 110.00000000058208,
+      "maximum": 326.0000000009313
+    },
+    "metrics": {
+      "wave_reference": {
+        "min": -100.0,
+        "max": 100.0,
+        "rms": 71.02326202392578,
+        "frequency_hz": 1.0020331252110555
+      },
+      "wave_response": {
+        "min": -99.25824737548828,
+        "max": 99.25823211669922,
+        "rms": 70.45941925048828,
+        "frequency_hz": 1.002074293788143
+      },
+      "wave_error": {
+        "min": -11.84943962097168,
+        "max": 11.849438667297363,
+        "rms": 8.346243858337402,
+        "frequency_hz": 1.0020943772484494
+      }
+    },
+    "response_gain": 0.05
+  },
+  {
+    "channels": [
+      {
+        "name": "wave_reference",
+        "type": "float",
+        "size": 4,
+        "unit": "",
+        "source": "ram",
+        "address": "0x0120553C"
+      },
+      {
+        "name": "wave_response",
+        "type": "float",
+        "size": 4,
+        "unit": "",
+        "source": "ram",
+        "address": "0x01205538"
+      },
+      {
+        "name": "wave_error",
+        "type": "float",
+        "size": 4,
+        "unit": "",
+        "source": "ram",
+        "address": "0x01205540"
+      }
+    ],
+    "sample_count": 509543,
+    "sample_span_s": 11.971209,
+    "sample_timeline_hz": 42563.954902132275,
+    "host_elapsed_s": 12.015919499999654,
+    "host_receive_hz": 42405.66025762861,
+    "sequence_missing": 0,
+    "interval_us": {
+      "median": 18.000000000029104,
+      "p99": 111.0000000007858,
+      "maximum": 323.00000000032014
+    },
+    "metrics": {
+      "wave_reference": {
+        "min": -100.0,
+        "max": 100.0,
+        "rms": 70.7202377319336,
+        "frequency_hz": 1.0018945826558017
+      },
+      "wave_response": {
+        "min": -99.82282257080078,
+        "max": 99.82281494140625,
+        "rms": 70.59644317626953,
+        "frequency_hz": 1.001913655081205
+      },
+      "wave_error": {
+        "min": -5.644813060760498,
+        "max": 5.644806861877441,
+        "rms": 3.990873336791992,
+        "frequency_hz": 1.0018745072029795
+      }
+    },
+    "response_gain": 0.1
+  }
+]

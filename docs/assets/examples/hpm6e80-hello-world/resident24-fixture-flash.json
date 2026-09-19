@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "filename": "demo.bin",
+  "addr": "0x80000400",
+  "board": "hpm6e00evk",
+  "progress": [
+    {
+      "percent": 48,
+      "used_ms": 378
+    },
+    {
+      "percent": 96,
+      "used_ms": 436
+    },
+    {
+      "percent": 100,
+      "used_ms": 480
+    }
+  ],
+  "loaded_successfully": true,
+  "download_100_percent": true,
+  "time_ms": 1274,
+  "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"demo.bin\",0x80000400)\n\r\nfileName = demo.bin, FlashAddr = 0x80000400\nopen fileName: demo.bin success,file size: 51072 byte\nFLASH_BUFFER SBA verified base=01180000\r\nFLASH_PIPELINE resident ready\r\nFLASH_CHUNK bytes=24576 cache=4096\r\nDownload:  48% ,used 378 ms \rDownload:  96% ,used 436 ms \rDownload: 100% ,used 480 ms \rFLASH_PROFILE staging_write_us=36337 staging_check_us=360\r\nFLASH_SD hz=25000000 calls=120 word_calls=120 read_us=20500\r\nFLASH_IO file_read_us=25830\r\n\nFLASH_TIMING bytes=51072 erase_ms=310 write_ms=162 erase_write_ms=472 program_active_ms=47 refresh_wait_ms=88\nFLASH_VERIFY bytes=51072 verify_ms=84 erase_write_verify_ms=556\n demo.bin loaded successfully.\n0\r\n",
+  "algorithm_source": "hpm-rom-api",
+  "reset_handled_by_rom_api": true,
+  "verified": true,
+  "tick_before": 6012,
+  "tick_after": 6550,
+  "size": 51072,
+  "sha256": "9ac4584d9c2592b9a6988f81a94b8a4dee6c8039770011bc3068d327297aeb21"
+}

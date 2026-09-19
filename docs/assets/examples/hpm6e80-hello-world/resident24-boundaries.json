@@ -1,0 +1,38 @@
+[
+  {
+    "hz": 20000000,
+    "size": 51073,
+    "verified": true,
+    "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"boundary-1.bin\",0x80000400)\n\r\nfileName = boundary-1.bin, FlashAddr = 0x80000400\nopen fileName: boundary-1.bin success,file size: 51073 byte\nFLASH_BUFFER SBA verified base=01180000\r\nFLASH_PIPELINE resident ready\r\nFLASH_CHUNK bytes=24576 cache=4096\r\nDownload:  48% ,used 388 ms \rDownload:  96% ,used 451 ms \rDownload: 100% ,used 495 ms \rFLASH_PROFILE staging_write_us=51253 staging_check_us=484\r\nFLASH_SD hz=25000000 calls=120 word_calls=120 read_us=20502\r\nFLASH_IO file_read_us=25890\r\n\nFLASH_TIMING bytes=51073 erase_ms=312 write_ms=172 erase_write_ms=484 program_active_ms=57 refresh_wait_ms=87\nFLASH_VERIFY bytes=51073 verify_ms=96 erase_write_verify_ms=580\n boundary-1.bin loaded successfully.\n0\r\n"
+  },
+  {
+    "hz": 20000000,
+    "size": 51074,
+    "verified": true,
+    "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"boundary-2.bin\",0x80000400)\n\r\nfileName = boundary-2.bin, FlashAddr = 0x80000400\nopen fileName: boundary-2.bin success,file size: 51074 byte\nFLASH_BUFFER SBA verified base=01180000\r\nFLASH_PIPELINE resident ready\r\nFLASH_CHUNK bytes=24576 cache=4096\r\nDownload:  48% ,used 388 ms \rDownload:  96% ,used 450 ms \rDownload: 100% ,used 494 ms \rFLASH_PROFILE staging_write_us=51096 staging_check_us=483\r\nFLASH_SD hz=25000000 calls=120 word_calls=120 read_us=20501\r\nFLASH_IO file_read_us=25791\r\n\nFLASH_TIMING bytes=51074 erase_ms=312 write_ms=172 erase_write_ms=484 program_active_ms=58 refresh_wait_ms=88\nFLASH_VERIFY bytes=51074 verify_ms=97 erase_write_verify_ms=581\n boundary-2.bin loaded successfully.\n0\r\n"
+  },
+  {
+    "hz": 20000000,
+    "size": 51075,
+    "verified": true,
+    "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"boundary-3.bin\",0x80000400)\n\r\nfileName = boundary-3.bin, FlashAddr = 0x80000400\nopen fileName: boundary-3.bin success,file size: 51075 byte\nFLASH_BUFFER SBA verified base=01180000\r\nFLASH_PIPELINE resident ready\r\nFLASH_CHUNK bytes=24576 cache=4096\r\nDownload:  48% ,used 389 ms \rDownload:  96% ,used 452 ms \rDownload: 100% ,used 496 ms \rFLASH_PROFILE staging_write_us=51194 staging_check_us=476\r\nFLASH_SD hz=25000000 calls=120 word_calls=120 read_us=20501\r\nFLASH_IO file_read_us=26084\r\n\nFLASH_TIMING bytes=51075 erase_ms=313 write_ms=173 erase_write_ms=486 program_active_ms=59 refresh_wait_ms=88\nFLASH_VERIFY bytes=51075 verify_ms=96 erase_write_verify_ms=582\n boundary-3.bin loaded successfully.\n0\r\n"
+  },
+  {
+    "hz": 30000000,
+    "size": 51073,
+    "verified": true,
+    "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"boundary-1.bin\",0x80000400)\n\r\nfileName = boundary-1.bin, FlashAddr = 0x80000400\nopen fileName: boundary-1.bin success,file size: 51073 byte\nFLASH_BUFFER SBA verified base=01180000\r\nFLASH_PIPELINE resident ready\r\nFLASH_CHUNK bytes=24576 cache=4096\r\nDownload:  48% ,used 384 ms \rDownload:  96% ,used 442 ms \rDownload: 100% ,used 486 ms \rFLASH_PROFILE staging_write_us=40627 staging_check_us=370\r\nFLASH_SD hz=25000000 calls=120 word_calls=120 read_us=20513\r\nFLASH_IO file_read_us=25950\r\n\nFLASH_TIMING bytes=51073 erase_ms=314 write_ms=163 erase_write_ms=477 program_active_ms=49 refresh_wait_ms=88\nFLASH_VERIFY bytes=51073 verify_ms=85 erase_write_verify_ms=562\n boundary-1.bin loaded successfully.\n0\r\n"
+  },
+  {
+    "hz": 30000000,
+    "size": 51074,
+    "verified": true,
+    "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"boundary-2.bin\",0x80000400)\n\r\nfileName = boundary-2.bin, FlashAddr = 0x80000400\nopen fileName: boundary-2.bin success,file size: 51074 byte\nFLASH_BUFFER SBA verified base=01180000\r\nFLASH_PIPELINE resident ready\r\nFLASH_CHUNK bytes=24576 cache=4096\r\nDownload:  48% ,used 382 ms \rDownload:  96% ,used 440 ms \rDownload: 100% ,used 484 ms \rFLASH_PROFILE staging_write_us=40261 staging_check_us=361\r\nFLASH_SD hz=25000000 calls=120 word_calls=120 read_us=20509\r\nFLASH_IO file_read_us=25846\r\n\nFLASH_TIMING bytes=51074 erase_ms=312 write_ms=163 erase_write_ms=475 program_active_ms=49 refresh_wait_ms=88\nFLASH_VERIFY bytes=51074 verify_ms=83 erase_write_verify_ms=558\n boundary-2.bin loaded successfully.\n0\r\n"
+  },
+  {
+    "hz": 30000000,
+    "size": 51075,
+    "verified": true,
+    "response": "hpm.board(\"hpm6e00evk\")\n\r\nboard name = hpm6e00evk \r\r\n0\r\n\nhpm.program(\"boundary-3.bin\",0x80000400)\n\r\nfileName = boundary-3.bin, FlashAddr = 0x80000400\nopen fileName: boundary-3.bin success,file size: 51075 byte\nFLASH_BUFFER SBA verified base=01180000\r\nFLASH_PIPELINE resident ready\r\nFLASH_CHUNK bytes=24576 cache=4096\r\nDownload:  48% ,used 382 ms \rDownload:  96% ,used 440 ms \rDownload: 100% ,used 484 ms \rFLASH_PROFILE staging_write_us=40423 staging_check_us=424\r\nFLASH_SD hz=25000000 calls=120 word_calls=120 read_us=20505\r\nFLASH_IO file_read_us=26084\r\n\nFLASH_TIMING bytes=51075 erase_ms=312 write_ms=163 erase_write_ms=475 program_active_ms=48 refresh_wait_ms=89\nFLASH_VERIFY bytes=51075 verify_ms=85 erase_write_verify_ms=560\n boundary-3.bin loaded successfully.\n0\r\n"
+  }
+]
