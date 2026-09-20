@@ -1,0 +1,2962 @@
+{
+  "offline": [
+    {
+      "speed": 20000000,
+      "cycle": 1,
+      "sha256": "fa9ae94d35d765684c7618837c14f31139b0eacc89e001207cd73992cad00400",
+      "times": {
+        "bytes": 241664,
+        "erase_us": 2684554,
+        "write_us": 7903949,
+        "verify_us": 419183,
+        "total_us": 13993661
+      },
+      "result": {
+        "success": true,
+        "filename": "app-236k.bin",
+        "addr": "0x08005000",
+        "progress": [
+          {
+            "percent": 0,
+            "used_ms": 23
+          },
+          {
+            "percent": 1,
+            "used_ms": 122
+          },
+          {
+            "percent": 2,
+            "used_ms": 243
+          },
+          {
+            "percent": 3,
+            "used_ms": 340
+          },
+          {
+            "percent": 4,
+            "used_ms": 461
+          },
+          {
+            "percent": 5,
+            "used_ms": 560
+          },
+          {
+            "percent": 6,
+            "used_ms": 681
+          },
+          {
+            "percent": 7,
+            "used_ms": 779
+          },
+          {
+            "percent": 8,
+            "used_ms": 900
+          },
+          {
+            "percent": 9,
+            "used_ms": 998
+          },
+          {
+            "percent": 10,
+            "used_ms": 1119
+          },
+          {
+            "percent": 11,
+            "used_ms": 1216
+          },
+          {
+            "percent": 12,
+            "used_ms": 1337
+          },
+          {
+            "percent": 13,
+            "used_ms": 1458
+          },
+          {
+            "percent": 14,
+            "used_ms": 1555
+          },
+          {
+            "percent": 15,
+            "used_ms": 1676
+          },
+          {
+            "percent": 16,
+            "used_ms": 1774
+          },
+          {
+            "percent": 17,
+            "used_ms": 1895
+          },
+          {
+            "percent": 18,
+            "used_ms": 1993
+          },
+          {
+            "percent": 19,
+            "used_ms": 2114
+          },
+          {
+            "percent": 20,
+            "used_ms": 2211
+          },
+          {
+            "percent": 21,
+            "used_ms": 2332
+          },
+          {
+            "percent": 22,
+            "used_ms": 2430
+          },
+          {
+            "percent": 23,
+            "used_ms": 2551
+          },
+          {
+            "percent": 24,
+            "used_ms": 2648
+          },
+          {
+            "percent": 25,
+            "used_ms": 2769
+          },
+          {
+            "percent": 26,
+            "used_ms": 2890
+          },
+          {
+            "percent": 27,
+            "used_ms": 2987
+          },
+          {
+            "percent": 28,
+            "used_ms": 3108
+          },
+          {
+            "percent": 29,
+            "used_ms": 3206
+          },
+          {
+            "percent": 30,
+            "used_ms": 3327
+          },
+          {
+            "percent": 31,
+            "used_ms": 3426
+          },
+          {
+            "percent": 32,
+            "used_ms": 3547
+          },
+          {
+            "percent": 33,
+            "used_ms": 3644
+          },
+          {
+            "percent": 34,
+            "used_ms": 3967
+          },
+          {
+            "percent": 35,
+            "used_ms": 4131
+          },
+          {
+            "percent": 36,
+            "used_ms": 4429
+          },
+          {
+            "percent": 37,
+            "used_ms": 4726
+          },
+          {
+            "percent": 38,
+            "used_ms": 5024
+          },
+          {
+            "percent": 39,
+            "used_ms": 5321
+          },
+          {
+            "percent": 40,
+            "used_ms": 5484
+          },
+          {
+            "percent": 41,
+            "used_ms": 5782
+          },
+          {
+            "percent": 42,
+            "used_ms": 6079
+          },
+          {
+            "percent": 43,
+            "used_ms": 6377
+          },
+          {
+            "percent": 44,
+            "used_ms": 6541
+          },
+          {
+            "percent": 45,
+            "used_ms": 6840
+          },
+          {
+            "percent": 46,
+            "used_ms": 7138
+          },
+          {
+            "percent": 47,
+            "used_ms": 7436
+          },
+          {
+            "percent": 48,
+            "used_ms": 7599
+          },
+          {
+            "percent": 49,
+            "used_ms": 7896
+          },
+          {
+            "percent": 50,
+            "used_ms": 8193
+          },
+          {
+            "percent": 51,
+            "used_ms": 8491
+          },
+          {
+            "percent": 52,
+            "used_ms": 8788
+          },
+          {
+            "percent": 53,
+            "used_ms": 8952
+          },
+          {
+            "percent": 54,
+            "used_ms": 9250
+          },
+          {
+            "percent": 55,
+            "used_ms": 9548
+          },
+          {
+            "percent": 56,
+            "used_ms": 9845
+          },
+          {
+            "percent": 57,
+            "used_ms": 10008
+          },
+          {
+            "percent": 58,
+            "used_ms": 10305
+          },
+          {
+            "percent": 59,
+            "used_ms": 10603
+          },
+          {
+            "percent": 60,
+            "used_ms": 10900
+          },
+          {
+            "percent": 61,
+            "used_ms": 11064
+          },
+          {
+            "percent": 62,
+            "used_ms": 11361
+          },
+          {
+            "percent": 63,
+            "used_ms": 11659
+          },
+          {
+            "percent": 64,
+            "used_ms": 11957
+          },
+          {
+            "percent": 65,
+            "used_ms": 12255
+          },
+          {
+            "percent": 66,
+            "used_ms": 12418
+          },
+          {
+            "percent": 67,
+            "used_ms": 12590
+          },
+          {
+            "percent": 68,
+            "used_ms": 12634
+          },
+          {
+            "percent": 69,
+            "used_ms": 12678
+          },
+          {
+            "percent": 70,
+            "used_ms": 12715
+          },
+          {
+            "percent": 71,
+            "used_ms": 12760
+          },
+          {
+            "percent": 72,
+            "used_ms": 12804
+          },
+          {
+            "percent": 73,
+            "used_ms": 12848
+          },
+          {
+            "percent": 74,
+            "used_ms": 12885
+          },
+          {
+            "percent": 75,
+            "used_ms": 12929
+          },
+          {
+            "percent": 76,
+            "used_ms": 12974
+          },
+          {
+            "percent": 77,
+            "used_ms": 13018
+          },
+          {
+            "percent": 78,
+            "used_ms": 13062
+          },
+          {
+            "percent": 79,
+            "used_ms": 13099
+          },
+          {
+            "percent": 80,
+            "used_ms": 13143
+          },
+          {
+            "percent": 81,
+            "used_ms": 13188
+          },
+          {
+            "percent": 82,
+            "used_ms": 13232
+          },
+          {
+            "percent": 83,
+            "used_ms": 13269
+          },
+          {
+            "percent": 84,
+            "used_ms": 13313
+          },
+          {
+            "percent": 85,
+            "used_ms": 13358
+          },
+          {
+            "percent": 86,
+            "used_ms": 13402
+          },
+          {
+            "percent": 87,
+            "used_ms": 13439
+          },
+          {
+            "percent": 88,
+            "used_ms": 13483
+          },
+          {
+            "percent": 89,
+            "used_ms": 13528
+          },
+          {
+            "percent": 90,
+            "used_ms": 13572
+          },
+          {
+            "percent": 91,
+            "used_ms": 13616
+          },
+          {
+            "percent": 92,
+            "used_ms": 13653
+          },
+          {
+            "percent": 93,
+            "used_ms": 13698
+          },
+          {
+            "percent": 94,
+            "used_ms": 13742
+          },
+          {
+            "percent": 95,
+            "used_ms": 13786
+          },
+          {
+            "percent": 96,
+            "used_ms": 13823
+          },
+          {
+            "percent": 97,
+            "used_ms": 13867
+          },
+          {
+            "percent": 98,
+            "used_ms": 13912
+          },
+          {
+            "percent": 99,
+            "used_ms": 13956
+          },
+          {
+            "percent": 100,
+            "used_ms": 13994
+          }
+        ],
+        "time_ms": 14585,
+        "response": "load.bin('app-236k.bin',0x08005000)\n\r\nfileName app-236k.bin, Addr 0x8005000\r\nARM_FLASH_CLOCK attach=4000000 data=20000000\r\nARM_FLASH_PHASE erase\nDownload:   0% ,used 23 ms\rDownload:   1% ,used 122 ms\rDownload:   2% ,used 243 ms\rDownload:   3% ,used 340 ms\rDownload:   4% ,used 461 ms\rDownload:   5% ,used 560 ms\rDownload:   6% ,used 681 ms\rDownload:   7% ,used 779 ms\rDownload:   8% ,used 900 ms\rDownload:   9% ,used 998 ms\rDownload:  10% ,used 1119 ms\rDownload:  11% ,used 1216 ms\rDownload:  12% ,used 1337 ms\rDownload:  13% ,used 1458 ms\rDownload:  14% ,used 1555 ms\rDownload:  15% ,used 1676 ms\rDownload:  16% ,used 1774 ms\rDownload:  17% ,used 1895 ms\rDownload:  18% ,used 1993 ms\rDownload:  19% ,used 2114 ms\rDownload:  20% ,used 2211 ms\rDownload:  21% ,used 2332 ms\rDownload:  22% ,used 2430 ms\rDownload:  23% ,used 2551 ms\rDownload:  24% ,used 2648 ms\rDownload:  25% ,used 2769 ms\rDownload:  26% ,used 2890 ms\rDownload:  27% ,used 2987 ms\rDownload:  28% ,used 3108 ms\rDownload:  29% ,used 3206 ms\rDownload:  30% ,used 3327 ms\rDownload:  31% ,used 3426 ms\rDownload:  32% ,used 3547 ms\rDownload:  33% ,used 3644 ms\rARM_FLASH_PHASE write\nDownload:  34% ,used 3967 ms\rDownload:  35% ,used 4131 ms\rDownload:  36% ,used 4429 ms\rDownload:  37% ,used 4726 ms\rDownload:  38% ,used 5024 ms\rDownload:  39% ,used 5321 ms\rDownload:  40% ,used 5484 ms\rDownload:  41% ,used 5782 ms\rDownload:  42% ,used 6079 ms\rDownload:  43% ,used 6377 ms\rDownload:  44% ,used 6541 ms\rDownload:  45% ,used 6840 ms\rDownload:  46% ,used 7138 ms\rDownload:  47% ,used 7436 ms\rDownload:  48% ,used 7599 ms\rDownload:  49% ,used 7896 ms\rDownload:  50% ,used 8193 ms\rDownload:  51% ,used 8491 ms\rDownload:  52% ,used 8788 ms\rDownload:  53% ,used 8952 ms\rDownload:  54% ,used 9250 ms\rDownload:  55% ,used 9548 ms\rDownload:  56% ,used 9845 ms\rDownload:  57% ,used 10008 ms\rDownload:  58% ,used 10305 ms\rDownload:  59% ,used 10603 ms\rDownload:  60% ,used 10900 ms\rDownload:  61% ,used 11064 ms\rDownload:  62% ,used 11361 ms\rDownload:  63% ,used 11659 ms\rDownload:  64% ,used 11957 ms\rDownload:  65% ,used 12255 ms\rDownload:  66% ,used 12418 ms\rARM_FLASH_PHASE verify\nARM_PROGRAM_PROFILE pages=236 staging_us=330328\r\nARM_CALL_PROFILE calls=238 setup_us=138733 wait_us=7286919 finish_us=20914\r\nDownload:  67% ,used 12590 ms\rDownload:  68% ,used 12634 ms\rDownload:  69% ,used 12678 ms\rDownload:  70% ,used 12715 ms\rDownload:  71% ,used 12760 ms\rDownload:  72% ,used 12804 ms\rDownload:  73% ,used 12848 ms\rDownload:  74% ,used 12885 ms\rDownload:  75% ,used 12929 ms\rDownload:  76% ,used 12974 ms\rDownload:  77% ,used 13018 ms\rDownload:  78% ,used 13062 ms\rDownload:  79% ,used 13099 ms\rDownload:  80% ,used 13143 ms\rDownload:  81% ,used 13188 ms\rDownload:  82% ,used 13232 ms\rDownload:  83% ,used 13269 ms\rDownload:  84% ,used 13313 ms\rDownload:  85% ,used 13358 ms\rDownload:  86% ,used 13402 ms\rDownload:  87% ,used 13439 ms\rDownload:  88% ,used 13483 ms\rDownload:  89% ,used 13528 ms\rDownload:  90% ,used 13572 ms\rDownload:  91% ,used 13616 ms\rDownload:  92% ,used 13653 ms\rDownload:  93% ,used 13698 ms\rDownload:  94% ,used 13742 ms\rDownload:  95% ,used 13786 ms\rDownload:  96% ,used 13823 ms\rDownload:  97% ,used 13867 ms\rDownload:  98% ,used 13912 ms\rDownload:  99% ,used 13956 ms\rARM_FLASH_TIMING bytes=241664 erase_us=2684554 write_us=7903949 verify_us=419183 total_us=13993661\nDownload: 100% ,used 13994 ms\r\r\n /app-236k.bin loaded success.\r\n0\r\n",
+        "algorithm_source": "installed-pack",
+        "algorithm_name": "STM32F10x_512.FLM",
+        "verified": false
+      }
+    },
+    {
+      "speed": 20000000,
+      "cycle": 2,
+      "sha256": "fa9ae94d35d765684c7618837c14f31139b0eacc89e001207cd73992cad00400",
+      "times": {
+        "bytes": 241664,
+        "erase_us": 2684358,
+        "write_us": 7903499,
+        "verify_us": 418953,
+        "total_us": 13989681
+      },
+      "result": {
+        "success": true,
+        "filename": "app-236k.bin",
+        "addr": "0x08005000",
+        "progress": [
+          {
+            "percent": 0,
+            "used_ms": 23
+          },
+          {
+            "percent": 1,
+            "used_ms": 122
+          },
+          {
+            "percent": 2,
+            "used_ms": 242
+          },
+          {
+            "percent": 3,
+            "used_ms": 340
+          },
+          {
+            "percent": 4,
+            "used_ms": 461
+          },
+          {
+            "percent": 5,
+            "used_ms": 559
+          },
+          {
+            "percent": 6,
+            "used_ms": 680
+          },
+          {
+            "percent": 7,
+            "used_ms": 777
+          },
+          {
+            "percent": 8,
+            "used_ms": 898
+          },
+          {
+            "percent": 9,
+            "used_ms": 996
+          },
+          {
+            "percent": 10,
+            "used_ms": 1117
+          },
+          {
+            "percent": 11,
+            "used_ms": 1216
+          },
+          {
+            "percent": 12,
+            "used_ms": 1337
+          },
+          {
+            "percent": 13,
+            "used_ms": 1458
+          },
+          {
+            "percent": 14,
+            "used_ms": 1556
+          },
+          {
+            "percent": 15,
+            "used_ms": 1676
+          },
+          {
+            "percent": 16,
+            "used_ms": 1774
+          },
+          {
+            "percent": 17,
+            "used_ms": 1895
+          },
+          {
+            "percent": 18,
+            "used_ms": 1993
+          },
+          {
+            "percent": 19,
+            "used_ms": 2114
+          },
+          {
+            "percent": 20,
+            "used_ms": 2211
+          },
+          {
+            "percent": 21,
+            "used_ms": 2332
+          },
+          {
+            "percent": 22,
+            "used_ms": 2430
+          },
+          {
+            "percent": 23,
+            "used_ms": 2551
+          },
+          {
+            "percent": 24,
+            "used_ms": 2649
+          },
+          {
+            "percent": 25,
+            "used_ms": 2770
+          },
+          {
+            "percent": 26,
+            "used_ms": 2890
+          },
+          {
+            "percent": 27,
+            "used_ms": 2987
+          },
+          {
+            "percent": 28,
+            "used_ms": 3108
+          },
+          {
+            "percent": 29,
+            "used_ms": 3206
+          },
+          {
+            "percent": 30,
+            "used_ms": 3327
+          },
+          {
+            "percent": 31,
+            "used_ms": 3425
+          },
+          {
+            "percent": 32,
+            "used_ms": 3546
+          },
+          {
+            "percent": 33,
+            "used_ms": 3643
+          },
+          {
+            "percent": 34,
+            "used_ms": 3966
+          },
+          {
+            "percent": 35,
+            "used_ms": 4129
+          },
+          {
+            "percent": 36,
+            "used_ms": 4427
+          },
+          {
+            "percent": 37,
+            "used_ms": 4725
+          },
+          {
+            "percent": 38,
+            "used_ms": 5023
+          },
+          {
+            "percent": 39,
+            "used_ms": 5320
+          },
+          {
+            "percent": 40,
+            "used_ms": 5483
+          },
+          {
+            "percent": 41,
+            "used_ms": 5780
+          },
+          {
+            "percent": 42,
+            "used_ms": 6078
+          },
+          {
+            "percent": 43,
+            "used_ms": 6375
+          },
+          {
+            "percent": 44,
+            "used_ms": 6539
+          },
+          {
+            "percent": 45,
+            "used_ms": 6837
+          },
+          {
+            "percent": 46,
+            "used_ms": 7135
+          },
+          {
+            "percent": 47,
+            "used_ms": 7432
+          },
+          {
+            "percent": 48,
+            "used_ms": 7595
+          },
+          {
+            "percent": 49,
+            "used_ms": 7892
+          },
+          {
+            "percent": 50,
+            "used_ms": 8190
+          },
+          {
+            "percent": 51,
+            "used_ms": 8487
+          },
+          {
+            "percent": 52,
+            "used_ms": 8784
+          },
+          {
+            "percent": 53,
+            "used_ms": 8948
+          },
+          {
+            "percent": 54,
+            "used_ms": 9246
+          },
+          {
+            "percent": 55,
+            "used_ms": 9544
+          },
+          {
+            "percent": 56,
+            "used_ms": 9841
+          },
+          {
+            "percent": 57,
+            "used_ms": 10005
+          },
+          {
+            "percent": 58,
+            "used_ms": 10302
+          },
+          {
+            "percent": 59,
+            "used_ms": 10599
+          },
+          {
+            "percent": 60,
+            "used_ms": 10897
+          },
+          {
+            "percent": 61,
+            "used_ms": 11060
+          },
+          {
+            "percent": 62,
+            "used_ms": 11358
+          },
+          {
+            "percent": 63,
+            "used_ms": 11656
+          },
+          {
+            "percent": 64,
+            "used_ms": 11954
+          },
+          {
+            "percent": 65,
+            "used_ms": 12251
+          },
+          {
+            "percent": 66,
+            "used_ms": 12415
+          },
+          {
+            "percent": 67,
+            "used_ms": 12587
+          },
+          {
+            "percent": 68,
+            "used_ms": 12631
+          },
+          {
+            "percent": 69,
+            "used_ms": 12675
+          },
+          {
+            "percent": 70,
+            "used_ms": 12712
+          },
+          {
+            "percent": 71,
+            "used_ms": 12756
+          },
+          {
+            "percent": 72,
+            "used_ms": 12800
+          },
+          {
+            "percent": 73,
+            "used_ms": 12845
+          },
+          {
+            "percent": 74,
+            "used_ms": 12882
+          },
+          {
+            "percent": 75,
+            "used_ms": 12926
+          },
+          {
+            "percent": 76,
+            "used_ms": 12970
+          },
+          {
+            "percent": 77,
+            "used_ms": 13014
+          },
+          {
+            "percent": 78,
+            "used_ms": 13058
+          },
+          {
+            "percent": 79,
+            "used_ms": 13096
+          },
+          {
+            "percent": 80,
+            "used_ms": 13140
+          },
+          {
+            "percent": 81,
+            "used_ms": 13184
+          },
+          {
+            "percent": 82,
+            "used_ms": 13228
+          },
+          {
+            "percent": 83,
+            "used_ms": 13265
+          },
+          {
+            "percent": 84,
+            "used_ms": 13310
+          },
+          {
+            "percent": 85,
+            "used_ms": 13354
+          },
+          {
+            "percent": 86,
+            "used_ms": 13398
+          },
+          {
+            "percent": 87,
+            "used_ms": 13436
+          },
+          {
+            "percent": 88,
+            "used_ms": 13480
+          },
+          {
+            "percent": 89,
+            "used_ms": 13524
+          },
+          {
+            "percent": 90,
+            "used_ms": 13568
+          },
+          {
+            "percent": 91,
+            "used_ms": 13613
+          },
+          {
+            "percent": 92,
+            "used_ms": 13650
+          },
+          {
+            "percent": 93,
+            "used_ms": 13694
+          },
+          {
+            "percent": 94,
+            "used_ms": 13738
+          },
+          {
+            "percent": 95,
+            "used_ms": 13782
+          },
+          {
+            "percent": 96,
+            "used_ms": 13820
+          },
+          {
+            "percent": 97,
+            "used_ms": 13864
+          },
+          {
+            "percent": 98,
+            "used_ms": 13908
+          },
+          {
+            "percent": 99,
+            "used_ms": 13952
+          },
+          {
+            "percent": 100,
+            "used_ms": 13990
+          }
+        ],
+        "time_ms": 14580,
+        "response": "load.bin('app-236k.bin',0x08005000)\n\r\nfileName app-236k.bin, Addr 0x8005000\r\nARM_FLASH_CLOCK attach=4000000 data=20000000\r\nARM_FLASH_PHASE erase\nDownload:   0% ,used 23 ms\rDownload:   1% ,used 122 ms\rDownload:   2% ,used 242 ms\rDownload:   3% ,used 340 ms\rDownload:   4% ,used 461 ms\rDownload:   5% ,used 559 ms\rDownload:   6% ,used 680 ms\rDownload:   7% ,used 777 ms\rDownload:   8% ,used 898 ms\rDownload:   9% ,used 996 ms\rDownload:  10% ,used 1117 ms\rDownload:  11% ,used 1216 ms\rDownload:  12% ,used 1337 ms\rDownload:  13% ,used 1458 ms\rDownload:  14% ,used 1556 ms\rDownload:  15% ,used 1676 ms\rDownload:  16% ,used 1774 ms\rDownload:  17% ,used 1895 ms\rDownload:  18% ,used 1993 ms\rDownload:  19% ,used 2114 ms\rDownload:  20% ,used 2211 ms\rDownload:  21% ,used 2332 ms\rDownload:  22% ,used 2430 ms\rDownload:  23% ,used 2551 ms\rDownload:  24% ,used 2649 ms\rDownload:  25% ,used 2770 ms\rDownload:  26% ,used 2890 ms\rDownload:  27% ,used 2987 ms\rDownload:  28% ,used 3108 ms\rDownload:  29% ,used 3206 ms\rDownload:  30% ,used 3327 ms\rDownload:  31% ,used 3425 ms\rDownload:  32% ,used 3546 ms\rDownload:  33% ,used 3643 ms\rARM_FLASH_PHASE write\nDownload:  34% ,used 3966 ms\rDownload:  35% ,used 4129 ms\rDownload:  36% ,used 4427 ms\rDownload:  37% ,used 4725 ms\rDownload:  38% ,used 5023 ms\rDownload:  39% ,used 5320 ms\rDownload:  40% ,used 5483 ms\rDownload:  41% ,used 5780 ms\rDownload:  42% ,used 6078 ms\rDownload:  43% ,used 6375 ms\rDownload:  44% ,used 6539 ms\rDownload:  45% ,used 6837 ms\rDownload:  46% ,used 7135 ms\rDownload:  47% ,used 7432 ms\rDownload:  48% ,used 7595 ms\rDownload:  49% ,used 7892 ms\rDownload:  50% ,used 8190 ms\rDownload:  51% ,used 8487 ms\rDownload:  52% ,used 8784 ms\rDownload:  53% ,used 8948 ms\rDownload:  54% ,used 9246 ms\rDownload:  55% ,used 9544 ms\rDownload:  56% ,used 9841 ms\rDownload:  57% ,used 10005 ms\rDownload:  58% ,used 10302 ms\rDownload:  59% ,used 10599 ms\rDownload:  60% ,used 10897 ms\rDownload:  61% ,used 11060 ms\rDownload:  62% ,used 11358 ms\rDownload:  63% ,used 11656 ms\rDownload:  64% ,used 11954 ms\rDownload:  65% ,used 12251 ms\rDownload:  66% ,used 12415 ms\rARM_FLASH_PHASE verify\nARM_PROGRAM_PROFILE pages=236 staging_us=329971\r\nARM_CALL_PROFILE calls=238 setup_us=138332 wait_us=7286762 finish_us=21093\r\nDownload:  67% ,used 12587 ms\rDownload:  68% ,used 12631 ms\rDownload:  69% ,used 12675 ms\rDownload:  70% ,used 12712 ms\rDownload:  71% ,used 12756 ms\rDownload:  72% ,used 12800 ms\rDownload:  73% ,used 12845 ms\rDownload:  74% ,used 12882 ms\rDownload:  75% ,used 12926 ms\rDownload:  76% ,used 12970 ms\rDownload:  77% ,used 13014 ms\rDownload:  78% ,used 13058 ms\rDownload:  79% ,used 13096 ms\rDownload:  80% ,used 13140 ms\rDownload:  81% ,used 13184 ms\rDownload:  82% ,used 13228 ms\rDownload:  83% ,used 13265 ms\rDownload:  84% ,used 13310 ms\rDownload:  85% ,used 13354 ms\rDownload:  86% ,used 13398 ms\rDownload:  87% ,used 13436 ms\rDownload:  88% ,used 13480 ms\rDownload:  89% ,used 13524 ms\rDownload:  90% ,used 13568 ms\rDownload:  91% ,used 13613 ms\rDownload:  92% ,used 13650 ms\rDownload:  93% ,used 13694 ms\rDownload:  94% ,used 13738 ms\rDownload:  95% ,used 13782 ms\rDownload:  96% ,used 13820 ms\rDownload:  97% ,used 13864 ms\rDownload:  98% ,used 13908 ms\rDownload:  99% ,used 13952 ms\rARM_FLASH_TIMING bytes=241664 erase_us=2684358 write_us=7903499 verify_us=418953 total_us=13989681\nDownload: 100% ,used 13990 ms\r\r\n /app-236k.bin loaded success.\r\n0\r\n",
+        "algorithm_source": "installed-pack",
+        "algorithm_name": "STM32F10x_512.FLM",
+        "verified": false
+      }
+    },
+    {
+      "speed": 20000000,
+      "cycle": 3,
+      "sha256": "fa9ae94d35d765684c7618837c14f31139b0eacc89e001207cd73992cad00400",
+      "times": {
+        "bytes": 241664,
+        "erase_us": 2684496,
+        "write_us": 7903678,
+        "verify_us": 419116,
+        "total_us": 13994518
+      },
+      "result": {
+        "success": true,
+        "filename": "app-236k.bin",
+        "addr": "0x08005000",
+        "progress": [
+          {
+            "percent": 0,
+            "used_ms": 23
+          },
+          {
+            "percent": 1,
+            "used_ms": 121
+          },
+          {
+            "percent": 2,
+            "used_ms": 243
+          },
+          {
+            "percent": 3,
+            "used_ms": 340
+          },
+          {
+            "percent": 4,
+            "used_ms": 461
+          },
+          {
+            "percent": 5,
+            "used_ms": 560
+          },
+          {
+            "percent": 6,
+            "used_ms": 681
+          },
+          {
+            "percent": 7,
+            "used_ms": 779
+          },
+          {
+            "percent": 8,
+            "used_ms": 900
+          },
+          {
+            "percent": 9,
+            "used_ms": 998
+          },
+          {
+            "percent": 10,
+            "used_ms": 1119
+          },
+          {
+            "percent": 11,
+            "used_ms": 1217
+          },
+          {
+            "percent": 12,
+            "used_ms": 1337
+          },
+          {
+            "percent": 13,
+            "used_ms": 1458
+          },
+          {
+            "percent": 14,
+            "used_ms": 1555
+          },
+          {
+            "percent": 15,
+            "used_ms": 1676
+          },
+          {
+            "percent": 16,
+            "used_ms": 1774
+          },
+          {
+            "percent": 17,
+            "used_ms": 1895
+          },
+          {
+            "percent": 18,
+            "used_ms": 1994
+          },
+          {
+            "percent": 19,
+            "used_ms": 2115
+          },
+          {
+            "percent": 20,
+            "used_ms": 2213
+          },
+          {
+            "percent": 21,
+            "used_ms": 2334
+          },
+          {
+            "percent": 22,
+            "used_ms": 2432
+          },
+          {
+            "percent": 23,
+            "used_ms": 2553
+          },
+          {
+            "percent": 24,
+            "used_ms": 2650
+          },
+          {
+            "percent": 25,
+            "used_ms": 2772
+          },
+          {
+            "percent": 26,
+            "used_ms": 2892
+          },
+          {
+            "percent": 27,
+            "used_ms": 2989
+          },
+          {
+            "percent": 28,
+            "used_ms": 3110
+          },
+          {
+            "percent": 29,
+            "used_ms": 3208
+          },
+          {
+            "percent": 30,
+            "used_ms": 3329
+          },
+          {
+            "percent": 31,
+            "used_ms": 3428
+          },
+          {
+            "percent": 32,
+            "used_ms": 3549
+          },
+          {
+            "percent": 33,
+            "used_ms": 3647
+          },
+          {
+            "percent": 34,
+            "used_ms": 3970
+          },
+          {
+            "percent": 35,
+            "used_ms": 4134
+          },
+          {
+            "percent": 36,
+            "used_ms": 4432
+          },
+          {
+            "percent": 37,
+            "used_ms": 4729
+          },
+          {
+            "percent": 38,
+            "used_ms": 5027
+          },
+          {
+            "percent": 39,
+            "used_ms": 5324
+          },
+          {
+            "percent": 40,
+            "used_ms": 5488
+          },
+          {
+            "percent": 41,
+            "used_ms": 5785
+          },
+          {
+            "percent": 42,
+            "used_ms": 6082
+          },
+          {
+            "percent": 43,
+            "used_ms": 6380
+          },
+          {
+            "percent": 44,
+            "used_ms": 6543
+          },
+          {
+            "percent": 45,
+            "used_ms": 6841
+          },
+          {
+            "percent": 46,
+            "used_ms": 7139
+          },
+          {
+            "percent": 47,
+            "used_ms": 7437
+          },
+          {
+            "percent": 48,
+            "used_ms": 7600
+          },
+          {
+            "percent": 49,
+            "used_ms": 7897
+          },
+          {
+            "percent": 50,
+            "used_ms": 8194
+          },
+          {
+            "percent": 51,
+            "used_ms": 8492
+          },
+          {
+            "percent": 52,
+            "used_ms": 8789
+          },
+          {
+            "percent": 53,
+            "used_ms": 8953
+          },
+          {
+            "percent": 54,
+            "used_ms": 9251
+          },
+          {
+            "percent": 55,
+            "used_ms": 9549
+          },
+          {
+            "percent": 56,
+            "used_ms": 9846
+          },
+          {
+            "percent": 57,
+            "used_ms": 10009
+          },
+          {
+            "percent": 58,
+            "used_ms": 10307
+          },
+          {
+            "percent": 59,
+            "used_ms": 10604
+          },
+          {
+            "percent": 60,
+            "used_ms": 10901
+          },
+          {
+            "percent": 61,
+            "used_ms": 11065
+          },
+          {
+            "percent": 62,
+            "used_ms": 11362
+          },
+          {
+            "percent": 63,
+            "used_ms": 11660
+          },
+          {
+            "percent": 64,
+            "used_ms": 11958
+          },
+          {
+            "percent": 65,
+            "used_ms": 12256
+          },
+          {
+            "percent": 66,
+            "used_ms": 12419
+          },
+          {
+            "percent": 67,
+            "used_ms": 12591
+          },
+          {
+            "percent": 68,
+            "used_ms": 12635
+          },
+          {
+            "percent": 69,
+            "used_ms": 12679
+          },
+          {
+            "percent": 70,
+            "used_ms": 12716
+          },
+          {
+            "percent": 71,
+            "used_ms": 12761
+          },
+          {
+            "percent": 72,
+            "used_ms": 12805
+          },
+          {
+            "percent": 73,
+            "used_ms": 12849
+          },
+          {
+            "percent": 74,
+            "used_ms": 12886
+          },
+          {
+            "percent": 75,
+            "used_ms": 12930
+          },
+          {
+            "percent": 76,
+            "used_ms": 12975
+          },
+          {
+            "percent": 77,
+            "used_ms": 13019
+          },
+          {
+            "percent": 78,
+            "used_ms": 13063
+          },
+          {
+            "percent": 79,
+            "used_ms": 13100
+          },
+          {
+            "percent": 80,
+            "used_ms": 13144
+          },
+          {
+            "percent": 81,
+            "used_ms": 13189
+          },
+          {
+            "percent": 82,
+            "used_ms": 13233
+          },
+          {
+            "percent": 83,
+            "used_ms": 13270
+          },
+          {
+            "percent": 84,
+            "used_ms": 13315
+          },
+          {
+            "percent": 85,
+            "used_ms": 13359
+          },
+          {
+            "percent": 86,
+            "used_ms": 13403
+          },
+          {
+            "percent": 87,
+            "used_ms": 13440
+          },
+          {
+            "percent": 88,
+            "used_ms": 13484
+          },
+          {
+            "percent": 89,
+            "used_ms": 13529
+          },
+          {
+            "percent": 90,
+            "used_ms": 13573
+          },
+          {
+            "percent": 91,
+            "used_ms": 13617
+          },
+          {
+            "percent": 92,
+            "used_ms": 13654
+          },
+          {
+            "percent": 93,
+            "used_ms": 13698
+          },
+          {
+            "percent": 94,
+            "used_ms": 13742
+          },
+          {
+            "percent": 95,
+            "used_ms": 13787
+          },
+          {
+            "percent": 96,
+            "used_ms": 13824
+          },
+          {
+            "percent": 97,
+            "used_ms": 13868
+          },
+          {
+            "percent": 98,
+            "used_ms": 13912
+          },
+          {
+            "percent": 99,
+            "used_ms": 13957
+          },
+          {
+            "percent": 100,
+            "used_ms": 13994
+          }
+        ],
+        "time_ms": 14584,
+        "response": "load.bin('app-236k.bin',0x08005000)\n\r\nfileName app-236k.bin, Addr 0x8005000\r\nARM_FLASH_CLOCK attach=4000000 data=20000000\r\nARM_FLASH_PHASE erase\nDownload:   0% ,used 23 ms\rDownload:   1% ,used 121 ms\rDownload:   2% ,used 243 ms\rDownload:   3% ,used 340 ms\rDownload:   4% ,used 461 ms\rDownload:   5% ,used 560 ms\rDownload:   6% ,used 681 ms\rDownload:   7% ,used 779 ms\rDownload:   8% ,used 900 ms\rDownload:   9% ,used 998 ms\rDownload:  10% ,used 1119 ms\rDownload:  11% ,used 1217 ms\rDownload:  12% ,used 1337 ms\rDownload:  13% ,used 1458 ms\rDownload:  14% ,used 1555 ms\rDownload:  15% ,used 1676 ms\rDownload:  16% ,used 1774 ms\rDownload:  17% ,used 1895 ms\rDownload:  18% ,used 1994 ms\rDownload:  19% ,used 2115 ms\rDownload:  20% ,used 2213 ms\rDownload:  21% ,used 2334 ms\rDownload:  22% ,used 2432 ms\rDownload:  23% ,used 2553 ms\rDownload:  24% ,used 2650 ms\rDownload:  25% ,used 2772 ms\rDownload:  26% ,used 2892 ms\rDownload:  27% ,used 2989 ms\rDownload:  28% ,used 3110 ms\rDownload:  29% ,used 3208 ms\rDownload:  30% ,used 3329 ms\rDownload:  31% ,used 3428 ms\rDownload:  32% ,used 3549 ms\rDownload:  33% ,used 3647 ms\rARM_FLASH_PHASE write\nDownload:  34% ,used 3970 ms\rDownload:  35% ,used 4134 ms\rDownload:  36% ,used 4432 ms\rDownload:  37% ,used 4729 ms\rDownload:  38% ,used 5027 ms\rDownload:  39% ,used 5324 ms\rDownload:  40% ,used 5488 ms\rDownload:  41% ,used 5785 ms\rDownload:  42% ,used 6082 ms\rDownload:  43% ,used 6380 ms\rDownload:  44% ,used 6543 ms\rDownload:  45% ,used 6841 ms\rDownload:  46% ,used 7139 ms\rDownload:  47% ,used 7437 ms\rDownload:  48% ,used 7600 ms\rDownload:  49% ,used 7897 ms\rDownload:  50% ,used 8194 ms\rDownload:  51% ,used 8492 ms\rDownload:  52% ,used 8789 ms\rDownload:  53% ,used 8953 ms\rDownload:  54% ,used 9251 ms\rDownload:  55% ,used 9549 ms\rDownload:  56% ,used 9846 ms\rDownload:  57% ,used 10009 ms\rDownload:  58% ,used 10307 ms\rDownload:  59% ,used 10604 ms\rDownload:  60% ,used 10901 ms\rDownload:  61% ,used 11065 ms\rDownload:  62% ,used 11362 ms\rDownload:  63% ,used 11660 ms\rDownload:  64% ,used 11958 ms\rDownload:  65% ,used 12256 ms\rDownload:  66% ,used 12419 ms\rARM_FLASH_PHASE verify\nARM_PROGRAM_PROFILE pages=236 staging_us=330157\r\nARM_CALL_PROFILE calls=238 setup_us=138551 wait_us=7286911 finish_us=20894\r\nDownload:  67% ,used 12591 ms\rDownload:  68% ,used 12635 ms\rDownload:  69% ,used 12679 ms\rDownload:  70% ,used 12716 ms\rDownload:  71% ,used 12761 ms\rDownload:  72% ,used 12805 ms\rDownload:  73% ,used 12849 ms\rDownload:  74% ,used 12886 ms\rDownload:  75% ,used 12930 ms\rDownload:  76% ,used 12975 ms\rDownload:  77% ,used 13019 ms\rDownload:  78% ,used 13063 ms\rDownload:  79% ,used 13100 ms\rDownload:  80% ,used 13144 ms\rDownload:  81% ,used 13189 ms\rDownload:  82% ,used 13233 ms\rDownload:  83% ,used 13270 ms\rDownload:  84% ,used 13315 ms\rDownload:  85% ,used 13359 ms\rDownload:  86% ,used 13403 ms\rDownload:  87% ,used 13440 ms\rDownload:  88% ,used 13484 ms\rDownload:  89% ,used 13529 ms\rDownload:  90% ,used 13573 ms\rDownload:  91% ,used 13617 ms\rDownload:  92% ,used 13654 ms\rDownload:  93% ,used 13698 ms\rDownload:  94% ,used 13742 ms\rDownload:  95% ,used 13787 ms\rDownload:  96% ,used 13824 ms\rDownload:  97% ,used 13868 ms\rDownload:  98% ,used 13912 ms\rDownload:  99% ,used 13957 ms\rARM_FLASH_TIMING bytes=241664 erase_us=2684496 write_us=7903678 verify_us=419116 total_us=13994518\nDownload: 100% ,used 13994 ms\r\r\n /app-236k.bin loaded success.\r\n0\r\n",
+        "algorithm_source": "installed-pack",
+        "algorithm_name": "STM32F10x_512.FLM",
+        "verified": true
+      }
+    },
+    {
+      "speed": 30000000,
+      "cycle": 1,
+      "sha256": "fa9ae94d35d765684c7618837c14f31139b0eacc89e001207cd73992cad00400",
+      "times": {
+        "bytes": 241664,
+        "erase_us": 2677323,
+        "write_us": 7841245,
+        "verify_us": 515303,
+        "total_us": 14000650
+      },
+      "result": {
+        "success": true,
+        "filename": "app-236k.bin",
+        "addr": "0x08005000",
+        "progress": [
+          {
+            "percent": 0,
+            "used_ms": 23
+          },
+          {
+            "percent": 1,
+            "used_ms": 120
+          },
+          {
+            "percent": 2,
+            "used_ms": 241
+          },
+          {
+            "percent": 3,
+            "used_ms": 339
+          },
+          {
+            "percent": 4,
+            "used_ms": 460
+          },
+          {
+            "percent": 5,
+            "used_ms": 557
+          },
+          {
+            "percent": 6,
+            "used_ms": 678
+          },
+          {
+            "percent": 7,
+            "used_ms": 776
+          },
+          {
+            "percent": 8,
+            "used_ms": 897
+          },
+          {
+            "percent": 9,
+            "used_ms": 994
+          },
+          {
+            "percent": 10,
+            "used_ms": 1115
+          },
+          {
+            "percent": 11,
+            "used_ms": 1213
+          },
+          {
+            "percent": 12,
+            "used_ms": 1334
+          },
+          {
+            "percent": 13,
+            "used_ms": 1454
+          },
+          {
+            "percent": 14,
+            "used_ms": 1552
+          },
+          {
+            "percent": 15,
+            "used_ms": 1673
+          },
+          {
+            "percent": 16,
+            "used_ms": 1770
+          },
+          {
+            "percent": 17,
+            "used_ms": 1891
+          },
+          {
+            "percent": 18,
+            "used_ms": 1989
+          },
+          {
+            "percent": 19,
+            "used_ms": 2110
+          },
+          {
+            "percent": 20,
+            "used_ms": 2208
+          },
+          {
+            "percent": 21,
+            "used_ms": 2328
+          },
+          {
+            "percent": 22,
+            "used_ms": 2426
+          },
+          {
+            "percent": 23,
+            "used_ms": 2547
+          },
+          {
+            "percent": 24,
+            "used_ms": 2645
+          },
+          {
+            "percent": 25,
+            "used_ms": 2766
+          },
+          {
+            "percent": 26,
+            "used_ms": 2886
+          },
+          {
+            "percent": 27,
+            "used_ms": 2984
+          },
+          {
+            "percent": 28,
+            "used_ms": 3105
+          },
+          {
+            "percent": 29,
+            "used_ms": 3202
+          },
+          {
+            "percent": 30,
+            "used_ms": 3323
+          },
+          {
+            "percent": 31,
+            "used_ms": 3421
+          },
+          {
+            "percent": 32,
+            "used_ms": 3542
+          },
+          {
+            "percent": 33,
+            "used_ms": 3639
+          },
+          {
+            "percent": 34,
+            "used_ms": 3960
+          },
+          {
+            "percent": 35,
+            "used_ms": 4122
+          },
+          {
+            "percent": 36,
+            "used_ms": 4418
+          },
+          {
+            "percent": 37,
+            "used_ms": 4713
+          },
+          {
+            "percent": 38,
+            "used_ms": 5008
+          },
+          {
+            "percent": 39,
+            "used_ms": 5304
+          },
+          {
+            "percent": 40,
+            "used_ms": 5467
+          },
+          {
+            "percent": 41,
+            "used_ms": 5762
+          },
+          {
+            "percent": 42,
+            "used_ms": 6057
+          },
+          {
+            "percent": 43,
+            "used_ms": 6353
+          },
+          {
+            "percent": 44,
+            "used_ms": 6515
+          },
+          {
+            "percent": 45,
+            "used_ms": 6811
+          },
+          {
+            "percent": 46,
+            "used_ms": 7106
+          },
+          {
+            "percent": 47,
+            "used_ms": 7402
+          },
+          {
+            "percent": 48,
+            "used_ms": 7564
+          },
+          {
+            "percent": 49,
+            "used_ms": 7859
+          },
+          {
+            "percent": 50,
+            "used_ms": 8155
+          },
+          {
+            "percent": 51,
+            "used_ms": 8450
+          },
+          {
+            "percent": 52,
+            "used_ms": 8746
+          },
+          {
+            "percent": 53,
+            "used_ms": 8908
+          },
+          {
+            "percent": 54,
+            "used_ms": 9204
+          },
+          {
+            "percent": 55,
+            "used_ms": 9499
+          },
+          {
+            "percent": 56,
+            "used_ms": 9794
+          },
+          {
+            "percent": 57,
+            "used_ms": 9957
+          },
+          {
+            "percent": 58,
+            "used_ms": 10253
+          },
+          {
+            "percent": 59,
+            "used_ms": 10548
+          },
+          {
+            "percent": 60,
+            "used_ms": 10843
+          },
+          {
+            "percent": 61,
+            "used_ms": 11006
+          },
+          {
+            "percent": 62,
+            "used_ms": 11301
+          },
+          {
+            "percent": 63,
+            "used_ms": 11596
+          },
+          {
+            "percent": 64,
+            "used_ms": 11891
+          },
+          {
+            "percent": 65,
+            "used_ms": 12187
+          },
+          {
+            "percent": 66,
+            "used_ms": 12349
+          },
+          {
+            "percent": 67,
+            "used_ms": 12522
+          },
+          {
+            "percent": 68,
+            "used_ms": 12570
+          },
+          {
+            "percent": 69,
+            "used_ms": 12617
+          },
+          {
+            "percent": 70,
+            "used_ms": 12655
+          },
+          {
+            "percent": 71,
+            "used_ms": 12702
+          },
+          {
+            "percent": 72,
+            "used_ms": 12749
+          },
+          {
+            "percent": 73,
+            "used_ms": 12795
+          },
+          {
+            "percent": 74,
+            "used_ms": 12833
+          },
+          {
+            "percent": 75,
+            "used_ms": 12880
+          },
+          {
+            "percent": 76,
+            "used_ms": 12927
+          },
+          {
+            "percent": 77,
+            "used_ms": 12974
+          },
+          {
+            "percent": 78,
+            "used_ms": 13021
+          },
+          {
+            "percent": 79,
+            "used_ms": 13059
+          },
+          {
+            "percent": 80,
+            "used_ms": 13106
+          },
+          {
+            "percent": 81,
+            "used_ms": 13153
+          },
+          {
+            "percent": 82,
+            "used_ms": 13200
+          },
+          {
+            "percent": 83,
+            "used_ms": 13238
+          },
+          {
+            "percent": 84,
+            "used_ms": 13285
+          },
+          {
+            "percent": 85,
+            "used_ms": 13332
+          },
+          {
+            "percent": 86,
+            "used_ms": 13378
+          },
+          {
+            "percent": 87,
+            "used_ms": 13417
+          },
+          {
+            "percent": 88,
+            "used_ms": 13464
+          },
+          {
+            "percent": 89,
+            "used_ms": 13510
+          },
+          {
+            "percent": 90,
+            "used_ms": 13557
+          },
+          {
+            "percent": 91,
+            "used_ms": 13604
+          },
+          {
+            "percent": 92,
+            "used_ms": 13642
+          },
+          {
+            "percent": 93,
+            "used_ms": 13689
+          },
+          {
+            "percent": 94,
+            "used_ms": 13736
+          },
+          {
+            "percent": 95,
+            "used_ms": 13783
+          },
+          {
+            "percent": 96,
+            "used_ms": 13821
+          },
+          {
+            "percent": 97,
+            "used_ms": 13868
+          },
+          {
+            "percent": 98,
+            "used_ms": 13915
+          },
+          {
+            "percent": 99,
+            "used_ms": 13962
+          },
+          {
+            "percent": 100,
+            "used_ms": 14001
+          }
+        ],
+        "time_ms": 14591,
+        "response": "load.bin('app-236k.bin',0x08005000)\n\r\nfileName app-236k.bin, Addr 0x8005000\r\nARM_FLASH_CLOCK attach=4000000 data=30000000\r\nARM_FLASH_PHASE erase\nDownload:   0% ,used 23 ms\rDownload:   1% ,used 120 ms\rDownload:   2% ,used 241 ms\rDownload:   3% ,used 339 ms\rDownload:   4% ,used 460 ms\rDownload:   5% ,used 557 ms\rDownload:   6% ,used 678 ms\rDownload:   7% ,used 776 ms\rDownload:   8% ,used 897 ms\rDownload:   9% ,used 994 ms\rDownload:  10% ,used 1115 ms\rDownload:  11% ,used 1213 ms\rDownload:  12% ,used 1334 ms\rDownload:  13% ,used 1454 ms\rDownload:  14% ,used 1552 ms\rDownload:  15% ,used 1673 ms\rDownload:  16% ,used 1770 ms\rDownload:  17% ,used 1891 ms\rDownload:  18% ,used 1989 ms\rDownload:  19% ,used 2110 ms\rDownload:  20% ,used 2208 ms\rDownload:  21% ,used 2328 ms\rDownload:  22% ,used 2426 ms\rDownload:  23% ,used 2547 ms\rDownload:  24% ,used 2645 ms\rDownload:  25% ,used 2766 ms\rDownload:  26% ,used 2886 ms\rDownload:  27% ,used 2984 ms\rDownload:  28% ,used 3105 ms\rDownload:  29% ,used 3202 ms\rDownload:  30% ,used 3323 ms\rDownload:  31% ,used 3421 ms\rDownload:  32% ,used 3542 ms\rDownload:  33% ,used 3639 ms\rARM_FLASH_PHASE write\nDownload:  34% ,used 3960 ms\rDownload:  35% ,used 4122 ms\rDownload:  36% ,used 4418 ms\rDownload:  37% ,used 4713 ms\rDownload:  38% ,used 5008 ms\rDownload:  39% ,used 5304 ms\rDownload:  40% ,used 5467 ms\rDownload:  41% ,used 5762 ms\rDownload:  42% ,used 6057 ms\rDownload:  43% ,used 6353 ms\rDownload:  44% ,used 6515 ms\rDownload:  45% ,used 6811 ms\rDownload:  46% ,used 7106 ms\rDownload:  47% ,used 7402 ms\rDownload:  48% ,used 7564 ms\rDownload:  49% ,used 7859 ms\rDownload:  50% ,used 8155 ms\rDownload:  51% ,used 8450 ms\rDownload:  52% ,used 8746 ms\rDownload:  53% ,used 8908 ms\rDownload:  54% ,used 9204 ms\rDownload:  55% ,used 9499 ms\rDownload:  56% ,used 9794 ms\rDownload:  57% ,used 9957 ms\rDownload:  58% ,used 10253 ms\rDownload:  59% ,used 10548 ms\rDownload:  60% ,used 10843 ms\rDownload:  61% ,used 11006 ms\rDownload:  62% ,used 11301 ms\rDownload:  63% ,used 11596 ms\rDownload:  64% ,used 11891 ms\rDownload:  65% ,used 12187 ms\rDownload:  66% ,used 12349 ms\rARM_FLASH_PHASE verify\nARM_PROGRAM_PROFILE pages=236 staging_us=281583\r\nARM_CALL_PROFILE calls=238 setup_us=126278 wait_us=7287547 finish_us=18935\r\nDownload:  67% ,used 12522 ms\rDownload:  68% ,used 12570 ms\rDownload:  69% ,used 12617 ms\rDownload:  70% ,used 12655 ms\rDownload:  71% ,used 12702 ms\rDownload:  72% ,used 12749 ms\rDownload:  73% ,used 12795 ms\rDownload:  74% ,used 12833 ms\rDownload:  75% ,used 12880 ms\rDownload:  76% ,used 12927 ms\rDownload:  77% ,used 12974 ms\rDownload:  78% ,used 13021 ms\rDownload:  79% ,used 13059 ms\rDownload:  80% ,used 13106 ms\rDownload:  81% ,used 13153 ms\rDownload:  82% ,used 13200 ms\rDownload:  83% ,used 13238 ms\rDownload:  84% ,used 13285 ms\rDownload:  85% ,used 13332 ms\rDownload:  86% ,used 13378 ms\rDownload:  87% ,used 13417 ms\rDownload:  88% ,used 13464 ms\rDownload:  89% ,used 13510 ms\rDownload:  90% ,used 13557 ms\rDownload:  91% ,used 13604 ms\rDownload:  92% ,used 13642 ms\rDownload:  93% ,used 13689 ms\rDownload:  94% ,used 13736 ms\rDownload:  95% ,used 13783 ms\rDownload:  96% ,used 13821 ms\rDownload:  97% ,used 13868 ms\rDownload:  98% ,used 13915 ms\rDownload:  99% ,used 13962 ms\rARM_FLASH_TIMING bytes=241664 erase_us=2677323 write_us=7841245 verify_us=515303 total_us=14000650\nDownload: 100% ,used 14001 ms\r\r\n /app-236k.bin loaded success.\r\n0\r\n",
+        "algorithm_source": "installed-pack",
+        "algorithm_name": "STM32F10x_512.FLM",
+        "verified": false
+      }
+    },
+    {
+      "speed": 30000000,
+      "cycle": 2,
+      "sha256": "fa9ae94d35d765684c7618837c14f31139b0eacc89e001207cd73992cad00400",
+      "times": {
+        "bytes": 241664,
+        "erase_us": 2677183,
+        "write_us": 7841329,
+        "verify_us": 515197,
+        "total_us": 14000320
+      },
+      "result": {
+        "success": true,
+        "filename": "app-236k.bin",
+        "addr": "0x08005000",
+        "progress": [
+          {
+            "percent": 0,
+            "used_ms": 23
+          },
+          {
+            "percent": 1,
+            "used_ms": 120
+          },
+          {
+            "percent": 2,
+            "used_ms": 241
+          },
+          {
+            "percent": 3,
+            "used_ms": 339
+          },
+          {
+            "percent": 4,
+            "used_ms": 460
+          },
+          {
+            "percent": 5,
+            "used_ms": 557
+          },
+          {
+            "percent": 6,
+            "used_ms": 678
+          },
+          {
+            "percent": 7,
+            "used_ms": 776
+          },
+          {
+            "percent": 8,
+            "used_ms": 897
+          },
+          {
+            "percent": 9,
+            "used_ms": 994
+          },
+          {
+            "percent": 10,
+            "used_ms": 1115
+          },
+          {
+            "percent": 11,
+            "used_ms": 1213
+          },
+          {
+            "percent": 12,
+            "used_ms": 1334
+          },
+          {
+            "percent": 13,
+            "used_ms": 1454
+          },
+          {
+            "percent": 14,
+            "used_ms": 1552
+          },
+          {
+            "percent": 15,
+            "used_ms": 1673
+          },
+          {
+            "percent": 16,
+            "used_ms": 1770
+          },
+          {
+            "percent": 17,
+            "used_ms": 1891
+          },
+          {
+            "percent": 18,
+            "used_ms": 1989
+          },
+          {
+            "percent": 19,
+            "used_ms": 2110
+          },
+          {
+            "percent": 20,
+            "used_ms": 2207
+          },
+          {
+            "percent": 21,
+            "used_ms": 2328
+          },
+          {
+            "percent": 22,
+            "used_ms": 2426
+          },
+          {
+            "percent": 23,
+            "used_ms": 2547
+          },
+          {
+            "percent": 24,
+            "used_ms": 2645
+          },
+          {
+            "percent": 25,
+            "used_ms": 2766
+          },
+          {
+            "percent": 26,
+            "used_ms": 2886
+          },
+          {
+            "percent": 27,
+            "used_ms": 2983
+          },
+          {
+            "percent": 28,
+            "used_ms": 3104
+          },
+          {
+            "percent": 29,
+            "used_ms": 3202
+          },
+          {
+            "percent": 30,
+            "used_ms": 3323
+          },
+          {
+            "percent": 31,
+            "used_ms": 3421
+          },
+          {
+            "percent": 32,
+            "used_ms": 3541
+          },
+          {
+            "percent": 33,
+            "used_ms": 3639
+          },
+          {
+            "percent": 34,
+            "used_ms": 3959
+          },
+          {
+            "percent": 35,
+            "used_ms": 4122
+          },
+          {
+            "percent": 36,
+            "used_ms": 4418
+          },
+          {
+            "percent": 37,
+            "used_ms": 4713
+          },
+          {
+            "percent": 38,
+            "used_ms": 5008
+          },
+          {
+            "percent": 39,
+            "used_ms": 5304
+          },
+          {
+            "percent": 40,
+            "used_ms": 5466
+          },
+          {
+            "percent": 41,
+            "used_ms": 5761
+          },
+          {
+            "percent": 42,
+            "used_ms": 6057
+          },
+          {
+            "percent": 43,
+            "used_ms": 6353
+          },
+          {
+            "percent": 44,
+            "used_ms": 6515
+          },
+          {
+            "percent": 45,
+            "used_ms": 6810
+          },
+          {
+            "percent": 46,
+            "used_ms": 7106
+          },
+          {
+            "percent": 47,
+            "used_ms": 7401
+          },
+          {
+            "percent": 48,
+            "used_ms": 7564
+          },
+          {
+            "percent": 49,
+            "used_ms": 7859
+          },
+          {
+            "percent": 50,
+            "used_ms": 8155
+          },
+          {
+            "percent": 51,
+            "used_ms": 8450
+          },
+          {
+            "percent": 52,
+            "used_ms": 8745
+          },
+          {
+            "percent": 53,
+            "used_ms": 8908
+          },
+          {
+            "percent": 54,
+            "used_ms": 9204
+          },
+          {
+            "percent": 55,
+            "used_ms": 9498
+          },
+          {
+            "percent": 56,
+            "used_ms": 9794
+          },
+          {
+            "percent": 57,
+            "used_ms": 9956
+          },
+          {
+            "percent": 58,
+            "used_ms": 10252
+          },
+          {
+            "percent": 59,
+            "used_ms": 10547
+          },
+          {
+            "percent": 60,
+            "used_ms": 10842
+          },
+          {
+            "percent": 61,
+            "used_ms": 11005
+          },
+          {
+            "percent": 62,
+            "used_ms": 11300
+          },
+          {
+            "percent": 63,
+            "used_ms": 11596
+          },
+          {
+            "percent": 64,
+            "used_ms": 11891
+          },
+          {
+            "percent": 65,
+            "used_ms": 12187
+          },
+          {
+            "percent": 66,
+            "used_ms": 12349
+          },
+          {
+            "percent": 67,
+            "used_ms": 12522
+          },
+          {
+            "percent": 68,
+            "used_ms": 12569
+          },
+          {
+            "percent": 69,
+            "used_ms": 12616
+          },
+          {
+            "percent": 70,
+            "used_ms": 12654
+          },
+          {
+            "percent": 71,
+            "used_ms": 12701
+          },
+          {
+            "percent": 72,
+            "used_ms": 12748
+          },
+          {
+            "percent": 73,
+            "used_ms": 12795
+          },
+          {
+            "percent": 74,
+            "used_ms": 12833
+          },
+          {
+            "percent": 75,
+            "used_ms": 12880
+          },
+          {
+            "percent": 76,
+            "used_ms": 12927
+          },
+          {
+            "percent": 77,
+            "used_ms": 12974
+          },
+          {
+            "percent": 78,
+            "used_ms": 13021
+          },
+          {
+            "percent": 79,
+            "used_ms": 13059
+          },
+          {
+            "percent": 80,
+            "used_ms": 13106
+          },
+          {
+            "percent": 81,
+            "used_ms": 13153
+          },
+          {
+            "percent": 82,
+            "used_ms": 13199
+          },
+          {
+            "percent": 83,
+            "used_ms": 13238
+          },
+          {
+            "percent": 84,
+            "used_ms": 13285
+          },
+          {
+            "percent": 85,
+            "used_ms": 13331
+          },
+          {
+            "percent": 86,
+            "used_ms": 13378
+          },
+          {
+            "percent": 87,
+            "used_ms": 13416
+          },
+          {
+            "percent": 88,
+            "used_ms": 13463
+          },
+          {
+            "percent": 89,
+            "used_ms": 13510
+          },
+          {
+            "percent": 90,
+            "used_ms": 13557
+          },
+          {
+            "percent": 91,
+            "used_ms": 13604
+          },
+          {
+            "percent": 92,
+            "used_ms": 13642
+          },
+          {
+            "percent": 93,
+            "used_ms": 13689
+          },
+          {
+            "percent": 94,
+            "used_ms": 13736
+          },
+          {
+            "percent": 95,
+            "used_ms": 13783
+          },
+          {
+            "percent": 96,
+            "used_ms": 13821
+          },
+          {
+            "percent": 97,
+            "used_ms": 13868
+          },
+          {
+            "percent": 98,
+            "used_ms": 13915
+          },
+          {
+            "percent": 99,
+            "used_ms": 13961
+          },
+          {
+            "percent": 100,
+            "used_ms": 14000
+          }
+        ],
+        "time_ms": 14591,
+        "response": "load.bin('app-236k.bin',0x08005000)\n\r\nfileName app-236k.bin, Addr 0x8005000\r\nARM_FLASH_CLOCK attach=4000000 data=30000000\r\nARM_FLASH_PHASE erase\nDownload:   0% ,used 23 ms\rDownload:   1% ,used 120 ms\rDownload:   2% ,used 241 ms\rDownload:   3% ,used 339 ms\rDownload:   4% ,used 460 ms\rDownload:   5% ,used 557 ms\rDownload:   6% ,used 678 ms\rDownload:   7% ,used 776 ms\rDownload:   8% ,used 897 ms\rDownload:   9% ,used 994 ms\rDownload:  10% ,used 1115 ms\rDownload:  11% ,used 1213 ms\rDownload:  12% ,used 1334 ms\rDownload:  13% ,used 1454 ms\rDownload:  14% ,used 1552 ms\rDownload:  15% ,used 1673 ms\rDownload:  16% ,used 1770 ms\rDownload:  17% ,used 1891 ms\rDownload:  18% ,used 1989 ms\rDownload:  19% ,used 2110 ms\rDownload:  20% ,used 2207 ms\rDownload:  21% ,used 2328 ms\rDownload:  22% ,used 2426 ms\rDownload:  23% ,used 2547 ms\rDownload:  24% ,used 2645 ms\rDownload:  25% ,used 2766 ms\rDownload:  26% ,used 2886 ms\rDownload:  27% ,used 2983 ms\rDownload:  28% ,used 3104 ms\rDownload:  29% ,used 3202 ms\rDownload:  30% ,used 3323 ms\rDownload:  31% ,used 3421 ms\rDownload:  32% ,used 3541 ms\rDownload:  33% ,used 3639 ms\rARM_FLASH_PHASE write\nDownload:  34% ,used 3959 ms\rDownload:  35% ,used 4122 ms\rDownload:  36% ,used 4418 ms\rDownload:  37% ,used 4713 ms\rDownload:  38% ,used 5008 ms\rDownload:  39% ,used 5304 ms\rDownload:  40% ,used 5466 ms\rDownload:  41% ,used 5761 ms\rDownload:  42% ,used 6057 ms\rDownload:  43% ,used 6353 ms\rDownload:  44% ,used 6515 ms\rDownload:  45% ,used 6810 ms\rDownload:  46% ,used 7106 ms\rDownload:  47% ,used 7401 ms\rDownload:  48% ,used 7564 ms\rDownload:  49% ,used 7859 ms\rDownload:  50% ,used 8155 ms\rDownload:  51% ,used 8450 ms\rDownload:  52% ,used 8745 ms\rDownload:  53% ,used 8908 ms\rDownload:  54% ,used 9204 ms\rDownload:  55% ,used 9498 ms\rDownload:  56% ,used 9794 ms\rDownload:  57% ,used 9956 ms\rDownload:  58% ,used 10252 ms\rDownload:  59% ,used 10547 ms\rDownload:  60% ,used 10842 ms\rDownload:  61% ,used 11005 ms\rDownload:  62% ,used 11300 ms\rDownload:  63% ,used 11596 ms\rDownload:  64% ,used 11891 ms\rDownload:  65% ,used 12187 ms\rDownload:  66% ,used 12349 ms\rARM_FLASH_PHASE verify\nARM_PROGRAM_PROFILE pages=236 staging_us=281445\r\nARM_CALL_PROFILE calls=238 setup_us=126154 wait_us=7287891 finish_us=18787\r\nDownload:  67% ,used 12522 ms\rDownload:  68% ,used 12569 ms\rDownload:  69% ,used 12616 ms\rDownload:  70% ,used 12654 ms\rDownload:  71% ,used 12701 ms\rDownload:  72% ,used 12748 ms\rDownload:  73% ,used 12795 ms\rDownload:  74% ,used 12833 ms\rDownload:  75% ,used 12880 ms\rDownload:  76% ,used 12927 ms\rDownload:  77% ,used 12974 ms\rDownload:  78% ,used 13021 ms\rDownload:  79% ,used 13059 ms\rDownload:  80% ,used 13106 ms\rDownload:  81% ,used 13153 ms\rDownload:  82% ,used 13199 ms\rDownload:  83% ,used 13238 ms\rDownload:  84% ,used 13285 ms\rDownload:  85% ,used 13331 ms\rDownload:  86% ,used 13378 ms\rDownload:  87% ,used 13416 ms\rDownload:  88% ,used 13463 ms\rDownload:  89% ,used 13510 ms\rDownload:  90% ,used 13557 ms\rDownload:  91% ,used 13604 ms\rDownload:  92% ,used 13642 ms\rDownload:  93% ,used 13689 ms\rDownload:  94% ,used 13736 ms\rDownload:  95% ,used 13783 ms\rDownload:  96% ,used 13821 ms\rDownload:  97% ,used 13868 ms\rDownload:  98% ,used 13915 ms\rDownload:  99% ,used 13961 ms\rARM_FLASH_TIMING bytes=241664 erase_us=2677183 write_us=7841329 verify_us=515197 total_us=14000320\nDownload: 100% ,used 14000 ms\r\r\n /app-236k.bin loaded success.\r\n0\r\n",
+        "algorithm_source": "installed-pack",
+        "algorithm_name": "STM32F10x_512.FLM",
+        "verified": false
+      }
+    },
+    {
+      "speed": 30000000,
+      "cycle": 3,
+      "sha256": "fa9ae94d35d765684c7618837c14f31139b0eacc89e001207cd73992cad00400",
+      "times": {
+        "bytes": 241664,
+        "erase_us": 2677144,
+        "write_us": 7841558,
+        "verify_us": 516227,
+        "total_us": 14002981
+      },
+      "result": {
+        "success": true,
+        "filename": "app-236k.bin",
+        "addr": "0x08005000",
+        "progress": [
+          {
+            "percent": 0,
+            "used_ms": 23
+          },
+          {
+            "percent": 1,
+            "used_ms": 120
+          },
+          {
+            "percent": 2,
+            "used_ms": 241
+          },
+          {
+            "percent": 3,
+            "used_ms": 339
+          },
+          {
+            "percent": 4,
+            "used_ms": 460
+          },
+          {
+            "percent": 5,
+            "used_ms": 557
+          },
+          {
+            "percent": 6,
+            "used_ms": 678
+          },
+          {
+            "percent": 7,
+            "used_ms": 776
+          },
+          {
+            "percent": 8,
+            "used_ms": 897
+          },
+          {
+            "percent": 9,
+            "used_ms": 994
+          },
+          {
+            "percent": 10,
+            "used_ms": 1115
+          },
+          {
+            "percent": 11,
+            "used_ms": 1213
+          },
+          {
+            "percent": 12,
+            "used_ms": 1334
+          },
+          {
+            "percent": 13,
+            "used_ms": 1454
+          },
+          {
+            "percent": 14,
+            "used_ms": 1552
+          },
+          {
+            "percent": 15,
+            "used_ms": 1673
+          },
+          {
+            "percent": 16,
+            "used_ms": 1770
+          },
+          {
+            "percent": 17,
+            "used_ms": 1891
+          },
+          {
+            "percent": 18,
+            "used_ms": 1989
+          },
+          {
+            "percent": 19,
+            "used_ms": 2110
+          },
+          {
+            "percent": 20,
+            "used_ms": 2208
+          },
+          {
+            "percent": 21,
+            "used_ms": 2328
+          },
+          {
+            "percent": 22,
+            "used_ms": 2426
+          },
+          {
+            "percent": 23,
+            "used_ms": 2547
+          },
+          {
+            "percent": 24,
+            "used_ms": 2645
+          },
+          {
+            "percent": 25,
+            "used_ms": 2766
+          },
+          {
+            "percent": 26,
+            "used_ms": 2886
+          },
+          {
+            "percent": 27,
+            "used_ms": 2983
+          },
+          {
+            "percent": 28,
+            "used_ms": 3104
+          },
+          {
+            "percent": 29,
+            "used_ms": 3202
+          },
+          {
+            "percent": 30,
+            "used_ms": 3323
+          },
+          {
+            "percent": 31,
+            "used_ms": 3421
+          },
+          {
+            "percent": 32,
+            "used_ms": 3542
+          },
+          {
+            "percent": 33,
+            "used_ms": 3639
+          },
+          {
+            "percent": 34,
+            "used_ms": 3960
+          },
+          {
+            "percent": 35,
+            "used_ms": 4122
+          },
+          {
+            "percent": 36,
+            "used_ms": 4417
+          },
+          {
+            "percent": 37,
+            "used_ms": 4713
+          },
+          {
+            "percent": 38,
+            "used_ms": 5009
+          },
+          {
+            "percent": 39,
+            "used_ms": 5304
+          },
+          {
+            "percent": 40,
+            "used_ms": 5467
+          },
+          {
+            "percent": 41,
+            "used_ms": 5763
+          },
+          {
+            "percent": 42,
+            "used_ms": 6058
+          },
+          {
+            "percent": 43,
+            "used_ms": 6353
+          },
+          {
+            "percent": 44,
+            "used_ms": 6516
+          },
+          {
+            "percent": 45,
+            "used_ms": 6812
+          },
+          {
+            "percent": 46,
+            "used_ms": 7106
+          },
+          {
+            "percent": 47,
+            "used_ms": 7402
+          },
+          {
+            "percent": 48,
+            "used_ms": 7565
+          },
+          {
+            "percent": 49,
+            "used_ms": 7860
+          },
+          {
+            "percent": 50,
+            "used_ms": 8155
+          },
+          {
+            "percent": 51,
+            "used_ms": 8450
+          },
+          {
+            "percent": 52,
+            "used_ms": 8746
+          },
+          {
+            "percent": 53,
+            "used_ms": 8909
+          },
+          {
+            "percent": 54,
+            "used_ms": 9204
+          },
+          {
+            "percent": 55,
+            "used_ms": 9499
+          },
+          {
+            "percent": 56,
+            "used_ms": 9795
+          },
+          {
+            "percent": 57,
+            "used_ms": 9957
+          },
+          {
+            "percent": 58,
+            "used_ms": 10253
+          },
+          {
+            "percent": 59,
+            "used_ms": 10548
+          },
+          {
+            "percent": 60,
+            "used_ms": 10844
+          },
+          {
+            "percent": 61,
+            "used_ms": 11006
+          },
+          {
+            "percent": 62,
+            "used_ms": 11301
+          },
+          {
+            "percent": 63,
+            "used_ms": 11597
+          },
+          {
+            "percent": 64,
+            "used_ms": 11892
+          },
+          {
+            "percent": 65,
+            "used_ms": 12188
+          },
+          {
+            "percent": 66,
+            "used_ms": 12350
+          },
+          {
+            "percent": 67,
+            "used_ms": 12523
+          },
+          {
+            "percent": 68,
+            "used_ms": 12571
+          },
+          {
+            "percent": 69,
+            "used_ms": 12618
+          },
+          {
+            "percent": 70,
+            "used_ms": 12656
+          },
+          {
+            "percent": 71,
+            "used_ms": 12703
+          },
+          {
+            "percent": 72,
+            "used_ms": 12750
+          },
+          {
+            "percent": 73,
+            "used_ms": 12797
+          },
+          {
+            "percent": 74,
+            "used_ms": 12835
+          },
+          {
+            "percent": 75,
+            "used_ms": 12882
+          },
+          {
+            "percent": 76,
+            "used_ms": 12928
+          },
+          {
+            "percent": 77,
+            "used_ms": 12975
+          },
+          {
+            "percent": 78,
+            "used_ms": 13022
+          },
+          {
+            "percent": 79,
+            "used_ms": 13061
+          },
+          {
+            "percent": 80,
+            "used_ms": 13107
+          },
+          {
+            "percent": 81,
+            "used_ms": 13154
+          },
+          {
+            "percent": 82,
+            "used_ms": 13201
+          },
+          {
+            "percent": 83,
+            "used_ms": 13240
+          },
+          {
+            "percent": 84,
+            "used_ms": 13286
+          },
+          {
+            "percent": 85,
+            "used_ms": 13334
+          },
+          {
+            "percent": 86,
+            "used_ms": 13380
+          },
+          {
+            "percent": 87,
+            "used_ms": 13419
+          },
+          {
+            "percent": 88,
+            "used_ms": 13466
+          },
+          {
+            "percent": 89,
+            "used_ms": 13513
+          },
+          {
+            "percent": 90,
+            "used_ms": 13560
+          },
+          {
+            "percent": 91,
+            "used_ms": 13607
+          },
+          {
+            "percent": 92,
+            "used_ms": 13645
+          },
+          {
+            "percent": 93,
+            "used_ms": 13692
+          },
+          {
+            "percent": 94,
+            "used_ms": 13739
+          },
+          {
+            "percent": 95,
+            "used_ms": 13785
+          },
+          {
+            "percent": 96,
+            "used_ms": 13824
+          },
+          {
+            "percent": 97,
+            "used_ms": 13871
+          },
+          {
+            "percent": 98,
+            "used_ms": 13917
+          },
+          {
+            "percent": 99,
+            "used_ms": 13964
+          },
+          {
+            "percent": 100,
+            "used_ms": 14003
+          }
+        ],
+        "time_ms": 14593,
+        "response": "load.bin('app-236k.bin',0x08005000)\n\r\nfileName app-236k.bin, Addr 0x8005000\r\nARM_FLASH_CLOCK attach=4000000 data=30000000\r\nARM_FLASH_PHASE erase\nDownload:   0% ,used 23 ms\rDownload:   1% ,used 120 ms\rDownload:   2% ,used 241 ms\rDownload:   3% ,used 339 ms\rDownload:   4% ,used 460 ms\rDownload:   5% ,used 557 ms\rDownload:   6% ,used 678 ms\rDownload:   7% ,used 776 ms\rDownload:   8% ,used 897 ms\rDownload:   9% ,used 994 ms\rDownload:  10% ,used 1115 ms\rDownload:  11% ,used 1213 ms\rDownload:  12% ,used 1334 ms\rDownload:  13% ,used 1454 ms\rDownload:  14% ,used 1552 ms\rDownload:  15% ,used 1673 ms\rDownload:  16% ,used 1770 ms\rDownload:  17% ,used 1891 ms\rDownload:  18% ,used 1989 ms\rDownload:  19% ,used 2110 ms\rDownload:  20% ,used 2208 ms\rDownload:  21% ,used 2328 ms\rDownload:  22% ,used 2426 ms\rDownload:  23% ,used 2547 ms\rDownload:  24% ,used 2645 ms\rDownload:  25% ,used 2766 ms\rDownload:  26% ,used 2886 ms\rDownload:  27% ,used 2983 ms\rDownload:  28% ,used 3104 ms\rDownload:  29% ,used 3202 ms\rDownload:  30% ,used 3323 ms\rDownload:  31% ,used 3421 ms\rDownload:  32% ,used 3542 ms\rDownload:  33% ,used 3639 ms\rARM_FLASH_PHASE write\nDownload:  34% ,used 3960 ms\rDownload:  35% ,used 4122 ms\rDownload:  36% ,used 4417 ms\rDownload:  37% ,used 4713 ms\rDownload:  38% ,used 5009 ms\rDownload:  39% ,used 5304 ms\rDownload:  40% ,used 5467 ms\rDownload:  41% ,used 5763 ms\rDownload:  42% ,used 6058 ms\rDownload:  43% ,used 6353 ms\rDownload:  44% ,used 6516 ms\rDownload:  45% ,used 6812 ms\rDownload:  46% ,used 7106 ms\rDownload:  47% ,used 7402 ms\rDownload:  48% ,used 7565 ms\rDownload:  49% ,used 7860 ms\rDownload:  50% ,used 8155 ms\rDownload:  51% ,used 8450 ms\rDownload:  52% ,used 8746 ms\rDownload:  53% ,used 8909 ms\rDownload:  54% ,used 9204 ms\rDownload:  55% ,used 9499 ms\rDownload:  56% ,used 9795 ms\rDownload:  57% ,used 9957 ms\rDownload:  58% ,used 10253 ms\rDownload:  59% ,used 10548 ms\rDownload:  60% ,used 10844 ms\rDownload:  61% ,used 11006 ms\rDownload:  62% ,used 11301 ms\rDownload:  63% ,used 11597 ms\rDownload:  64% ,used 11892 ms\rDownload:  65% ,used 12188 ms\rDownload:  66% ,used 12350 ms\rARM_FLASH_PHASE verify\nARM_PROGRAM_PROFILE pages=236 staging_us=281734\r\nARM_CALL_PROFILE calls=238 setup_us=126290 wait_us=7287756 finish_us=18803\r\nDownload:  67% ,used 12523 ms\rDownload:  68% ,used 12571 ms\rDownload:  69% ,used 12618 ms\rDownload:  70% ,used 12656 ms\rDownload:  71% ,used 12703 ms\rDownload:  72% ,used 12750 ms\rDownload:  73% ,used 12797 ms\rDownload:  74% ,used 12835 ms\rDownload:  75% ,used 12882 ms\rDownload:  76% ,used 12928 ms\rDownload:  77% ,used 12975 ms\rDownload:  78% ,used 13022 ms\rDownload:  79% ,used 13061 ms\rDownload:  80% ,used 13107 ms\rDownload:  81% ,used 13154 ms\rDownload:  82% ,used 13201 ms\rDownload:  83% ,used 13240 ms\rDownload:  84% ,used 13286 ms\rDownload:  85% ,used 13334 ms\rDownload:  86% ,used 13380 ms\rDownload:  87% ,used 13419 ms\rDownload:  88% ,used 13466 ms\rDownload:  89% ,used 13513 ms\rDownload:  90% ,used 13560 ms\rDownload:  91% ,used 13607 ms\rDownload:  92% ,used 13645 ms\rDownload:  93% ,used 13692 ms\rDownload:  94% ,used 13739 ms\rDownload:  95% ,used 13785 ms\rDownload:  96% ,used 13824 ms\rDownload:  97% ,used 13871 ms\rDownload:  98% ,used 13917 ms\rDownload:  99% ,used 13964 ms\rARM_FLASH_TIMING bytes=241664 erase_us=2677144 write_us=7841558 verify_us=516227 total_us=14002981\nDownload: 100% ,used 14003 ms\r\r\n /app-236k.bin loaded success.\r\n0\r\n",
+        "algorithm_source": "installed-pack",
+        "algorithm_name": "STM32F10x_512.FLM",
+        "verified": true
+      }
+    }
+  ],
+  "boot_preserved": {
+    "unchanged": true,
+    "sha256": "d7f5ba1130c7f5a3f624285350a2ea347e70d0e10c7220d4ae0fc73e0835b29c"
+  },
+  "pid": {
+    "before": {
+      "tag": "pid-before",
+      "channels": [
+        {
+          "name": "g_pid_target_rpm",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x200082E4"
+        },
+        {
+          "name": "g_pid_feedback_rpm",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x200082B4"
+        },
+        {
+          "name": "g_pid_output_permille",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x200082D4"
+        }
+      ],
+      "samples": 492403,
+      "seconds": 24.0153664999998,
+      "host_samples_s": 20503.663768779214,
+      "error_peak": 395.7611083984375,
+      "error_rms": 89.44601894945518,
+      "sequence_gaps": 0,
+      "status_before": {
+        "state": "running",
+        "interval": 1e-05,
+        "items": [
+          {
+            "name": "g_pid_target_rpm",
+            "type": "float",
+            "size": 4,
+            "unit": "",
+            "source": "ram",
+            "address": "0x200082E4"
+          },
+          {
+            "name": "g_pid_feedback_rpm",
+            "type": "float",
+            "size": 4,
+            "unit": "",
+            "source": "ram",
+            "address": "0x200082B4"
+          },
+          {
+            "name": "g_pid_output_permille",
+            "type": "float",
+            "size": 4,
+            "unit": "",
+            "source": "ram",
+            "address": "0x200082D4"
+          }
+        ],
+        "metadata_version": 54,
+        "read_cycles": 33256990,
+        "read_drops": 0,
+        "read_errors": 0,
+        "actual_rate": 20538.7261,
+        "binary_drops": {
+          "batches": 0,
+          "items": 0
+        },
+        "binary_batch_policy": {
+          "max_samples": 4096,
+          "max_bytes": 65536,
+          "max_latency_ms": 20.0
+        },
+        "acquisition_mode": "dump-memory",
+        "stream_integrity": {
+          "complete_samples": 33256990,
+          "parser_dropped_bytes": 483,
+          "firmware_sample_drop_flags": 0,
+          "protocol_frames": 33256990,
+          "firmware_flagged_frames": 0,
+          "parser_dropped_frames": 0,
+          "parser_crc_errors": 0
+        },
+        "stream": {
+          "produced_batches": 60782,
+          "produced_items": 33256663,
+          "produced_bytes": 733070010,
+          "delivered_batches": 74218,
+          "delivered_items": 39364541,
+          "delivered_bytes": 922856535,
+          "dropped_batches": 0,
+          "dropped_items": 0,
+          "dropped_bytes": 0,
+          "active_clients": 2,
+          "queue_high_water_mark": 2,
+          "last_sequence": 60782
+        }
+      },
+      "status_after": {
+        "state": "running",
+        "interval": 1e-05,
+        "items": [
+          {
+            "name": "g_pid_target_rpm",
+            "type": "float",
+            "size": 4,
+            "unit": "",
+            "source": "ram",
+            "address": "0x200082E4"
+          },
+          {
+            "name": "g_pid_feedback_rpm",
+            "type": "float",
+            "size": 4,
+            "unit": "",
+            "source": "ram",
+            "address": "0x200082B4"
+          },
+          {
+            "name": "g_pid_output_permille",
+            "type": "float",
+            "size": 4,
+            "unit": "",
+            "source": "ram",
+            "address": "0x200082D4"
+          }
+        ],
+        "metadata_version": 54,
+        "read_cycles": 33749969,
+        "read_drops": 0,
+        "read_errors": 0,
+        "actual_rate": 20546.500087,
+        "binary_drops": {
+          "batches": 0,
+          "items": 0
+        },
+        "binary_batch_policy": {
+          "max_samples": 4096,
+          "max_bytes": 65536,
+          "max_latency_ms": 20.0
+        },
+        "acquisition_mode": "dump-memory",
+        "stream_integrity": {
+          "complete_samples": 33749969,
+          "parser_dropped_bytes": 483,
+          "firmware_sample_drop_flags": 0,
+          "protocol_frames": 33749969,
+          "firmware_flagged_frames": 0,
+          "parser_dropped_frames": 0,
+          "parser_crc_errors": 0
+        },
+        "stream": {
+          "produced_batches": 61959,
+          "produced_items": 33749909,
+          "produced_bytes": 742943280,
+          "delivered_batches": 77747,
+          "delivered_items": 40843436,
+          "delivered_bytes": 952459485,
+          "dropped_batches": 0,
+          "dropped_items": 0,
+          "dropped_bytes": 0,
+          "active_clients": 3,
+          "queue_high_water_mark": 2,
+          "last_sequence": 61959
+        }
+      },
+      "display_stride": 25,
+      "parameter_readback": [
+        {
+          "path": "g_pid_kp",
+          "generation": 1,
+          "value": 0.6000000238418579,
+          "verified": true
+        },
+        {
+          "path": "g_pid_ki",
+          "generation": 1,
+          "value": 0.800000011920929,
+          "verified": true
+        },
+        {
+          "path": "g_pid_kd",
+          "generation": 1,
+          "value": 0.004999999888241291,
+          "verified": true
+        }
+      ]
+    },
+    "after": {
+      "tag": "pid-after",
+      "channels": [
+        {
+          "name": "g_pid_target_rpm",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x200082E4"
+        },
+        {
+          "name": "g_pid_feedback_rpm",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x200082B4"
+        },
+        {
+          "name": "g_pid_output_permille",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x200082D4"
+        }
+      ],
+      "samples": 494725,
+      "seconds": 24.001487700000325,
+      "host_samples_s": 20612.263963953923,
+      "error_peak": 400.0003662109375,
+      "error_rms": 37.95077737992949,
+      "sequence_gaps": 0,
+      "status_before": {
+        "state": "running",
+        "interval": 1e-05,
+        "items": [
+          {
+            "name": "g_pid_target_rpm",
+            "type": "float",
+            "size": 4,
+            "unit": "",
+            "source": "ram",
+            "address": "0x200082E4"
+          },
+          {
+            "name": "g_pid_feedback_rpm",
+            "type": "float",
+            "size": 4,
+            "unit": "",
+            "source": "ram",
+            "address": "0x200082B4"
+          },
+          {
+            "name": "g_pid_output_permille",
+            "type": "float",
+            "size": 4,
+            "unit": "",
+            "source": "ram",
+            "address": "0x200082D4"
+          }
+        ],
+        "metadata_version": 61,
+        "read_cycles": 35411323,
+        "read_drops": 0,
+        "read_errors": 0,
+        "actual_rate": 20648.031926,
+        "binary_drops": {
+          "batches": 0,
+          "items": 0
+        },
+        "binary_batch_policy": {
+          "max_samples": 4096,
+          "max_bytes": 65536,
+          "max_latency_ms": 20.0
+        },
+        "acquisition_mode": "dump-memory",
+        "stream_integrity": {
+          "parser_dropped_bytes": 559,
+          "protocol_frames": 35411323,
+          "firmware_sample_drop_flags": 0,
+          "complete_samples": 35411323,
+          "firmware_flagged_frames": 0,
+          "parser_dropped_frames": 0,
+          "parser_crc_errors": 0
+        },
+        "stream": {
+          "produced_batches": 65925,
+          "produced_items": 35411323,
+          "produced_bytes": 776200032,
+          "delivered_batches": 85680,
+          "delivered_items": 44166700,
+          "delivered_bytes": 1018981709,
+          "dropped_batches": 0,
+          "dropped_items": 0,
+          "dropped_bytes": 0,
+          "active_clients": 2,
+          "queue_high_water_mark": 2,
+          "last_sequence": 65925
+        }
+      },
+      "status_after": {
+        "state": "running",
+        "interval": 1e-05,
+        "items": [
+          {
+            "name": "g_pid_target_rpm",
+            "type": "float",
+            "size": 4,
+            "unit": "",
+            "source": "ram",
+            "address": "0x200082E4"
+          },
+          {
+            "name": "g_pid_feedback_rpm",
+            "type": "float",
+            "size": 4,
+            "unit": "",
+            "source": "ram",
+            "address": "0x200082B4"
+          },
+          {
+            "name": "g_pid_output_permille",
+            "type": "float",
+            "size": 4,
+            "unit": "",
+            "source": "ram",
+            "address": "0x200082D4"
+          }
+        ],
+        "metadata_version": 61,
+        "read_cycles": 35906563,
+        "read_drops": 0,
+        "read_errors": 0,
+        "actual_rate": 20650.030975,
+        "binary_drops": {
+          "batches": 0,
+          "items": 0
+        },
+        "binary_batch_policy": {
+          "max_samples": 4096,
+          "max_bytes": 65536,
+          "max_latency_ms": 20.0
+        },
+        "acquisition_mode": "dump-memory",
+        "stream_integrity": {
+          "parser_dropped_bytes": 559,
+          "protocol_frames": 35906563,
+          "firmware_sample_drop_flags": 0,
+          "complete_samples": 35906563,
+          "firmware_flagged_frames": 0,
+          "parser_dropped_frames": 0,
+          "parser_crc_errors": 0
+        },
+        "stream": {
+          "produced_batches": 67100,
+          "produced_items": 35906502,
+          "produced_bytes": 786111962,
+          "delivered_batches": 89204,
+          "delivered_items": 45651783,
+          "delivered_bytes": 1048708419,
+          "dropped_batches": 0,
+          "dropped_items": 0,
+          "dropped_bytes": 0,
+          "active_clients": 3,
+          "queue_high_water_mark": 2,
+          "last_sequence": 67100
+        }
+      },
+      "display_stride": 25,
+      "parameter_readback": [
+        {
+          "path": "g_pid_kp",
+          "generation": 1,
+          "value": 2.0,
+          "verified": true
+        },
+        {
+          "path": "g_pid_ki",
+          "generation": 1,
+          "value": 8.0,
+          "verified": true
+        },
+        {
+          "path": "g_pid_kd",
+          "generation": 1,
+          "value": 0.0,
+          "verified": true
+        }
+      ]
+    }
+  }
+}

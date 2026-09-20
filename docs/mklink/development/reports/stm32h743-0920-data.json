@@ -1,0 +1,472 @@
+{
+  "ram-performance-0920": [
+    {
+      "profile": "high",
+      "bytes_per_sample": 4,
+      "count": 497231,
+      "wall_s_including_stop": 12.092418599999974,
+      "host_samples_s": 41119.23482371021,
+      "timestamp_samples_s": 42632.42240179766,
+      "mismatches": 0,
+      "stats": {
+        "protocol_frames": 497231,
+        "complete_samples": 497231,
+        "parser_dropped_bytes": 47,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      }
+    },
+    {
+      "profile": "high",
+      "bytes_per_sample": 16,
+      "count": 319877,
+      "wall_s_including_stop": 12.093127900000013,
+      "host_samples_s": 26451.13841887008,
+      "timestamp_samples_s": 27310.52743155143,
+      "mismatches": 0,
+      "stats": {
+        "protocol_frames": 319877,
+        "complete_samples": 319877,
+        "parser_dropped_bytes": 48,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      }
+    },
+    {
+      "profile": "high",
+      "bytes_per_sample": 4096,
+      "count": 2454,
+      "wall_s_including_stop": 12.09584529999995,
+      "host_samples_s": 202.8795788253021,
+      "timestamp_samples_s": 209.65002035818787,
+      "mismatches": 0,
+      "stats": {
+        "protocol_frames": 4909,
+        "complete_samples": 2454,
+        "parser_dropped_bytes": 50,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      }
+    }
+  ],
+  "ram-performance-30m-0920": [
+    {
+      "profile": "ultra",
+      "bytes_per_sample": 4,
+      "count": 541960,
+      "wall_s_including_stop": 12.093457499999886,
+      "host_samples_s": 44814.31385523992,
+      "timestamp_samples_s": 46299.97219228586,
+      "mismatches": 0,
+      "stats": {
+        "protocol_frames": 541960,
+        "complete_samples": 541960,
+        "parser_dropped_bytes": 47,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      }
+    },
+    {
+      "profile": "ultra",
+      "bytes_per_sample": 16,
+      "count": 372034,
+      "wall_s_including_stop": 12.094785300000012,
+      "host_samples_s": 30759.868056525123,
+      "timestamp_samples_s": 31770.05236213725,
+      "mismatches": 0,
+      "stats": {
+        "protocol_frames": 372034,
+        "complete_samples": 372034,
+        "parser_dropped_bytes": 48,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      }
+    },
+    {
+      "profile": "ultra",
+      "bytes_per_sample": 4096,
+      "count": 2918,
+      "wall_s_including_stop": 12.09531160000006,
+      "host_samples_s": 241.25050238474103,
+      "timestamp_samples_s": 249.23233109810295,
+      "mismatches": 0,
+      "stats": {
+        "protocol_frames": 5837,
+        "complete_samples": 2918,
+        "parser_dropped_bytes": 50,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0,
+        "firmware_flagged_frames": 0,
+        "firmware_sample_drop_flags": 0
+      }
+    }
+  ],
+  "pid-before-0920": {
+    "tag": "pid-before-0920",
+    "channels": [
+      {
+        "name": "pid_target",
+        "type": "float",
+        "size": 4,
+        "unit": "",
+        "source": "ram",
+        "address": "0x2404102C"
+      },
+      {
+        "name": "pid_feedback",
+        "type": "float",
+        "size": 4,
+        "unit": "",
+        "source": "ram",
+        "address": "0x24041030"
+      },
+      {
+        "name": "pid_output",
+        "type": "float",
+        "size": 4,
+        "unit": "",
+        "source": "ram",
+        "address": "0x24041038"
+      }
+    ],
+    "samples": 420108,
+    "seconds": 16.016092800000024,
+    "host_samples_s": 26230.366022396865,
+    "error_peak": 38.61188507080078,
+    "error_rms": 12.276314542245313,
+    "sequence_gaps": 0,
+    "status_before": {
+      "state": "running",
+      "interval": 1e-05,
+      "items": [
+        {
+          "name": "pid_target",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x2404102C"
+        },
+        {
+          "name": "pid_feedback",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x24041030"
+        },
+        {
+          "name": "pid_output",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x24041038"
+        }
+      ],
+      "metadata_version": 21,
+      "read_cycles": 8766377,
+      "read_drops": 0,
+      "read_errors": 0,
+      "actual_rate": 26223.924103,
+      "binary_drops": {
+        "batches": 0,
+        "items": 0
+      },
+      "binary_batch_policy": {
+        "max_samples": 4096,
+        "max_bytes": 65536,
+        "max_latency_ms": 20.0
+      },
+      "acquisition_mode": "dump-memory",
+      "stream_integrity": {
+        "parser_dropped_bytes": 234,
+        "protocol_frames": 8766377,
+        "firmware_sample_drop_flags": 0,
+        "complete_samples": 8766377,
+        "firmware_flagged_frames": 0,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0
+      },
+      "stream": {
+        "produced_batches": 13238,
+        "produced_items": 8765853,
+        "produced_bytes": 175406724,
+        "delivered_batches": 14790,
+        "delivered_items": 9600420,
+        "delivered_bytes": 192108638,
+        "dropped_batches": 0,
+        "dropped_items": 0,
+        "dropped_bytes": 0,
+        "active_clients": 1,
+        "queue_high_water_mark": 2,
+        "last_sequence": 13238
+      }
+    },
+    "status_after": {
+      "state": "running",
+      "interval": 1e-05,
+      "items": [
+        {
+          "name": "pid_target",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x2404102C"
+        },
+        {
+          "name": "pid_feedback",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x24041030"
+        },
+        {
+          "name": "pid_output",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x24041038"
+        }
+      ],
+      "metadata_version": 21,
+      "read_cycles": 9186563,
+      "read_drops": 0,
+      "read_errors": 0,
+      "actual_rate": 26260.427493,
+      "binary_drops": {
+        "batches": 0,
+        "items": 0
+      },
+      "binary_batch_policy": {
+        "max_samples": 4096,
+        "max_bytes": 65536,
+        "max_latency_ms": 20.0
+      },
+      "acquisition_mode": "dump-memory",
+      "stream_integrity": {
+        "parser_dropped_bytes": 234,
+        "protocol_frames": 9186563,
+        "firmware_sample_drop_flags": 0,
+        "complete_samples": 9186563,
+        "firmware_flagged_frames": 0,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0
+      },
+      "stream": {
+        "produced_batches": 14023,
+        "produced_items": 9186510,
+        "produced_bytes": 183825151,
+        "delivered_batches": 16359,
+        "delivered_items": 10441185,
+        "delivered_bytes": 208934512,
+        "dropped_batches": 0,
+        "dropped_items": 0,
+        "dropped_bytes": 0,
+        "active_clients": 1,
+        "queue_high_water_mark": 2,
+        "last_sequence": 14023
+      }
+    },
+    "display_rows_stride": 50
+  },
+  "pid-after-0920": {
+    "tag": "pid-after-0920",
+    "channels": [
+      {
+        "name": "pid_target",
+        "type": "float",
+        "size": 4,
+        "unit": "",
+        "source": "ram",
+        "address": "0x2404102C"
+      },
+      {
+        "name": "pid_feedback",
+        "type": "float",
+        "size": 4,
+        "unit": "",
+        "source": "ram",
+        "address": "0x24041030"
+      },
+      {
+        "name": "pid_output",
+        "type": "float",
+        "size": 4,
+        "unit": "",
+        "source": "ram",
+        "address": "0x24041038"
+      }
+    ],
+    "samples": 420600,
+    "seconds": 16.016840399999865,
+    "host_samples_s": 26259.85969230855,
+    "error_peak": 39.46363067626953,
+    "error_rms": 4.036483936659835,
+    "sequence_gaps": 0,
+    "status_before": {
+      "state": "running",
+      "interval": 1e-05,
+      "items": [
+        {
+          "name": "pid_target",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x2404102C"
+        },
+        {
+          "name": "pid_feedback",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x24041030"
+        },
+        {
+          "name": "pid_output",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x24041038"
+        }
+      ],
+      "metadata_version": 23,
+      "read_cycles": 9283415,
+      "read_drops": 0,
+      "read_errors": 0,
+      "actual_rate": 26296.538031,
+      "binary_drops": {
+        "batches": 0,
+        "items": 0
+      },
+      "binary_batch_policy": {
+        "max_samples": 4096,
+        "max_bytes": 65536,
+        "max_latency_ms": 20.0
+      },
+      "acquisition_mode": "dump-memory",
+      "stream_integrity": {
+        "parser_dropped_bytes": 299,
+        "protocol_frames": 9283415,
+        "firmware_sample_drop_flags": 0,
+        "complete_samples": 9283415,
+        "firmware_flagged_frames": 0,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0
+      },
+      "stream": {
+        "produced_batches": 14207,
+        "produced_items": 9283362,
+        "produced_bytes": 185764057,
+        "delivered_batches": 16543,
+        "delivered_items": 10538037,
+        "delivered_bytes": 210873418,
+        "dropped_batches": 0,
+        "dropped_items": 0,
+        "dropped_bytes": 0,
+        "active_clients": 1,
+        "queue_high_water_mark": 2,
+        "last_sequence": 14207
+      }
+    },
+    "status_after": {
+      "state": "running",
+      "interval": 1e-05,
+      "items": [
+        {
+          "name": "pid_target",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x2404102C"
+        },
+        {
+          "name": "pid_feedback",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x24041030"
+        },
+        {
+          "name": "pid_output",
+          "type": "float",
+          "size": 4,
+          "unit": "",
+          "source": "ram",
+          "address": "0x24041038"
+        }
+      ],
+      "metadata_version": 23,
+      "read_cycles": 9704531,
+      "read_drops": 0,
+      "read_errors": 0,
+      "actual_rate": 26325.11345,
+      "binary_drops": {
+        "batches": 0,
+        "items": 0
+      },
+      "binary_batch_policy": {
+        "max_samples": 4096,
+        "max_bytes": 65536,
+        "max_latency_ms": 20.0
+      },
+      "acquisition_mode": "dump-memory",
+      "stream_integrity": {
+        "parser_dropped_bytes": 299,
+        "protocol_frames": 9704531,
+        "firmware_sample_drop_flags": 0,
+        "complete_samples": 9704531,
+        "firmware_flagged_frames": 0,
+        "parser_dropped_frames": 0,
+        "parser_crc_errors": 0
+      },
+      "stream": {
+        "produced_batches": 14991,
+        "produced_items": 9704505,
+        "produced_bytes": 194192204,
+        "delivered_batches": 18111,
+        "delivered_items": 11380323,
+        "delivered_bytes": 227729712,
+        "dropped_batches": 0,
+        "dropped_items": 0,
+        "dropped_bytes": 0,
+        "active_clients": 1,
+        "queue_high_water_mark": 2,
+        "last_sequence": 14991
+      }
+    },
+    "display_rows_stride": 50
+  },
+  "pid-parameter-readback-0920": [
+    {
+      "path": "pid_kp",
+      "generation": 1,
+      "value": 2.0,
+      "verified": true
+    },
+    {
+      "path": "pid_ki",
+      "generation": 1,
+      "value": 10.0,
+      "verified": true
+    }
+  ]
+}

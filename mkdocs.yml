@@ -52,7 +52,7 @@ nav:
     - HardFault 定位: embedded-ai/workflows/hardfault-workflow.md
     - 看任务时间线: embedded-ai/workflows/systemview-workflow.md
   - 实战案例:
-    - MKLink × STM32: embedded-ai/cases/stm32f103-rt-thread.md
+    - MKLink × Arm MCU: embedded-ai/cases/stm32f103-rt-thread.md
     - 'MKLink x 先楫MCU：性能与 AI 调试': mklink/hpm/overview.md
   - 让 AI 的判断回到板子上验证: embedded-ai/articles/hardware-feedback-loop.md
 - 先楫生态:
