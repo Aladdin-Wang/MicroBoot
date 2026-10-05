@@ -7,3 +7,6 @@ site_author: 洛阳智沐科技有限公司
 # Refresh this content fingerprint whenever the stylesheet changes.
 extra_css:
   - css/custom.css?v=4d8a80bf6d55
+# The inherited config currently has no extra_javascript entries.
+extra_javascript:
+  - js/search-reset.js?v=a96c80ce38bc
