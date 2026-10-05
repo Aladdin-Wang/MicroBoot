@@ -1,2 +1,4 @@
 # Preserve exported build/flash evidence, including the tools' trailing spaces.
 docs/assets/**/*.log -whitespace
+# Editable image sources are covered by original-byte preservation checks.
+docs/images/source/**/*.drawio -text

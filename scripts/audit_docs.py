@@ -68,7 +68,15 @@ def main():
     inverse = {new:old for old,new in mapping.items()}
     errors, warnings = [], []
     hashes = json.loads((REPORT / 'binary-hashes.json').read_text(encoding='utf-8'))
+    checked_hashes = 0
+    skipped_local_backups = 0
     for path, expected in hashes.items():
+        # Editor recovery files are deliberately excluded from Git. Verify them
+        # locally when available; a clean checkout has no private backup folder.
+        if path.startswith('maintenance/docs-organization/editor-backups/') and not (ROOT / path).exists():
+            skipped_local_backups += 1
+            continue
+        checked_hashes += 1
         if not (ROOT / path).is_file() or hashlib.sha256((ROOT / path).read_bytes()).hexdigest() != expected:
             errors.append('Asset changed or missing: ' + path)
     config = yaml.safe_load((ROOT / 'mkdocs.yml').read_text(encoding='utf-8'))
@@ -139,7 +147,7 @@ def main():
         cards.append(f'<article data-pending="{str(pending).lower()}"><a target="_blank" href="{url}">{picture}</a><h2>{escape(Path(item["path"]).name)}</h2><p>{escape(item["path"])}</p><p>原名：{escape(item["original"])}</p><p>{item["width"]} × {item["height"]} · {round(item["bytes"]/1024)} KB</p><p class="refs">{escape(refs)}</p></article>')
     gallery = '''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MicroKeen 素材索引</title><style>body{font:15px/1.6 system-ui,sans-serif;margin:32px;background:#f5f5f7;color:#1d1d1f}h1{font-size:30px}header{max-width:960px}input{font:inherit;padding:12px;min-width:250px;max-width:90%;border:1px solid #ccc;border-radius:8px}button{font:inherit;padding:12px;margin:8px;border:1px solid #ccc;border-radius:8px;background:white;cursor:pointer}button[aria-pressed=true]{background:#0066cc;color:white}main{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:24px}article{background:white;padding:16px;border-radius:12px;overflow-wrap:anywhere}article[hidden]{display:none}article>a{display:flex;align-items:center;justify-content:center;height:190px;background:#fafafa}img{max-width:100%;max-height:190px;object-fit:contain}h2{font-size:16px}p{font-size:12px;color:#666}.refs{color:#333}.source{color:#777}header p{font-size:15px}</style><header><h1>MicroKeen 素材索引</h1><p>点击图片查看原图。保留原始内容；“待确认”表示还需要补充用途说明。</p><input id="search" aria-label="搜索素材" placeholder="搜索文件名、分类或引用文档"><button id="pending" aria-pressed="false">只看待确认</button><span id="count" aria-live="polite"></span></header><main>''' + ''.join(cards) + '''</main><script>const search=document.querySelector('#search'),button=document.querySelector('#pending'),cards=[...document.querySelectorAll('article')];function filter(){const q=search.value.toLowerCase(),pending=button.getAttribute('aria-pressed')==='true';let n=0;for(const card of cards){card.hidden=!(card.textContent.toLowerCase().includes(q)&&(!pending||card.dataset.pending==='true'));if(!card.hidden)n++}document.querySelector('#count').textContent=n+' 项'}search.addEventListener('input',filter);button.addEventListener('click',()=>{button.setAttribute('aria-pressed',button.getAttribute('aria-pressed')==='true'?'false':'true');filter()});filter();</script></html>'''
     (REPORT / 'assets.html').write_text(gallery, encoding='utf-8')
-    summary = {'moved_files':len(mapping),'original_documents':71,'drafts':len(list((ROOT/'docs/drafts').rglob('*.md')))-1,'source_assets':len(assets),'binary_hashes_checked':len(hashes),'document_redirects':len(redirects),'local_links_checked':checked,'unreferenced_assets':sum(not a['references'] for a in assets),'identical_asset_groups':len(duplicates),'pending_assets':sum('pending-review/' in a['path'] for a in assets),'errors':sorted(set(errors)),'anchor_warnings':sorted(set(warnings))}
+    summary = {'moved_files':len(mapping),'original_documents':71,'drafts':len(list((ROOT/'docs/drafts').rglob('*.md')))-1,'source_assets':len(assets),'binary_hashes_checked':checked_hashes,'local_backups_absent':skipped_local_backups,'document_redirects':len(redirects),'local_links_checked':checked,'unreferenced_assets':sum(not a['references'] for a in assets),'identical_asset_groups':len(duplicates),'pending_assets':sum('pending-review/' in a['path'] for a in assets),'errors':sorted(set(errors)),'anchor_warnings':sorted(set(warnings))}
     (REPORT / 'audit.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding='utf-8')
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     if errors: raise SystemExit(1)
