@@ -35,8 +35,9 @@ python scripts/preview_website.py
 python -m mkdocs build --strict
 python scripts/audit_docs.py
 python scripts/build_website.py
+python scripts/audit_docs.py --site-dir dist/docs --url-prefix /docs/
 ```
 
-完整构建检查首页资源、锚点、文档目标和 canonical。GitHub Actions 在主分支推送和 PR 时执行相同检查，生成 `microkeen-website` 静态产物，不自动操作服务器。
+完整构建检查首页资源、锚点、文档目标和 canonical。最后一条命令按 `/docs/` 挂载路径审计实际发布包中的文档链接；审计工具的路径回归测试可用 `python -m unittest discover -s scripts -p 'test_*.py'` 运行。GitHub Actions 在主分支推送和 PR 时执行相同检查，生成 `microkeen-website` 静态产物，不自动操作服务器。
 
 部署与后续维护见根目录 [HANDOFF_DOT.md](../HANDOFF_DOT.md)。

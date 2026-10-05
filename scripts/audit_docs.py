@@ -44,6 +44,25 @@ def html_path(path):
     return path[:-3] + '/index.html' if not path.endswith('index.md') else path[:-3] + '.html'
 
 
+def local_target(page, url_path, url_prefix='/'):
+    """Resolve a local URL relative to the audited site's mount point."""
+    path = unquote(url_path)
+    if path.startswith('/'):
+        prefix = '/' + url_prefix.strip('/') if url_prefix.strip('/') else ''
+        normalized = posixpath.normpath(path)
+        if prefix and normalized != prefix and not normalized.startswith(prefix + '/'):
+            return None
+        target = normalized[len(prefix):].lstrip('/')
+    else:
+        target = posixpath.join(posixpath.dirname(page), path) if path else page
+    target = posixpath.normpath(target)
+    if target == '..' or target.startswith('../'):
+        return None
+    if path.endswith('/') or target == '.':
+        target = posixpath.join(target, 'index.html').removeprefix('./')
+    return target
+
+
 def fenced_blocks(text):
     blocks, current, fence = [], [], None
     for line in text.splitlines():
@@ -61,6 +80,7 @@ def main():
     args_parser = argparse.ArgumentParser(description=__doc__)
     args_parser.add_argument('--migration', action='store_true', help='Compare original code blocks with local pre-migration backup')
     args_parser.add_argument('--site-dir', default='site')
+    args_parser.add_argument('--url-prefix', default='/', help='URL mount point of the audited site, e.g. /docs/ for dist/docs')
     args = args_parser.parse_args()
     site = ROOT / args.site_dir
     assert (site / 'index.html').is_file(), 'Build MkDocs first'
@@ -97,9 +117,7 @@ def main():
         for link in parser.links:
             parts = urlsplit(link)
             if parts.scheme or parts.netloc: continue
-            target = posixpath.normpath(posixpath.join(posixpath.dirname(page), unquote(parts.path))) if parts.path else page
-            if parts.path.startswith('/'): target = unquote(parts.path).lstrip('/')
-            if parts.path.endswith('/') or target == '.': target = posixpath.join(target, 'index.html').removeprefix('./')
+            target = local_target(page, parts.path, args.url_prefix)
             if target not in all_files:
                 errors.append(f'Broken built link: {page} -> {link}')
                 continue
