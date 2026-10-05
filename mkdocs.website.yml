@@ -1,0 +1,6 @@
+# Only for the self-hosted website; Read the Docs continues to use mkdocs.yml.
+INHERIT: mkdocs.yml
+site_url: https://microkeenai.com/docs/
+site_dir: dist/docs
+site_description: MicroKeen MKLink 与 MicroBoot 技术文档
+site_author: 洛阳智沐科技有限公司

@@ -62,8 +62,8 @@ python scripts/audit_docs.py
 
 `plan_docs_organization.py`、`organize_docs.py` 是本次迁移的留档工具，不作为日常维护命令重复运行。以后再改路径时，同步更新引用、重定向和新旧路径表。
 
-## 官网衔接与备案
+## 官网与发布
 
-官网前三屏样稿仍在 `C:\Users\akqbd\.codex\worktrees\33e3\MicroBoot`，未合并到本目录。这次不跨 worktree 覆盖文件；将来合并官网时，依据路径表更新 `website/assets.json` 和页面中的文档目标。旧官网入口已有构建后的兼容跳转。
+用户于 2026-10-05 确认备案成功，备案号为豫ICP备2026045994号。官网已整合在 website/，完整构建将官网放在 dist/，文档放在 dist/docs/。原文档首页与旧链接继续保留。
 
-用户 2026-09-10 提供的腾讯云截图显示：腾讯云审核通过、已提交管局、短信核验完成，目前为管局审核中。尚未收到备案通过确认，本次不修改服务器或公开上线。
+构建入口见 [website/README.md](website/README.md)，Your dot 后续建设与部署交接见 [HANDOFF_DOT.md](HANDOFF_DOT.md)。GitHub 推送不等于服务器上线；线上部署状态以交接文件和实际核验为准。

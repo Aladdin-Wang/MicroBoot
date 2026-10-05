@@ -1,0 +1,32 @@
+name: Build MicroKeen website
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: |
+            docs/requirements.txt
+            scripts/requirements-website.txt
+      - run: python -m pip install -r scripts/requirements-website.txt
+      - name: Build and audit documentation
+        run: |
+          python -m mkdocs build --strict
+          python scripts/audit_docs.py
+      - name: Build website and bundled documentation
+        run: python scripts/build_website.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: microkeen-website
+          path: dist/
+          retention-days: 14

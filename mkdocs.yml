@@ -2,6 +2,7 @@
 site_name: MicroKeen  # 文档站点名称
 site_description: MicroKeen MKLink、嵌入式 AI 与 MicroBoot 技术文档
 site_author: 洛阳智沐科技有限公司
+copyright: '© 2026 洛阳智沐科技有限公司 · <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">豫ICP备2026045994号</a> · <a href="https://microkeenai.com/">MicroKeen 官网</a>'
 
 # 导航栏
 nav:
@@ -80,6 +81,8 @@ nav:
 # 主题配置
 theme:
   name: material  # 使用 Material 主题
+  language: zh
+  font: false
   features:
     - navigation.tabs  # 启用选项卡导航
     - navigation.expand  # 默认展开烧录、运行观测、故障定位等二级目录
@@ -91,9 +94,6 @@ theme:
 extra_css:
   - css/custom.css
 
-extra_javascript:
-  - https://fonts.googleapis.com/css?family=Fira+Code&display=swap
-  
 plugins:
   - search
   - awesome-pages

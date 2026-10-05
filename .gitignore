@@ -1,4 +1,5 @@
 site/
+dist/
 __pycache__/
 # Local safety copy and editor backups are not publication sources.
 maintenance/docs-organization/before-*.zip

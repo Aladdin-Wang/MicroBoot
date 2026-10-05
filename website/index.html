@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MicroKeen MKLink，让 AI 与工程师一起完成嵌入式烧录、观测和调试。探索硬件、软件与真实调试案例。">
+  <meta name="color-scheme" content="light">
+  <title>MicroKeen · 让想法在硬件上运行</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://microkeenai.com/">
+  <meta property="og:title" content="MicroKeen · MKLink 嵌入式开发工具">
+  <meta property="og:description" content="用 AI 完成硬件调试，在 Web GUI 看见真实数据。在线烧录、SuperWatch、RTT 与脱机下载。">
+  <meta property="og:image" content="https://microkeenai.com/assets/mklink-v4.webp">
+  <meta property="og:url" content="https://microkeenai.com/">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">跳至内容</a>
+  <header class="header">
+    <nav class="nav shell" aria-label="主导航" data-label="navigation">
+      <a class="brand" href="#" aria-label="MicroKeen 首页">MicroKeen<span class="brand-dot">.</span></a>
+      <div class="nav-links" id="nav-links">
+        <a href="#hardware" data-i18n="products">产品</a>
+        <a href="#workflow" data-i18n="software">软件</a>
+        <a href="/docs/mklink/overview/" data-i18n="docs">文档</a>
+        <a href="/docs/mklink/support/downloads/" data-i18n="downloads">下载</a>
+        <a href="/docs/mklink/support/after-sales/" data-i18n="support">支持</a>
+      </div>
+      <div class="nav-actions">
+        <button class="language" id="language" aria-label="Switch to English">EN <span aria-hidden="true">↗</span></button>
+        <button class="menu-button" id="menu" aria-controls="nav-links" aria-expanded="false" aria-label="打开导航" data-label="menu"><span></span><span></span></button>
+      </div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy shell">
+        <p class="eyebrow">MKLINK · EMBEDDED WITH AI</p>
+        <h1 id="hero-title"><span data-i18n="hero1">让 AI 的想法，</span><br><span data-i18n="hero2">在真实硬件上运行。</span></h1>
+        <p class="hero-description" data-i18n="heroDescription">从第一行代码，到每一次烧录、观测与调试。<br>MKLink，连接工程师、AI 与你的硬件。</p>
+        <div class="actions"><a class="button" href="#hardware" data-i18n="explore">探索 MKLink</a><a class="text-link" href="#workflow"><span data-i18n="seeCase">看 AI 如何调试</span> <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <figure class="hero-product">
+        <img src="/assets/mklink-v4.webp" width="398" height="420" alt="MKLink V4 实物斜侧视图，带显示屏与侧面接口" data-alt="heroAlt" fetchpriority="high">
+        <figcaption><span>MKLink V4</span><span data-i18n="heroCaption">一台设备，贯穿开发与生产。</span></figcaption>
+      </figure>
+      <div class="hero-foot shell"><span>MICROKEEN / MKLINK</span><a href="#hardware"><span data-i18n="scroll">向下探索</span> <span aria-hidden="true">↓</span></a><span data-i18n="heroFoot">为真实的开发现场而造</span></div>
+    </section>
+
+    <section class="hardware" id="hardware" aria-labelledby="hardware-title">
+      <div class="shell">
+        <div class="section-heading"><p class="eyebrow" data-i18n="hardwareEyebrow">01 / 硬件，触手可及</p><h2 id="hardware-title"><span data-i18n="hardware1">小小一台。</span><br><span class="muted" data-i18n="hardware2">让开发，多些可能。</span></h2></div>
+        <div class="hardware-layout">
+          <div class="product-stage"><img id="model-image" src="/assets/mklink-v4.webp" width="398" height="420" alt="MKLink V4 实物" loading="lazy"><span class="photo-note" data-i18n="realPhoto">MKLink 实物图</span></div>
+          <div class="model-copy">
+            <div class="model-tabs" role="tablist" aria-label="选择 MKLink 型号" data-label="models">
+              <button role="tab" id="tab-v4" aria-controls="model-panel" aria-selected="true" data-model="v4">V4</button>
+              <button role="tab" id="tab-v3" aria-controls="model-panel" aria-selected="false" tabindex="-1" data-model="v3">V3</button>
+              <button role="tab" id="tab-v2" aria-controls="model-panel" aria-selected="false" tabindex="-1" data-model="v2">V2</button>
+            </div>
+            <div id="model-panel" role="tabpanel" aria-labelledby="tab-v4" tabindex="0">
+              <p class="model-name" id="model-name">MKLink V4</p>
+              <h3 id="model-title">看得见状态。<br>掌握每一次烧录。</h3>
+              <p class="model-description" id="model-description">显示屏、RS485、功率监测与可选择的 Python 脱机脚本，把调试台上的能力带到生产工位。</p>
+              <ul class="features" id="model-features"><li><span>01</span>显示与交互</li><li><span>02</span>独立脱机烧录</li><li><span>03</span>RS485 与功率监测</li></ul>
+              <a class="text-link" href="/docs/mklink/overview/" id="model-link"><span data-i18n="compare">查看型号与完整功能</span> <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="hardware-bottom"><p data-i18n="hardwareBottom">从桌面调试，到脱机工位。<br>熟悉的工程，同一套工具。</p><a href="/docs/mklink/getting-started/project-config/"><span data-i18n="connection">了解连接与工程配置</span> ↗</a></div>
+      </div>
+    </section>
+
+
+    <section class="live-section" id="superwatch" aria-labelledby="live-title">
+      <div class="shell">
+        <p class="eyebrow">SUPERWATCH / LIVE DATA</p>
+        <h2 id="live-title" data-i18n="liveTitle">程序在跑，变化看得见。</h2>
+        <p class="section-intro" data-i18n="liveIntro">选中变量，展开曲线。调 PID、看状态切换，让 AI 分析同一条数据流，你在网页里检查结果。</p>
+        <a class="wave-link" href="/docs/embedded-ai/cases/stm32f103-rt-thread/"><img src="/assets/sine-wave.webp" width="1920" height="1080" alt="STM32F103 九路错相正弦波的真实 SuperWatch 界面" loading="lazy"><span data-i18n="waveCaption">STM32F103 · 九路正弦波实机截图 · 查看案例 ↗</span></a>
+        <div class="metrics">
+          <a href="/docs/embedded-ai/cases/stm32f103-rt-thread/"><strong data-i18n="sampleRate">20.17<span>万次/秒</span></strong><p data-i18n="metric1">STM32F103 单变量采集</p><small data-i18n="condition1">30 MHz SWD · 20 秒记录</small></a>
+          <a href="/docs/mklink/hpm/overview/"><strong>632.49<span>KiB/s</span></strong><p data-i18n="metric2">HPM6E80 固件写入</p><small data-i18n="condition2">30 MHz JTAG · 8 MiB 镜像 · 校验另计</small></a>
+        </div>
+        <p class="measurement-note" data-i18n="measurementNote">不同任务分别实测；多路波形演示不是单变量测速。点击数字查看完整数据与测试条件。</p>
+      </div>
+    </section>
+
+    <section class="workflow" id="workflow" aria-labelledby="workflow-title">
+      <div class="shell">
+        <div class="workflow-heading"><div><p class="eyebrow" data-i18n="workflowEyebrow">02 / AI，走进调试现场</p><h2 id="workflow-title"><span data-i18n="workflow1">从「帮我看看」，</span><br><span class="gray" data-i18n="workflow2">到有据可查。</span></h2></div><p class="workflow-intro" data-i18n="workflowIntro">烧录只是开始。告诉 AI 你要检查什么。<br>把下载、读取和分析交给它，<br>在 Web GUI 中看见同一份数据。</p></div>
+        <div class="case-tabs" role="tablist" aria-label="调试实录步骤" data-label="caseSteps">
+          <button id="step-0" role="tab" aria-selected="true" aria-controls="case-panel" data-step="0"><span>01</span><span data-i18n="flash">编译与烧录</span></button>
+          <button id="step-1" role="tab" aria-selected="false" aria-controls="case-panel" tabindex="-1" data-step="1"><span>02</span><span data-i18n="watch">观察运行</span></button>
+          <button id="step-2" role="tab" aria-selected="false" aria-controls="case-panel" tabindex="-1" data-step="2"><span>03</span><span data-i18n="trap">RTT 命令行</span></button>
+          <button id="step-3" role="tab" aria-selected="false" aria-controls="case-panel" tabindex="-1" data-step="3"><span>04</span><span data-i18n="recover">脱机烧录</span></button>
+        </div>
+        <div class="case-panel" id="case-panel" role="tabpanel" aria-labelledby="step-0" tabindex="0">
+          <div class="case-evidence"><div class="case-tag"><span class="status-dot"></span><span data-i18n="recorded">实录回放</span><span>HPM / STM32</span></div><h3 id="case-title">下载后，检查程序在运行。</h3><p id="case-description">编译、校验之后连续读取系统节拍和任务计数，确认任务在执行。</p><blockquote id="case-log" aria-label="可以对 AI 这样说">把程序编译并下载，看看系统节拍和任务计数有没有在走。</blockquote>
+<a id="case-guide" class="text-link" href="/docs/embedded-ai/workflows/flash-workflow/">查看使用方法 ↗</a><div class="case-controls"><span id="case-counter">01 / 04</span><button id="next-step"><span data-i18n="next">下一步</span> <span aria-hidden="true">→</span></button></div></div>
+          <button class="case-image-button" id="enlarge" aria-label="放大实机截图" data-label="enlarge"><img id="case-image" src="/assets/case-flash.webp" width="1165" height="729" alt="Codex 通过 MKLink 编译烧录并检查系统节拍和任务计数的对话" loading="lazy"><span class="enlarge"><span data-i18n="viewScreenshot">查看实机截图</span> <span aria-hidden="true">↗</span></span></button>
+        </div>
+        <div class="case-bottom"><p data-i18n="caseNote">截图来自已公开的真机案例。点击放大查看，具体条件见对应文档。</p><a class="text-link" href="/docs/mklink/hpm/overview/"><span data-i18n="fullCase">阅读先楫 HPM 实战</span> ↗</a></div>
+
+      </div>
+    </section>
+
+    <section class="tools-section" aria-labelledby="tools-title"><div class="shell">
+      <p class="eyebrow" data-i18n="toolsEyebrow">从调试台到生产工位</p><h2 id="tools-title" data-i18n="toolsTitle">遇到问题，工具就在手边。</h2>
+      <div class="tool-grid">
+        <a href="/docs/mklink/flashing/online-flash/"><span>01 / FLASH</span><h3 data-i18n="tool1">改完代码，下载验证。</h3><p data-i18n="tool1Text">从工程编译到烧录校验，接着检查程序是否真的运行。</p></a>
+        <a href="/docs/mklink/flashing/offline-flash/"><span>02 / OFFLINE</span><h3 data-i18n="tool2">离开电脑，也能烧录。</h3><p data-i18n="tool2Text">把固件和下载任务准备好，带到工位按键执行。</p></a>
+        <a href="/docs/mklink/observation/rtt/"><span>03 / RTT</span><h3 data-i18n="tool3">命令行，不用另接串口。</h3><p data-i18n="tool3Text">在 RTT View 看日志、发送命令，直接与板上程序交互。</p></a>
+        <a href="/docs/mklink/debugging/hardfault/"><span>04 / MEMORY & FAULT</span><h3 data-i18n="tool4">程序异常，查看现场。</h3><p data-i18n="tool4Text">读内存、查寄存器，结合工程符号把异常定位到源码。</p></a>
+      </div>
+    </div></section>
+    <section class="start-section" id="start"><div class="shell">
+      <p class="eyebrow" data-i18n="startEyebrow">开始使用 MKLINK</p><h2 data-i18n="startTitle">接上你的下一块开发板。</h2>
+      <p class="section-intro" data-i18n="startIntro">安装软件，连接目标板，告诉 AI 工程在哪里。也可以直接打开 Web GUI，按自己的习惯调试。</p>
+      <div class="actions"><a class="button" href="/docs/mklink/getting-started/gui-install/" data-i18n="install">安装软件与 AI Skill</a><a class="text-link" href="https://item.taobao.com/item.htm?ft=t&amp;id=1020501356342" data-i18n="buy">选购 MKLink V4 ↗</a></div>
+      <div class="start-links"><a href="/docs/mklink/support/downloads/" data-i18n="getDownloads">软件、固件与资料 ↗</a><a href="/docs/mklink/support/after-sales/" data-i18n="getSupport">联系与技术支持 ↗</a><a href="/docs/" data-i18n="getMicroboot">MicroBoot 开源框架 ↗</a></div>
+    </div></section>
+  </main>
+  <footer><div class="shell footer-inner"><a class="brand" href="#">MicroKeen<span class="brand-dot">.</span></a><p>© 2026 <span data-i18n="company">洛阳智沐科技有限公司</span></p><a class="icp" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">豫ICP备2026045994号</a><a href="https://microboot.readthedocs.io/zh-cn/latest/" data-i18n="rtd">Read the Docs 文档 ↗</a></div></footer>
+  <dialog id="image-dialog" aria-labelledby="dialog-title"><div class="dialog-bar"><p id="dialog-title" data-i18n="screenshotTitle">MKLink · 实机截图</p><button id="close-dialog" aria-label="关闭截图" data-label="close">×</button></div><img id="dialog-image" alt=""><p class="dialog-note" data-i18n="screenshotNote">原始界面保留中文。可横向滚动查看细节。</p></dialog>
+</body>
+</html>
