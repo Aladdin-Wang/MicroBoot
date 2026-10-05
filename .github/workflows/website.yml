@@ -21,6 +21,11 @@ jobs:
       - run: python -m pip install -r scripts/requirements-website.txt
       - name: Test documentation audit paths
         run: python -m unittest discover -s scripts -p 'test_*.py'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test documentation search reset
+        run: node --test scripts/test_docs_search_reset.cjs
       - name: Build and audit documentation
         run: |
           python -m mkdocs build --strict
