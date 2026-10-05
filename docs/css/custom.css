@@ -1,57 +1,60 @@
-/* 左侧主导航保持连续、紧凑，避免子目录呈现为嵌套卡片。 */
-.md-sidebar--primary .md-nav {
-    background-color: #f4f5f6;
-    color: #333333;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    box-shadow: none;
-}
+/* Material 的抽屉导航需要不透明的分层背景；紧凑样式仅用于桌面侧栏。 */
+@media screen and (min-width: 76.25em) {
+    /* 左侧主导航保持连续、紧凑，避免子目录呈现为嵌套卡片。 */
+    .md-sidebar--primary .md-nav {
+        background-color: #f4f5f6;
+        color: #333333;
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        box-shadow: none;
+    }
 
-.md-sidebar--primary .md-nav__list {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-}
+    .md-sidebar--primary .md-nav__list {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
 
-.md-sidebar--primary .md-nav__link {
-    display: flex;
-    min-height: 0;
-    margin: 0.18rem 0;
-    padding: 0.32rem 0.55rem;
-    color: #333333;
-    line-height: 1.35;
-    text-decoration: none;
-    border-radius: 3px;
-    transition: background-color 0.15s ease, color 0.15s ease;
-}
+    .md-sidebar--primary .md-nav__link {
+        display: flex;
+        min-height: 0;
+        margin: 0.18rem 0;
+        padding: 0.32rem 0.55rem;
+        color: #333333;
+        line-height: 1.35;
+        text-decoration: none;
+        border-radius: 3px;
+        transition: background-color 0.15s ease, color 0.15s ease;
+    }
 
-.md-sidebar--primary .md-nav__link:hover {
-    background-color: #e6e8eb;
-    color: #111111;
-    text-decoration: none;
-}
+    .md-sidebar--primary .md-nav__link:hover {
+        background-color: #e6e8eb;
+        color: #111111;
+        text-decoration: none;
+    }
 
-.md-sidebar--primary .md-nav__link--active {
-    font-weight: 600;
-}
+    .md-sidebar--primary .md-nav__link--active {
+        font-weight: 600;
+    }
 
-.md-sidebar--primary .md-nav__item--nested > .md-nav {
-    margin: 0;
-    background: transparent;
-    box-shadow: none;
-}
+    .md-sidebar--primary .md-nav__item--nested > .md-nav {
+        margin: 0;
+        background: transparent;
+        box-shadow: none;
+    }
 
-.md-sidebar--primary .md-nav__item--nested > .md-nav > .md-nav__list {
-    margin: 0.05rem 0 0.25rem 0.55rem;
-    padding-left: 0.45rem;
-    border-left: 1px solid #d6d9dd;
-}
+    .md-sidebar--primary .md-nav__item--nested > .md-nav > .md-nav__list {
+        margin: 0.05rem 0 0.25rem 0.55rem;
+        padding-left: 0.45rem;
+        border-left: 1px solid #d6d9dd;
+    }
 
-.md-sidebar--primary .md-nav__item--nested > .md-nav .md-nav__link {
-    margin: 0.08rem 0;
-    padding: 0.28rem 0.5rem;
-    font-size: 13px;
-    color: #4c5157;
+    .md-sidebar--primary .md-nav__item--nested > .md-nav .md-nav__link {
+        margin: 0.08rem 0;
+        padding: 0.28rem 0.5rem;
+        font-size: 13px;
+        color: #4c5157;
+    }
 }
 
 /* 自定义搜索框样式 */
