@@ -86,8 +86,19 @@ python scripts/preview_website.py
 
 ## 交接状态
 
-2026-10-06 本地配套验收仍在收尾；本次补充说明先随文档分支提交 GitHub，待安装态
-验收完成后交给「来财」。未收到发送工具的成功结果前，不声称云端已接收或开始工作。
+2026-10-06 本地配套安装态验收已完成。V4 固件 PR1 合并到 `main` 的 `edbbbf785`，
+被验证的代码头为 `cb883217`；0.3.0 / `cd342984` NSIS 已覆盖安装，本地 Skill 已同步。
+主机仍在 PR30，验收记录归档提交 `aee132dc`；本次没有正式标签、发布渠道或签名发布。
+
+- [主机验收记录](https://github.com/MicroKeen/Mklink-AI-Probe/blob/aee132dc540a9272fe859ab6aba8a5078a64f311/Mklink-AI-Probe/docs/verification/v4-030-closeout-20261006.md)
+- [已合并 V4 固件 PR1](https://github.com/Aladdin-Wang/MicroLink_Plus/pull/1)
+- [本次文档 PR8](https://github.com/Aladdin-Wang/MicroBoot/pull/8)
+
+验收含双 V4、STM32/HPM5301、八路 RTT 双向、DAP 抢占下载调试、HPM BIN/HEX 在线与脱机、
+双 GUI/CLI/MCP 共存和同机 LAN。不能扩展为所有外设、其他硬件版本、跨物理主机或长期运行
+均已通过；批量采样仍非硬实时。主机另有两个非阻断提示问题，已列在验收记录。
+
+交接发送状态以本地任务的发送工具回执为准，不能仅凭本文声称云端已开始工作。
 
 本次文档验证：严格 MkDocs 构建、文档审计和官网整包构建通过，8765 项本地链接，
 0 错误、0 锚点警告；官网 37 项 URL、40 项 ID、生成图片和 `/docs/` 目标检查通过。
