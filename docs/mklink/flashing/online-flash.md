@@ -27,6 +27,10 @@ AI 操作与运行检查的实际对话见[编译、下载与运行检查](../..
 
 选择准确 HPM 型号和板卡，再选编译生成的 BIN。**HPM 不需要选择 FLM。** 示例使用的 `0x80000400` 是该镜像的基址，自己的工程以构建结果为准。
 
+配套 V4 新固件与 0.3.0 也支持 Intel HEX：选择 HEX 时使用文件内地址，不再填写
+BIN 基址。更新前先确认配套版本，旧固件不据此获得 HEX 能力；见
+[V4 共享通信与 HPM HEX](../development/v4-shared-cdc.md)。
+
 ![HPM 在线烧录成功](../../images/mklink/cases/hpm5301/online-flash-succeeded.png)
 
 完整使用方法见[MKLink × 先楫 HPM](../hpm/overview.md)。
