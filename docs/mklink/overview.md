@@ -8,12 +8,12 @@ MKLink（MicroKeen）把在线调试、固件烧录、串口、RTT、变量采�
 
 ## 支持的目标芯片
 
-MKLink 下载器基于 DAPLink / CMSIS-DAP 体系，支持所有基于 Arm Cortex-M 内核的单片机以及先楫 HPM全系列单片机。在线调试使用标准 CMSIS-DAP 接口；在线烧录和脱机烧录使用与目标 Flash 匹配的 CMSIS-Pack / FLM 下载算法。因此，更换芯片时通常不需要更换下载器，只需要选择正确的器件和算法。
+MKLink 下载器基于 DAPLink / CMSIS-DAP 体系，面向 Arm Cortex-M 和先楫 HPM 系列单片机。Arm Cortex-M 在线调试使用标准 CMSIS-DAP 接口，在线和脱机烧录使用与目标 Flash 匹配的 CMSIS-Pack / FLM 下载算法；HPM 烧录使用下载器设备端 HPM ROM API，不加载 Cortex-M FLM。更换芯片时，应核对准确器件、板卡与 Flash 配置，不能仅凭系列名称判断当前路径已验证。
 
 | 目标 | 支持范围 | 下载方式 |
 |---|---|---|
 | Arm Cortex-M | Cortex-M0、M0+、M3、M4、M7、M23、M33、M55、M85 等 | CMSIS-DAP 在线调试；使用匹配的 Pack / FLM 完成在线和脱机烧录 |
-| 先楫 HPMicro | 支持 HPM 全系列； | 使用下载器设备端 HPM ROM API，不加载 FLM |
+| 先楫 HPMicro | HPM 系列，具体以芯片、板卡与 Flash 配置为准 | 使用下载器设备端 HPM ROM API，不加载 FLM |
 
 !!! note "芯片内核支持与 Flash 算法是两件事"
     CMSIS-DAP 负责连接和调试 Arm Cortex-M 内核；烧录片上或外置 Flash 还需要匹配目标器件和存储器的算法。没有内置板型的 HPM 项目需要提供板型。具体配置见[连接硬件与配置工程](getting-started/project-config.md)和[先楫 HPM 生态](hpm/overview.md)。
@@ -23,7 +23,7 @@ MKLink 下载器基于 DAPLink / CMSIS-DAP 体系，支持所有基于 Arm Corte
 | 要完成的工作 | 使用功能 | 需要准备 | 主要入口 | 详细教程 |
 |---|---|---|---|---|
 | 编译、烧录并确认新程序运行 | 在线烧录 | 工程或 HEX/BIN | IDE、在线烧录 | [在线编译与烧录](flashing/online-flash.md) |
-| 不接电脑进行单台或连续烧录 | 脱机下载 | 固件、FLM、量产参数 | 脱机烧录 | [脱机下载与量产](flashing/offline-flash.md) |
+| 不接电脑进行单台或连续烧录 | 脱机下载 | 固件、量产参数；Arm 需匹配 FLM，HPM 需板卡与 Flash 配置 | 脱机烧录 | [脱机下载与量产](flashing/offline-flash.md) |
 | 不占用 MCU 串口查看日志 | RTT View | RTT 控制块 | 仪表盘 / RTT View | [RTT View 日志与终端](observation/rtt.md) |
 | 连续观察 PID、FOC 和状态变量 | SuperWatch | 匹配固件的 AXF/ELF | 仪表盘 / SuperWatch | [SuperWatch 与 PID 调试](observation/superwatch.md) |
 | 在第三方上位机中显示变量曲线 | VOFA+ | 变量地址、类型、MKLink 虚拟串口 | VOFA+ / JustFloat | [VOFA+ 第三方上位机](observation/vofa.md) |
@@ -34,7 +34,20 @@ MKLink 下载器基于 DAPLink / CMSIS-DAP 体系，支持所有基于 Arm Corte
 | 更新下载器自身功能 | 固件升级 | 对应型号升级包 | U 盘 / UF2 | [固件升级](flashing/firmware-upgrade.md) |
 | 获取软件、固件、FLM 和源码 | 资料下载 | 下载器型号、目标器件 | 官方资料页 | [资料下载](support/downloads.md) |
 
-Web GUI 适合人工配置、操作和查看曲线；AI Skill 适合读取工程、调用同一套硬件能力并整理验证证据。两者可以使用同一个工程，但不能同时占用同一探针资源。
+Web GUI 适合人工配置、操作和查看曲线；AI Skill 适合读取工程、调用同一套硬件能力并整理验证证据。**配套 V4 固件与 0.3.0 上位机 / Skill**通过共享后台共用设备，GUI、CLI、MCP 可以接入同一台下载器；同一设备的工程、符号与采集设置也会共享。传统独占串口工具仍需先释放命令口。
+
+### 配套 V4 开发版本的新工作流
+
+截至 2026-10-06，以下功能已完成配套本地验收，0.3.0 上位机仍在草稿 PR 中，尚非公开正式版本。先核对[版本条件](development/v4-shared-cdc.md#version-check)，再按任务进入；仅安装当前公开版本或仅升级固件，不代表全部具备。
+
+| 想完成的任务 | 操作入口 | 先确认 |
+| --- | --- | --- |
+| 一边看曲线，一边让 AI 读取同一份数据 | [GUI 与 AI 共享设备](development/v4-shared-cdc.md#shared-device) | 同一下载器共享设置；两台下载器分别选择 |
+| 同时查看多个日志或命令终端 | [RTT 0～7 通道](development/v4-shared-cdc.md#rtt-channels) | 目标已初始化所选通道，发送需要对应输入缓冲区 |
+| 检查更细的变量变化与采样间隔 | [SuperWatch 采样](development/v4-shared-cdc.md#sampling) | 1 μs 表示请求全速，实际速率以记录为准 |
+| 下载、单步后继续看曲线 | [恢复采集](development/v4-shared-cdc.md#dap-restart) | 核对当前固件和符号，再显式开始 |
+| 用 HPM5301 的 BIN 或 Intel HEX 烧录 | [HPM 在线与脱机路径](development/v4-shared-cdc.md#hpm-flashing) | 核对板卡、Flash 配置及地址范围 |
+| 通过远程 GUI 查看已有工程 | [远程观察范围](development/v4-shared-cdc.md#remote-view) | 先在设备所在电脑加载符号；跨物理主机尚未验证 |
 
 企业还可以在官方 Web GUI 和调试后端上增加自己的变量、RTT 命令、检测流程与报告页面，完整方法见[用 AI 定制企业专属上位机](development/custom-web-gui.md)。
 
@@ -83,7 +96,7 @@ V4 增加显示、RS485、功率监测、更大的存储空间和可选择的 Py
 
 ### 小批量和量产
 
-- 将固件、FLM 和下载脚本部署到下载器；
+- 将固件、下载脚本和对应配置部署到下载器；Arm 使用匹配 FLM，HPM 使用板卡与 Flash 配置；
 - 通过按键或机台输入触发；
 - 记录固件摘要、脚本版本、器件型号和烧录结果；
 - 多镜像工程可以按顺序烧录 BootLoader、参数区和应用程序。

@@ -24,8 +24,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Test documentation search reset
-        run: node --test scripts/test_docs_search_reset.cjs
+      - name: Test documentation search reset and bilingual website content
+        run: node --test scripts/test_*.cjs
       - name: Build and audit documentation
         run: |
           python -m mkdocs build --strict

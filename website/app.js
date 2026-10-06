@@ -54,6 +54,7 @@ function renderLanguage() {
   $('#language').innerHTML = language === 'zh' ? 'EN <span aria-hidden="true">↗</span>' : '中文 <span aria-hidden="true">↗</span>';
   $('#language').setAttribute('aria-label', language === 'zh' ? 'Switch to English' : '切换为中文');
   $('.hero-product img').alt = language === 'zh' ? 'MKLink V4 实物斜侧视图，带显示屏与侧面接口' : 'MKLink V4 product photograph with display and side connector';
+  $('.wave-link img').alt = language === 'zh' ? 'STM32F103 九路错相正弦波的真实 SuperWatch 界面' : 'Real SuperWatch interface showing nine phase-shifted sine waves on STM32F103';
   $('.nav .brand').setAttribute('aria-label', language === 'zh' ? 'MicroKeen 首页' : 'MicroKeen home');
   document.title = language === 'zh' ? 'MicroKeen · 让想法在硬件上运行' : 'MicroKeen · Connect ideas to hardware';
   $('meta[name="description"]').content = language === 'zh' ? 'MicroKeen MKLink，让 AI 与工程师一起完成嵌入式烧录、观测和调试。探索硬件、软件与真实调试案例。' : 'MicroKeen MKLink connects engineers, AI and embedded hardware. Explore products, software and a recorded debugging session.';
@@ -80,7 +81,7 @@ function closeMenu() { $('#nav-links').classList.remove('open'); $('#menu').setA
 $('#menu').addEventListener('click', () => { const open = $('#nav-links').classList.toggle('open'); $('#menu').setAttribute('aria-expanded', String(open)); });
 $('#nav-links').addEventListener('click', event => { if (event.target.closest('a')) closeMenu(); });
 document.addEventListener('keydown', event => { if (event.key === 'Escape' && $('#menu').getAttribute('aria-expanded') === 'true') { closeMenu(); $('#menu').focus(); } });
-window.matchMedia('(min-width: 701px)').addEventListener('change', event => { if (event.matches) closeMenu(); });
+window.matchMedia('(min-width: 821px)').addEventListener('change', event => { if (event.matches) closeMenu(); });
 const dialog = $('#image-dialog');
 $('#enlarge').addEventListener('click', () => { $('#dialog-image').src = $('#case-image').src; $('#dialog-image').alt = $('#case-image').alt; dialog.showModal(); });
 $('#close-dialog').addEventListener('click', () => dialog.close());

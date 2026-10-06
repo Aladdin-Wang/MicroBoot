@@ -24,6 +24,7 @@
       <div class="nav-links" id="nav-links">
         <a href="#hardware" data-i18n="products">产品</a>
         <a href="#workflow" data-i18n="software">软件</a>
+        <a href="#shared-workflows" data-i18n="sharedNav">V4 协同</a>
         <a href="/docs/mklink/overview/" data-i18n="docs">文档</a>
         <a href="/docs/mklink/support/downloads/" data-i18n="downloads">下载</a>
         <a href="/docs/mklink/support/after-sales/" data-i18n="support">支持</a>
@@ -74,6 +75,34 @@
     </section>
 
 
+    <section class="shared-section" id="shared-workflows" aria-labelledby="shared-title">
+      <div class="shell">
+        <div class="shared-heading">
+          <div><p class="eyebrow">V4 / SHARED WORKFLOWS</p><h2 id="shared-title" data-i18n="sharedTitle">你看曲线，<br>AI 看同一份数据。</h2></div>
+          <p class="section-intro" data-i18n="sharedIntro">桌面、网页与 AI 共用下载器后台。选定设备，让观察和分析接在一起，不必来回争用命令串口。</p>
+        </div>
+        <aside class="version-note" aria-labelledby="version-title">
+          <span class="version-badge" id="version-title" data-i18n="versionLabel">配套开发版本</span>
+          <p data-i18n="versionNote">以下共享能力需配套 V4 新固件、0.3.0 上位机及相应 Skill。当前为开发版本说明，公开下载以正式发布页为准。</p>
+          <a class="text-link" href="/docs/mklink/support/downloads/" data-i18n="versionLink">核对软件与固件 ↗</a>
+        </aside>
+        <figure class="shared-map" aria-labelledby="shared-map-caption">
+          <div class="shared-clients"><span data-i18n="mapDesktop">桌面 / 网页 GUI</span><span data-i18n="mapAI">AI · CLI / MCP</span></div>
+          <div class="map-connector" aria-hidden="true">↓</div>
+          <div class="shared-host"><strong data-i18n="mapHost">同一下载器，共享后台</strong><span data-i18n="mapState">工程 · 符号 · 采集设置</span></div>
+          <div class="map-connector" aria-hidden="true">↓ <span>USB CDC</span> ↓</div>
+          <div class="shared-probe"><strong>MKLink V4</strong><span data-i18n="mapStreams">RTT · SuperWatch · 命令收发</span></div>
+          <figcaption id="shared-map-caption" data-i18n="mapCaption">通信关系示意，非实测界面。复用 CDC，无需新增 WinUSB；不同下载器各有后台，通常按 USB 序列号区分设备。</figcaption>
+        </figure>
+        <div class="shared-grid">
+          <a href="/docs/mklink/observation/rtt/"><span class="eyebrow">01 / RTT 0–7</span><h3 data-i18n="sharedRttTitle">每一路，都能对话。</h3><p data-i18n="sharedRttText">日志、终端、HEX 与曲线，各通道分别查看；向目标已配置的输入缓冲发送命令。</p><span class="text-link" data-i18n="sharedRttLink">准备目标端 RTT 缓冲 ↗</span></a>
+          <a href="/docs/mklink/development/v4-shared-cdc/#dap-restart"><span class="eyebrow">02 / CMSIS-DAP</span><h3 data-i18n="sharedDapTitle">调试优先，恢复有序。</h3><p data-i18n="sharedDapText">下载、暂停与单步优先。DAP 改变目标后，核对新固件与符号，再显式重启采集。</p><span class="text-link" data-i18n="sharedDapLink">了解采集中断与恢复 ↗</span></a>
+          <a href="/docs/mklink/development/v4-shared-cdc/#hpm-flashing"><span class="eyebrow">03 / HPM5301</span><h3 data-i18n="sharedHpmTitle">同一镜像，带到工位。</h3><p data-i18n="sharedHpmText">BIN / Intel HEX 在线与脱机路径已配套验证。核对芯片、Flash 配置与地址，再制作任务。</p><span class="text-link" data-i18n="sharedHpmLink">选择正确的镜像与地址 ↗</span></a>
+        </div>
+        <div class="shared-bottom"><p data-i18n="sharedRemote">远程 GUI 可复用部分观测与诊断页面；不提供远程烧录或后台管理。同机 LAN 验证不代表跨物理主机已验收。</p><a class="text-link" href="/docs/mklink/development/v4-shared-cdc/" data-i18n="sharedGuide">连接、共存与使用边界 ↗</a></div>
+      </div>
+    </section>
+
     <section class="live-section" id="superwatch" aria-labelledby="live-title">
       <div class="shell">
         <p class="eyebrow">SUPERWATCH / LIVE DATA</p>
@@ -84,7 +113,8 @@
           <a href="/docs/embedded-ai/cases/stm32f103-rt-thread/"><strong data-i18n="sampleRate">20.17<span>万次/秒</span></strong><p data-i18n="metric1">STM32F103 单变量采集</p><small data-i18n="condition1">30 MHz SWD · 20 秒记录</small></a>
           <a href="/docs/mklink/hpm/overview/"><strong>632.49<span>KiB/s</span></strong><p data-i18n="metric2">HPM6E80 固件写入</p><small data-i18n="condition2">30 MHz JTAG · 8 MiB 镜像 · 校验另计</small></a>
         </div>
-        <p class="measurement-note" data-i18n="measurementNote">不同任务分别实测；多路波形演示不是单变量测速。点击数字查看完整数据与测试条件。</p>
+        <p class="measurement-note" data-i18n="measurementNote">以上为既有案例的独立实测，不是本次配套版本的新测速；多路波形演示不是单变量测速。点击数字查看完整条件。</p>
+        <div class="sampling-note"><p data-i18n="samplingNote">看平均采样率，也看相邻时间戳。新版缩短了批间停顿，但不承诺硬实时；传输丢弃为零，也不代表没有漏采。</p><a class="text-link" href="/docs/mklink/observation/superwatch/" data-i18n="samplingLink">了解采样、时间轴与连续性 ↗</a></div>
       </div>
     </section>
 
@@ -114,11 +144,18 @@
         <a href="/docs/mklink/flashing/offline-flash/"><span>02 / OFFLINE</span><h3 data-i18n="tool2">离开电脑，也能烧录。</h3><p data-i18n="tool2Text">把固件和下载任务准备好，带到工位按键执行。</p></a>
         <a href="/docs/mklink/observation/rtt/"><span>03 / RTT</span><h3 data-i18n="tool3">命令行，不用另接串口。</h3><p data-i18n="tool3Text">在 RTT View 看日志、发送命令，直接与板上程序交互。</p></a>
         <a href="/docs/mklink/debugging/hardfault/"><span>04 / MEMORY & FAULT</span><h3 data-i18n="tool4">程序异常，查看现场。</h3><p data-i18n="tool4Text">读内存、查寄存器，结合工程符号把异常定位到源码。</p></a>
+        <a href="/docs/mklink/observation/superwatch/"><span>05 / SUPERWATCH</span><h3 data-i18n="tool5">采到数据，也读懂时间。</h3><p data-i18n="tool5Text">从符号选变量、查看曲线与采样间隔，把目标变化和界面刷新分开分析。</p></a>
+        <a href="/docs/mklink/development/v4-shared-cdc/"><span>06 / V4 SHARED CDC</span><h3 data-i18n="tool6">选对设备，协同观察。</h3><p data-i18n="tool6Text">配套开发版本支持 GUI 与 AI 共用后台；多台下载器按身份隔离，先选设备再连接。</p></a>
       </div>
     </div></section>
     <section class="start-section" id="start"><div class="shell">
       <p class="eyebrow" data-i18n="startEyebrow">开始使用 MKLINK</p><h2 data-i18n="startTitle">接上你的下一块开发板。</h2>
       <p class="section-intro" data-i18n="startIntro">安装软件，连接目标板，告诉 AI 工程在哪里。也可以直接打开 Web GUI，按自己的习惯调试。</p>
+      <ol class="start-steps">
+        <li><span aria-hidden="true">01</span><h3 data-i18n="startStep1">准备配套版本</h3><p data-i18n="startStep1Text">先核对上位机、固件与 Skill。安装页保留完整 AI 安装提示词。</p><a class="text-link" href="/docs/mklink/getting-started/gui-install/" data-i18n="startStep1Link">安装与版本检查 ↗</a></li>
+        <li><span aria-hidden="true">02</span><h3 data-i18n="startStep2">选设备，配工程</h3><p data-i18n="startStep2Text">连接目标板，确认下载器身份、芯片与工程符号；多设备建议使用独立工程目录。</p><a class="text-link" href="/docs/mklink/getting-started/project-config/" data-i18n="startStep2Link">连接与工程配置 ↗</a></li>
+        <li><span aria-hidden="true">03</span><h3 data-i18n="startStep3">从一次观察开始</h3><p data-i18n="startStep3Text">在 GUI 启动采集，再让 AI 读取同一设备的数据；烧录后核对符号并重启采集。</p><a class="text-link" href="/docs/mklink/development/v4-shared-cdc/" data-i18n="startStep3Link">V4 共享工作流 ↗</a></li>
+      </ol>
       <div class="actions"><a class="button" href="/docs/mklink/getting-started/gui-install/" data-i18n="install">安装软件与 AI Skill</a><a class="text-link" href="https://item.taobao.com/item.htm?ft=t&amp;id=1020501356342" data-i18n="buy">选购 MKLink V4 ↗</a></div>
       <div class="start-links"><a href="/docs/mklink/support/downloads/" data-i18n="getDownloads">软件、固件与资料 ↗</a><a href="/docs/mklink/support/after-sales/" data-i18n="getSupport">联系与技术支持 ↗</a><a href="/docs/" data-i18n="getMicroboot">MicroBoot 开源框架 ↗</a></div>
     </div></section>
