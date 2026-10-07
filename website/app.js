@@ -21,7 +21,7 @@ function renderModel() {
   $('#model-title').innerHTML = copy.title;
   $('#model-description').textContent = copy.description;
   const img = $('#model-image');
-  img.src = `/assets/${item.image}.webp`;
+  img.src = `/assets/${item.image}.webp${model === 'v4' ? '?v=v4-screen-20261007' : ''}`;
   img.alt = `MKLink ${model.toUpperCase()} ${language === 'zh' ? '实物图' : 'product photograph'}`;
   $('#model-features').replaceChildren(...copy.features.map((feature, index) => {
     const li = document.createElement('li'), number = document.createElement('span');
