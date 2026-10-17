@@ -27,6 +27,7 @@ nav:
     - HardFault / RISC-V Trap: mklink/debugging/hardfault.md
   - 串口与 Modbus: mklink/communication/serial-modbus.md
   - 开发与定制:
+    - V4 与 0.3.0 共享通信: mklink/development/v4-shared-cdc.md
     - 下载器内部 Python API: mklink/development/python-api.md
     - 用 AI 定制企业上位机: mklink/development/custom-web-gui.md
   - 下载与支持:
