@@ -22,30 +22,36 @@ function renderRelease(release, latest) {
   const title = node('h4', release.version);
   title.append(node('span', latest ? '最新正式版' : '历史正式版', 'badge'));
   card.append(title, node('p', `发布日期：${date(release.date)}${release.hardware ? ` · 适用：${release.hardware}` : ''}`, 'meta'));
-  if (!release.date && release.assetPublishedAt) card.append(node('p', `官方附件上传：${date(release.assetPublishedAt)}（不代表原始发布日期）`, 'meta'));
-  if (release.dateNote) card.append(node('p', release.dateNote, 'meta'));
-  if (release.build_id) card.append(node('p', `构建标识 build_id：${release.build_id}`, 'meta build-id'));
+  const details = node('details', undefined, 'release-notes');
+  details.append(node('summary', '更新说明与版本详情'));
+  if (release.build_id) details.append(node('p', `构建标识 build_id：${release.build_id}`, 'meta build-id'));
+  if (!release.date && release.assetPublishedAt) details.append(node('p', `官方附件上传：${date(release.assetPublishedAt)}（不代表原始发布日期）`, 'meta'));
+  if (release.dateNote) details.append(node('p', release.dateNote, 'meta'));
   const notes = node('ul', undefined, 'notes');
   for (const note of release.notes?.length ? release.notes : ['官方未提供独立更新说明，请查看对应发布记录。']) notes.append(node('li', note.replace(/^#{1,6}\s+/, '').replace(/\*\*(.*?)\*\*/g, '$1')));
-  if (notes.children.length > 6) {
-    const details = node('details', undefined, 'release-notes');
-    details.append(node('summary', '查看完整更新说明'), notes);
-    card.append(node('p', release.notes[0], 'meta'), details);
-  } else card.append(notes);
-  if (safeURL(release.source)) { const source = node('a', '官方发布记录 ↗'); source.href = safeURL(release.source); card.append(source); }
+  details.append(notes);
+  if (safeURL(release.source)) { const source = node('a', '官方发布记录 ↗'); source.href = safeURL(release.source); details.append(source); }
   const files = [...(release.files || [])].sort((a,b) => Number(/windows/i.test(b.platform || b.name)) - Number(/windows/i.test(a.platform || a.name)));
   function renderFile(file) {
     const box = node('div', undefined, `file${/windows/i.test(file.platform || file.name) ? ' windows' : ''}`);
-    box.append(node('p', file.name, 'filename'), node('p', `${file.platform || '完整发布文件'}${file.hardware ? ` · 仅适用 ${file.hardware}` : ''} · ${size(file.bytes)}`, 'meta'));
-    const hash = node('p', `SHA-256：${file.sha256 || '尚未提供，下载前请向官方核实'}`, 'hash'); box.append(hash);
+    box.append(node('p', file.platform || '完整发布文件', 'file-title'), node('p', `${file.hardware ? `仅适用 ${file.hardware} · ` : ''}${size(file.bytes)}`, 'meta'));
     const links = node('div', undefined, 'file-links');
+    const mirrors = node('details', undefined, 'mirrors');
+    mirrors.append(node('summary', '备用下载'));
+    const mirrorLinks = node('div', undefined, 'mirror-links');
     let primary = true;
     for (const [key,label] of [['tencent','腾讯云下载'],['github','GitHub 备用'],['gitee','Gitee 备用']]) {
       const href = safeURL(file.urls?.[key]); if (!href) continue;
       const a = node('a', primary && key !== 'tencent' ? label.replace('备用','下载') : label, primary ? 'primary' : '');
-      a.href = href; a.setAttribute('aria-label', `${file.name} · ${a.textContent}`); links.append(a); primary = false;
+      a.href = href; a.setAttribute('aria-label', `${file.name} · ${a.textContent}`);
+      if (primary) links.append(a); else mirrorLinks.append(a);
+      primary = false;
     }
+    if (mirrorLinks.children.length) { mirrors.append(mirrorLinks); links.append(mirrors); }
     if (!links.children.length) box.append(node('p', '暂无已核实的下载地址', 'meta')); else box.append(links);
+    const integrity = node('details', undefined, 'file-details');
+    integrity.append(node('summary', '文件名与 SHA-256'), node('p', file.name, 'filename'), node('p', `SHA-256：${file.sha256 || '尚未提供，下载前请向官方核实'}`, 'hash'));
+    box.append(integrity);
     return box;
   }
   for (const file of files) card.append(renderFile(file));
@@ -55,13 +61,14 @@ function renderRelease(release, latest) {
     for (const file of release.supportFiles) details.append(renderFile(file));
     card.append(details);
   }
+  card.append(details);
   return card;
 }
 function mount(target, releases, label) {
   if (!releases.length) { target.append(node('p', '暂无可核实的正式版本文件。资源补齐并核对后展示。', 'empty')); return; }
   const group = node('div', undefined, 'release-group');
   const select = node('select'); const id = `${target.id}-${target.children.length}-version`; select.id = id;
-  const selectLabel = node('label', `${label} · 选择版本`); selectLabel.htmlFor = id;
+  const selectLabel = node('label', `${label} · 版本`); selectLabel.htmlFor = id;
   releases.forEach((release,index) => { const option = node('option', `${release.version} · ${index === 0 ? '最新正式版' : '历史版本'}${release.date ? ` · ${date(release.date)}` : ''}`); option.value = String(index); select.append(option); });
   const content = node('div'); content.setAttribute('aria-live','polite');
   const update = () => { const index = Number(select.value); content.replaceChildren(renderRelease(releases[index], index === 0)); };
@@ -87,7 +94,6 @@ try {
     const stable = releases.filter(r => r.channel === 'stable');
     const families = [...new Set(stable.map(r => r.family).filter(Boolean))];
     if (families.length > 1) {
-      target.append(node('p', '此型号有不同固件系列，请按设备现有固件与官方说明选择，不可跨系列混刷。', 'warning'));
       for (const family of families) mount(target, stable.filter(r => r.family === family), `${family} ${hardware} 固件`);
     } else mount(target,stable, `${hardware} 固件`);
   }

@@ -212,3 +212,47 @@ test('renderer does not turn unsafe URLs or release-note markup into active cont
   assert.match(get('skill-releases').textContent,/<script>alert\(1\)<\/script>/);
   assert.match(get('skill-releases').textContent,/暂无已核实的下载地址/);
 });
+
+function ancestorWithClass(element, className) {
+  for (let parent = element.parentElement; parent; parent = parent.parentElement) if (parent.classList.contains(className)) return parent;
+  return null;
+}
+
+test('compact release cards keep primary downloads visible and secondary information closed', async () => {
+  const {get} = await setup();
+  const used = new Map();
+  for (const expected of expectedGroups()) {
+    const index = used.get(expected.id) || 0; used.set(expected.id,index+1);
+    const group = groupsOf(get(expected.id))[index], select = tags(group,'select')[0];
+    for (let i=0;i<expected.releases.length;i++) {
+      select.value=i; select.dispatch('change');
+      const card=byClass(group,'release-card')[0];
+      for (const details of tags(card,'details')) {
+        assert.equal(details.getAttribute('open'),null);
+        assert.ok(!details.open,'details must start closed after version changes');
+      }
+      assert.equal(byClass(card,'release-notes').length,1);
+      for (const name of byClass(card,'filename')) assert.ok(ancestorWithClass(name,'file-details'));
+      for (const hash of byClass(card,'hash')) assert.ok(ancestorWithClass(hash,'file-details'));
+      for (const build of byClass(card,'build-id')) assert.ok(ancestorWithClass(build,'release-notes'));
+      for (const primary of byClass(card,'primary').filter(a=>!ancestorWithClass(a,'support-files'))) {
+        for (let p=primary.parentElement;p && p!==card;p=p.parentElement) assert.notEqual(p.tagName,'details','primary download must not be hidden inside a disclosure');
+      }
+      assert.equal(byClass(card,'primary').filter(a=>!ancestorWithClass(a,'support-files')).length,expected.releases[i].files.length);
+      for (const mirrors of byClass(card,'mirror-links')) {
+        assert.ok(ancestorWithClass(mirrors,'mirrors'));
+        assert.ok(tags(mirrors,'a').length);
+        assert.equal(byClass(mirrors,'primary').length,0);
+      }
+    }
+  }
+});
+
+test('compact page uses a simple heading and initially collapsed separate Site Agent', () => {
+  assert.match(html, /<h1>下载中心<\/h1>/);
+  assert.doesNotMatch(html, /class="hero|准备好工具|让想法开始运行/);
+  const siteAgentOpening=html.match(/<details\b[^>]*class="site-agent"[^>]*>/)?.[0];
+  assert.ok(siteAgentOpening,'Site Agent must have a separate disclosure');
+  assert.doesNotMatch(siteAgentOpening,/\bopen\b/);
+  assert.match(html,/<details class="site-agent">[\s\S]*?<div id="site-agent-releases"><\/div><\/details>/);
+});
