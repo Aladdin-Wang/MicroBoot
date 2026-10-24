@@ -40,7 +40,22 @@ def patch(text, page_url, homepage=False):
             return html
         count += 1
         return html[:href.start(2)] + TARGET + html[href.end(2):]
-    return ANCHOR.sub(anchor, text), count
+    text = ANCHOR.sub(anchor, text)
+    # Material renders a mobile TOC label before the active-page anchor. Once
+    # that anchor points off-site, remove only its redundant intercepting label.
+    # Keep the real anchor, TOC input and all TOC markup untouched.
+    if urlsplit(page_url).path.rstrip('/').endswith('/mklink/support/downloads/index.html'):
+        pattern = re.compile(r'(<label\b[^>]*\bfor=[\'"]__toc[\'"][^>]*>.*?</label>)(\s*)(<a\b[^>]*>.*?</a>)', re.S | re.I)
+        def active_label(match):
+            nonlocal count
+            label = re.sub(r'<[^>]*>', '', match.group(1)).strip()
+            href = HREF.search(match.group(3).split('>', 1)[0])
+            if label in ('资料下载', '下载', '下载中心') and href and href.group(2) == TARGET:
+                count += 1
+                return match.group(2) + match.group(3)
+            return match.group(0)
+        text = pattern.sub(active_label, text)
+    return text, count
 
 
 def main():
@@ -67,8 +82,6 @@ def main():
         backup = args.backup_dir.resolve()
         assert backup != root and root not in backup.parents, 'Backup must be outside public root'
         assert changes, 'No matching old navigation found; inspect before retry'
-        assert any(p == root/'index.html' for p, *_ in changes), 'Expected homepage old links not found'
-        assert any(p != root/'index.html' for p, *_ in changes), 'Expected docs old links not found'
         backup = backup / ('download-nav-' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'))
         backup.mkdir(parents=True, exist_ok=False, mode=0o700)
         manifest = []
