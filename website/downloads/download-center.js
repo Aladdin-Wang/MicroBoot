@@ -55,7 +55,7 @@ menu.addEventListener('click', () => { const open = nav.classList.toggle('open')
 nav.addEventListener('click',event => { if (event.target.closest('a')) closeMenu(); });
 document.addEventListener('keydown',event => { if(event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') { closeMenu(); menu.focus(); } });
 try {
-  const response = await fetch('/download-catalog.json?v=20261024');
+  const response = await fetch('/download-catalog.json?v=20261024-final');
   if (!response.ok) throw new Error('catalog unavailable');
   const data = await response.json();
   if (data.schemaVersion !== 1 || !data.sections) throw new Error('unsupported catalog');

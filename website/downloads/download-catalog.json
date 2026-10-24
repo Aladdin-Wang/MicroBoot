@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-24T05:22:42.331613+00:00",
+  "generatedAt": "2026-10-24T05:45:05.471879+00:00",
   "sections": {
     "skill": [
       {
@@ -26,7 +26,8 @@
             "sha256": "e148265e43e4f3e0cb56e7cf35ce51cb84f5d94a5090a70664a038a13d6bf457",
             "urls": {
               "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.5/Mklink-AI-Probe-v0.3.5-Skill.zip",
-              "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.3.5/Mklink-AI-Probe-v0.3.5-Skill.zip"
+              "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.3.5/Mklink-AI-Probe-v0.3.5-Skill.zip",
+              "tencent": "https://download.microkeenai.com/mklink/releases/v0.3.5/Mklink-AI-Probe-v0.3.5-Skill.zip"
             },
             "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
           }
@@ -1211,7 +1212,8 @@
               "bytes": 364216,
               "sha256": "eec5199ec0d9073485e883fa7020c851d24fb36e029f0fca14b19fa1be667d57",
               "urls": {
-                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.0.rbl"
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.0.rbl",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V2/MicroLink_V2.9.0.rbl"
               },
               "hardware": "MicroLink V2",
               "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
@@ -1240,7 +1242,8 @@
               "bytes": 390874,
               "sha256": "234f4424467fe1fc58aea593bbf10e5326230da25d3a767f983df8da1265c738",
               "urls": {
-                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.8.1.rbl"
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.8.1.rbl",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V2/MicroLink_V2.8.1.rbl"
               },
               "hardware": "MicroLink V2",
               "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
@@ -1300,7 +1303,8 @@
               "sha256": "739af38c1e2441fa83a61c22ddbe5aeb514a73cafce3608c954b1a4d5f1f74eb",
               "urls": {
                 "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.5.uf2",
-                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.5.uf2"
+                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.5.uf2",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V3/MicroLink_V3.6.5.uf2"
               },
               "hardware": "MicroLink V3",
               "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
@@ -1329,7 +1333,8 @@
               "bytes": 805888,
               "sha256": "06e7a6b9a0116627eab57b8b93913ffb0f0b05ae95ba271473f3aef6ba7ccc6a",
               "urls": {
-                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.4.uf2"
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.4.uf2",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V3/MicroLink_V3.6.4.uf2"
               },
               "hardware": "MicroLink V3",
               "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
@@ -1357,7 +1362,8 @@
               "bytes": 804864,
               "sha256": "208ac1f7f54b0857202df7e7bbd29e94bbcd99e62520a13688b5973902b7e50b",
               "urls": {
-                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.0.uf2"
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.0.uf2",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V3/MicroLink_V3.6.0.uf2"
               },
               "hardware": "MicroLink V3",
               "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
@@ -1385,7 +1391,8 @@
               "bytes": 773632,
               "sha256": "5706fb935a5d344399170d0cde54928b7d60c6ef323093eafce9bb1cb858a1ae",
               "urls": {
-                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.5.2.uf2"
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.5.2.uf2",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V3/MicroLink_V3.5.2.uf2"
               },
               "hardware": "MicroLink V3",
               "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
@@ -1414,7 +1421,8 @@
               "bytes": 765952,
               "sha256": "b37e5da6ba25ffe08ec42d436de883c64cecc89eb10d4fc67b5be0d78a1fd696",
               "urls": {
-                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.5.0.uf2"
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.5.0.uf2",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V3/MicroLink_V3.5.0.uf2"
               },
               "hardware": "MicroLink V3",
               "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
@@ -1530,7 +1538,8 @@
               "sha256": "96330d006efc42e01bf253b9663e3405af59db5293da9041c5550b347d86c324",
               "urls": {
                 "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.6.9.uf2",
-                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.6.9.uf2"
+                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.6.9.uf2",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V4/MicroLink_V4.6.9.uf2"
               },
               "hardware": "MicroLink V4",
               "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
@@ -2002,7 +2011,7 @@
     "https://gitee.com/api/v5/repos/Aladdin-Wang/Mklink-AI-Probe/releases"
   ],
   "missingResources": [
-    "腾讯云当前仅核实 0.3.6 测试版，正式版和历史版本的镜像需上传后再启用。",
+    "腾讯云已核实：0.3.5 Skill、MicroLink V2.8.1/V2.9.0、V3.5.0/V3.5.2/V3.6.0/V3.6.4/V3.6.5、V4.6.9，以及独立的 0.3.6 测试版。0.3.5 Windows 安装包腾讯云镜像尚未完成；历史 Skill、其他上位机包、HPMLink 与其余固件目前使用已核实的官方备用源，未生成腾讯云链接。",
     "Gitee 仅核实 Skill 0.3.4/0.3.5 和 MicroLink V3.6.5/V4.6.9 四个附件；其他文件没有已验证 Gitee 镜像，未生成链接。",
     "部分历史固件未找到独立发布日期，标注未提供并单独显示官方附件上传日期。",
     "固件缺少逐版本功能更新说明，保留适用型号和官方发布记录，不编造功能变更。",
