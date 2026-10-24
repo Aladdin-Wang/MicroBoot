@@ -41,3 +41,7 @@ python scripts/audit_docs.py --site-dir dist/docs --url-prefix /docs/
 完整构建检查首页资源、锚点、文档目标和 canonical。最后一条命令按 `/docs/` 挂载路径审计实际发布包中的文档链接；审计工具的路径回归测试可用 `python -m unittest discover -s scripts -p 'test_*.py'` 运行。GitHub Actions 在主分支推送和 PR 时执行相同检查，生成 `microkeen-website` 静态产物，不自动操作服务器。
 
 部署与后续维护见根目录 [HANDOFF_DOT.md](../HANDOFF_DOT.md)。
+
+## 下载中心（独立子域名）
+
+`website/downloads/` 生成 `dist-download/`，部署到现有下载子域名，不放进官网 `dist/`。页面目录与自动更新元数据完全分离。见 [下载中心发布约束](downloads/README.md)。CI 独立保存 `microkeen-download-center` 产物。官网和 MkDocs 的下载导航统一使用 `https://download.microkeenai.com/`。

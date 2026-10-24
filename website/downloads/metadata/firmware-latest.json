@@ -1,0 +1,48 @@
+{
+  "schema": "mklink-firmware-v1",
+  "published_at": "2026-10-24T17:06:28+00:00",
+  "firmwares": [
+    {
+      "name": "MicroLink_V3.6.6.uf2",
+      "family": "microlink",
+      "model": "V3",
+      "version": "V3.6.6",
+      "size": 813568,
+      "sha256": "834efd60bcc2c5914ebc04ce46dfe59c842c9238b7d1d694ee36f0c2065647f9",
+      "build_id": "2026-10-24T23:22:00",
+      "urls": {
+        "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261024/MicroLink_V3.6.6.uf2",
+        "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.6.uf2",
+        "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.6.uf2"
+      }
+    },
+    {
+      "name": "MicroLink_V4.7.0.uf2",
+      "family": "microlink",
+      "model": "V4",
+      "version": "V4.7.0",
+      "size": 1544704,
+      "sha256": "6d801b6d830242ebf8c3d68d9a0a687b0cd4c01ad2399ca7742ebaf7f49c77c8",
+      "build_id": "2026-10-24T23:23:05",
+      "urls": {
+        "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261024/MicroLink_V4.7.0.uf2",
+        "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.0.uf2",
+        "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.0.uf2"
+      }
+    },
+    {
+      "name": "HPMLink_V4.7.0.uf2",
+      "family": "hpmlink",
+      "model": "V4",
+      "version": "V4.7.0",
+      "size": 1617920,
+      "sha256": "cfec025902b66e9108603fa6a798574b2b151442632ac11cb8c665ba2c7359bd",
+      "build_id": "2026-10-24T23:25:35",
+      "urls": {
+        "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261024/HPMLink_V4.7.0.uf2",
+        "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/HPMLink_V4.7.0.uf2",
+        "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/HPMLink_V4.7.0.uf2"
+      }
+    }
+  ]
+}

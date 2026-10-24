@@ -16,3 +16,5 @@ Thumbs.db
 *.tmp
 *.swp
 *.swo
+
+/dist-download/

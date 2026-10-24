@@ -1,0 +1,21 @@
+{
+  "version": "0.3.6",
+  "notes": "新增 ISP 烧录，优化下载、启动与诊断。\n\n- 安装包、Skill 与固件优先使用腾讯云下载，保留 GitHub/Gitee 备用。\n- 固件升级支持识别相同版本的修复构建，未知修订可重装，阻止降级。\n- 缩短 Windows 启动等待，进度条按实际加载阶段推进。\n- BIN/HEX 脱机校验默认开启；关闭前检查固件能力，不足时提示升级。\n- SuperWatch 支持离线加载、重载自动停止采集，断开保留变量选择；新增公式、曲线颜色和快捷合并。\n- 优化 HPM JTAG 连续烧录的换板检测；单次烧录隐藏等待时间。\n- 修复刚连接时 RTT 自动搜索失败，改善 RTT 与 SuperWatch 启动顺序兼容性。\n- 修复内外 Flash 合并 HEX 的组合烧录。\n- 修复在线烧录进度到 100% 后等待过久的问题。\n- 新增 HPM 串口 ISP 脱机烧录，开放其他型号测试。\n- 脱机烧录与 OTP 共用设备配置，按芯片加载独立配置页。\n- HPM UART OTP 开放八组系列的字段、模板与读写，需配套固件。\n- 修复自定义地址部署，简化下载设置与结果提示。\n- 断电复位可选 1.8V、3.3V、5V，默认 3.3V。\n- RTT 终端跳过收发解析；SuperWatch 日志可提前开启并选择系统文件夹。\n- 修复连接失败和串口工作进程退出后的资源释放。\n- 新增连接诊断包导出，记录断开时间、具体错误和重连过程。\n\n本次提供 Windows 安装包、完整 Skill 和 Windows Site Agent。配套下载器固件独立提供，按实际型号选择；保留 GitHub/Gitee 备用下载。\n",
+  "pub_date": "2026-10-24T16:59:59+00:00",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTWkJ5dmZ4MnVLVWJSK05XK21yR2lqclNOZlk3L2pCYlA0bmtZUUkrYWRYeXdRa0dwWlRuKzRURkpjK0U3RnB6SkZWQmp0SGgyelhnTTAxWmZQNTRZWE0rQzBBQUJKa2dFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkyODYwOTI1CWZpbGU6TWtsaW5rIEFJIFByb2JlXzAuMy42X3g2NC1zZXR1cC5leGUKamt2UGZDdElmSERzUUZvNHRQMWNSNkRZUVBwbmM3M0V3d0hIdm9WMjZGK2RSZk9MOUhPWjZHd1UvNWh6RWtDOTVsbHMxeXZ0eEpqSTh5WHZTUVVZQVE9PQo=",
+      "url": "https://download.microkeenai.com/mklink/releases/v0.3.6/Mklink-AI-Probe-v0.3.6-x64-Setup.exe",
+      "sha256": "0cdd5ccb1d75e68aadb7a90e93a6c35e2750b40230167230349b0d335e25650e",
+      "size": 184426337
+    }
+  },
+  "skill": {
+    "version": "0.3.6",
+    "url": "https://download.microkeenai.com/mklink/releases/v0.3.6/Mklink-AI-Probe-v0.3.6-Skill.zip",
+    "sha256": "4fb046323d046aa854e7373594c5fe329de9435fa21f116afd76c3aa6979cf3f",
+    "size": 98783680,
+    "source_commit": "d000370b901a72e4f8ec8fe09cf8b837f2579f0c"
+  },
+  "channel": "stable"
+}
