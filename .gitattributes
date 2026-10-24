@@ -2,3 +2,6 @@
 docs/assets/**/*.log -whitespace
 # Editable image sources are covered by original-byte preservation checks.
 docs/images/source/**/*.drawio -text
+# Preserve official release-manifest / checksum snapshot bytes for SHA-256 reproduction.
+website/downloads/metadata/v0.3.6-release-manifest.json -text
+website/downloads/metadata/v0.3.6-SHA256SUMS.txt -text

@@ -1,0 +1,20 @@
+{
+  "schema": "mklink-firmware-v1",
+  "published_at": "2026-10-24T17:06:28+00:00",
+  "firmwares": [
+    {
+      "name": "MicroLink_V2.9.1.rbl",
+      "family": "microlink",
+      "model": "V2",
+      "version": "V2.9.1",
+      "size": 365700,
+      "sha256": "1f0995afa004cfd376968b2d63989cfb6da79ba470bf4370d54e3b0eeb3694fe",
+      "build_id": "2026-10-24T23:24:28",
+      "urls": {
+        "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261024/MicroLink_V2.9.1.rbl",
+        "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.1.rbl",
+        "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.1.rbl"
+      }
+    }
+  ]
+}

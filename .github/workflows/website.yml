@@ -24,6 +24,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Check generated download catalog
+        run: python scripts/sync_download_catalog.py --check
+      - name: Test download center interactions
+        run: node --test scripts/test_download_center.cjs
       - name: Test documentation search reset
         run: node --test scripts/test_docs_search_reset.cjs
       - name: Build and audit documentation

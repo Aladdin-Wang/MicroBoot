@@ -13,21 +13,38 @@ FILES = ('index.html', 'download-center.css', 'download-center.js', 'download-ca
 
 def validate(data):
     assert data['schemaVersion'] == 1
+    assert 'preview' not in json.dumps(data).lower(), 'Retired preview data must not be published'
     sections = data['sections']
-    groups = [sections['skill'], sections['software'], *[sections['firmware'][v] for v in ('V2', 'V3', 'V4')]]
+    groups = [sections['skill'], sections['software'], sections['siteAgent'],
+              *[sections['firmware'][v] for v in ('V2', 'V3', 'V4')]]
     for releases in groups:
+        seen = set()
         for release in releases:
-            assert release['channel'] in ('stable', 'preview')
+            assert release['channel'] == 'stable', 'Only formal releases belong in this catalog'
             assert release['version'] and release['files']
-            if release['version'].lstrip('v') == '0.3.6':
-                assert release['channel'] == 'preview', '0.3.6 must not become stable'
-            for file in release['files']:
+            identity = release.get('family'), release['version'], release.get('build_id')
+            assert identity not in seen, f'Duplicate release: {identity}'
+            seen.add(identity)
+            for file in release['files'] + release.get('supportFiles', []):
                 assert file['name'] and isinstance(file['bytes'], int) and file['bytes'] > 0
                 assert re.fullmatch('[a-fA-F0-9]{64}', file['sha256']), file['name']
                 assert file['urls'] and set(file['urls']).issubset({'tencent', 'github', 'gitee'})
                 for url in file['urls'].values():
                     parsed = urlsplit(url)
                     assert parsed.scheme == 'https' and parsed.netloc
+                    assert not parsed.username and not parsed.password
+    for key in ('skill', 'software', 'siteAgent'):
+        assert sections[key][0]['version'] == '0.3.6'
+    for model, families in {'V2': {'MicroLink': 'V2.9.1'}, 'V3': {'MicroLink': 'V3.6.6'},
+                            'V4': {'MicroLink': 'V4.7.0', 'HPMLink': 'V4.7.0'}}.items():
+        for family, version in families.items():
+            latest = next(r for r in sections['firmware'][model] if r['family'] == family)
+            assert latest['version'] == version and latest['build_id']
+            assert latest['hardware'] == family + ' ' + model
+            for file in latest['files']:
+                assert file['hardware'] == latest['hardware']
+                assert file['name'].startswith(family + '_' + version + '.')
+                assert file['name'].endswith('.rbl' if model == 'V2' else '.uf2')
     return data
 
 
