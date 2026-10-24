@@ -1,4 +1,8 @@
-# 资料下载
+# 下载与资料
+
+[打开官方下载中心：Skill、上位机与 V2 / V3 / V4 固件](https://download.microkeenai.com/)
+
+下载中心优先提供腾讯云文件，并在资源实际存在时提供 GitHub / Gitee 备用下载。正式版、历史版本与测试版分开展示；0.3.6 测试版不等同于正式发布。
 
 本页集中提供 MKLink 开发资料、软件和源码入口。下载后先确认文件适用于自己的下载器型号和目标芯片，再按对应教程操作。
 
@@ -15,7 +19,7 @@
 | MKLink AI Probe / Web GUI / Skill | [Aladdin-Wang/Mklink-AI-Probe](https://github.com/Aladdin-Wang/Mklink-AI-Probe) | [Aladdin-Wang/Mklink-AI-Probe](https://gitee.com/Aladdin-Wang/Mklink-AI-Probe) |
 | MicroBoot | [Aladdin-Wang/MicroBoot](https://github.com/Aladdin-Wang/MicroBoot) | 以仓库说明为准 |
 
-网络允许时优先使用 GitHub；访问失败时再使用 Gitee 镜像。安装 AI Skill 必须安装完整目录和运行依赖，不能只下载 `SKILL.md`。
+下载文件优先使用下载中心的腾讯云入口；下面的 GitHub / Gitee 为源码入口，不代表所有发行文件均有镜像。安装 AI Skill 必须安装完整目录和运行依赖，不能只下载 `SKILL.md`。
 
 ## 常用文件怎么选
 
