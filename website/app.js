@@ -1,4 +1,4 @@
-import {english, labels, models, steps} from './content.js';
+import {english, labels, models, steps} from './content.js?v=taobao-nav-20261020';
 
 const $ = selector => document.querySelector(selector);
 const translations = [...document.querySelectorAll('[data-i18n]')];
