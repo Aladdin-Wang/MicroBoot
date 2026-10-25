@@ -75,10 +75,16 @@ select:hover{border-color:#7caddd}
 .ai-promo-art figcaption{padding:0 12px;text-align:center;font-size:9px;line-height:15px;color:#526d84;background:#edf6fc}
 @media(max-width:760px){.ai-promo{margin:4px 0 18px;border-radius:12px}.ai-promo-heading{flex-wrap:wrap;gap:4px 12px;padding:10px 12px}.ai-promo h2{font-size:13px}.ai-promo-heading a{font-size:11px}.ai-promo-art img{height:auto;aspect-ratio:3/1;object-fit:contain}.ai-promo-art figcaption{font-size:9px;padding:6px 10px}}
 
-/* Extend the approved image behind its intact foreground, rather than letterboxing. */
-.ai-promo-stage{position:relative;isolation:isolate;overflow:hidden;background:#174d70}
-.ai-promo-stage::before{content:"";position:absolute;z-index:0;inset:-28px;background:linear-gradient(90deg,#306b9c44,#0c3d5810 35%,#0c3d5810 65%,#306b9c44),url("https://microkeenai.com/assets/mklink-codex-dark-banner-20261025-v6.webp") center/cover no-repeat;filter:blur(18px) saturate(.75) brightness(1.12)}
-.ai-promo-stage img{mask-image:linear-gradient(90deg,transparent,black calc(50% - 320px),black calc(50% + 320px),transparent)}
+/* Intentional typography beside the full panorama, never image-derived filler. */
+.ai-promo-stage{display:grid;grid-template-columns:minmax(0,1fr) 660px minmax(0,1fr);align-items:center;gap:14px;background:linear-gradient(110deg,#eaf4fc,#f5faff 50%,#eaf6fa);padding:0 14px}
+.ai-promo-stage img{width:660px;height:220px;max-width:100%;object-fit:contain;border-radius:8px}
+.ai-promo-side{min-width:0;padding:0 8px}
+.ai-promo-side .ai-promo-label{margin:0 0 10px;font-size:10px;line-height:1.5;font-weight:650;letter-spacing:1.8px;color:#28799e}
+.ai-promo-side h3{margin:0 0 13px;color:#204965;font-size:24px;line-height:1.25;font-weight:600;letter-spacing:.5px}
+.ai-promo-side p:not(.ai-promo-label){margin:0;color:#4b6c83;font-size:12px;line-height:1.9}
+.ai-promo-line{display:block;margin-top:18px;width:34px;height:3px;border-radius:3px;background:linear-gradient(90deg,#2585be,#54b4b8)}
+.ai-promo-observe{padding-left:12px}
+@media(max-width:1040px){.ai-promo-stage{display:block;padding:0;background:#edf6fc}.ai-promo-side{display:none}.ai-promo-stage img{width:100%;height:auto;aspect-ratio:3/1;border-radius:0}}
 /* Restrained accents connect the technical artwork to the light download cards. */
 .page-heading h1{color:#163b5b;display:flex;align-items:center;gap:12px}
 .page-heading h1::before{content:"";display:block;width:5px;height:30px;border-radius:4px;background:linear-gradient(#1675c9,#26a5b5)}
@@ -92,4 +98,4 @@ select:hover{border-color:#7caddd}
 .primary{background:#086ac5;box-shadow:0 2px 5px #1269a81c}
 .primary:hover{background:#0059ad}
 .badge{background:#e2f0fb;color:#176299}
-@media(max-width:760px){.ai-promo-stage img{mask-image:none}.ai-promo-stage::before{display:none}.page-heading h1::before{height:26px;width:4px}}
+@media(max-width:760px){.page-heading h1::before{height:26px;width:4px}}
