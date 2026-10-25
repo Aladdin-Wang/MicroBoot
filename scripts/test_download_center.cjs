@@ -270,7 +270,7 @@ test('official imagery identifies V2, V3 and the application without changing do
   assert.match(html, /图片辅助识别，请以设备型号为准/);
 });
 
-test('V4 photo remains exclusive to MicroLink across all firmware version switches', async () => {
+test('V4 families retain distinct correctly labeled images across all firmware version switches', async () => {
   const {get} = await setup();
   const groups = groupsOf(get('firmware-V4'));
   assert.equal(groups.length,2);
@@ -288,7 +288,11 @@ test('V4 photo remains exclusive to MicroLink across all firmware version switch
         assert.equal(photos[0].loading,'lazy');
       } else {
         assert.equal(name,'HPMLink V4');
-        assert.equal(photos.length,0,'never reuse the MicroLink photo for HPMLink');
+        assert.equal(photos.length,1);
+        assert.equal(photos[0].src,'https://microkeenai.com/assets/hpmlink-v4-20261025.webp');
+        assert.match(photos[0].alt,/HPMLink V4.*示意图.*HPMsLink/);
+        assert.equal(photos[0].loading,'lazy');
+        assert.match(tags(group,'figcaption')[0].textContent,/AI 生成/);
         assert.match(byClass(group,'hardware-description')[0].textContent,/请核对设备铭牌，不适用于 MicroLink V4/);
       }
     }

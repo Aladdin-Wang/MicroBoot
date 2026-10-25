@@ -48,13 +48,15 @@ python scripts/build_download_center.py
 
 ## 产品图片
 
-下载卡片复用官网已发布的真实图片，不新增下载站图片目录，也不改下载版本目录。图片辅助识别，刷写前仍需核对设备型号：
+V2、V3、MicroLink V4 和上位机卡片复用官网已发布的真实图片；HPMLink 使用经用户授权、基于 MKLink 参考图生成的外观示意图，并明确标注 AI 生成。不新增下载站图片目录，也不改下载版本目录。图片辅助识别，刷写前仍需核对设备型号：
 
 - V2：`https://microkeenai.com/assets/mklink-v2.webp`，来源 `docs/images/mklink/products/mklink-v2-front.png`。
 - V3：`https://microkeenai.com/assets/mklink-v3.webp`，来源 `docs/images/mklink/products/mklink-v3-front.png`。
 - MicroLink V4：`https://microkeenai.com/assets/mklink-v4.webp?v=v4-screen-20261007`，来源 `website/assets/mklink-v4-screen-20261007.png`。
 - 上位机：`https://microkeenai.com/docs/images/mklink/gui/online-flash.png`，官方 MKLink AI Probe 在线烧录界面示例，不随历史安装包选择冒充对应版本截图。
-- HPMLink V4：尚无已核实的独立官方图片，保留明确型号和铭牌核对提示；禁止复用 MicroLink V4 图冒充。
+- HPMLink V4：`https://microkeenai.com/assets/hpmlink-v4-20261025.webp`，来源 `website/assets/hpmlink-v4-20261025.png`，通过 `website/assets.json` 和官网现有构建生成。参考标识保留 `HPMsLink`，固件系列仍为 `HPMLink V4`；图片不是实拍，不作为型号兼容性证据，保留铭牌核对提示。
 
 图片保持自然比例、完整展示，不裁切硬件；硬件图片延迟加载并提供型号 alt 文本。图片展示代码独立于目录和下载链接。仅更换图片界面时部署前三个 UI 文件，`download-catalog.json` 不必重传。
 
+
+本轮 HPMLink 图片更新须先在官网现有 `assets/` 路径新增且仅新增 `hpmlink-v4-20261025.webp`，核对字节摘要和 HTTP 200，再部署下载站三个 UI 文件。下载站构建的四文件白名单不变，目录 JSON 不重传；不部署整个官网、不改任何服务器配置或下载文件。

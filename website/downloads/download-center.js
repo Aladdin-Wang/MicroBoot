@@ -76,6 +76,14 @@ function mount(target, releases, label, hardwareFamily) {
       photo.width = 398; photo.height = 420; photo.loading = 'lazy'; photo.decoding = 'async';
       figure.append(photo, node('figcaption', 'MicroLink V4 · 实物图'));
       group.append(figure);
+    } else if (hardwareFamily === 'HPMLink') {
+      const figure = node('figure', undefined, 'product-visual hardware-visual');
+      const photo = node('img');
+      photo.src = 'https://microkeenai.com/assets/hpmlink-v4-20261025.webp';
+      photo.alt = 'HPMLink V4 下载器外观示意图，基于 MKLink 图片生成，机身标识 HPMsLink';
+      photo.width = 1221; photo.height = 1289; photo.loading = 'lazy'; photo.decoding = 'async';
+      figure.append(photo, node('figcaption', 'HPMLink V4 · 外观示意图（AI 生成）'));
+      group.append(figure);
     }
     group.append(node('h3', `${hardwareFamily} V4`, 'hardware-name'));
     group.append(node('p', hardwareFamily === 'HPMLink' ? '仅适用于 HPMLink V4 · UF2。请核对设备铭牌，不适用于 MicroLink V4。' : '仅适用于 MicroLink V4 · UF2', 'hardware-description'));
