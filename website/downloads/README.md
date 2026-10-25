@@ -45,3 +45,16 @@ python scripts/build_download_center.py
 5. 审查后仅部署四个白名单文件；验证线上字节摘要与构建产物一致。部署前后检查原自动更新接口不变。
 
 历史日期、功能更新说明及缺失镜像的限制列于目录 missingResources，页面会公开展示。GitHub 和 Gitee 仓库入口不是二进制镜像，不冒充文件下载。
+
+## 产品图片
+
+下载卡片复用官网已发布的真实图片，不新增下载站图片目录，也不改下载版本目录。图片辅助识别，刷写前仍需核对设备型号：
+
+- V2：`https://microkeenai.com/assets/mklink-v2.webp`，来源 `docs/images/mklink/products/mklink-v2-front.png`。
+- V3：`https://microkeenai.com/assets/mklink-v3.webp`，来源 `docs/images/mklink/products/mklink-v3-front.png`。
+- MicroLink V4：`https://microkeenai.com/assets/mklink-v4.webp?v=v4-screen-20261007`，来源 `website/assets/mklink-v4-screen-20261007.png`。
+- 上位机：`https://microkeenai.com/docs/images/mklink/gui/online-flash.png`，官方 MKLink AI Probe 在线烧录界面示例，不随历史安装包选择冒充对应版本截图。
+- HPMLink V4：尚无已核实的独立官方图片，保留明确型号和铭牌核对提示；禁止复用 MicroLink V4 图冒充。
+
+图片保持自然比例、完整展示，不裁切硬件；硬件图片延迟加载并提供型号 alt 文本。图片展示代码独立于目录和下载链接。仅更换图片界面时部署前三个 UI 文件，`download-catalog.json` 不必重传。
+

@@ -64,9 +64,22 @@ function renderRelease(release, latest) {
   card.append(details);
   return card;
 }
-function mount(target, releases, label) {
+function mount(target, releases, label, hardwareFamily) {
   if (!releases.length) { target.append(node('p', '暂无可核实的正式版本文件。资源补齐并核对后展示。', 'empty')); return; }
   const group = node('div', undefined, 'release-group');
+  if (hardwareFamily) {
+    if (hardwareFamily === 'MicroLink') {
+      const figure = node('figure', undefined, 'product-visual hardware-visual');
+      const photo = node('img');
+      photo.src = 'https://microkeenai.com/assets/mklink-v4.webp?v=v4-screen-20261007';
+      photo.alt = 'MicroLink V4 彩屏下载器实物，带显示屏与侧面接口';
+      photo.width = 398; photo.height = 420; photo.loading = 'lazy'; photo.decoding = 'async';
+      figure.append(photo, node('figcaption', 'MicroLink V4 · 实物图'));
+      group.append(figure);
+    }
+    group.append(node('h3', `${hardwareFamily} V4`, 'hardware-name'));
+    group.append(node('p', hardwareFamily === 'HPMLink' ? '仅适用于 HPMLink V4 · UF2。请核对设备铭牌，不适用于 MicroLink V4。' : '仅适用于 MicroLink V4 · UF2', 'hardware-description'));
+  }
   const select = node('select'); const id = `${target.id}-${target.children.length}-version`; select.id = id;
   const selectLabel = node('label', `${label} · 版本`); selectLabel.htmlFor = id;
   releases.forEach((release,index) => { const option = node('option', `${release.version} · ${index === 0 ? '最新正式版' : '历史版本'}${release.date ? ` · ${date(release.date)}` : ''}`); option.value = String(index); select.append(option); });
@@ -94,7 +107,7 @@ try {
     const stable = releases.filter(r => r.channel === 'stable');
     const families = [...new Set(stable.map(r => r.family).filter(Boolean))];
     if (families.length > 1) {
-      for (const family of families) mount(target, stable.filter(r => r.family === family), `${family} ${hardware} 固件`);
+      for (const family of families) mount(target, stable.filter(r => r.family === family), `${family} ${hardware} 固件`, family);
     } else mount(target,stable, `${hardware} 固件`);
   }
   const missing = document.querySelector('#missing-resources');
@@ -103,3 +116,4 @@ try {
 } catch {
   document.querySelector('#load-status').textContent = '版本目录暂时无法加载，请稍后刷新，或通过官网文档中的官方发布入口获取文件。';
 }
+

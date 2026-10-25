@@ -256,3 +256,41 @@ test('compact page uses a simple heading and initially collapsed separate Site A
   assert.doesNotMatch(siteAgentOpening,/\bopen\b/);
   assert.match(html,/<details class="site-agent">[\s\S]*?<div id="site-agent-releases"><\/div><\/details>/);
 });
+
+test('official imagery identifies V2, V3 and the application without changing download links', () => {
+  for (const [model, source] of [['V2','mklink-v2.webp'],['V3','mklink-v3.webp']]) {
+    const photo = html.match(new RegExp(`<img[^>]*src="https://microkeenai\\.com/assets/${source}"[^>]*>`))?.[0];
+    assert.ok(photo, `${model} must use its own official product image`);
+    assert.match(photo,new RegExp(`alt="[^"]*MicroLink ${model}[^\"]*"`));
+    assert.match(photo,/loading="lazy"/);
+    assert.match(photo,/width="\d+" height="\d+"/);
+  }
+  assert.match(html, /src="https:\/\/microkeenai.com\/docs\/images\/mklink\/gui\/online-flash.png"/);
+  assert.match(html, /MKLink AI Probe · 在线烧录界面示例/);
+  assert.match(html, /图片辅助识别，请以设备型号为准/);
+});
+
+test('V4 photo remains exclusive to MicroLink across all firmware version switches', async () => {
+  const {get} = await setup();
+  const groups = groupsOf(get('firmware-V4'));
+  assert.equal(groups.length,2);
+  for (const group of groups) {
+    const name = byClass(group,'hardware-name')[0].textContent;
+    const select = tags(group,'select')[0];
+    for (let i=0;i<select.children.length;i++) {
+      select.value=i; select.dispatch('change');
+      assert.equal(byClass(group,'hardware-name')[0].textContent,name);
+      const photos = tags(group,'img');
+      if (name === 'MicroLink V4') {
+        assert.equal(photos.length,1);
+        assert.equal(photos[0].src,'https://microkeenai.com/assets/mklink-v4.webp?v=v4-screen-20261007');
+        assert.match(photos[0].alt,/MicroLink V4/);
+        assert.equal(photos[0].loading,'lazy');
+      } else {
+        assert.equal(name,'HPMLink V4');
+        assert.equal(photos.length,0,'never reuse the MicroLink photo for HPMLink');
+        assert.match(byClass(group,'hardware-description')[0].textContent,/请核对设备铭牌，不适用于 MicroLink V4/);
+      }
+    }
+  }
+});
