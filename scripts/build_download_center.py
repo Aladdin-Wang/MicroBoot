@@ -35,8 +35,8 @@ def validate(data):
                     assert not parsed.username and not parsed.password
     for key in ('skill', 'software', 'siteAgent'):
         assert sections[key][0]['version'] == '0.3.6'
-    for model, families in {'V2': {'MicroLink': 'V2.9.1'}, 'V3': {'MicroLink': 'V3.6.6'},
-                            'V4': {'MicroLink': 'V4.7.0', 'HPMLink': 'V4.7.0'}}.items():
+    for model, families in {'V2': {'MicroLink': 'V2.9.2'}, 'V3': {'MicroLink': 'V3.6.7'},
+                            'V4': {'MicroLink': 'V4.7.1', 'HPMLink': 'V4.7.0'}}.items():
         for family, version in families.items():
             latest = next(r for r in sections['firmware'][model] if r['family'] == family)
             assert latest['version'] == version and latest['build_id']

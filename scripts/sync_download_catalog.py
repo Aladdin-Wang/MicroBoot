@@ -17,8 +17,8 @@ STABLE_URL = 'https://download.microkeenai.com/mklink/stable/latest.json'
 FIRMWARE_ROOT = 'https://download.microkeenai.com/mklink/firmware/'
 SOURCE_COMMIT = 'd000370b901a72e4f8ec8fe09cf8b837f2579f0c'
 EXPECTED_FIRMWARE = {
-    ('microlink', 'V2'): 'V2.9.1', ('microlink', 'V3'): 'V3.6.6',
-    ('microlink', 'V4'): 'V4.7.0', ('hpmlink', 'V4'): 'V4.7.0',
+    ('microlink', 'V2'): 'V2.9.2', ('microlink', 'V3'): 'V3.6.7',
+    ('microlink', 'V4'): 'V4.7.1', ('hpmlink', 'V4'): 'V4.7.0',
 }
 
 
@@ -97,6 +97,11 @@ def generate():
                            'hardware': hardware, 'bytes': entry['size'], 'sha256': entry['sha256'],
                            'urls': proof['urls'], 'verification': proof['verification']}],
             }
+            if entry['family'] == 'microlink':
+                firmware['notes'][1:] = [
+                    '修复 Keil 调试时 RTT / SuperWatch 共存问题。',
+                    '本轮三份升版二进制已做软件回归与编译校验，未重新刷机；不代表三个型号均完成本轮真机验证。',
+                ]
             data['sections']['firmware'][entry['model']].insert(0, firmware)
     assert seen == set(EXPECTED_FIRMWARE)
     # Stable insertion order within V4 keeps ordinary MicroLink first, then HPMLink.

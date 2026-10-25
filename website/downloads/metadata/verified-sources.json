@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-24T17:19:50.374153+00:00",
+  "checkedAt": "2026-10-25T09:52:09.754230+00:00",
   "files": {
     "Mklink-AI-Probe-v0.3.6-Skill.zip": {
       "name": "Mklink-AI-Probe-v0.3.6-Skill.zip",
@@ -115,6 +115,39 @@
         "tencent": "https://download.microkeenai.com/mklink/releases/v0.3.6/SHA256SUMS.txt"
       },
       "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致。"
+    },
+    "MicroLink_V3.6.7.uf2": {
+      "name": "MicroLink_V3.6.7.uf2",
+      "size": 815104,
+      "sha256": "49a58fd7df1542bda179b8b4fa19cf2ed92cef4564f6029ee3085d67dd5175b6",
+      "urls": {
+        "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261025/MicroLink_V3.6.7.uf2",
+        "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.7.uf2",
+        "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.7.uf2"
+      },
+      "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致；各源 HEAD 校验通过。"
+    },
+    "MicroLink_V4.7.1.uf2": {
+      "name": "MicroLink_V4.7.1.uf2",
+      "size": 1545216,
+      "sha256": "018586f97a9a40cbf2bdbbfb60522640a2f6a84c14ca89ebae2a824d79c8f597",
+      "urls": {
+        "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261025/MicroLink_V4.7.1.uf2",
+        "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.1.uf2",
+        "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.1.uf2"
+      },
+      "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致；各源 HEAD 校验通过。"
+    },
+    "MicroLink_V2.9.2.rbl": {
+      "name": "MicroLink_V2.9.2.rbl",
+      "size": 365384,
+      "sha256": "6a4d13ce3dc29633645c6674ea2bb34f2f09a6e0a9231edb0865ee1103d66563",
+      "urls": {
+        "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261025/MicroLink_V2.9.2.rbl",
+        "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.2.rbl",
+        "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.2.rbl"
+      },
+      "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致；各源 HEAD 校验通过。"
     }
   }
 }

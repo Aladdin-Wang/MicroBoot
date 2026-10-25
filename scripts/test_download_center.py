@@ -57,3 +57,11 @@ class DownloadCatalogTests(unittest.TestCase):
             content = (ROOT / 'website/downloads' / name).read_text()
             self.assertNotIn('preview', content)
             self.assertNotIn('尚未正式发布', content)
+
+    def test_previous_firmware_releases_preserved(self):
+        for model, version in [('V2', 'V2.9.1'), ('V3', 'V3.6.6'), ('V4', 'V4.7.0')]:
+            releases = [r for r in self.data['sections']['firmware'][model] if r['family'] == 'MicroLink']
+            self.assertEqual(releases[1]['version'], version)
+            self.assertEqual(releases[1]['files'][0]['urls']['tencent'].split('/')[-2], '20261024')
+            self.assertIn('未重新刷机', ' '.join(releases[0]['notes']))
+            self.assertEqual(releases[0]['files'][0]['urls']['tencent'].split('/')[-2], '20261025')

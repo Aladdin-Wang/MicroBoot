@@ -139,12 +139,12 @@ test('formal 0.3.6 Skill/app defaults and SiteAgent stay separate', async () => 
 
 test('firmware defaults remain hardware/family specific with distinct build ids', async () => {
   const {get} = await setup();
-  for (const [hardware,version] of [['V2','V2.9.1'],['V3','V3.6.6']]) {
+  for (const [hardware,version] of [['V2','V2.9.2'],['V3','V3.6.7']]) {
     assert.match(tags(get(`firmware-${hardware}`),'h4')[0].textContent,new RegExp(version.replaceAll('.','\\.')));
   }
   const v4 = catalog.sections.firmware.V4;
   const defaults = ['MicroLink','HPMLink'].map(family => v4.find(r=>r.family === family && r.channel === 'stable'));
-  assert.deepEqual(defaults.map(r=>r.version),['V4.7.0','V4.7.0']);
+  assert.deepEqual(defaults.map(r=>r.version),['V4.7.1','V4.7.0']);
   assert.ok(defaults.every(r=>r.build_id));
   assert.notEqual(defaults[0].build_id,defaults[1].build_id);
   const groups = groupsOf(get('firmware-V4'));

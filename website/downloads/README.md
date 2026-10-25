@@ -30,7 +30,7 @@ python scripts/build_download_center.py
 - `firmware-latest.json`、`firmware-latest-v2.json`：独立固件索引快照。
 - `verified-sources.json`：本次实际下载并核对大小和 SHA-256 后允许展示的地址，不猜测缺失镜像。
 
-快照只读；同步器不连接网络、不改写上游索引，只生成网站目录。当前明确锁定正式软件 0.3.6 及源提交 `d000370b901a72e4f8ec8fe09cf8b837f2579f0c`，固件 MicroLink V2.9.1、V3.6.6、V4.7.0 和 HPMLink V4.7.0。将来发布需审查版本锁定、快照与校验记录后再运行生成器，不能将未经审核的远程 latest 自动当作正式发布。
+快照只读；同步器不连接网络、不改写上游索引，只生成网站目录。当前明确锁定正式软件 0.3.6 及源提交 `d000370b901a72e4f8ec8fe09cf8b837f2579f0c`，固件 MicroLink V2.9.2、V3.6.7、V4.7.1 和 HPMLink V4.7.0。将来发布需审查版本锁定、快照与校验记录后再运行生成器，不能将未经审核的远程 latest 自动当作正式发布。
 
 `sections.skill`、`sections.software`、`sections.siteAgent` 是独立发布列表；Site Agent 仍位于页面的安装包区域，不另开第四主分区。`sections.firmware.V2/V3/V4` 独立维护；V4 的 MicroLink / HPMLink 按 `family` 分别选择，不能相互覆盖。每个系列第一个条目为最新正式版，其余为历史正式版。没有历史 Site Agent 记录时不猜测补包。
 
@@ -60,3 +60,9 @@ V2、V3、MicroLink V4 和上位机卡片复用官网已发布的真实图片；
 
 
 本轮 HPMLink 图片更新须先在官网现有 `assets/` 路径新增且仅新增 `hpmlink-v4-20261025.webp`，核对字节摘要和 HTTP 200，再部署下载站三个 UI 文件。下载站构建的四文件白名单不变，目录 JSON 不重传；不部署整个官网、不改任何服务器配置或下载文件。
+
+## 2026-10-25 固件目录更新
+
+本轮只部署 `download-catalog.json`；三个 UI 文件与全部产品图片保持原字节。应用与 Skill 保持 0.3.6，HPMLink 保持 V4.7.0。新增 MicroLink V4.7.1 / V3.6.7 / V2.9.2，并将 V4.7.0 / V3.6.6 / V2.9.1 原完整条目保留在历史版本中。
+
+修复范围为 Keil 调试时 RTT / SuperWatch 共存。维护者确认三份升版二进制完成软件回归和编译校验，未重新刷机，不宣称三个型号本轮均通过真机验证。网页构建不修改固件、上游索引、下载保护、权限或 Nginx。

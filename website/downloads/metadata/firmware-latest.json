@@ -1,33 +1,33 @@
 {
   "schema": "mklink-firmware-v1",
-  "published_at": "2026-10-24T17:06:28+00:00",
+  "published_at": "2026-10-25T09:47:08+00:00",
   "firmwares": [
     {
-      "name": "MicroLink_V3.6.6.uf2",
+      "name": "MicroLink_V3.6.7.uf2",
       "family": "microlink",
       "model": "V3",
-      "version": "V3.6.6",
-      "size": 813568,
-      "sha256": "834efd60bcc2c5914ebc04ce46dfe59c842c9238b7d1d694ee36f0c2065647f9",
-      "build_id": "2026-10-24T23:22:00",
+      "version": "V3.6.7",
+      "size": 815104,
+      "sha256": "49a58fd7df1542bda179b8b4fa19cf2ed92cef4564f6029ee3085d67dd5175b6",
+      "build_id": "2026-10-25T17:31:51",
       "urls": {
-        "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261024/MicroLink_V3.6.6.uf2",
-        "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.6.uf2",
-        "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.6.uf2"
+        "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261025/MicroLink_V3.6.7.uf2",
+        "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.7.uf2",
+        "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.7.uf2"
       }
     },
     {
-      "name": "MicroLink_V4.7.0.uf2",
+      "name": "MicroLink_V4.7.1.uf2",
       "family": "microlink",
       "model": "V4",
-      "version": "V4.7.0",
-      "size": 1544704,
-      "sha256": "6d801b6d830242ebf8c3d68d9a0a687b0cd4c01ad2399ca7742ebaf7f49c77c8",
-      "build_id": "2026-10-24T23:23:05",
+      "version": "V4.7.1",
+      "size": 1545216,
+      "sha256": "018586f97a9a40cbf2bdbbfb60522640a2f6a84c14ca89ebae2a824d79c8f597",
+      "build_id": "2026-10-25T17:32:28",
       "urls": {
-        "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261024/MicroLink_V4.7.0.uf2",
-        "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.0.uf2",
-        "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.0.uf2"
+        "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261025/MicroLink_V4.7.1.uf2",
+        "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.1.uf2",
+        "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.1.uf2"
       }
     },
     {

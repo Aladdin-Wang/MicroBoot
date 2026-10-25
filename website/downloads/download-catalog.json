@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-24T17:19:50.374153+00:00",
+  "generatedAt": "2026-10-25T09:52:09.754230+00:00",
   "sections": {
     "skill": [
       {
@@ -1270,6 +1270,37 @@
     "firmware": {
       "V2": [
         {
+          "version": "V2.9.2",
+          "channel": "stable",
+          "date": "2026-10-25T09:47:08+00:00",
+          "dateKind": "official-index",
+          "dateNote": "日期为官方固件索引发布时间（北京时间）；build_id 保留官方原值，不推测其时区。",
+          "hardware": "MicroLink V2",
+          "family": "MicroLink",
+          "build_id": "2026-10-25T17:32:00",
+          "notes": [
+            "仅适用于 MicroLink V2，不可跨硬件型号或 MicroLink / HPMLink 系列混刷。",
+            "修复 Keil 调试时 RTT / SuperWatch 共存问题。",
+            "本轮三份升版二进制已做软件回归与编译校验，未重新刷机；不代表三个型号均完成本轮真机验证。"
+          ],
+          "source": "https://download.microkeenai.com/mklink/firmware/latest-v2.json",
+          "files": [
+            {
+              "name": "MicroLink_V2.9.2.rbl",
+              "platform": "RBL",
+              "hardware": "MicroLink V2",
+              "bytes": 365384,
+              "sha256": "6a4d13ce3dc29633645c6674ea2bb34f2f09a6e0a9231edb0865ee1103d66563",
+              "urls": {
+                "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261025/MicroLink_V2.9.2.rbl",
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.2.rbl",
+                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.2.rbl"
+              },
+              "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致；各源 HEAD 校验通过。"
+            }
+          ]
+        },
+        {
           "version": "V2.9.1",
           "channel": "stable",
           "date": "2026-10-24T17:06:28+00:00",
@@ -1389,6 +1420,37 @@
         }
       ],
       "V3": [
+        {
+          "version": "V3.6.7",
+          "channel": "stable",
+          "date": "2026-10-25T09:47:08+00:00",
+          "dateKind": "official-index",
+          "dateNote": "日期为官方固件索引发布时间（北京时间）；build_id 保留官方原值，不推测其时区。",
+          "hardware": "MicroLink V3",
+          "family": "MicroLink",
+          "build_id": "2026-10-25T17:31:51",
+          "notes": [
+            "仅适用于 MicroLink V3，不可跨硬件型号或 MicroLink / HPMLink 系列混刷。",
+            "修复 Keil 调试时 RTT / SuperWatch 共存问题。",
+            "本轮三份升版二进制已做软件回归与编译校验，未重新刷机；不代表三个型号均完成本轮真机验证。"
+          ],
+          "source": "https://download.microkeenai.com/mklink/firmware/latest.json",
+          "files": [
+            {
+              "name": "MicroLink_V3.6.7.uf2",
+              "platform": "UF2",
+              "hardware": "MicroLink V3",
+              "bytes": 815104,
+              "sha256": "49a58fd7df1542bda179b8b4fa19cf2ed92cef4564f6029ee3085d67dd5175b6",
+              "urls": {
+                "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261025/MicroLink_V3.6.7.uf2",
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.7.uf2",
+                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.7.uf2"
+              },
+              "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致；各源 HEAD 校验通过。"
+            }
+          ]
+        },
         {
           "version": "V3.6.6",
           "channel": "stable",
@@ -1654,6 +1716,37 @@
         }
       ],
       "V4": [
+        {
+          "version": "V4.7.1",
+          "channel": "stable",
+          "date": "2026-10-25T09:47:08+00:00",
+          "dateKind": "official-index",
+          "dateNote": "日期为官方固件索引发布时间（北京时间）；build_id 保留官方原值，不推测其时区。",
+          "hardware": "MicroLink V4",
+          "family": "MicroLink",
+          "build_id": "2026-10-25T17:32:28",
+          "notes": [
+            "仅适用于 MicroLink V4，不可跨硬件型号或 MicroLink / HPMLink 系列混刷。",
+            "修复 Keil 调试时 RTT / SuperWatch 共存问题。",
+            "本轮三份升版二进制已做软件回归与编译校验，未重新刷机；不代表三个型号均完成本轮真机验证。"
+          ],
+          "source": "https://download.microkeenai.com/mklink/firmware/latest.json",
+          "files": [
+            {
+              "name": "MicroLink_V4.7.1.uf2",
+              "platform": "UF2",
+              "hardware": "MicroLink V4",
+              "bytes": 1545216,
+              "sha256": "018586f97a9a40cbf2bdbbfb60522640a2f6a84c14ca89ebae2a824d79c8f597",
+              "urls": {
+                "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261025/MicroLink_V4.7.1.uf2",
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.1.uf2",
+                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.1.uf2"
+              },
+              "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致；各源 HEAD 校验通过。"
+            }
+          ]
+        },
         {
           "version": "V4.7.0",
           "channel": "stable",
@@ -1973,7 +2066,7 @@
         {
           "version": "V4.7.0",
           "channel": "stable",
-          "date": "2026-10-24T17:06:28+00:00",
+          "date": "2026-10-25T09:47:08+00:00",
           "dateKind": "official-index",
           "dateNote": "日期为官方固件索引发布时间（北京时间）；build_id 保留官方原值，不推测其时区。",
           "hardware": "HPMLink V4",

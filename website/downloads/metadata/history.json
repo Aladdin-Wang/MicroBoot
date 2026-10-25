@@ -1150,6 +1150,36 @@
     "firmware": {
       "V2": [
         {
+          "version": "V2.9.1",
+          "channel": "stable",
+          "date": "2026-10-24T17:06:28+00:00",
+          "dateKind": "official-index",
+          "dateNote": "日期为官方固件索引发布时间（北京时间）；build_id 保留官方原值，不推测其时区。",
+          "hardware": "MicroLink V2",
+          "family": "MicroLink",
+          "build_id": "2026-10-24T23:24:28",
+          "notes": [
+            "仅适用于 MicroLink V2，不可跨硬件型号或 MicroLink / HPMLink 系列混刷。",
+            "官方索引未提供此包独立功能更新说明；同版本修订请同时核对 build_id 和 SHA-256。"
+          ],
+          "source": "https://download.microkeenai.com/mklink/firmware/latest-v2.json",
+          "files": [
+            {
+              "name": "MicroLink_V2.9.1.rbl",
+              "platform": "RBL",
+              "hardware": "MicroLink V2",
+              "bytes": 365700,
+              "sha256": "1f0995afa004cfd376968b2d63989cfb6da79ba470bf4370d54e3b0eeb3694fe",
+              "urls": {
+                "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261024/MicroLink_V2.9.1.rbl",
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.1.rbl",
+                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.1.rbl"
+              },
+              "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致。"
+            }
+          ]
+        },
+        {
           "version": "V2.9.0",
           "date": "2026-10-18",
           "dateKind": "unknown",
@@ -1239,6 +1269,36 @@
         }
       ],
       "V3": [
+        {
+          "version": "V3.6.6",
+          "channel": "stable",
+          "date": "2026-10-24T17:06:28+00:00",
+          "dateKind": "official-index",
+          "dateNote": "日期为官方固件索引发布时间（北京时间）；build_id 保留官方原值，不推测其时区。",
+          "hardware": "MicroLink V3",
+          "family": "MicroLink",
+          "build_id": "2026-10-24T23:22:00",
+          "notes": [
+            "仅适用于 MicroLink V3，不可跨硬件型号或 MicroLink / HPMLink 系列混刷。",
+            "官方索引未提供此包独立功能更新说明；同版本修订请同时核对 build_id 和 SHA-256。"
+          ],
+          "source": "https://download.microkeenai.com/mklink/firmware/latest.json",
+          "files": [
+            {
+              "name": "MicroLink_V3.6.6.uf2",
+              "platform": "UF2",
+              "hardware": "MicroLink V3",
+              "bytes": 813568,
+              "sha256": "834efd60bcc2c5914ebc04ce46dfe59c842c9238b7d1d694ee36f0c2065647f9",
+              "urls": {
+                "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261024/MicroLink_V3.6.6.uf2",
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.6.uf2",
+                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.6.uf2"
+              },
+              "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致。"
+            }
+          ]
+        },
         {
           "version": "V3.6.5",
           "date": "2026-10-18",
@@ -1474,6 +1534,36 @@
         }
       ],
       "V4": [
+        {
+          "version": "V4.7.0",
+          "channel": "stable",
+          "date": "2026-10-24T17:06:28+00:00",
+          "dateKind": "official-index",
+          "dateNote": "日期为官方固件索引发布时间（北京时间）；build_id 保留官方原值，不推测其时区。",
+          "hardware": "MicroLink V4",
+          "family": "MicroLink",
+          "build_id": "2026-10-24T23:23:05",
+          "notes": [
+            "仅适用于 MicroLink V4，不可跨硬件型号或 MicroLink / HPMLink 系列混刷。",
+            "官方索引未提供此包独立功能更新说明；同版本修订请同时核对 build_id 和 SHA-256。"
+          ],
+          "source": "https://download.microkeenai.com/mklink/firmware/latest.json",
+          "files": [
+            {
+              "name": "MicroLink_V4.7.0.uf2",
+              "platform": "UF2",
+              "hardware": "MicroLink V4",
+              "bytes": 1544704,
+              "sha256": "6d801b6d830242ebf8c3d68d9a0a687b0cd4c01ad2399ca7742ebaf7f49c77c8",
+              "urls": {
+                "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261024/MicroLink_V4.7.0.uf2",
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.0.uf2",
+                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.0.uf2"
+              },
+              "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致。"
+            }
+          ]
+        },
         {
           "version": "V4.6.9",
           "date": "2026-10-18",
