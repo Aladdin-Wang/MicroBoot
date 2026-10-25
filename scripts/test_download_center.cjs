@@ -257,7 +257,7 @@ test('compact page uses a simple heading and initially collapsed separate Site A
   assert.match(html,/<details class="site-agent">[\s\S]*?<div id="site-agent-releases"><\/div><\/details>/);
 });
 
-test('official imagery identifies V2, V3 and the application without changing download links', () => {
+test('official imagery identifies V2 and V3 without changing download links', () => {
   for (const [model, source] of [['V2','mklink-v2.webp'],['V3','mklink-v3.webp']]) {
     const photo = html.match(new RegExp(`<img[^>]*src="https://microkeenai\\.com/assets/${source}"[^>]*>`))?.[0];
     assert.ok(photo, `${model} must use its own official product image`);
@@ -265,8 +265,6 @@ test('official imagery identifies V2, V3 and the application without changing do
     assert.match(photo,/loading="lazy"/);
     assert.match(photo,/width="\d+" height="\d+"/);
   }
-  assert.match(html, /src="https:\/\/microkeenai.com\/docs\/images\/mklink\/gui\/online-flash.png"/);
-  assert.match(html, /MKLink AI Probe · 在线烧录界面示例/);
   assert.match(html, /图片辅助识别，请以设备型号为准/);
 });
 
@@ -318,14 +316,28 @@ test('website downloads use the requested neutral label across all versions', as
   }
 });
 
-test('software preview is shared before the paired workflows, never a unilateral spacer', () => {
-  assert.equal((html.match(/class="product-visual app-visual"/g)||[]).length,1);
-  assert.ok(html.indexOf('class="product-visual app-visual"') < html.indexOf('class="tools-grid"'));
+test('AI promo replaces category shortcuts and is shared before paired workflows', () => {
+  assert.equal((html.match(/class="ai-promo"/g)||[]).length,1);
+  assert.ok(html.indexOf('class="ai-promo"') < html.indexOf('class="tools-grid"'));
   for (const id of ['skill','software']) {
     const section = html.match(new RegExp(`<section id="${id}"[\\s\\S]*?</section>`))[0];
     assert.match(section, /class="product-heading"/);
     assert.doesNotMatch(section, /<figure|spacer/);
   }
-  assert.match(html,/download-center.css\?v=20261025-aligned-ui/);
+  assert.doesNotMatch(html, /class="categories"|class="product-visual app-visual"|online-flash\.png/);
+  assert.match(html, /id="nav-links"/);
+  assert.match(html, /id="ai-promo-title">MKLink · AI 分析，波形同步验证/);
+  assert.match(html, /AI 生成概念图 · 真实案例重排/);
+  assert.match(html, /https:\/\/microkeenai.com\/assets\/mklink-codex-dark-banner-20261025-v6.webp/);
+  assert.match(html,/download-center.css\?v=20261025-ai-debug/);
   assert.match(html,/download-center.js\?v=20261025-aligned-ui/);
+});
+
+
+test('approved compact panorama preserves all content and discloses case reconstruction', () => {
+  const css = fs.readFileSync(path.join(root, 'download-center.css'), 'utf8');
+  assert.match(html, /width="2172" height="724"/);
+  assert.match(html, /机器人背景不代表机器人实测/);
+  assert.match(css, /height:220px;object-fit:contain/);
+  assert.match(css, /aspect-ratio:3\/1;object-fit:contain/);
 });
