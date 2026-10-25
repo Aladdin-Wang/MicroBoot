@@ -30,7 +30,8 @@ nav:
     - 下载器内部 Python API: mklink/development/python-api.md
     - 用 AI 定制企业上位机: mklink/development/custom-web-gui.md
   - 下载与支持:
-    - 资料下载: mklink/support/downloads.md
+    - 下载中心: https://download.microkeenai.com/
+    - 资料与校验说明: mklink/support/downloads.md
     - 常见问题: mklink/support/faq.md
     - 售后服务: mklink/support/after-sales.md
   - 原理与扩展阅读:
@@ -76,7 +77,8 @@ nav:
   - 多路延时: components/multiple-delay.md
   - 变参函数与可变参数宏: knowledge/c/variadic-macros.md
 - 待补充资料: drafts/index.md
-- 淘宝: https://shop330265532.taobao.com/category.htm?spm=pc_detail.30350276.shop_block.dshopinfo.1a0cf2c0rjEbBf
+- 下载: https://download.microkeenai.com/
+- 淘宝: https://shop330265532.taobao.com/?spm=a21xtw.29978516.0.0
 
 # 主题配置
 theme:
