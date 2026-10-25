@@ -125,10 +125,10 @@ test('all selectors default to newest formal release and switch every historical
   assert.ok(optionsTested > 50, `expected historical coverage; saw ${optionsTested}`);
 });
 
-test('formal 0.3.6 Skill/app defaults and SiteAgent stay separate', async () => {
+test('formal 0.4.0 Skill/app defaults and SiteAgent stay separate', async () => {
   const {get} = await setup();
   for (const id of ['skill-releases','software-releases']) {
-    assert.match(tags(get(id),'h4')[0].textContent,/0\.3\.6/);
+    assert.match(tags(get(id),'h4')[0].textContent,/0\.4\.0/);
     assert.match(tags(get(id),'h4')[0].textContent,/最新正式版/);
     assert.ok(filesOf(get(id)).every(name => !/Site[ -]?Agent/i.test(name))); 
   }

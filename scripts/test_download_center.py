@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import unittest
 from build_download_center import validate
-from sync_download_catalog import generate, METADATA
+from sync_download_catalog import generate, generate_previous, METADATA
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -35,7 +35,7 @@ class DownloadCatalogTests(unittest.TestCase):
     def test_historical_releases_preserved_unchanged(self):
         history = json.loads((METADATA / 'history.json').read_text())
         for key in ('skill', 'software'):
-            self.assertEqual(self.data['sections'][key][1:], history['sections'][key])
+            self.assertEqual(self.data['sections'][key][2:], history['sections'][key])
         for model, original in history['sections']['firmware'].items():
             for release in original:
                 self.assertIn(release, self.data['sections']['firmware'][model])
@@ -65,3 +65,11 @@ class DownloadCatalogTests(unittest.TestCase):
             self.assertEqual(releases[1]['files'][0]['urls']['tencent'].split('/')[-2], '20261024')
             self.assertIn('未重新刷机', ' '.join(releases[0]['notes']))
             self.assertEqual(releases[0]['files'][0]['urls']['tencent'].split('/')[-2], '20261025')
+
+    def test_entire_previous_catalog_sections_preserved(self):
+        previous = generate_previous()
+        for key in ('skill', 'software', 'siteAgent'):
+            self.assertEqual(self.data['sections'][key][1:], previous['sections'][key])
+        self.assertEqual(self.data['sections']['firmware'], previous['sections']['firmware'])
+        self.assertEqual(self.data['sections']['software'][0]['sourceCommit'],
+                         '0c9c2d97d8f69e70f17c67659f5a644fd6379182')

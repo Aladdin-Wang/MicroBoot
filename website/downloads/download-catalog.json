@@ -1,8 +1,51 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-25T09:52:09.754230+00:00",
+  "generatedAt": "2026-10-25T14:05:30.775460+00:00",
   "sections": {
     "skill": [
+      {
+        "version": "0.4.0",
+        "date": "2026-10-25T13:53:59+00:00",
+        "channel": "stable",
+        "notes": [
+          "新增 ISP 烧录，优化下载、启动与诊断。",
+          "安装包、Skill 与固件优先使用腾讯云下载，保留 GitHub/Gitee 备用。",
+          "固件升级支持识别相同版本的修复构建，未知修订可重装，阻止降级。",
+          "缩短 Windows 启动等待，进度条按实际加载阶段推进。",
+          "BIN/HEX 脱机校验默认开启；关闭前检查固件能力，不足时提示升级。",
+          "SuperWatch 支持离线加载、重载自动停止采集，断开保留变量选择；新增公式、曲线颜色和快捷合并。",
+          "优化 HPM JTAG 连续烧录的换板检测；单次烧录隐藏等待时间。",
+          "修复刚连接时 RTT 自动搜索失败，改善 RTT 与 SuperWatch 启动顺序兼容性。",
+          "修复内外 Flash 合并 HEX 的组合烧录。",
+          "修复在线烧录进度到 100% 后等待过久的问题。",
+          "新增 HPM 串口 ISP 脱机烧录，开放其他型号测试。",
+          "脱机烧录与 OTP 共用设备配置，按芯片加载独立配置页。",
+          "HPM UART OTP 开放八组系列的字段、模板与读写，需配套固件。",
+          "修复自定义地址部署，简化下载设置与结果提示。",
+          "断电复位可选 1.8V、3.3V、5V，默认 3.3V。",
+          "RTT 终端跳过收发解析；SuperWatch 日志可提前开启并选择系统文件夹。",
+          "修复连接失败和串口工作进程退出后的资源释放。",
+          "新增连接诊断包导出，记录断开时间、具体错误和重连过程。",
+          "本次提供 Windows 安装包、完整 Skill 和 Windows Site Agent。配套下载器固件独立提供，按实际型号选择；保留 GitHub/Gitee 备用下载。"
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.4.0",
+        "sourceCommit": "0c9c2d97d8f69e70f17c67659f5a644fd6379182",
+        "dateNote": "发布日期来自正式更新索引，页面按北京时间（UTC+8）显示。",
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.4.0-Skill.zip",
+            "platform": "完整 AI Skill",
+            "bytes": 98788966,
+            "sha256": "555710fff446f80776b3fab418343d1370b6a083faa38f7d568896ac63c3d300",
+            "urls": {
+              "tencent": "https://download.microkeenai.com/mklink/releases/v0.4.0/Mklink-AI-Probe-v0.4.0-Skill.zip",
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/Mklink-AI-Probe-v0.4.0-Skill.zip",
+              "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.4.0/Mklink-AI-Probe-v0.4.0-Skill.zip"
+            },
+            "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致。"
+          }
+        ]
+      },
       {
         "version": "0.3.6",
         "date": "2026-10-24T16:59:59+00:00",
@@ -505,6 +548,83 @@
       }
     ],
     "software": [
+      {
+        "version": "0.4.0",
+        "date": "2026-10-25T13:53:59+00:00",
+        "channel": "stable",
+        "notes": [
+          "新增 ISP 烧录，优化下载、启动与诊断。",
+          "安装包、Skill 与固件优先使用腾讯云下载，保留 GitHub/Gitee 备用。",
+          "固件升级支持识别相同版本的修复构建，未知修订可重装，阻止降级。",
+          "缩短 Windows 启动等待，进度条按实际加载阶段推进。",
+          "BIN/HEX 脱机校验默认开启；关闭前检查固件能力，不足时提示升级。",
+          "SuperWatch 支持离线加载、重载自动停止采集，断开保留变量选择；新增公式、曲线颜色和快捷合并。",
+          "优化 HPM JTAG 连续烧录的换板检测；单次烧录隐藏等待时间。",
+          "修复刚连接时 RTT 自动搜索失败，改善 RTT 与 SuperWatch 启动顺序兼容性。",
+          "修复内外 Flash 合并 HEX 的组合烧录。",
+          "修复在线烧录进度到 100% 后等待过久的问题。",
+          "新增 HPM 串口 ISP 脱机烧录，开放其他型号测试。",
+          "脱机烧录与 OTP 共用设备配置，按芯片加载独立配置页。",
+          "HPM UART OTP 开放八组系列的字段、模板与读写，需配套固件。",
+          "修复自定义地址部署，简化下载设置与结果提示。",
+          "断电复位可选 1.8V、3.3V、5V，默认 3.3V。",
+          "RTT 终端跳过收发解析；SuperWatch 日志可提前开启并选择系统文件夹。",
+          "修复连接失败和串口工作进程退出后的资源释放。",
+          "新增连接诊断包导出，记录断开时间、具体错误和重连过程。",
+          "本次提供 Windows 安装包、完整 Skill 和 Windows Site Agent。配套下载器固件独立提供，按实际型号选择；保留 GitHub/Gitee 备用下载。"
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.4.0",
+        "sourceCommit": "0c9c2d97d8f69e70f17c67659f5a644fd6379182",
+        "dateNote": "发布日期来自正式更新索引，页面按北京时间（UTC+8）显示。",
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.4.0-x64-Setup.exe",
+            "platform": "Windows x64 安装包",
+            "bytes": 184436475,
+            "sha256": "b02d3efc79038923cb7a5702dbfbd177b6b711817af38a5cff6eb7d0b08de003",
+            "urls": {
+              "tencent": "https://download.microkeenai.com/mklink/releases/v0.4.0/Mklink-AI-Probe-v0.4.0-x64-Setup.exe",
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/Mklink-AI-Probe-v0.4.0-x64-Setup.exe"
+            },
+            "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致。"
+          }
+        ],
+        "supportFiles": [
+          {
+            "name": "Mklink-AI-Probe-v0.4.0-x64-Setup.exe.sig",
+            "platform": "自动更新签名 · 非安装包",
+            "bytes": 428,
+            "sha256": "d011c43f2f1e764760bbd77e7f04abe5b8fbf7317e295da08656957732036924",
+            "urls": {
+              "tencent": "https://download.microkeenai.com/mklink/releases/v0.4.0/Mklink-AI-Probe-v0.4.0-x64-Setup.exe.sig",
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/Mklink-AI-Probe-v0.4.0-x64-Setup.exe.sig"
+            },
+            "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致。"
+          },
+          {
+            "name": "release-manifest.json",
+            "platform": "正式资源清单 · 非安装包",
+            "bytes": 1275,
+            "sha256": "9bf286c8f99c4eeaa533f5bdcfde8f7bb03ab1d1a499d11a571e9e693be72040",
+            "urls": {
+              "tencent": "https://download.microkeenai.com/mklink/releases/v0.4.0/release-manifest.json",
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/release-manifest.json"
+            },
+            "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致。"
+          },
+          {
+            "name": "SHA256SUMS.txt",
+            "platform": "SHA-256 校验清单 · 非安装包",
+            "bytes": 562,
+            "sha256": "8f729caa0f2f4247e29604b11ba12e7e423309e7b41d337f5ab8b6d413f65dfb",
+            "urls": {
+              "tencent": "https://download.microkeenai.com/mklink/releases/v0.4.0/SHA256SUMS.txt",
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/SHA256SUMS.txt"
+            },
+            "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致。"
+          }
+        ]
+      },
       {
         "version": "0.3.6",
         "date": "2026-10-24T16:59:59+00:00",
@@ -2295,6 +2415,43 @@
     },
     "siteAgent": [
       {
+        "version": "0.4.0",
+        "date": "2026-10-25T13:53:59+00:00",
+        "channel": "stable",
+        "notes": [
+          "Windows Site Agent 是独立便携组件，不代替上位机或完整 Skill。解压后按包内说明使用。"
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.4.0",
+        "sourceCommit": "0c9c2d97d8f69e70f17c67659f5a644fd6379182",
+        "dateNote": "发布日期来自正式更新索引，页面按北京时间（UTC+8）显示。",
+        "files": [
+          {
+            "name": "MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.zip",
+            "platform": "Windows x64 Site Agent · 便携包",
+            "bytes": 67072686,
+            "sha256": "8e75d66e09e1cad878b40e607118a5693ca534679ff9b7ab0835599530ad31a2",
+            "urls": {
+              "tencent": "https://download.microkeenai.com/mklink/releases/v0.4.0/MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.zip",
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.zip"
+            },
+            "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致。"
+          }
+        ],
+        "supportFiles": [
+          {
+            "name": "MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.manifest.json",
+            "platform": "Site Agent 完整性清单 · 非安装包",
+            "bytes": 2391,
+            "sha256": "efe710ec55191bd0965a0405e2d77a87d6704126cedf093bb8c08956dd88a642",
+            "urls": {
+              "tencent": "https://download.microkeenai.com/mklink/releases/v0.4.0/MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.manifest.json",
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.manifest.json"
+            },
+            "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致。"
+          }
+        ]
+      },
+      {
         "version": "0.3.6",
         "date": "2026-10-24T16:59:59+00:00",
         "channel": "stable",
@@ -2340,11 +2497,12 @@
     "https://download.microkeenai.com/mklink/stable/latest.json",
     "https://download.microkeenai.com/mklink/releases/v0.3.6/release-manifest.json",
     "https://download.microkeenai.com/mklink/firmware/latest.json",
-    "https://download.microkeenai.com/mklink/firmware/latest-v2.json"
+    "https://download.microkeenai.com/mklink/firmware/latest-v2.json",
+    "https://download.microkeenai.com/mklink/releases/v0.4.0/release-manifest.json"
   ],
   "missingResources": [
-    "0.3.6 正式提供 Windows 上位机、完整 Skill 和 Windows Site Agent。本次没有 Linux / macOS 新包；选择历史正式版本可下载已有包。",
-    "Gitee 已核实完整 Skill 及本次四份固件。Windows 安装包超过 Gitee 100 MB 限制，使用腾讯云或 GitHub；其他未核实备用源不生成链接。",
+    "0.4.0 正式提供 Windows 上位机、完整 Skill 和 Windows Site Agent。本次没有 Linux / macOS 新包；0.3.6 及更早历史正式文件完整保留。",
+    "新版本 GitHub 仅使用 MicroKeen/Mklink-AI-Probe；旧 Aladdin-Wang GitHub 仓库不再维护新版本。Gitee Aladdin-Wang 镜像仍有效，仅显示实际发布且已核实的文件；Windows 安装包超过其 100 MB 限制。",
     "历史文件保留原有已核实入口；未提供腾讯云或 Gitee 按钮的历史包尚无已核实镜像。",
     "部分历史固件未找到独立发布日期，标注未提供并单独显示官方附件上传日期。",
     "固件缺少逐版本功能更新说明，保留适用型号和官方发布记录，不编造功能变更。",

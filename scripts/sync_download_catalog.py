@@ -26,7 +26,7 @@ def load(name):
     return json.loads((METADATA / name).read_text(encoding='utf-8'))
 
 
-def generate():
+def generate_previous():
     data = copy.deepcopy(load('history.json'))
     stable = load('stable-latest.json')
     manifest = load('v0.3.6-release-manifest.json')
@@ -113,6 +113,64 @@ def generate():
         'Gitee 已核实完整 Skill 及本次四份固件。Windows 安装包超过 Gitee 100 MB 限制，使用腾讯云或 GitHub；其他未核实备用源不生成链接。',
         '历史文件保留原有已核实入口；未提供腾讯云或 Gitee 按钮的历史包尚无已核实镜像。',
         *data['missingResources'],
+    ]
+    return data
+
+
+def generate():
+    # Keep the complete preceding catalog reproducible; prepend only this release.
+    data = generate_previous()
+    stable = load('v0.4.0-stable-latest.json')
+    manifest = load('v0.4.0-release-manifest.json')
+    verified = load('v0.4.0-verified-sources.json')
+    version = '0.4.0'
+    source_commit = '0c9c2d97d8f69e70f17c67659f5a644fd6379182'
+    root = 'https://download.microkeenai.com/mklink/releases/v0.4.0/'
+    assert stable['version'] == manifest['release_version'] == version
+    assert stable['channel'] == 'stable'
+    assert stable['skill']['source_commit'] == manifest['source_commit'] == source_commit
+    assert set(stable['platforms']) == {'windows-x86_64'}
+    assets = {a['name']: a for a in manifest['assets']}
+    sums = dict(line.split(None, 1)[::-1] for line in
+                (METADATA / 'v0.4.0-SHA256SUMS.txt').read_text().splitlines() if line.strip())
+    for name, asset in assets.items():
+        assert sums[name] == asset['sha256']
+    for name in ('release-manifest.json', 'SHA256SUMS.txt'):
+        raw = (METADATA / ('v0.4.0-' + name)).read_bytes()
+        assets[name] = dict(name=name, size=len(raw), sha256=hashlib.sha256(raw).hexdigest())
+    for item in (stable['skill'], stable['platforms']['windows-x86_64']):
+        name = item['url'].rsplit('/', 1)[1]
+        assert item['url'] == root + name
+        assert (item['size'], item['sha256']) == (assets[name]['size'], assets[name]['sha256'])
+    def file(name, platform):
+        asset, proof = assets[name], verified['files'][name]
+        assert (proof['size'], proof['sha256']) == (asset['size'], asset['sha256'])
+        assert proof['urls']['tencent'] == root + name
+        for source, url in proof['urls'].items():
+            if source == 'github':
+                assert url == 'https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/' + name
+        return dict(name=name, platform=platform, bytes=asset['size'], sha256=asset['sha256'],
+                    urls=proof['urls'], verification=proof['verification'])
+    release = dict(version=version, date=stable['pub_date'], channel='stable',
+                   notes=[line.lstrip('- ').strip() for line in stable['notes'].splitlines() if line.strip()],
+                   source='https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.4.0',
+                   sourceCommit=source_commit,
+                   dateNote='发布日期来自正式更新索引，页面按北京时间（UTC+8）显示。')
+    skill = dict(release, files=[file('Mklink-AI-Probe-v0.4.0-Skill.zip', '完整 AI Skill')])
+    software = dict(release, files=[file('Mklink-AI-Probe-v0.4.0-x64-Setup.exe', 'Windows x64 安装包')])
+    agent = dict(release, notes=['Windows Site Agent 是独立便携组件，不代替上位机或完整 Skill。解压后按包内说明使用。'],
+                 files=[file('MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.zip', 'Windows x64 Site Agent · 便携包')])
+    software['supportFiles'] = [file('Mklink-AI-Probe-v0.4.0-x64-Setup.exe.sig', '自动更新签名 · 非安装包'),
+                                file('release-manifest.json', '正式资源清单 · 非安装包'),
+                                file('SHA256SUMS.txt', 'SHA-256 校验清单 · 非安装包')]
+    agent['supportFiles'] = [file('MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.manifest.json', 'Site Agent 完整性清单 · 非安装包')]
+    for key, value in [('skill', skill), ('software', software), ('siteAgent', agent)]:
+        data['sections'][key].insert(0, value)
+    data['generatedAt'] = verified['checkedAt']
+    data['sources'].append(root + 'release-manifest.json')
+    data['missingResources'][:2] = [
+        '0.4.0 正式提供 Windows 上位机、完整 Skill 和 Windows Site Agent。本次没有 Linux / macOS 新包；0.3.6 及更早历史正式文件完整保留。',
+        '新版本 GitHub 仅使用 MicroKeen/Mklink-AI-Probe；旧 Aladdin-Wang GitHub 仓库不再维护新版本。Gitee Aladdin-Wang 镜像仍有效，仅显示实际发布且已核实的文件；Windows 安装包超过其 100 MB 限制。',
     ]
     return data
 
