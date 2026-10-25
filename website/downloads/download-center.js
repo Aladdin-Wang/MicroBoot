@@ -40,7 +40,7 @@ function renderRelease(release, latest) {
     mirrors.append(node('summary', '备用下载'));
     const mirrorLinks = node('div', undefined, 'mirror-links');
     let primary = true;
-    for (const [key,label] of [['tencent','腾讯云下载'],['github','GitHub 备用'],['gitee','Gitee 备用']]) {
+    for (const [key,label] of [['tencent','网站下载'],['github','GitHub 备用'],['gitee','Gitee 备用']]) {
       const href = safeURL(file.urls?.[key]); if (!href) continue;
       const a = node('a', primary && key !== 'tencent' ? label.replace('备用','下载') : label, primary ? 'primary' : '');
       a.href = href; a.setAttribute('aria-label', `${file.name} · ${a.textContent}`);

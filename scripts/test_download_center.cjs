@@ -298,3 +298,34 @@ test('V4 families retain distinct correctly labeled images across all firmware v
     }
   }
 });
+
+test('website downloads use the requested neutral label across all versions', async () => {
+  const {get} = await setup();
+  for (const id of ['skill-releases','software-releases','site-agent-releases','firmware-V2','firmware-V3','firmware-V4']) {
+    for (const group of groupsOf(get(id))) {
+      const select = tags(group,'select')[0];
+      for (let i=0;i<select.children.length;i++) {
+        select.value=i; select.dispatch('change');
+        for (const link of byClass(group,'primary')) {
+          if (link.href.startsWith('https://download.microkeenai.com/')) {
+            assert.equal(link.textContent,'网站下载');
+            assert.match(link.getAttribute('aria-label'), /· 网站下载$/);
+          }
+        }
+        for (const link of tags(group,'a')) assert.doesNotMatch(link.textContent,/腾讯云下载/);
+      }
+    }
+  }
+});
+
+test('software preview is shared before the paired workflows, never a unilateral spacer', () => {
+  assert.equal((html.match(/class="product-visual app-visual"/g)||[]).length,1);
+  assert.ok(html.indexOf('class="product-visual app-visual"') < html.indexOf('class="tools-grid"'));
+  for (const id of ['skill','software']) {
+    const section = html.match(new RegExp(`<section id="${id}"[\\s\\S]*?</section>`))[0];
+    assert.match(section, /class="product-heading"/);
+    assert.doesNotMatch(section, /<figure|spacer/);
+  }
+  assert.match(html,/download-center.css\?v=20261025-aligned-ui/);
+  assert.match(html,/download-center.js\?v=20261025-aligned-ui/);
+});
