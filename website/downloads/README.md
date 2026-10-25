@@ -75,3 +75,10 @@ V2、V3、MicroLink V4 和上位机卡片复用官网已发布的真实图片；
 横幅为 AI 生成的真实案例重排，并非原始操作截图；Codex 风格对话、SuperWatch 三条曲线与 MKLink 展示同一个 RAM 调参案例，机器人背景仅为概念示意，不宣称机器人实测。页面文字与 alt 明确说明。
 
 原图 `website/assets/mklink-codex-dark-banner-20261025-v6.png` 经 `website/assets.json` 和既有官网构建生成同名 WebP，优化文件也保留入库。仅新增该 WebP 到官网现有 `/assets/`，核对 HTTP 状态与摘要，再更新下载站三个 UI 文件；JS 内容不变，目录 JSON 不重传。不得上传原图、源码或整个官网目录，不修改服务器配置。
+
+
+### V7 关节电机自动化调试展示
+
+按用户要求删除宣传图下方可见说明，准确的概念背景/真实案例重排描述仍保留在 alt 中。两侧文案压缩为小标签与两行，中央图片增加至 800×236px，整体约 260px。V7 原图 2170×725，桌面 `cover` 居中只裁少量上下背景，保留对话、波形、下载器和标签；手机完整自然比例 `contain`。<=1100px 隐藏冗余侧文案，图片保持236px高度上限；<=760px 自然比例。
+
+新增 `website/assets/mklink-joint-motor-automation-banner-20261025-v7.png` 与同名 WebP，经 assets.json 现有构建生成。旧 V6 不覆盖。先仅新增官网同名 WebP 并核对摘要，然后更新下载站 HTML/CSS；JS与目录不变。必须检查实际截图中所有关键内容可见，没有拉伸、横向溢出或过高页面。

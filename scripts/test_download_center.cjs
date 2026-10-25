@@ -327,35 +327,47 @@ test('AI promo replaces category shortcuts and is shared before paired workflows
   assert.doesNotMatch(html, /class="categories"|class="product-visual app-visual"|online-flash\.png/);
   assert.match(html, /id="nav-links"/);
   assert.match(html, /id="ai-promo-title">MKLink · AI 分析，波形同步验证/);
-  assert.match(html, /AI 生成概念图 · 真实案例重排/);
-  assert.match(html, /https:\/\/microkeenai.com\/assets\/mklink-codex-dark-banner-20261025-v6.webp/);
-  assert.match(html,/download-center.css\?v=20261025-ai-triptych/);
+  assert.doesNotMatch(html, /AI 生成概念图 · 真实案例重排/);
+  assert.match(html, /https:\/\/microkeenai.com\/assets\/mklink-joint-motor-automation-banner-20261025-v7.webp/);
+  assert.match(html,/download-center.css\?v=20261025-ai-v7/);
   assert.match(html,/download-center.js\?v=20261025-aligned-ui/);
 });
 
 
 test('approved compact panorama preserves all content and discloses case reconstruction', () => {
   const css = fs.readFileSync(path.join(root, 'download-center.css'), 'utf8');
-  assert.match(html, /width="2172" height="724"/);
-  assert.match(html, /机器人背景不代表机器人实测/);
-  assert.match(css, /height:220px;object-fit:contain/);
-  assert.match(css, /aspect-ratio:3\/1;object-fit:contain/);
+  assert.match(html, /width="2170" height="725"/);
+  assert.doesNotMatch(html, /机器人背景不代表机器人实测/);
+  assert.match(css, /height:236px;object-fit:contain/);
+  assert.match(css, /aspect-ratio:2170\/725;object-fit:contain/);
 });
 
 
 test('panorama uses intentional side copy without black or blurred filler', () => {
   const css = fs.readFileSync(path.join(root, 'download-center.css'), 'utf8');
   assert.match(html, /ai-promo-analysis/);
-  assert.match(html, /RAM 调参回读/);
-  assert.match(html, /参考 · 响应 · 误差/);
-  assert.match(html, /同一数据流验证/);
-  assert.match(css, /grid-template-columns:minmax\(0,1fr\) 660px minmax\(0,1fr\)/);
+  assert.match(html, /调参 · 回读/);
+  assert.match(html, /三曲线同步验证/);
+  assert.match(css, /grid-template-columns:minmax\(0,1fr\) 800px minmax\(0,1fr\)/);
   assert.match(css, /\.ai-promo-side\{display:none\}/);
   assert.doesNotMatch(css, /filter:blur|mask-image|ai-promo-stage::before|background:#031321/);
 });
 
 test('compact desktop keeps artwork height capped while mobile keeps natural aspect', () => {
   const css = fs.readFileSync(path.join(root, 'download-center.css'), 'utf8');
-  assert.match(css, /width:min\(100%,660px\);height:220px;margin:auto/);
-  assert.match(css, /@media\(max-width:760px\)\{\.ai-promo-stage img\{width:100%;height:auto;aspect-ratio:3\/1/);
+  assert.match(css, /width:min\(100%,800px\);height:236px;margin:auto/);
+  assert.match(css, /@media\(max-width:760px\)\{\.ai-promo-stage img\{width:100%;height:auto;aspect-ratio:2170\/725/);
+});
+
+test('user-requested caption removal keeps meaningful alternative text', () => {
+  const promo = html.match(/<section class="ai-promo"[\s\S]*?<\/section>/)[0];
+  assert.doesNotMatch(promo, /<figcaption>/);
+  assert.match(promo, /alt="真实案例重排：/);
+});
+
+test('V7 wider display crops only background and keeps uncropped mobile image', () => {
+  const css = fs.readFileSync(path.join(root, 'download-center.css'), 'utf8');
+  assert.match(css, /width:800px;height:236px;max-width:100%;object-fit:cover/);
+  assert.match(css, /aspect-ratio:2170\/725;border-radius:0;object-fit:contain/);
+  assert.match(html, /关节电机自动化调试台为概念背景/);
 });
