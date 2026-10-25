@@ -329,7 +329,7 @@ test('AI promo replaces category shortcuts and is shared before paired workflows
   assert.match(html, /id="ai-promo-title">MKLink · AI 分析，波形同步验证/);
   assert.match(html, /AI 生成概念图 · 真实案例重排/);
   assert.match(html, /https:\/\/microkeenai.com\/assets\/mklink-codex-dark-banner-20261025-v6.webp/);
-  assert.match(html,/download-center.css\?v=20261025-ai-debug/);
+  assert.match(html,/download-center.css\?v=20261025-ai-cohesion/);
   assert.match(html,/download-center.js\?v=20261025-aligned-ui/);
 });
 
@@ -340,4 +340,15 @@ test('approved compact panorama preserves all content and discloses case reconst
   assert.match(html, /机器人背景不代表机器人实测/);
   assert.match(css, /height:220px;object-fit:contain/);
   assert.match(css, /aspect-ratio:3\/1;object-fit:contain/);
+});
+
+
+test('panoramic padding is image-backed rather than solid black and theme remains light', () => {
+  const css = fs.readFileSync(path.join(root, 'download-center.css'), 'utf8');
+  assert.match(html, /class="ai-promo-stage"><img/);
+  assert.match(css, /\.ai-promo-stage::before/);
+  assert.match(css, /mklink-codex-dark-banner-20261025-v6\.webp/);
+  assert.match(css, /filter:blur\(18px\)/);
+  assert.match(css, /background:linear-gradient\(135deg,#f5faff,#fbfcfd 62%\)/);
+  assert.doesNotMatch(css, /background:#031321/);
 });
