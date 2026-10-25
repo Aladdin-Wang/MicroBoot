@@ -84,7 +84,7 @@ select:hover{border-color:#7caddd}
 .ai-promo-side p:not(.ai-promo-label){margin:0;color:#4b6c83;font-size:12px;line-height:1.9}
 .ai-promo-line{display:block;margin-top:18px;width:34px;height:3px;border-radius:3px;background:linear-gradient(90deg,#2585be,#54b4b8)}
 .ai-promo-observe{padding-left:12px}
-@media(max-width:1040px){.ai-promo-stage{display:block;padding:0;background:#edf6fc}.ai-promo-side{display:none}.ai-promo-stage img{width:100%;height:auto;aspect-ratio:3/1;border-radius:0}}
+@media(max-width:1040px){.ai-promo-stage{display:block;padding:0;background:#edf6fc}.ai-promo-side{display:none}.ai-promo-stage img{width:min(100%,660px);height:220px;margin:auto;border-radius:8px}}
 /* Restrained accents connect the technical artwork to the light download cards. */
 .page-heading h1{color:#163b5b;display:flex;align-items:center;gap:12px}
 .page-heading h1::before{content:"";display:block;width:5px;height:30px;border-radius:4px;background:linear-gradient(#1675c9,#26a5b5)}
@@ -99,3 +99,5 @@ select:hover{border-color:#7caddd}
 .primary:hover{background:#0059ad}
 .badge{background:#e2f0fb;color:#176299}
 @media(max-width:760px){.page-heading h1::before{height:26px;width:4px}}
+
+@media(max-width:760px){.ai-promo-stage img{width:100%;height:auto;aspect-ratio:3/1;border-radius:0}}

@@ -353,3 +353,9 @@ test('panorama uses intentional side copy without black or blurred filler', () =
   assert.match(css, /\.ai-promo-side\{display:none\}/);
   assert.doesNotMatch(css, /filter:blur|mask-image|ai-promo-stage::before|background:#031321/);
 });
+
+test('compact desktop keeps artwork height capped while mobile keeps natural aspect', () => {
+  const css = fs.readFileSync(path.join(root, 'download-center.css'), 'utf8');
+  assert.match(css, /width:min\(100%,660px\);height:220px;margin:auto/);
+  assert.match(css, /@media\(max-width:760px\)\{\.ai-promo-stage img\{width:100%;height:auto;aspect-ratio:3\/1/);
+});
