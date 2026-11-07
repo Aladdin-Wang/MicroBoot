@@ -24,7 +24,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Test documentation search reset and bilingual website content
+      - name: Check generated download catalog
+        run: python scripts/sync_download_catalog.py --check
+      - name: Test documentation, download center and bilingual website
         run: node --test scripts/test_*.cjs
       - name: Build and audit documentation
         run: |
@@ -38,4 +40,9 @@ jobs:
         with:
           name: microkeen-website
           path: dist/
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        with:
+          name: microkeen-download-center
+          path: dist-download/
           retention-days: 14

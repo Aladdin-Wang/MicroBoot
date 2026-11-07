@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "release_version": "0.3.6",
+  "source_commit": "d000370b901a72e4f8ec8fe09cf8b837f2579f0c",
+  "build_time_utc": "2026-10-24T16:59:55+00:00",
+  "platform": "Windows-11-10.0.22631-SP0",
+  "versions": {
+    "python_package": "0.3.6",
+    "tauri": "0.3.6",
+    "build_python": "3.14.5"
+  },
+  "assets": [
+    {
+      "name": "Mklink-AI-Probe-v0.3.6-Skill.zip",
+      "size": 98783680,
+      "sha256": "4fb046323d046aa854e7373594c5fe329de9435fa21f116afd76c3aa6979cf3f"
+    },
+    {
+      "name": "Mklink-AI-Probe-v0.3.6-x64-Setup.exe",
+      "size": 184426337,
+      "sha256": "0cdd5ccb1d75e68aadb7a90e93a6c35e2750b40230167230349b0d335e25650e"
+    },
+    {
+      "name": "Mklink-AI-Probe-v0.3.6-x64-Setup.exe.sig",
+      "size": 428,
+      "sha256": "98231aeefedbd4d2d09fd919179a6684b3f4dfa63b75acf1d4d69d492b0fb40c"
+    },
+    {
+      "name": "MKLink-Site-Agent-v0.3.6-windows-x86_64-portable.manifest.json",
+      "size": 2391,
+      "sha256": "9cae914fb726eced14940cb0bbeed9111fc02149df659f3c44e72eebb2f9451c"
+    },
+    {
+      "name": "MKLink-Site-Agent-v0.3.6-windows-x86_64-portable.zip",
+      "size": 67063532,
+      "sha256": "5dac1dac32cbb7a8dd0bae6f495d4f8a23dd079fb87e852a2ad2b4e59951bcb9"
+    }
+  ]
+}

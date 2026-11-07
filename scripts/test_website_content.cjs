@@ -42,14 +42,16 @@ test('all hardware models and recorded cases remain bilingual', () => {
   }
 });
 
-test('new shared workflows retain visible paired-development version conditions', () => {
+test('shared workflows distinguish released software from capability-gated development features', () => {
   assert.match(html, /<aside class="version-note"/);
   for (const copy of [html, english.versionNote]) {
     assert.match(copy, /V4/);
-    assert.match(copy, /0\.3\.0/);
+    assert.match(copy, /v0\.4\.2/);
+    assert.match(copy, /0\.4\.3/);
+    assert.match(copy, /MUX/);
     assert.match(copy, /Skill/);
   }
-  assert.match(english.versionNote, /development version/);
+  assert.match(english.versionNote, /development firmware/);
   assert.match(english.versionNote, /official release page/);
   assert.match(html, /公开下载以正式发布页为准/);
 });

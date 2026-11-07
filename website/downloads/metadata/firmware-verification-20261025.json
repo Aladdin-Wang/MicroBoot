@@ -1,0 +1,137 @@
+{
+  "checkedAt": "2026-10-25T09:52:09.754230+00:00",
+  "results": [
+    {
+      "name": "MicroLink_V3.6.7.uf2",
+      "source": "tencent",
+      "url": "https://download.microkeenai.com/mklink/firmware/releases/20261025/MicroLink_V3.6.7.uf2",
+      "headStatus": 200,
+      "headLength": "815104",
+      "getStatus": 200,
+      "bytes": 815104,
+      "sha256": "49a58fd7df1542bda179b8b4fa19cf2ed92cef4564f6029ee3085d67dd5175b6",
+      "ok": true
+    },
+    {
+      "name": "MicroLink_V3.6.7.uf2",
+      "source": "github",
+      "url": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.7.uf2",
+      "headStatus": 200,
+      "headLength": "815104",
+      "getStatus": 200,
+      "bytes": 815104,
+      "sha256": "49a58fd7df1542bda179b8b4fa19cf2ed92cef4564f6029ee3085d67dd5175b6",
+      "ok": true
+    },
+    {
+      "name": "MicroLink_V3.6.7.uf2",
+      "source": "gitee",
+      "url": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.7.uf2",
+      "headStatus": 200,
+      "headLength": "815104",
+      "getStatus": 200,
+      "bytes": 815104,
+      "sha256": "49a58fd7df1542bda179b8b4fa19cf2ed92cef4564f6029ee3085d67dd5175b6",
+      "ok": true
+    },
+    {
+      "name": "MicroLink_V4.7.1.uf2",
+      "source": "tencent",
+      "url": "https://download.microkeenai.com/mklink/firmware/releases/20261025/MicroLink_V4.7.1.uf2",
+      "headStatus": 200,
+      "headLength": "1545216",
+      "getStatus": 200,
+      "bytes": 1545216,
+      "sha256": "018586f97a9a40cbf2bdbbfb60522640a2f6a84c14ca89ebae2a824d79c8f597",
+      "ok": true
+    },
+    {
+      "name": "MicroLink_V4.7.1.uf2",
+      "source": "github",
+      "url": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.1.uf2",
+      "headStatus": 200,
+      "headLength": "1545216",
+      "getStatus": 200,
+      "bytes": 1545216,
+      "sha256": "018586f97a9a40cbf2bdbbfb60522640a2f6a84c14ca89ebae2a824d79c8f597",
+      "ok": true
+    },
+    {
+      "name": "MicroLink_V4.7.1.uf2",
+      "source": "gitee",
+      "url": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.1.uf2",
+      "headStatus": 200,
+      "headLength": "1545216",
+      "getStatus": 200,
+      "bytes": 1545216,
+      "sha256": "018586f97a9a40cbf2bdbbfb60522640a2f6a84c14ca89ebae2a824d79c8f597",
+      "ok": true
+    },
+    {
+      "name": "HPMLink_V4.7.0.uf2",
+      "source": "tencent",
+      "url": "https://download.microkeenai.com/mklink/firmware/releases/20261024/HPMLink_V4.7.0.uf2",
+      "headStatus": 200,
+      "headLength": "1617920",
+      "getStatus": 200,
+      "bytes": 1617920,
+      "sha256": "cfec025902b66e9108603fa6a798574b2b151442632ac11cb8c665ba2c7359bd",
+      "ok": true
+    },
+    {
+      "name": "HPMLink_V4.7.0.uf2",
+      "source": "github",
+      "url": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/HPMLink_V4.7.0.uf2",
+      "headStatus": 200,
+      "headLength": "1617920",
+      "getStatus": 200,
+      "bytes": 1617920,
+      "sha256": "cfec025902b66e9108603fa6a798574b2b151442632ac11cb8c665ba2c7359bd",
+      "ok": true
+    },
+    {
+      "name": "HPMLink_V4.7.0.uf2",
+      "source": "gitee",
+      "url": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/HPMLink_V4.7.0.uf2",
+      "headStatus": 200,
+      "headLength": "1617920",
+      "getStatus": 200,
+      "bytes": 1617920,
+      "sha256": "cfec025902b66e9108603fa6a798574b2b151442632ac11cb8c665ba2c7359bd",
+      "ok": true
+    },
+    {
+      "name": "MicroLink_V2.9.2.rbl",
+      "source": "tencent",
+      "url": "https://download.microkeenai.com/mklink/firmware/releases/20261025/MicroLink_V2.9.2.rbl",
+      "headStatus": 200,
+      "headLength": "365384",
+      "getStatus": 200,
+      "bytes": 365384,
+      "sha256": "6a4d13ce3dc29633645c6674ea2bb34f2f09a6e0a9231edb0865ee1103d66563",
+      "ok": true
+    },
+    {
+      "name": "MicroLink_V2.9.2.rbl",
+      "source": "github",
+      "url": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.2.rbl",
+      "headStatus": 200,
+      "headLength": "365384",
+      "getStatus": 200,
+      "bytes": 365384,
+      "sha256": "6a4d13ce3dc29633645c6674ea2bb34f2f09a6e0a9231edb0865ee1103d66563",
+      "ok": true
+    },
+    {
+      "name": "MicroLink_V2.9.2.rbl",
+      "source": "gitee",
+      "url": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.2.rbl",
+      "headStatus": 200,
+      "headLength": "365384",
+      "getStatus": 200,
+      "bytes": 365384,
+      "sha256": "6a4d13ce3dc29633645c6674ea2bb34f2f09a6e0a9231edb0865ee1103d66563",
+      "ok": true
+    }
+  ]
+}

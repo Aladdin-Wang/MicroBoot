@@ -1,10 +1,13 @@
 {
-  "mklink-v4": "docs/images/mklink/products/mklink-lcd-angle.jpg",
+  "mklink-v4": "website/assets/mklink-v4-screen-20261007.png",
   "mklink-v3": "docs/images/mklink/products/mklink-v3-front.png",
   "mklink-v2": "docs/images/mklink/products/mklink-v2-front.png",
   "case-flash": "docs/images/mklink/cases/stm32f103-rt-thread/codex-build-flash-runtime-check.png",
   "case-watch": "docs/images/mklink/cases/hpm6e80-hello-world/superwatch-response-adjusted.png",
   "case-rtt": "docs/images/mklink/cases/stm32f103-rt-thread/stm32-rtt-console-version.png",
   "case-offline": "docs/images/mklink/cases/hpm5301-hello-world/20-offline-success.png",
-  "sine-wave": "docs/images/mklink/cases/stm32f103-rt-thread/superwatch-sine9-30mhz-full-0920.png"
+  "sine-wave": "docs/images/mklink/cases/stm32f103-rt-thread/superwatch-sine9-30mhz-full-0920.png",
+  "hpmlink-v4-20261025": "website/assets/hpmlink-v4-20261025.png",
+  "mklink-codex-dark-banner-20261025-v6": "website/assets/mklink-codex-dark-banner-20261025-v6.png",
+  "mklink-joint-motor-automation-banner-20261025-v7": "website/assets/mklink-joint-motor-automation-banner-20261025-v7.png"
 }

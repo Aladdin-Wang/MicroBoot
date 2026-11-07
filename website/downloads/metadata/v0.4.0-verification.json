@@ -1,0 +1,183 @@
+{
+  "checkedAt": "2026-10-25T14:05:30.775460+00:00",
+  "results": [
+    {
+      "name": "Mklink-AI-Probe-v0.4.0-Skill.zip",
+      "source": "tencent",
+      "url": "https://download.microkeenai.com/mklink/releases/v0.4.0/Mklink-AI-Probe-v0.4.0-Skill.zip",
+      "headStatus": 200,
+      "bytes": 98788966,
+      "sha256": "555710fff446f80776b3fab418343d1370b6a083faa38f7d568896ac63c3d300",
+      "getStatus": 200,
+      "ok": true
+    },
+    {
+      "name": "Mklink-AI-Probe-v0.4.0-Skill.zip",
+      "source": "github",
+      "url": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/Mklink-AI-Probe-v0.4.0-Skill.zip",
+      "headStatus": 200,
+      "bytes": 98788966,
+      "sha256": "555710fff446f80776b3fab418343d1370b6a083faa38f7d568896ac63c3d300",
+      "getStatus": 200,
+      "ok": true
+    },
+    {
+      "name": "Mklink-AI-Probe-v0.4.0-Skill.zip",
+      "source": "gitee",
+      "url": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.4.0/Mklink-AI-Probe-v0.4.0-Skill.zip",
+      "headStatus": 200,
+      "bytes": 98788966,
+      "sha256": "555710fff446f80776b3fab418343d1370b6a083faa38f7d568896ac63c3d300",
+      "getStatus": 200,
+      "ok": true
+    },
+    {
+      "name": "Mklink-AI-Probe-v0.4.0-x64-Setup.exe",
+      "source": "tencent",
+      "url": "https://download.microkeenai.com/mklink/releases/v0.4.0/Mklink-AI-Probe-v0.4.0-x64-Setup.exe",
+      "headStatus": 200,
+      "bytes": 184436475,
+      "sha256": "b02d3efc79038923cb7a5702dbfbd177b6b711817af38a5cff6eb7d0b08de003",
+      "getStatus": 200,
+      "ok": true
+    },
+    {
+      "name": "Mklink-AI-Probe-v0.4.0-x64-Setup.exe",
+      "source": "github",
+      "url": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/Mklink-AI-Probe-v0.4.0-x64-Setup.exe",
+      "headStatus": 200,
+      "bytes": 184436475,
+      "sha256": "b02d3efc79038923cb7a5702dbfbd177b6b711817af38a5cff6eb7d0b08de003",
+      "getStatus": 200,
+      "ok": true
+    },
+    {
+      "name": "Mklink-AI-Probe-v0.4.0-x64-Setup.exe.sig",
+      "source": "tencent",
+      "url": "https://download.microkeenai.com/mklink/releases/v0.4.0/Mklink-AI-Probe-v0.4.0-x64-Setup.exe.sig",
+      "headStatus": 200,
+      "bytes": 428,
+      "sha256": "d011c43f2f1e764760bbd77e7f04abe5b8fbf7317e295da08656957732036924",
+      "getStatus": 200,
+      "ok": true
+    },
+    {
+      "name": "Mklink-AI-Probe-v0.4.0-x64-Setup.exe.sig",
+      "source": "github",
+      "url": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/Mklink-AI-Probe-v0.4.0-x64-Setup.exe.sig",
+      "headStatus": 200,
+      "bytes": 428,
+      "sha256": "d011c43f2f1e764760bbd77e7f04abe5b8fbf7317e295da08656957732036924",
+      "getStatus": 200,
+      "ok": true
+    },
+    {
+      "name": "Mklink-AI-Probe-v0.4.0-x64-Setup.exe.sig",
+      "source": "gitee",
+      "url": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.4.0/Mklink-AI-Probe-v0.4.0-x64-Setup.exe.sig",
+      "ok": false,
+      "error": "Command '['curl', '-fsSIL', '--connect-timeout', '15', '--max-time', '60', 'https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.4.0/Mklink-AI-Probe-v0.4.0-x64-Setup.exe.sig']' returned non-zero exit status 22."
+    },
+    {
+      "name": "MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.manifest.json",
+      "source": "tencent",
+      "url": "https://download.microkeenai.com/mklink/releases/v0.4.0/MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.manifest.json",
+      "headStatus": 200,
+      "bytes": 2391,
+      "sha256": "efe710ec55191bd0965a0405e2d77a87d6704126cedf093bb8c08956dd88a642",
+      "getStatus": 200,
+      "ok": true
+    },
+    {
+      "name": "MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.manifest.json",
+      "source": "github",
+      "url": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.manifest.json",
+      "headStatus": 200,
+      "bytes": 2391,
+      "sha256": "efe710ec55191bd0965a0405e2d77a87d6704126cedf093bb8c08956dd88a642",
+      "getStatus": 200,
+      "ok": true
+    },
+    {
+      "name": "MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.manifest.json",
+      "source": "gitee",
+      "url": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.4.0/MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.manifest.json",
+      "ok": false,
+      "error": "Command '['curl', '-fsSIL', '--connect-timeout', '15', '--max-time', '60', 'https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.4.0/MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.manifest.json']' returned non-zero exit status 22."
+    },
+    {
+      "name": "MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.zip",
+      "source": "tencent",
+      "url": "https://download.microkeenai.com/mklink/releases/v0.4.0/MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.zip",
+      "headStatus": 200,
+      "bytes": 67072686,
+      "sha256": "8e75d66e09e1cad878b40e607118a5693ca534679ff9b7ab0835599530ad31a2",
+      "getStatus": 200,
+      "ok": true
+    },
+    {
+      "name": "MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.zip",
+      "source": "github",
+      "url": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.zip",
+      "headStatus": 200,
+      "bytes": 67072686,
+      "sha256": "8e75d66e09e1cad878b40e607118a5693ca534679ff9b7ab0835599530ad31a2",
+      "getStatus": 200,
+      "ok": true
+    },
+    {
+      "name": "MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.zip",
+      "source": "gitee",
+      "url": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.4.0/MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.zip",
+      "ok": false,
+      "error": "Command '['curl', '-fsSIL', '--connect-timeout', '15', '--max-time', '60', 'https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.4.0/MKLink-Site-Agent-v0.4.0-windows-x86_64-portable.zip']' returned non-zero exit status 22."
+    },
+    {
+      "name": "release-manifest.json",
+      "source": "tencent",
+      "url": "https://download.microkeenai.com/mklink/releases/v0.4.0/release-manifest.json",
+      "headStatus": 200,
+      "bytes": 1275,
+      "sha256": "9bf286c8f99c4eeaa533f5bdcfde8f7bb03ab1d1a499d11a571e9e693be72040",
+      "getStatus": 200,
+      "ok": true
+    },
+    {
+      "name": "release-manifest.json",
+      "source": "github",
+      "url": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/release-manifest.json",
+      "headStatus": 200,
+      "bytes": 1275,
+      "sha256": "9bf286c8f99c4eeaa533f5bdcfde8f7bb03ab1d1a499d11a571e9e693be72040",
+      "getStatus": 200,
+      "ok": true
+    },
+    {
+      "name": "release-manifest.json",
+      "source": "gitee",
+      "url": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.4.0/release-manifest.json",
+      "ok": false,
+      "error": "Command '['curl', '-fsSIL', '--connect-timeout', '15', '--max-time', '60', 'https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.4.0/release-manifest.json']' returned non-zero exit status 22."
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "source": "tencent",
+      "url": "https://download.microkeenai.com/mklink/releases/v0.4.0/SHA256SUMS.txt",
+      "headStatus": 200,
+      "bytes": 562,
+      "sha256": "8f729caa0f2f4247e29604b11ba12e7e423309e7b41d337f5ab8b6d413f65dfb",
+      "getStatus": 200,
+      "ok": true
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "source": "github",
+      "url": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.4.0/SHA256SUMS.txt",
+      "headStatus": 200,
+      "bytes": 562,
+      "sha256": "8f729caa0f2f4247e29604b11ba12e7e423309e7b41d337f5ab8b6d413f65dfb",
+      "getStatus": 200,
+      "ok": true
+    }
+  ]
+}
