@@ -1,0 +1,2065 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-24T05:45:05.471879+00:00",
+  "sections": {
+    "skill": [
+      {
+        "version": "0.3.5",
+        "date": "2026-10-18T10:09:17Z",
+        "channel": "stable",
+        "notes": [
+          "优化调试、日志与下载体验。",
+          "SuperWatch 编译后提醒手动重载，曲线名称点击显示或隐藏。",
+          "按需记录日志，在原波形界面回放、暂停和缩放，修复 PNG 保存。",
+          "RTT 自动识别通道，双击空白区域自适应窗口。",
+          "串口短数据即时显示，分段文本正确续行，保留原始日志。",
+          "修复更换下载器连接；同一下载器意外断链支持 5 秒内恢复 GUI/AI 连接与采集。",
+          "下载免预连接，芯片型号同步，Pack 自动刷新，补全位域变量。",
+          "新增 V2 RBL 固件在线升级，Web、CLI 和 MCP 流程一致。",
+          "Windows、macOS、Linux、Skill 和 Windows Site Agent 下载见附件。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.3.5-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 98711557,
+            "sha256": "e148265e43e4f3e0cb56e7cf35ce51cb84f5d94a5090a70664a038a13d6bf457",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.5/Mklink-AI-Probe-v0.3.5-Skill.zip",
+              "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.3.5/Mklink-AI-Probe-v0.3.5-Skill.zip",
+              "tencent": "https://download.microkeenai.com/mklink/releases/v0.3.5/Mklink-AI-Probe-v0.3.5-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.3.5",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.3.4",
+        "date": "2026-10-11T14:33:02Z",
+        "channel": "stable",
+        "notes": [
+          "## MKLink AI Probe 0.3.4",
+          "修复 RTT 已知控制块地址下的启动耗时、启动超时提示及 CDC 多路复用稳定性，同步完善 SystemView、SuperWatch 的采集生命周期。",
+          "一个客户端窗口始终使用同一个后台；切换下载器会停止旧目标采集并使旧目标会话失效，无需重启后台。新窗口使用独立后台，分别连接不同下载器。",
+          "GUI 或 AI 明确请求断开、切换时，后台自动协调停止采集和释放连接，避免采集状态及共享客户端将操作锁住。其他独立后台已占用的下载器仍保留唯一所有权保护。",
+          "SuperWatch 采集中写变量以设备写入应答为准，取消易受目标程序即时修改影响的强制回读比较。",
+          "修复冻结打包程序重启后外设 target_id 随临时解压目录变化，以及失效外设选择阻止下载器连接的问题。",
+          "内置 FLM、SVD Pack、生产 Web 资源已检查完整性。Windows 包体积与 0.3.3 接近；0.3.3 相对 0.3.2 的主要增量来自补齐的外设 Pack 资源。",
+          "提供 Windows NSIS、macOS Apple Silicon/Intel、Linux AppImage/DEB、AI Skill 及 Windows Site Agent。",
+          "Gitee 提供 AI Skill，供 GitHub 不可达时下载或更新。Windows 安装包超过 Gitee 单附件 100 MB 限制，请从 GitHub 下载；其他平台、签名和完整性文件也在 GitHub 提供。",
+          "保留既有升级公钥、应用标识与兼容更新渠道。本次不包含下载器固件更新。",
+          "macOS 为 ad-hoc 签名，未做 Developer ID 公证；Windows 安装器无 Authenticode 发布者签名，自动更新载荷使用既有 Tauri 密钥签名。macOS/Linux 实物 USB/MSC 与原地升级待用户现场验证。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.3.4-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 98690236,
+            "sha256": "a74e9536390e3c703c4bd25121854ba3ffd8e27b842385179f9f18cc3db03b64",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.4/Mklink-AI-Probe-v0.3.4-Skill.zip",
+              "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.3.4/Mklink-AI-Probe-v0.3.4-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.3.4",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.3.3",
+        "date": "2026-10-10T17:44:07Z",
+        "channel": "stable",
+        "notes": [
+          "# MKLink AI Probe v0.3.3",
+          "本次更新改善连接稳定性、SuperWatch 操作空间与在线烧录体验，并补齐内置芯片外设资源。",
+          "下载器连接与 SWD 时钟设置不再要求目标芯片已识别；桌面、AI、MCP 和 CLI 共用同一后台行为。",
+          "完善首次启动恢复、串口工作进程异常处理、采集背压与共享连接释放，并保留明确的阶段和原因日志。",
+          "文件来源支持本地路径历史，便于快速切换 AXF/ELF。",
+          "SuperWatch 的信号分组、常用变量、搜索变量可分别折叠；展开区域支持拖动调高并自动记忆。精简工具栏，统一日志导出/回放入口，自动恢复显示配置。",
+          "在线烧录页面布局更紧凑，支持明确选择烧录算法和多地址区域算法映射；完善完整数据校验与错误诊断。",
+          "修复安装包和 Skill 缺少内置 SVD 外设包的问题，支持直接检索 STM32F407VE 等内置外设目录。",
+          "覆盖安装前检查程序文件占用，避免跳过文件后形成不完整安装；固件升级按精确设备型号获取最新可用固件。",
+          "Windows 使用 x64 NSIS 安装包；macOS 按处理器选择 DMG；Linux x64 可选 DEB 或 AppImage。Mac 包尚未经过 Apple Developer ID 公证。Mac/Linux 的真实 USB/MSC 和原地升级仍待用户实机反馈。客户现场个别高速采集或烧录失败未在本机复现，新增诊断不代表所有现场问题均已闭环；本次不宣称校验速度有显著提升。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.3.3-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 98682551,
+            "sha256": "e1587c100f6f1a2df55d3e72b2e3b40eae10cb720261ce9c0b8e3b327b62b1bb",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.3/Mklink-AI-Probe-v0.3.3-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.3.3",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.3.2",
+        "date": "2026-10-10T06:30:57Z",
+        "channel": "stable",
+        "notes": [
+          "# MKLink AI Probe v0.3.2",
+          "本次更新完善跨平台 USB 识别、共享连接与采集体验，并新增 macOS、Linux 桌面安装包。",
+          "修复 macOS USB 接口号识别，完善 Linux 串口发现；按设备身份识别脱机烧录盘，兼容 macOS、Linux 和 Windows。",
+          "改善 GUI、AI 与 IDE 共用探针时的连接状态、重连及退出释放；修复临时心跳失败后会话停止续租的问题。",
+          "修复 RTT/SuperWatch 运行时在线烧录文件检查冲突，完善烧录前自动暂停、结束后恢复采集；改善偶发目标读错的处理。",
+          "固件升级支持 CHERRYUF2 自动识别；旧设备不能自动进入升级模式时，提供固件下载和手动升级说明。",
+          "SWD 时钟使用 MHz 输入；RTT 与串口“收发”视图显示方向及毫秒时间，多 RTT 面板可分别调整大小，串口扩展功能默认收起。",
+          "新增 macOS Apple Silicon、macOS Intel 和 Linux x64 桌面包，提供各安装格式对应的自动更新载荷。",
+          "Windows 使用 NSIS 安装包；Mac 按处理器选择 DMG；Linux x64 可选 DEB 或 AppImage。Mac 包尚未经过 Apple Developer ID 公证。Linux USB/串口权限配置见随包说明。Mac/Linux 的真实设备与原地升级验证由用户后续反馈，不等同于本次云端包检查已覆盖这些场景。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.3.2-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 18766670,
+            "sha256": "b5b7eb989d171cdfdcff36d1b21c2572ccbf1181f7967fd56a2ee0a00dc7dca1",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.2/Mklink-AI-Probe-v0.3.2-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.3.2",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.3.1",
+        "date": "2026-10-09T04:51:03Z",
+        "channel": "stable",
+        "notes": [
+          "# MKLink AI Probe v0.3.1",
+          "修复慢电脑后台启动超时、下载器拔插后的连接恢复，以及 GUI / AI 共享控制权问题。",
+          "在线、脱机烧录自动暂停采集并在结束后恢复，修复共享烧录任务等待卡住。",
+          "支持的下载器自动升级固件；旧版提供固件下载和按键进入升级模式的引导。",
+          "串口助手扩展功能默认折叠，保留运行提示；RTT 搜索跳过无效签名。",
+          "RTT / SuperWatch 运行时可正常加载在线烧录文件，避免本地文件检查与设备操作争锁。",
+          "修复最大速率 dumpmem 的上位机接收积压；发生队列丢弃时明确报错，避免返回不完整数据却显示成功。",
+          "下载器固件通过独立通道更新，具体能力取决于型号和固件版本。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.3.1-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 18758779,
+            "sha256": "601721e0b8051b1c3c876fe4170fb6c507ba8e9679d5657ddea9a843d98cafe6",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.1/Mklink-AI-Probe-v0.3.1-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.3.1",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.3.0",
+        "date": "2026-10-08T01:51:55Z",
+        "channel": "stable",
+        "notes": [
+          "# MKLink AI Probe 0.3.0",
+          "GUI、AI、CLI、MCP 共用下载器连接，支持多设备独立运行和远程仪表盘。",
+          "配套 V3/V4 新固件支持八通道 RTT，与 SuperWatch 并行采集。",
+          "优化高速采样、波形缩放与调试共存，AI 可按需切换 GUI 展示调试结果。",
+          "修复 Web AXF 加载、多窗口启停，完善 HPM BIN/HEX 烧录。",
+          "本次同时提供上位机、Skill、MicroLink V3.6.0 / V4.6.0 与 HPMLink V4.6.0 固件。请配套更新；仅升级上位机不会为旧固件增加多通道 RTT、调试共存等新固件能力。V3 不支持 HPM。继续使用 CDC，无需新增 WinUSB。",
+          "已知限制：HPM/SES 部分退出方式会遗留调试占用，后续连接可能需要断开调试器并重插下载器；该场景尚未完全修复。调试器优先，下载期间采集会间断；采样率取决于目标和调试负载。长期、跨物理主机及所有芯片组合未完整认证。Windows 安装包尚无 Authenticode 签名，自动更新包使用独立的更新签名校验。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.3.0-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 18748020,
+            "sha256": "b4b5d566ce5240b48232e8f7841935ae0fbe13576b6a78d2b2fa4d161034ddd0",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.0/Mklink-AI-Probe-v0.3.0-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.3.0",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.2.3",
+        "date": "2026-10-03T02:21:55Z",
+        "channel": "stable",
+        "notes": [
+          "## 0.2.3 更新",
+          "SuperWatch 支持日志导入回放、持续采样时写入变量；V4 新增 HPM/JTAG 实时通道（需配套固件）。",
+          "分组即波形区，支持中文原位命名、拖动移组、加粗、采样点显示和专注视图；改进多关键词与结构体成员搜索。",
+          "修复烧录扇区识别及采集稳定性问题，完善电源遥测。",
+          "简化使用指南：将官方仓库链接交给 AI，即可协助安装、配置和调试。",
+          "下载 Windows 安装包，或让 AI 安装完整 Skill。远程现场端使用 Site Agent 便携包。",
+          "官方仓库：https://github.com/MicroKeen/Mklink-AI-Probe"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.2.3-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 19890162,
+            "sha256": "207753a1bb76cdf3da6e233769ebf49901dfce60f42f09f35416351f50cfe5f8",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.2.3/Mklink-AI-Probe-v0.2.3-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.2.3",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.2.2",
+        "date": "2026-09-21T01:09:23Z",
+        "channel": "stable",
+        "notes": [
+          "# Mklink AI Probe 0.2.2",
+          "WebGUI 与桌面版统一支持暗黑、浅色和跟随系统主题，默认暗黑，记住用户选择。",
+          "改善 SuperWatch 高频显示、AI 与 GUI 共享实时数据流、长变量路径拖动查看；修复重启采集后的时间轴与 WebSocket 断流问题。",
+          "修复切换芯片后的 SVD 选择，完善 RTT 搜索边界、8/16 位及非对齐变量读取；相关探针修复需配套固件。",
+          "优化 ARM/HPM 在线烧录校验和高速复位初始化，恢复脱机 IDCODE 日志，精简烧录调试输出。",
+          "新增 HPM5301 用户 OTP 在线配置及下载后脱机配置：全部固件校验成功后写入用户数据，永久组锁最后执行。该功能需要配套 HPMLink 固件；旧固件会被能力检查阻止。",
+          "改善 SystemView 共享采集与串口首段输出。Skill 下载程序优先复用工程 IDE，其次在线烧录，最后脱机烧录。",
+          "本次提供标准 Windows x64 安装包、Skill 包及便携 Site Agent。安装包包含应用运行环境；WebView2 缺失时需联网安装。Windows 安装包未进行代码签名，系统可能显示未知发布者；自动更新资产已使用现有更新密钥签名。",
+          "GitHub 主仓库为 MicroKeen/Mklink-AI-Probe，旧 GitHub 更新入口继续兼容，Gitee 备用入口保持不变。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.2.2-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 19467637,
+            "sha256": "8739c81fe4bd7c8b08fa69464eb45640d3d6c99c1ed18f35ae8ef12ea53d105b",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.2.2/Mklink-AI-Probe-v0.2.2-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.2.2",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.2.1",
+        "date": "2026-09-14T16:28:42Z",
+        "channel": "stable",
+        "notes": [
+          "# MKLink AI Probe 0.2.1",
+          "2026-09-15 正式发布。",
+          "ARM/HPM 统一 4、10、20、30 MHz 四档，默认 10 MHz；SuperWatch、CLI 与 MCP 可设置采集档位，高速档需要配套固件。",
+          "优化 mem_dump 批量采集、批间时间统计和高频曲线显示，区分批内采样率与全程持续速率。",
+          "补齐 HPM SDK 外设描述，统一 GUI、CLI、MCP 的寄存器读取；完善 ARM SVD 读取边界。",
+          "增加 STM32F103 选项字节可视化读取、配置与脱机脚本生成；HPM 提供公开 OTP 字段只读查看。",
+          "修复大 HEX 加载失败，支持不选芯片导入 FLM 后解析预览；地址越界单独提示，选项字节与安全操作默认折叠。",
+          "完善 RTT/SystemView 启停及 SuperWatch 数组显示；改善调试频率配置一致性。",
+          "升级后应用与 Skill 默认从 MicroKeen/Mklink-AI-Probe 获取更新；旧 GitHub 仓库提供本次兼容更新，Gitee 备用地址保持不变。",
+          "## 更新兼容",
+          "旧客户端继续读取 Aladdin-Wang 仓库的 `updates/latest.json` 或原 Gitee 索引。0.2.1 安装器及 Skill 内置 MicroKeen 的 `release/latest.json` 为首选，Gitee 仍为备用；保持原应用标识和更新公钥，支持覆盖安装。三个站点的资产就绪并通过匿名下载哈希验证后才能更新索引。",
+          "探针固件独立发版；本次安装包不捆绑或改写探针固件。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.2.1-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 19450412,
+            "sha256": "cee33562ee4e8ff262176d1cefa3ce5e48f92aa89bf9d79891d12ff6d56fc7e2",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.2.1/Mklink-AI-Probe-v0.2.1-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.2.1",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.2.0",
+        "date": "2026-09-08T01:05:12Z",
+        "channel": "stable",
+        "notes": [
+          "MKLink AI Probe 0.2.0 完善实时观察、固件重载和脱机烧录，并统一桌面客户端、WebGUI、Skill、CLI 与 MCP 的运行能力。",
+          "SuperWatch 支持芯片型号联想和 Pack 内 SVD 外设目录，可观察寄存器与 GPIO 位的数值和曲线；保留程序变量目录和手动分图。",
+          "完善浮点数、负数等常用类型写入及回读，修复采集中写入的响应同步、变量搜索和数组手动收起。",
+          "修复固件与符号文件变化后的重载、页面切换时的持续采集，以及脱机/在线烧录导航。",
+          "脱机烧录可使用本地 FLM 并复用 U 盘已有文件；默认按扇区擦除，勾选全片擦除时提示显著增加烧录时间。",
+          "改进 Pack/器件匹配、受支持芯片的安全烧录和现场 Agent。用户 Skill 在每会话首次加载时检查更新，安装内容不含开发交接和构建指令。",
+          "Windows 安装包包含独立后端；Skill 和 Site Agent 便携包分别提供。安装包的 `.sig` 用于应用更新验证，下载完整性可核对 `SHA256SUMS.txt`。",
+          "已知边界：高速 USB 不稳定引发的识别异常、RTT 偶发启动和停流后的残留响应仍在跟踪；外设轮询可能漏掉短脉冲。真机结果按仓库验证报告中的板卡与范围适用，未覆盖组合不代表完成验证。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.2.0-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 19381783,
+            "sha256": "d5b1f29ebd384066023ac2821a838a29877f7c29ecabff7d777b81909100d70b",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.2.0/Mklink-AI-Probe-v0.2.0-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.2.0",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.9",
+        "date": "2026-08-31T08:45:20Z",
+        "channel": "stable",
+        "notes": [
+          "正式发布 0.1.9：修复自动升级、WebGUI 启动、AXF 符号与 Pack 导入问题；优化 SuperWatch 性能和历史查看；新增芯片联想、烧录算法展示、串口 YMODEM、专业 Modbus 工作台；完善 AI Skill/MCP 安全边界、快捷键和现场 Agent。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.9-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 2489491,
+            "sha256": "31c889a127af211a637d4bf7db0af069460fd79f62b077fae244f8306f82e3c8",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.9/Mklink-AI-Probe-v0.1.9-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.9",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.8",
+        "date": "2026-08-26T06:54:24Z",
+        "channel": "stable",
+        "notes": [
+          "正式发布 0.1.8：修复安装后串口与时钟配置失败；改进 HPM 固件识别与 ROM API 升级；更新 USB 端口命名、SystemView 符号路径和桌面运行时隔离。公开 Skill 仅包含普通用户运行时内容，不携带维护者开发上下文。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.8-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 2439194,
+            "sha256": "802cbf11308b600c4c0138dd182f505895d3b052153b1c1223952d4faac7019a",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.8/Mklink-AI-Probe-v0.1.8-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.8",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.7",
+        "date": "2026-08-24T08:42:12Z",
+        "channel": "stable",
+        "notes": [
+          "v0.1.7 正式版：完成 STM32F103RE 全功能真机验证，新增 HPMLink V4 固件升级路由，改进 HIL v0.2 只读插件、在线/脱机烧录、RTT/SuperWatch/SystemView 与普通用户 Skill 上下文隔离。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.7-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 3605052,
+            "sha256": "b2f507717e96775b8a797d828fcd513cce83bf7a495e5e4a4f3716f940f1bfb7",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.7/Mklink-AI-Probe-v0.1.7-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.7",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.6",
+        "date": "2026-08-11T14:27:54Z",
+        "channel": "stable",
+        "notes": [
+          "完善在线与脱机烧录、串口与 RTT 高速终端、多实例独立后端、资源互斥和 Site Agent；修复重复固件加载、设备自动搜索回退、串口锁兼容性与复合探针识别。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.6-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 5676675,
+            "sha256": "2e1bb829d031053a9af7357dc871cd533969a9e248051fc159c72d0f28fb82c0",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.6/Mklink-AI-Probe-v0.1.6-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.6",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.5",
+        "date": "2026-08-03T01:38:24Z",
+        "channel": "stable",
+        "notes": [
+          "v0.1.5：集成远程 Site Agent、远程 CLI/SDK/MCP 与认证 WebSocket；完善 RTT View/串口助手终端模式和 ANSI 解析；支持 SuperWatch 16 通道高吞吐采集、历史浏览、分离纵轴和大数组分页；修复 Vite WebSocket 代理并完善离线烧录提示。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.5-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 3035282,
+            "sha256": "8492e85059915690e63badd5df7d9b96ba02231070e71e4e6cdb17795dcf8a1f",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.5/Mklink-AI-Probe-v0.1.5-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.5",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.4",
+        "date": "2026-07-25T10:09:46Z",
+        "channel": "stable",
+        "notes": [
+          "v0.1.4 完善烧录、符号解析与 HardFault 定位。BIN 固件加载后提示下载地址，未加载前扇区区使用中性提示；本地设备与文件来源自动保存，在线/脱机烧录支持拖拽、路径保持及重编译自动刷新；脱机刷新、RTT 自动搜索不再弹出 cmd，V2/V3 固定 offline_download.py，V4 可自定义；AXF/OUT 显示完整路径并默认使用内置 pyelftools；HardFault 可定位故障函数、源码位置与调用栈；AI/MCP 优先通过 MKLink 读取变量与故障信息，隔离 JSON-RPC 标准输出，只有 MKLink 明确读取失败后才使用 pyOCD 只读后备；Web GUI 保持 Windows、Linux、macOS 兼容，并支持新版本检测提醒。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.4-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 2559746,
+            "sha256": "682430685ee4e2098572ce3b9499746d3d7af8ff783b37c6c815af433f45c0ec",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.4/Mklink-AI-Probe-v0.1.4-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.4",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.3",
+        "date": "2026-07-24T00:37:24Z",
+        "channel": "stable",
+        "notes": [
+          "修复 AXF/ELF 文件源切换与共享符号状态；支持匿名结构/union 展开及粘贴 C 定义；RTT View 增加 UTF-8、GB2312、GBK、GB18030、Big5；统一 SuperWatch、RTT、内存读写和在线/脱机下载的 SWD 互斥；新增 AI Skill 主动版本提醒和经确认自动更新。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.3-Skill.zip",
+            "platform": "AI Skill",
+            "bytes": 2516344,
+            "sha256": "6d9a923c9f4a76be5a0998cb2f5a87ec381cf2a74a247ad71c64cad69f14f30d",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.3/Mklink-AI-Probe-v0.1.3-Skill.zip"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.3",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      }
+    ],
+    "software": [
+      {
+        "version": "0.3.5",
+        "date": "2026-10-18T10:09:17Z",
+        "channel": "stable",
+        "notes": [
+          "优化调试、日志与下载体验。",
+          "SuperWatch 编译后提醒手动重载，曲线名称点击显示或隐藏。",
+          "按需记录日志，在原波形界面回放、暂停和缩放，修复 PNG 保存。",
+          "RTT 自动识别通道，双击空白区域自适应窗口。",
+          "串口短数据即时显示，分段文本正确续行，保留原始日志。",
+          "修复更换下载器连接；同一下载器意外断链支持 5 秒内恢复 GUI/AI 连接与采集。",
+          "下载免预连接，芯片型号同步，Pack 自动刷新，补全位域变量。",
+          "新增 V2 RBL 固件在线升级，Web、CLI 和 MCP 流程一致。",
+          "Windows、macOS、Linux、Skill 和 Windows Site Agent 下载见附件。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.3.5-aarch64-apple-darwin.dmg",
+            "platform": "macOS Apple Silicon",
+            "bytes": 165323369,
+            "sha256": "50a430fc44191b61154c7c2db74a6a095f7c847d9f1e90d359a5ffdb68a26ca1",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.5/Mklink-AI-Probe-v0.3.5-aarch64-apple-darwin.dmg"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.5-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 187223667,
+            "sha256": "ebf07f2777f76f3c8a79a87793a86cb93c688d757d37ecf9e30b746a9d4e0c12",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.5/Mklink-AI-Probe-v0.3.5-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.5-x86_64-apple-darwin.dmg",
+            "platform": "macOS Intel",
+            "bytes": 165726944,
+            "sha256": "7525eb72a00ecd8970a8337e313e81ccec67f137d9580f41d210eabd3eed75e4",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.5/Mklink-AI-Probe-v0.3.5-x86_64-apple-darwin.dmg"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.5-x86_64-unknown-linux-gnu.AppImage",
+            "platform": "Linux x64",
+            "bytes": 261646840,
+            "sha256": "1edd2f30666f7a96bf86d03358ba37fc53f4684aeea729001cc8735a87498601",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.5/Mklink-AI-Probe-v0.3.5-x86_64-unknown-linux-gnu.AppImage"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.5-x86_64-unknown-linux-gnu.deb",
+            "platform": "Linux x64",
+            "bytes": 183743888,
+            "sha256": "f8478b28e9a564311a2ad013c4a6acb892f07a734b3c2494a4eb6775281186b8",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.5/Mklink-AI-Probe-v0.3.5-x86_64-unknown-linux-gnu.deb"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.3.5",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.3.4",
+        "date": "2026-10-11T14:33:02Z",
+        "channel": "stable",
+        "notes": [
+          "## MKLink AI Probe 0.3.4",
+          "修复 RTT 已知控制块地址下的启动耗时、启动超时提示及 CDC 多路复用稳定性，同步完善 SystemView、SuperWatch 的采集生命周期。",
+          "一个客户端窗口始终使用同一个后台；切换下载器会停止旧目标采集并使旧目标会话失效，无需重启后台。新窗口使用独立后台，分别连接不同下载器。",
+          "GUI 或 AI 明确请求断开、切换时，后台自动协调停止采集和释放连接，避免采集状态及共享客户端将操作锁住。其他独立后台已占用的下载器仍保留唯一所有权保护。",
+          "SuperWatch 采集中写变量以设备写入应答为准，取消易受目标程序即时修改影响的强制回读比较。",
+          "修复冻结打包程序重启后外设 target_id 随临时解压目录变化，以及失效外设选择阻止下载器连接的问题。",
+          "内置 FLM、SVD Pack、生产 Web 资源已检查完整性。Windows 包体积与 0.3.3 接近；0.3.3 相对 0.3.2 的主要增量来自补齐的外设 Pack 资源。",
+          "提供 Windows NSIS、macOS Apple Silicon/Intel、Linux AppImage/DEB、AI Skill 及 Windows Site Agent。",
+          "Gitee 提供 AI Skill，供 GitHub 不可达时下载或更新。Windows 安装包超过 Gitee 单附件 100 MB 限制，请从 GitHub 下载；其他平台、签名和完整性文件也在 GitHub 提供。",
+          "保留既有升级公钥、应用标识与兼容更新渠道。本次不包含下载器固件更新。",
+          "macOS 为 ad-hoc 签名，未做 Developer ID 公证；Windows 安装器无 Authenticode 发布者签名，自动更新载荷使用既有 Tauri 密钥签名。macOS/Linux 实物 USB/MSC 与原地升级待用户现场验证。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.3.4-aarch64-apple-darwin.dmg",
+            "platform": "macOS Apple Silicon",
+            "bytes": 165232510,
+            "sha256": "cab4a5386ebf8734db00e1a54af5048586ed8b86baeda46375c7e48ff9862f43",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.4/Mklink-AI-Probe-v0.3.4-aarch64-apple-darwin.dmg"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.4-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 176582092,
+            "sha256": "5f7a2666e3b04e9f2653feb16c419051066eac62d326b57f237a56ca5eb4be62",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.4/Mklink-AI-Probe-v0.3.4-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.4-x86_64-apple-darwin.dmg",
+            "platform": "macOS Intel",
+            "bytes": 165618719,
+            "sha256": "32ae210e410f1f8f46945227774a6b34fd305cabad0fca8b3341fa4f78b8ce8a",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.4/Mklink-AI-Probe-v0.3.4-x86_64-apple-darwin.dmg"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.4-x86_64-unknown-linux-gnu.AppImage",
+            "platform": "Linux x64",
+            "bytes": 261544440,
+            "sha256": "2f748104a681bfe280ba9e1d4ef0b18e2307c4f103371ed6adb3e4973db9760e",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.4/Mklink-AI-Probe-v0.3.4-x86_64-unknown-linux-gnu.AppImage"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.4-x86_64-unknown-linux-gnu.deb",
+            "platform": "Linux x64",
+            "bytes": 183654332,
+            "sha256": "40fd085d2cc8a5de7312f412869197a6dd8252a639ee77eade406633a464193f",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.4/Mklink-AI-Probe-v0.3.4-x86_64-unknown-linux-gnu.deb"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.3.4",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.3.3",
+        "date": "2026-10-10T17:44:07Z",
+        "channel": "stable",
+        "notes": [
+          "# MKLink AI Probe v0.3.3",
+          "本次更新改善连接稳定性、SuperWatch 操作空间与在线烧录体验，并补齐内置芯片外设资源。",
+          "下载器连接与 SWD 时钟设置不再要求目标芯片已识别；桌面、AI、MCP 和 CLI 共用同一后台行为。",
+          "完善首次启动恢复、串口工作进程异常处理、采集背压与共享连接释放，并保留明确的阶段和原因日志。",
+          "文件来源支持本地路径历史，便于快速切换 AXF/ELF。",
+          "SuperWatch 的信号分组、常用变量、搜索变量可分别折叠；展开区域支持拖动调高并自动记忆。精简工具栏，统一日志导出/回放入口，自动恢复显示配置。",
+          "在线烧录页面布局更紧凑，支持明确选择烧录算法和多地址区域算法映射；完善完整数据校验与错误诊断。",
+          "修复安装包和 Skill 缺少内置 SVD 外设包的问题，支持直接检索 STM32F407VE 等内置外设目录。",
+          "覆盖安装前检查程序文件占用，避免跳过文件后形成不完整安装；固件升级按精确设备型号获取最新可用固件。",
+          "Windows 使用 x64 NSIS 安装包；macOS 按处理器选择 DMG；Linux x64 可选 DEB 或 AppImage。Mac 包尚未经过 Apple Developer ID 公证。Mac/Linux 的真实 USB/MSC 和原地升级仍待用户实机反馈。客户现场个别高速采集或烧录失败未在本机复现，新增诊断不代表所有现场问题均已闭环；本次不宣称校验速度有显著提升。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.3.3-aarch64-apple-darwin.dmg",
+            "platform": "macOS Apple Silicon",
+            "bytes": 165199999,
+            "sha256": "f805f1147b2aab999061e6396394067ac16a69e6aefe3ed43acd54ac6ca20f4f",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.3/Mklink-AI-Probe-v0.3.3-aarch64-apple-darwin.dmg"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.3-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 176557369,
+            "sha256": "90c9d57ec6fe7541b76b47d668f023f5f49a62701202045da50a4db19957c640",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.3/Mklink-AI-Probe-v0.3.3-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.3-x86_64-apple-darwin.dmg",
+            "platform": "macOS Intel",
+            "bytes": 165588169,
+            "sha256": "4d9eb7290286b9aaac1e158a4ac4433d9ba3ee6f3bbe76251bfeee342a081d55",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.3/Mklink-AI-Probe-v0.3.3-x86_64-apple-darwin.dmg"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.3-x86_64-unknown-linux-gnu.AppImage",
+            "platform": "Linux x64",
+            "bytes": 261511672,
+            "sha256": "bb5f1c06224864b0fa370f3a6d34aecbcffc3efe5375cd4ed329ff8a4100901c",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.3/Mklink-AI-Probe-v0.3.3-x86_64-unknown-linux-gnu.AppImage"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.3-x86_64-unknown-linux-gnu.deb",
+            "platform": "Linux x64",
+            "bytes": 183631306,
+            "sha256": "19328afd99e58d71762a23be0b697adf41b4a2beb7b9b7465fab8f7f871fc409",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.3/Mklink-AI-Probe-v0.3.3-x86_64-unknown-linux-gnu.deb"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.3.3",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.3.2",
+        "date": "2026-10-10T06:30:57Z",
+        "channel": "stable",
+        "notes": [
+          "# MKLink AI Probe v0.3.2",
+          "本次更新完善跨平台 USB 识别、共享连接与采集体验，并新增 macOS、Linux 桌面安装包。",
+          "修复 macOS USB 接口号识别，完善 Linux 串口发现；按设备身份识别脱机烧录盘，兼容 macOS、Linux 和 Windows。",
+          "改善 GUI、AI 与 IDE 共用探针时的连接状态、重连及退出释放；修复临时心跳失败后会话停止续租的问题。",
+          "修复 RTT/SuperWatch 运行时在线烧录文件检查冲突，完善烧录前自动暂停、结束后恢复采集；改善偶发目标读错的处理。",
+          "固件升级支持 CHERRYUF2 自动识别；旧设备不能自动进入升级模式时，提供固件下载和手动升级说明。",
+          "SWD 时钟使用 MHz 输入；RTT 与串口“收发”视图显示方向及毫秒时间，多 RTT 面板可分别调整大小，串口扩展功能默认收起。",
+          "新增 macOS Apple Silicon、macOS Intel 和 Linux x64 桌面包，提供各安装格式对应的自动更新载荷。",
+          "Windows 使用 NSIS 安装包；Mac 按处理器选择 DMG；Linux x64 可选 DEB 或 AppImage。Mac 包尚未经过 Apple Developer ID 公证。Linux USB/串口权限配置见随包说明。Mac/Linux 的真实设备与原地升级验证由用户后续反馈，不等同于本次云端包检查已覆盖这些场景。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.3.2-aarch64-apple-darwin.dmg",
+            "platform": "macOS Apple Silicon",
+            "bytes": 81960110,
+            "sha256": "8ef678b19fa1ac5b5c29081e81889a803aab94aff45cc249bad246663b57f028",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.2/Mklink-AI-Probe-v0.3.2-aarch64-apple-darwin.dmg"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.2-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 96829674,
+            "sha256": "3e72fae43380f7b060aac2c44b2f7e813259c7dd2e33f3ea59b78d41d46a2498",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.2/Mklink-AI-Probe-v0.3.2-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.2-x86_64-apple-darwin.dmg",
+            "platform": "macOS Intel",
+            "bytes": 82349511,
+            "sha256": "25dd813350bcc0c3e0bb87269ae9a061c90a7f47c50bf99418fa8c7e252a22f7",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.2/Mklink-AI-Probe-v0.3.2-x86_64-apple-darwin.dmg"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.2-x86_64-unknown-linux-gnu.AppImage",
+            "platform": "Linux x64",
+            "bytes": 178919928,
+            "sha256": "d834479a1b9bc0d3af69f77e8a6dc44d1b0af20935b38e2c164a8163ae3021f5",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.2/Mklink-AI-Probe-v0.3.2-x86_64-unknown-linux-gnu.AppImage"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          },
+          {
+            "name": "Mklink-AI-Probe-v0.3.2-x86_64-unknown-linux-gnu.deb",
+            "platform": "Linux x64",
+            "bytes": 100979670,
+            "sha256": "a71596a1b580459fba3486c8fe93694196ee8f5bc55f7ecc88132255639cc401",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.2/Mklink-AI-Probe-v0.3.2-x86_64-unknown-linux-gnu.deb"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.3.2",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.3.1",
+        "date": "2026-10-09T04:51:03Z",
+        "channel": "stable",
+        "notes": [
+          "# MKLink AI Probe v0.3.1",
+          "修复慢电脑后台启动超时、下载器拔插后的连接恢复，以及 GUI / AI 共享控制权问题。",
+          "在线、脱机烧录自动暂停采集并在结束后恢复，修复共享烧录任务等待卡住。",
+          "支持的下载器自动升级固件；旧版提供固件下载和按键进入升级模式的引导。",
+          "串口助手扩展功能默认折叠，保留运行提示；RTT 搜索跳过无效签名。",
+          "RTT / SuperWatch 运行时可正常加载在线烧录文件，避免本地文件检查与设备操作争锁。",
+          "修复最大速率 dumpmem 的上位机接收积压；发生队列丢弃时明确报错，避免返回不完整数据却显示成功。",
+          "下载器固件通过独立通道更新，具体能力取决于型号和固件版本。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.3.1-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 96805960,
+            "sha256": "c1dcaa1c385493403366647633a3b7562fa204c0910c6770249f9625932304c9",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.1/Mklink-AI-Probe-v0.3.1-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.3.1",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.3.0",
+        "date": "2026-10-08T01:51:55Z",
+        "channel": "stable",
+        "notes": [
+          "# MKLink AI Probe 0.3.0",
+          "GUI、AI、CLI、MCP 共用下载器连接，支持多设备独立运行和远程仪表盘。",
+          "配套 V3/V4 新固件支持八通道 RTT，与 SuperWatch 并行采集。",
+          "优化高速采样、波形缩放与调试共存，AI 可按需切换 GUI 展示调试结果。",
+          "修复 Web AXF 加载、多窗口启停，完善 HPM BIN/HEX 烧录。",
+          "本次同时提供上位机、Skill、MicroLink V3.6.0 / V4.6.0 与 HPMLink V4.6.0 固件。请配套更新；仅升级上位机不会为旧固件增加多通道 RTT、调试共存等新固件能力。V3 不支持 HPM。继续使用 CDC，无需新增 WinUSB。",
+          "已知限制：HPM/SES 部分退出方式会遗留调试占用，后续连接可能需要断开调试器并重插下载器；该场景尚未完全修复。调试器优先，下载期间采集会间断；采样率取决于目标和调试负载。长期、跨物理主机及所有芯片组合未完整认证。Windows 安装包尚无 Authenticode 签名，自动更新包使用独立的更新签名校验。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.3.0-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 96729823,
+            "sha256": "96a264a85de9a1bafee2aa629212ac9b0500094c9ce941ce7c8b49203fb641d2",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.3.0/Mklink-AI-Probe-v0.3.0-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.3.0",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.2.3",
+        "date": "2026-10-03T02:21:55Z",
+        "channel": "stable",
+        "notes": [
+          "## 0.2.3 更新",
+          "SuperWatch 支持日志导入回放、持续采样时写入变量；V4 新增 HPM/JTAG 实时通道（需配套固件）。",
+          "分组即波形区，支持中文原位命名、拖动移组、加粗、采样点显示和专注视图；改进多关键词与结构体成员搜索。",
+          "修复烧录扇区识别及采集稳定性问题，完善电源遥测。",
+          "简化使用指南：将官方仓库链接交给 AI，即可协助安装、配置和调试。",
+          "下载 Windows 安装包，或让 AI 安装完整 Skill。远程现场端使用 Site Agent 便携包。",
+          "官方仓库：https://github.com/MicroKeen/Mklink-AI-Probe"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.2.3-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 93589962,
+            "sha256": "67641c64b222e03102796a4731f7fc9125fec386fdd7a49c215cc7dab335e94b",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.2.3/Mklink-AI-Probe-v0.2.3-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.2.3",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.2.2",
+        "date": "2026-09-21T01:09:23Z",
+        "channel": "stable",
+        "notes": [
+          "# Mklink AI Probe 0.2.2",
+          "WebGUI 与桌面版统一支持暗黑、浅色和跟随系统主题，默认暗黑，记住用户选择。",
+          "改善 SuperWatch 高频显示、AI 与 GUI 共享实时数据流、长变量路径拖动查看；修复重启采集后的时间轴与 WebSocket 断流问题。",
+          "修复切换芯片后的 SVD 选择，完善 RTT 搜索边界、8/16 位及非对齐变量读取；相关探针修复需配套固件。",
+          "优化 ARM/HPM 在线烧录校验和高速复位初始化，恢复脱机 IDCODE 日志，精简烧录调试输出。",
+          "新增 HPM5301 用户 OTP 在线配置及下载后脱机配置：全部固件校验成功后写入用户数据，永久组锁最后执行。该功能需要配套 HPMLink 固件；旧固件会被能力检查阻止。",
+          "改善 SystemView 共享采集与串口首段输出。Skill 下载程序优先复用工程 IDE，其次在线烧录，最后脱机烧录。",
+          "本次提供标准 Windows x64 安装包、Skill 包及便携 Site Agent。安装包包含应用运行环境；WebView2 缺失时需联网安装。Windows 安装包未进行代码签名，系统可能显示未知发布者；自动更新资产已使用现有更新密钥签名。",
+          "GitHub 主仓库为 MicroKeen/Mklink-AI-Probe，旧 GitHub 更新入口继续兼容，Gitee 备用入口保持不变。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.2.2-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 91826809,
+            "sha256": "8739a4a338d52018c7fd23878f826c9c623363db60b022f9fb13377ffeb1d22d",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.2.2/Mklink-AI-Probe-v0.2.2-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.2.2",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.2.1",
+        "date": "2026-09-14T16:28:42Z",
+        "channel": "stable",
+        "notes": [
+          "# MKLink AI Probe 0.2.1",
+          "2026-09-15 正式发布。",
+          "ARM/HPM 统一 4、10、20、30 MHz 四档，默认 10 MHz；SuperWatch、CLI 与 MCP 可设置采集档位，高速档需要配套固件。",
+          "优化 mem_dump 批量采集、批间时间统计和高频曲线显示，区分批内采样率与全程持续速率。",
+          "补齐 HPM SDK 外设描述，统一 GUI、CLI、MCP 的寄存器读取；完善 ARM SVD 读取边界。",
+          "增加 STM32F103 选项字节可视化读取、配置与脱机脚本生成；HPM 提供公开 OTP 字段只读查看。",
+          "修复大 HEX 加载失败，支持不选芯片导入 FLM 后解析预览；地址越界单独提示，选项字节与安全操作默认折叠。",
+          "完善 RTT/SystemView 启停及 SuperWatch 数组显示；改善调试频率配置一致性。",
+          "升级后应用与 Skill 默认从 MicroKeen/Mklink-AI-Probe 获取更新；旧 GitHub 仓库提供本次兼容更新，Gitee 备用地址保持不变。",
+          "## 更新兼容",
+          "旧客户端继续读取 Aladdin-Wang 仓库的 `updates/latest.json` 或原 Gitee 索引。0.2.1 安装器及 Skill 内置 MicroKeen 的 `release/latest.json` 为首选，Gitee 仍为备用；保持原应用标识和更新公钥，支持覆盖安装。三个站点的资产就绪并通过匿名下载哈希验证后才能更新索引。",
+          "探针固件独立发版；本次安装包不捆绑或改写探针固件。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.2.1-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 91803532,
+            "sha256": "150045391abda6945ccbc00e7766ff7138ebb451b75b9d321fa70b70539c8688",
+            "urls": {
+              "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/v0.2.1/Mklink-AI-Probe-v0.2.1-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/v0.2.1",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.2.0",
+        "date": "2026-09-08T01:05:12Z",
+        "channel": "stable",
+        "notes": [
+          "MKLink AI Probe 0.2.0 完善实时观察、固件重载和脱机烧录，并统一桌面客户端、WebGUI、Skill、CLI 与 MCP 的运行能力。",
+          "SuperWatch 支持芯片型号联想和 Pack 内 SVD 外设目录，可观察寄存器与 GPIO 位的数值和曲线；保留程序变量目录和手动分图。",
+          "完善浮点数、负数等常用类型写入及回读，修复采集中写入的响应同步、变量搜索和数组手动收起。",
+          "修复固件与符号文件变化后的重载、页面切换时的持续采集，以及脱机/在线烧录导航。",
+          "脱机烧录可使用本地 FLM 并复用 U 盘已有文件；默认按扇区擦除，勾选全片擦除时提示显著增加烧录时间。",
+          "改进 Pack/器件匹配、受支持芯片的安全烧录和现场 Agent。用户 Skill 在每会话首次加载时检查更新，安装内容不含开发交接和构建指令。",
+          "Windows 安装包包含独立后端；Skill 和 Site Agent 便携包分别提供。安装包的 `.sig` 用于应用更新验证，下载完整性可核对 `SHA256SUMS.txt`。",
+          "已知边界：高速 USB 不稳定引发的识别异常、RTT 偶发启动和停流后的残留响应仍在跟踪；外设轮询可能漏掉短脉冲。真机结果按仓库验证报告中的板卡与范围适用，未覆盖组合不代表完成验证。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.2.0-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 91622973,
+            "sha256": "57ac616ec4d2978bb8291c4dc4b0f7ff77cb0cfa314552f65dc60e61dbb1e507",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.2.0/Mklink-AI-Probe-v0.2.0-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.2.0",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.9",
+        "date": "2026-08-31T08:45:20Z",
+        "channel": "stable",
+        "notes": [
+          "正式发布 0.1.9：修复自动升级、WebGUI 启动、AXF 符号与 Pack 导入问题；优化 SuperWatch 性能和历史查看；新增芯片联想、烧录算法展示、串口 YMODEM、专业 Modbus 工作台；完善 AI Skill/MCP 安全边界、快捷键和现场 Agent。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.9-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 75290450,
+            "sha256": "a14e139a7d7c7362ecbd0392d3afe3adb5aa60406dffcf2e58e3f311d9285bce",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.9/Mklink-AI-Probe-v0.1.9-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.9",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.8",
+        "date": "2026-08-26T06:54:24Z",
+        "channel": "stable",
+        "notes": [
+          "正式发布 0.1.8：修复安装后串口与时钟配置失败；改进 HPM 固件识别与 ROM API 升级；更新 USB 端口命名、SystemView 符号路径和桌面运行时隔离。公开 Skill 仅包含普通用户运行时内容，不携带维护者开发上下文。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.8-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 75106266,
+            "sha256": "3c3c72a1519cef0eaf645c9b32c12021fc667c05d9810ea56d8cd49b16a9d961",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.8/Mklink-AI-Probe-v0.1.8-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.8",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.7",
+        "date": "2026-08-24T08:42:12Z",
+        "channel": "stable",
+        "notes": [
+          "v0.1.7 正式版：完成 STM32F103RE 全功能真机验证，新增 HPMLink V4 固件升级路由，改进 HIL v0.2 只读插件、在线/脱机烧录、RTT/SuperWatch/SystemView 与普通用户 Skill 上下文隔离。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.7-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 75042077,
+            "sha256": "1fad66d1c7fee1c8802da946a377aa34d03b7a5b946fc614c3384de16539a71e",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.7/Mklink-AI-Probe-v0.1.7-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.7",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.6",
+        "date": "2026-08-11T14:27:54Z",
+        "channel": "stable",
+        "notes": [
+          "完善在线与脱机烧录、串口与 RTT 高速终端、多实例独立后端、资源互斥和 Site Agent；修复重复固件加载、设备自动搜索回退、串口锁兼容性与复合探针识别。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.6-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 71986865,
+            "sha256": "ff991e2c7a3a4ceba4ac91a14c5e8f2f2254f8a5f603b4de373c79e1c62804fe",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.6/Mklink-AI-Probe-v0.1.6-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.6",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.5",
+        "date": "2026-08-03T01:38:24Z",
+        "channel": "stable",
+        "notes": [
+          "v0.1.5：集成远程 Site Agent、远程 CLI/SDK/MCP 与认证 WebSocket；完善 RTT View/串口助手终端模式和 ANSI 解析；支持 SuperWatch 16 通道高吞吐采集、历史浏览、分离纵轴和大数组分页；修复 Vite WebSocket 代理并完善离线烧录提示。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.5-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 65895556,
+            "sha256": "8b85845a9858762808b4b5fee0dc581d11d46ac92cc55c3f3c6dd45c41893321",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.5/Mklink-AI-Probe-v0.1.5-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.5",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.4",
+        "date": "2026-07-25T10:09:46Z",
+        "channel": "stable",
+        "notes": [
+          "v0.1.4 完善烧录、符号解析与 HardFault 定位。BIN 固件加载后提示下载地址，未加载前扇区区使用中性提示；本地设备与文件来源自动保存，在线/脱机烧录支持拖拽、路径保持及重编译自动刷新；脱机刷新、RTT 自动搜索不再弹出 cmd，V2/V3 固定 offline_download.py，V4 可自定义；AXF/OUT 显示完整路径并默认使用内置 pyelftools；HardFault 可定位故障函数、源码位置与调用栈；AI/MCP 优先通过 MKLink 读取变量与故障信息，隔离 JSON-RPC 标准输出，只有 MKLink 明确读取失败后才使用 pyOCD 只读后备；Web GUI 保持 Windows、Linux、macOS 兼容，并支持新版本检测提醒。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.4-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 65593331,
+            "sha256": "32199809c0ce98d7191a4a3f0c16fe8c190c9ff6294e3716b83b6b43741c805e",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.4/Mklink-AI-Probe-v0.1.4-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.4",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.3",
+        "date": "2026-07-24T00:37:24Z",
+        "channel": "stable",
+        "notes": [
+          "修复 AXF/ELF 文件源切换与共享符号状态；支持匿名结构/union 展开及粘贴 C 定义；RTT View 增加 UTF-8、GB2312、GBK、GB18030、Big5；统一 SuperWatch、RTT、内存读写和在线/脱机下载的 SWD 互斥；新增 AI Skill 主动版本提醒和经确认自动更新。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.3-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 65559234,
+            "sha256": "9a85059e94c3a8e1a3b16268aa2306746f59a555ecfc6252e0c207730f79cec1",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.3/Mklink-AI-Probe-v0.1.3-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.3",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.2",
+        "date": "2026-07-22T08:28:15Z",
+        "channel": "stable",
+        "notes": [
+          "RTT View 曲线开关、坐标轴、缩放拖动与暂停/停止保留；SuperWatch 时间戳原始日志、快捷键隔离及与 RTT 自动互斥；版本历史弹窗；跨平台 U 盘单 HTML Web 启动入口；网页版 AXF/ELF/OUT/MAP 文件选择与受控上传。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.2-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 65467155,
+            "sha256": "bdfa56513d4247b8cfa2281e9c4f8803863b355a447c98b89a9b27b779dc5d07",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.2/Mklink-AI-Probe-v0.1.2-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.2",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.1",
+        "date": "2026-07-21T03:59:26Z",
+        "channel": "stable",
+        "notes": [
+          "脱机下载部署现在会自动生成预览；V4 可按用户脚本名触发；U盘不再创建 staging 目录；下载过程实时显示。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.1-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 65419031,
+            "sha256": "26c4403928b6f33416af03dd5d603649174c550b55df713038b34a4ae7e6b732",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.1/Mklink-AI-Probe-v0.1.1-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.1",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      },
+      {
+        "version": "0.1.0",
+        "date": "2026-07-20T18:02:25Z",
+        "channel": "stable",
+        "notes": [
+          "Mklink AI Probe 首个稳定版。",
+          "标准 NSIS 安装包，内置 Python sidecar，无需用户安装 Python、Node、Rust、Keil 或 GNU Arm 工具链。",
+          "内置 pyelftools ELF/DWARF 后端，覆盖符号、类型、HardFault 源码定位和 SuperWatch。",
+          "SuperWatch 结构体/数组默认折叠，并修复曲线区域抖动与大变量目录卡顿。",
+          "内置 Tauri v2 签名更新能力；Gitee 更新清单将在 Gitee Release 资产验证后发布。"
+        ],
+        "files": [
+          {
+            "name": "Mklink-AI-Probe-v0.1.0-x64-Setup.exe",
+            "platform": "Windows x64",
+            "bytes": 65416990,
+            "sha256": "2473cee615caea69bdef634c4571402162fa21c26182366721005f49020351c6",
+            "urls": {
+              "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/v0.1.0/Mklink-AI-Probe-v0.1.0-x64-Setup.exe"
+            },
+            "verification": "已验证下载响应与文件头；SHA-256 和大小来自官方发布元数据。"
+          }
+        ],
+        "source": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/tag/v0.1.0",
+        "dateNote": "发布日期来自官方 GitHub Release。"
+      }
+    ],
+    "firmware": {
+      "V2": [
+        {
+          "version": "V2.9.1",
+          "channel": "stable",
+          "date": "2026-10-24T17:06:28+00:00",
+          "dateKind": "official-index",
+          "dateNote": "日期为官方固件索引发布时间（北京时间）；build_id 保留官方原值，不推测其时区。",
+          "hardware": "MicroLink V2",
+          "family": "MicroLink",
+          "build_id": "2026-10-24T23:24:28",
+          "notes": [
+            "仅适用于 MicroLink V2，不可跨硬件型号或 MicroLink / HPMLink 系列混刷。",
+            "官方索引未提供此包独立功能更新说明；同版本修订请同时核对 build_id 和 SHA-256。"
+          ],
+          "source": "https://download.microkeenai.com/mklink/firmware/latest-v2.json",
+          "files": [
+            {
+              "name": "MicroLink_V2.9.1.rbl",
+              "platform": "RBL",
+              "hardware": "MicroLink V2",
+              "bytes": 365700,
+              "sha256": "1f0995afa004cfd376968b2d63989cfb6da79ba470bf4370d54e3b0eeb3694fe",
+              "urls": {
+                "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261024/MicroLink_V2.9.1.rbl",
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.1.rbl",
+                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.1.rbl"
+              },
+              "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致。"
+            }
+          ]
+        },
+        {
+          "version": "V2.9.0",
+          "date": "2026-10-18",
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-10-18T09:05:03Z",
+          "channel": "stable",
+          "hardware": "MicroLink V2",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V2，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V2.9.0.rbl",
+              "platform": "RBL",
+              "bytes": 364216,
+              "sha256": "eec5199ec0d9073485e883fa7020c851d24fb36e029f0fca14b19fa1be667d57",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.9.0.rbl",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V2/MicroLink_V2.9.0.rbl"
+              },
+              "hardware": "MicroLink V2",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "发布日期来自官方发布核对记录。",
+          "dateSource": "https://raw.githubusercontent.com/MicroKeen/Mklink-AI-Probe/firmware/latest-v2.json"
+        },
+        {
+          "version": "V2.8.1",
+          "date": "2026-10-03",
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-10-03T03:38:08Z",
+          "channel": "stable",
+          "hardware": "MicroLink V2",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V2，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V2.8.1.rbl",
+              "platform": "RBL",
+              "bytes": 390874,
+              "sha256": "234f4424467fe1fc58aea593bbf10e5326230da25d3a767f983df8da1265c738",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.8.1.rbl",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V2/MicroLink_V2.8.1.rbl"
+              },
+              "hardware": "MicroLink V2",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "发布日期来自官方发布核对记录。",
+          "dateSource": "https://github.com/MicroKeen/Mklink-AI-Probe/blob/main/Mklink-AI-Probe/docs/verification/firmware-20261003.md"
+        },
+        {
+          "version": "V2.8.0",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-09-21T01:36:20Z",
+          "channel": "stable",
+          "hardware": "MicroLink V2",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V2，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V2.8.0.rbl",
+              "platform": "RBL",
+              "bytes": 387038,
+              "sha256": "656abc5bcbe8a44c6477a2a086a4e5e825a5aee5230318081c255d81a202cf13",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V2.8.0.rbl"
+              },
+              "hardware": "MicroLink V2",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-09-21。"
+        }
+      ],
+      "V3": [
+        {
+          "version": "V3.6.6",
+          "channel": "stable",
+          "date": "2026-10-24T17:06:28+00:00",
+          "dateKind": "official-index",
+          "dateNote": "日期为官方固件索引发布时间（北京时间）；build_id 保留官方原值，不推测其时区。",
+          "hardware": "MicroLink V3",
+          "family": "MicroLink",
+          "build_id": "2026-10-24T23:22:00",
+          "notes": [
+            "仅适用于 MicroLink V3，不可跨硬件型号或 MicroLink / HPMLink 系列混刷。",
+            "官方索引未提供此包独立功能更新说明；同版本修订请同时核对 build_id 和 SHA-256。"
+          ],
+          "source": "https://download.microkeenai.com/mklink/firmware/latest.json",
+          "files": [
+            {
+              "name": "MicroLink_V3.6.6.uf2",
+              "platform": "UF2",
+              "hardware": "MicroLink V3",
+              "bytes": 813568,
+              "sha256": "834efd60bcc2c5914ebc04ce46dfe59c842c9238b7d1d694ee36f0c2065647f9",
+              "urls": {
+                "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261024/MicroLink_V3.6.6.uf2",
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.6.uf2",
+                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.6.uf2"
+              },
+              "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致。"
+            }
+          ]
+        },
+        {
+          "version": "V3.6.5",
+          "date": "2026-10-18",
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-10-18T09:31:40Z",
+          "channel": "stable",
+          "hardware": "MicroLink V3",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V3，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V3.6.5.uf2",
+              "platform": "UF2",
+              "bytes": 806400,
+              "sha256": "739af38c1e2441fa83a61c22ddbe5aeb514a73cafce3608c954b1a4d5f1f74eb",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.5.uf2",
+                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.5.uf2",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V3/MicroLink_V3.6.5.uf2"
+              },
+              "hardware": "MicroLink V3",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "发布日期来自官方发布核对记录。",
+          "dateSource": "https://github.com/MicroKeen/Mklink-AI-Probe/blob/main/Mklink-AI-Probe/docs/verification/v035-probe-firmware.md"
+        },
+        {
+          "version": "V3.6.4",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-10-10T05:36:46Z",
+          "channel": "stable",
+          "hardware": "MicroLink V3",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V3，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V3.6.4.uf2",
+              "platform": "UF2",
+              "bytes": 805888,
+              "sha256": "06e7a6b9a0116627eab57b8b93913ffb0f0b05ae95ba271473f3aef6ba7ccc6a",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.4.uf2",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V3/MicroLink_V3.6.4.uf2"
+              },
+              "hardware": "MicroLink V3",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-10-10。"
+        },
+        {
+          "version": "V3.6.0",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-10-08T01:14:28Z",
+          "channel": "stable",
+          "hardware": "MicroLink V3",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V3，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V3.6.0.uf2",
+              "platform": "UF2",
+              "bytes": 804864,
+              "sha256": "208ac1f7f54b0857202df7e7bbd29e94bbcd99e62520a13688b5973902b7e50b",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.6.0.uf2",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V3/MicroLink_V3.6.0.uf2"
+              },
+              "hardware": "MicroLink V3",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-10-08。"
+        },
+        {
+          "version": "V3.5.2",
+          "date": "2026-10-03",
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-10-03T03:38:08Z",
+          "channel": "stable",
+          "hardware": "MicroLink V3",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V3，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V3.5.2.uf2",
+              "platform": "UF2",
+              "bytes": 773632,
+              "sha256": "5706fb935a5d344399170d0cde54928b7d60c6ef323093eafce9bb1cb858a1ae",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.5.2.uf2",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V3/MicroLink_V3.5.2.uf2"
+              },
+              "hardware": "MicroLink V3",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "发布日期来自官方发布核对记录。",
+          "dateSource": "https://github.com/MicroKeen/Mklink-AI-Probe/blob/main/Mklink-AI-Probe/docs/verification/firmware-20261003.md"
+        },
+        {
+          "version": "V3.5.0",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-09-21T01:36:20Z",
+          "channel": "stable",
+          "hardware": "MicroLink V3",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V3，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V3.5.0.uf2",
+              "platform": "UF2",
+              "bytes": 765952,
+              "sha256": "b37e5da6ba25ffe08ec42d436de883c64cecc89eb10d4fc67b5be0d78a1fd696",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.5.0.uf2",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V3/MicroLink_V3.5.0.uf2"
+              },
+              "hardware": "MicroLink V3",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-09-21。"
+        },
+        {
+          "version": "V3.4.0",
+          "date": "2026-09-08",
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-09-08T01:23:59Z",
+          "channel": "stable",
+          "hardware": "MicroLink V3",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V3，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V3.4.0.uf2",
+              "platform": "UF2",
+              "bytes": 795648,
+              "sha256": "bec0451263aa2b2fc393c5816cf40c547be7e0ab3b87819f25808a55b1796abc",
+              "urls": {
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.4.0.uf2"
+              },
+              "hardware": "MicroLink V3",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "发布日期来自官方发布核对记录。",
+          "dateSource": "https://github.com/MicroKeen/Mklink-AI-Probe/blob/main/Mklink-AI-Probe/docs/verification/firmware-20260908.md"
+        },
+        {
+          "version": "V3.3.8",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-08-31T08:47:32Z",
+          "channel": "stable",
+          "hardware": "MicroLink V3",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V3，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V3.3.8.uf2",
+              "platform": "UF2",
+              "bytes": 769024,
+              "sha256": "e213b248a137c6519a9e926eaac78718ce844c2a20555f3a3d2a48581b099be8",
+              "urls": {
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.3.8.uf2"
+              },
+              "hardware": "MicroLink V3",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-08-31。"
+        },
+        {
+          "version": "V3.3.7",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-08-24T10:14:43Z",
+          "channel": "stable",
+          "hardware": "MicroLink V3",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V3，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V3.3.7.uf2",
+              "platform": "UF2",
+              "bytes": 771072,
+              "sha256": "8dd697f97199650bcbd680acaabdf6b10f136d0d400d8b26cc47b1d56ad5393f",
+              "urls": {
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V3.3.7.uf2"
+              },
+              "hardware": "MicroLink V3",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-08-24。"
+        }
+      ],
+      "V4": [
+        {
+          "version": "V4.7.0",
+          "channel": "stable",
+          "date": "2026-10-24T17:06:28+00:00",
+          "dateKind": "official-index",
+          "dateNote": "日期为官方固件索引发布时间（北京时间）；build_id 保留官方原值，不推测其时区。",
+          "hardware": "MicroLink V4",
+          "family": "MicroLink",
+          "build_id": "2026-10-24T23:23:05",
+          "notes": [
+            "仅适用于 MicroLink V4，不可跨硬件型号或 MicroLink / HPMLink 系列混刷。",
+            "官方索引未提供此包独立功能更新说明；同版本修订请同时核对 build_id 和 SHA-256。"
+          ],
+          "source": "https://download.microkeenai.com/mklink/firmware/latest.json",
+          "files": [
+            {
+              "name": "MicroLink_V4.7.0.uf2",
+              "platform": "UF2",
+              "hardware": "MicroLink V4",
+              "bytes": 1544704,
+              "sha256": "6d801b6d830242ebf8c3d68d9a0a687b0cd4c01ad2399ca7742ebaf7f49c77c8",
+              "urls": {
+                "tencent": "https://download.microkeenai.com/mklink/firmware/releases/20261024/MicroLink_V4.7.0.uf2",
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.0.uf2",
+                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.7.0.uf2"
+              },
+              "verification": "已完整下载此文件的所列各源，实测文件大小和 SHA-256 均与正式元数据一致。"
+            }
+          ]
+        },
+        {
+          "version": "V4.6.9",
+          "date": "2026-10-18",
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-10-18T09:31:46Z",
+          "channel": "stable",
+          "hardware": "MicroLink V4",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V4.6.9.uf2",
+              "platform": "UF2",
+              "bytes": 1623552,
+              "sha256": "96330d006efc42e01bf253b9663e3405af59db5293da9041c5550b347d86c324",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.6.9.uf2",
+                "gitee": "https://gitee.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.6.9.uf2",
+                "tencent": "https://download.microkeenai.com/mklink/releases/firmware/V4/MicroLink_V4.6.9.uf2"
+              },
+              "hardware": "MicroLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "发布日期来自官方发布核对记录。",
+          "dateSource": "https://github.com/MicroKeen/Mklink-AI-Probe/blob/main/Mklink-AI-Probe/docs/verification/v035-probe-firmware.md"
+        },
+        {
+          "version": "V4.6.8",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-10-10T05:36:46Z",
+          "channel": "stable",
+          "hardware": "HPMLink V4",
+          "family": "HPMLink",
+          "notes": [
+            "适用于 HPMLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "HPMLink_V4.6.8.uf2",
+              "platform": "UF2",
+              "bytes": 1623552,
+              "sha256": "36d004edb2016f040a4cd4d9757faf9fbdb2b36664e3e165f672faea33c912be",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/HPMLink_V4.6.8.uf2"
+              },
+              "hardware": "HPMLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-10-10。"
+        },
+        {
+          "version": "V4.6.8",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-10-10T05:36:46Z",
+          "channel": "stable",
+          "hardware": "MicroLink V4",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V4.6.8.uf2",
+              "platform": "UF2",
+              "bytes": 1624576,
+              "sha256": "9e97abd8d5fdbe964d7bff35e06ac13ae76c8e191c0ae90bda61141ec2c570bb",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.6.8.uf2"
+              },
+              "hardware": "MicroLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-10-10。"
+        },
+        {
+          "version": "V4.6.3",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-10-09T04:33:50Z",
+          "channel": "stable",
+          "hardware": "MicroLink V4",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V4.6.3.uf2",
+              "platform": "UF2",
+              "bytes": 1625600,
+              "sha256": "e960cb70c83ce769442933658bad3c25bcb077f39d2eb031820d94bc764a6937",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.6.3.uf2"
+              },
+              "hardware": "MicroLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-10-09。"
+        },
+        {
+          "version": "V4.6.0",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-10-08T01:14:29Z",
+          "channel": "stable",
+          "hardware": "HPMLink V4",
+          "family": "HPMLink",
+          "notes": [
+            "适用于 HPMLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "HPMLink_V4.6.0.uf2",
+              "platform": "UF2",
+              "bytes": 1623552,
+              "sha256": "8c1e11a40b038ffb82691cc57a5c61fa8bf1d86cd1ed6ba6ddfa41178dd25341",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/HPMLink_V4.6.0.uf2"
+              },
+              "hardware": "HPMLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-10-08。"
+        },
+        {
+          "version": "V4.6.0",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-10-08T01:14:28Z",
+          "channel": "stable",
+          "hardware": "MicroLink V4",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V4.6.0.uf2",
+              "platform": "UF2",
+              "bytes": 1623552,
+              "sha256": "1ac3159cfa5c68ab71b409d7c1bf5cb3aaa4aa2d18853d23c4c6e5641d2a797c",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.6.0.uf2"
+              },
+              "hardware": "MicroLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-10-08。"
+        },
+        {
+          "version": "V4.5.2",
+          "date": "2026-10-03",
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-10-03T03:38:08Z",
+          "channel": "stable",
+          "hardware": "HPMLink V4",
+          "family": "HPMLink",
+          "notes": [
+            "适用于 HPMLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "HPMLink_V4.5.2.uf2",
+              "platform": "UF2",
+              "bytes": 1609728,
+              "sha256": "da7cc2938ee9fa580af208b53d730b73d0fd100a8fb35c6b7a2ce1c7b00446be",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/HPMLink_V4.5.2.uf2"
+              },
+              "hardware": "HPMLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "发布日期来自官方发布核对记录。",
+          "dateSource": "https://github.com/MicroKeen/Mklink-AI-Probe/blob/main/Mklink-AI-Probe/docs/verification/firmware-20261003.md"
+        },
+        {
+          "version": "V4.5.2",
+          "date": "2026-10-03",
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-10-03T03:38:08Z",
+          "channel": "stable",
+          "hardware": "MicroLink V4",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V4.5.2.uf2",
+              "platform": "UF2",
+              "bytes": 1609728,
+              "sha256": "7d745ae4dd99e735dad8597dbfa90df21b26032c844865e253eb954bf5c7f948",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.5.2.uf2"
+              },
+              "hardware": "MicroLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "发布日期来自官方发布核对记录。",
+          "dateSource": "https://github.com/MicroKeen/Mklink-AI-Probe/blob/main/Mklink-AI-Probe/docs/verification/firmware-20261003.md"
+        },
+        {
+          "version": "V4.5.1",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-09-21T01:36:20Z",
+          "channel": "stable",
+          "hardware": "HPMLink V4",
+          "family": "HPMLink",
+          "notes": [
+            "适用于 HPMLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "HPMLink_V4.5.1.uf2",
+              "platform": "UF2",
+              "bytes": 1596928,
+              "sha256": "e2636a8695344f357af474a57b5910d60d1c450fcb331bce7920a765b89b881b",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/HPMLink_V4.5.1.uf2"
+              },
+              "hardware": "HPMLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-09-21。"
+        },
+        {
+          "version": "V4.5.1",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-09-21T01:36:20Z",
+          "channel": "stable",
+          "hardware": "MicroLink V4",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V4.5.1.uf2",
+              "platform": "UF2",
+              "bytes": 1596928,
+              "sha256": "58a7d313342b7d81763b178bcdf6f445155bc7f2a158d893184c36c9559e2f92",
+              "urls": {
+                "github": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.5.1.uf2"
+              },
+              "hardware": "MicroLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-09-21。"
+        },
+        {
+          "version": "V4.5.0",
+          "date": "2026-09-15",
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-09-14T23:07:10Z",
+          "channel": "stable",
+          "hardware": "HPMLink V4",
+          "family": "HPMLink",
+          "notes": [
+            "适用于 HPMLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "HPMLink_V4.5.0.uf2",
+              "platform": "UF2",
+              "bytes": 1575424,
+              "sha256": "74ae922ca4e6c600823d577bbf1ae71aa5dab0b95018a8311d4cdef8f90682dd",
+              "urls": {
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/HPMLink_V4.5.0.uf2"
+              },
+              "hardware": "HPMLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "发布日期来自官方发布核对记录。",
+          "dateSource": "https://github.com/MicroKeen/Mklink-AI-Probe/blob/main/Mklink-AI-Probe/docs/verification/firmware-20260915.md"
+        },
+        {
+          "version": "V4.5.0",
+          "date": "2026-09-15",
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-09-14T23:07:10Z",
+          "channel": "stable",
+          "hardware": "MicroLink V4",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V4.5.0.uf2",
+              "platform": "UF2",
+              "bytes": 1575424,
+              "sha256": "8ce318b871a760de4e66c0f04c1033a52adb4076a53195fcab19e6df46375629",
+              "urls": {
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.5.0.uf2"
+              },
+              "hardware": "MicroLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "发布日期来自官方发布核对记录。",
+          "dateSource": "https://github.com/MicroKeen/Mklink-AI-Probe/blob/main/Mklink-AI-Probe/docs/verification/firmware-20260915.md"
+        },
+        {
+          "version": "V4.4.0",
+          "date": "2026-09-08",
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-09-08T01:23:59Z",
+          "channel": "stable",
+          "hardware": "MicroLink V4",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V4.4.0.uf2",
+              "platform": "UF2",
+              "bytes": 1538048,
+              "sha256": "033f3f7035bed8f55bdca55f2adc15d8d23c491422dbb19db84985ef15d49bae",
+              "urls": {
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.4.0.uf2"
+              },
+              "hardware": "MicroLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "发布日期来自官方发布核对记录。",
+          "dateSource": "https://github.com/MicroKeen/Mklink-AI-Probe/blob/main/Mklink-AI-Probe/docs/verification/firmware-20260908.md"
+        },
+        {
+          "version": "V4.3.9",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-08-31T08:47:32Z",
+          "channel": "stable",
+          "hardware": "MicroLink V4",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V4.3.9.uf2",
+              "platform": "UF2",
+              "bytes": 1512960,
+              "sha256": "f29821a6a34b75f3dae96416595ca572a2dacaaf54c9dcc17521845f212dcef6",
+              "urls": {
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.3.9.uf2"
+              },
+              "hardware": "MicroLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-08-31。"
+        },
+        {
+          "version": "V4.3.8",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-08-26T07:00:16Z",
+          "channel": "stable",
+          "hardware": "HPMLink V4",
+          "family": "HPMLink",
+          "notes": [
+            "适用于 HPMLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "HPMLink_V4.3.8.uf2",
+              "platform": "UF2",
+              "bytes": 1520128,
+              "sha256": "d295858f3914998abb7a19f6064157f6695c5b43e362cb00553d7a295a7e3fa8",
+              "urls": {
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/HPMLink_V4.3.8.uf2"
+              },
+              "hardware": "HPMLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-08-26。"
+        },
+        {
+          "version": "V4.3.7",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-08-24T10:14:42Z",
+          "channel": "stable",
+          "hardware": "HPMLink V4",
+          "family": "HPMLink",
+          "notes": [
+            "适用于 HPMLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "HPMLink_V4.3.7.uf2",
+              "platform": "UF2",
+              "bytes": 1520128,
+              "sha256": "76d7cc1f1969fd35fec573acb4c60518fbc847f7b6b7c77e2ca3654f6f023209",
+              "urls": {
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/HPMLink_V4.3.7.uf2"
+              },
+              "hardware": "HPMLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-08-24。"
+        },
+        {
+          "version": "V4.3.6",
+          "date": null,
+          "dateKind": "unknown",
+          "assetPublishedAt": "2026-08-24T10:14:43Z",
+          "channel": "stable",
+          "hardware": "MicroLink V4",
+          "family": "MicroLink",
+          "notes": [
+            "适用于 MicroLink V4，请勿跨型号刷写。",
+            "官方公开附件；未查得独立逐版本更新说明。"
+          ],
+          "files": [
+            {
+              "name": "MicroLink_V4.3.6.uf2",
+              "platform": "UF2",
+              "bytes": 1520128,
+              "sha256": "9e49a30bd718549f58aa1fa67dd39b88f8198324cc9972b0d467ced8671fb3c6",
+              "urls": {
+                "github": "https://github.com/Aladdin-Wang/Mklink-AI-Probe/releases/download/firmware-assets/MicroLink_V4.3.6.uf2"
+              },
+              "hardware": "MicroLink V4",
+              "verification": "已完整下载并重新计算 SHA-256，匹配官方附件摘要。"
+            }
+          ],
+          "source": "https://github.com/MicroKeen/Mklink-AI-Probe/releases/tag/firmware-assets",
+          "dateNote": "未找到独立发布日期；公开附件上传于 2026-08-24。"
+        }
+      ]
+    }
+  },
+  "sources": [
+    "https://api.github.com/repos/MicroKeen/Mklink-AI-Probe/releases",
+    "https://api.github.com/repos/Aladdin-Wang/Mklink-AI-Probe/releases",
+    "https://gitee.com/api/v5/repos/Aladdin-Wang/Mklink-AI-Probe/releases"
+  ],
+  "missingResources": [
+    "部分历史固件未找到独立发布日期，标注未提供并单独显示官方附件上传日期。",
+    "固件缺少逐版本功能更新说明，保留适用型号和官方发布记录，不编造功能变更。",
+    "0.1.0–0.1.2 等早期正式版本没有独立 Skill ZIP，不用源码压缩包冒充 Skill 安装包。",
+    "MicroBoot v1.0.0 只有源码发布，v0.9.6/v0.9.7 的 .pack 是 MicroBoot 开发组件，不是下载器固件，未混入固件下载。"
+  ]
+}

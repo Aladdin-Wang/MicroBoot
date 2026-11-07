@@ -9,7 +9,7 @@ export const english = {
   tool3:'A console without extra UART wires.',tool3Text:'Read logs and send commands to your firmware through RTT View.',tool4:'Inspect the fault.',tool4Text:'Read memory and registers. Use project symbols to locate the fault in your source.',
   startTitle:'Connect your next development board.',startIntro:'Install the software, connect your board, and tell AI where the project is. Or open the Web GUI and debug directly.',install:'Install software & AI Skill',buy:'Shop MKLink V4 ↗',getDownloads:'Software, firmware & resources ↗',getSupport:'Contact & technical support ↗',getMicroboot:'MicroBoot open-source framework ↗',
 
-  skip: 'Skip to content', products: 'Products', software: 'Software', docs: 'Docs', downloads: 'Downloads', support: 'Support',
+  skip: 'Skip to content', products: 'Products', software: 'Software', docs: 'Docs', downloads: 'Downloads', support: 'Support', taobao: 'Taobao',
   hero1: 'Give AI a connection.', hero2: 'To real hardware.',
   heroDescription: 'From the first line of code to flashing, observation and debugging.<br>MKLink connects engineers, AI and your hardware.',
   explore: 'Explore MKLink', seeCase: 'See AI in action', heroCaption: 'One device, from development to production.', scroll: 'Explore more', heroFoot: 'Built for hands-on development',

@@ -22,6 +22,7 @@ def main():
     (OUTPUT / "assets").mkdir(exist_ok=True)
     for name in ("index.html", "styles.css", "app.js", "content.js", "favicon.svg", "robots.txt", "sitemap.xml", "home-sitemap.xml"):
         shutil.copy2(ROOT / "website" / name, OUTPUT / name)
+    subprocess.run([sys.executable, str(ROOT / "scripts/build_download_center.py")], check=True)
     assets = json.loads((ROOT / "website/assets.json").read_text(encoding="utf-8"))
     for name, relative in assets.items():
         source = ROOT / relative
