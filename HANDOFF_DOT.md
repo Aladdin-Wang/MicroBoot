@@ -1,6 +1,11 @@
-# 给 Your dot：MicroKeen 官网与文档交接
+# 给「来财」（Your dot）：MicroKeen 官网与文档交接
 
-更新：2026-10-05。用户要求后续网站建设交由 ChatGPT 的 **Your dot** 接手。
+更新：2026-10-06。用户明确指定 Codex 侧栏的 **「来财」** 接手后续网站建设。
+
+本次文档分支基于已合并手机导航和搜索清空修复的 `38e0ceb`，保留这些云端修改。
+新增 [V4 与 0.3.0 共享通信](docs/mklink/development/v4-shared-cdc.md)，
+供后续同步中英文首页、版本说明和功能入口。应先核对配套安装包的公开发布状态，
+不能把本地覆盖安装或固件主分支合并写成已公开发布。
 
 ## 先读取这些文件
 
@@ -81,4 +86,23 @@ python scripts/preview_website.py
 
 ## 交接状态
 
-交接文件随代码交付 GitHub。当前会话没有可直接给 Your dot 发送任务的专用入口，**不能声称 dot 已收到或已开始工作**。用户可把本文件的 GitHub 链接发给 Your dot，并要求从最新 main 继续建设、部署和维护。
+2026-10-06 本地配套安装态验收已完成。V4 固件 PR1 合并到 `main` 的 `edbbbf785`，
+被验证的代码头为 `cb883217`；0.3.0 / `cd342984` NSIS 已覆盖安装，本地 Skill 已同步。
+主机仍在 PR30，验收记录归档提交 `aee132dc`；本次没有正式标签、发布渠道或签名发布。
+
+- [主机验收记录](https://github.com/MicroKeen/Mklink-AI-Probe/blob/aee132dc540a9272fe859ab6aba8a5078a64f311/Mklink-AI-Probe/docs/verification/v4-030-closeout-20261006.md)
+- [已合并 V4 固件 PR1](https://github.com/Aladdin-Wang/MicroLink_Plus/pull/1)
+- [本次文档 PR8](https://github.com/Aladdin-Wang/MicroBoot/pull/8)
+
+验收含双 V4、STM32/HPM5301、八路 RTT 双向、DAP 抢占下载调试、HPM BIN/HEX 在线与脱机、
+双 GUI/CLI/MCP 共存和同机 LAN。不能扩展为所有外设、其他硬件版本、跨物理主机或长期运行
+均已通过；批量采样仍非硬实时。主机另有两个非阻断提示问题，已列在验收记录。
+
+2026-10-06 23:16（本机时间）已通过 Codex 跨任务发送工具提交给用户指定的云端接收任务，
+发送成功回执已收到，随后快照显示新一轮 `inProgress`。这仅证明交接已提交并触发处理，
+不代表网站修改或部署已经完成。
+
+本次文档验证：严格 MkDocs 构建、文档审计和官网整包构建通过，8765 项本地链接，
+0 错误、0 锚点警告；官网 37 项 URL、40 项 ID、生成图片和 `/docs/` 目标检查通过。
+未连接或部署服务器。后续网站工作请保留当前主分支的手机导航、搜索清空修复、
+原 RTT 原理、旧路径和安装提示词，把新功能的版本条件写清楚。
