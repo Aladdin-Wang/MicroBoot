@@ -8,6 +8,10 @@ MKLink 提供桌面应用和浏览器中的 Web GUI。想先手动使用，安�
 
 安装后连接 MKLink，打开应用，在“配置”中选择设备和符号文件。设备连接与工程配置见[配置第一个工程](project-config.md)。
 
+!!! note "使用共享后台和多通道 RTT"
+    上位机、设备固件与完整 Skill 应匹配。功能以设备能力声明为准，V3 / V4 不完全相同。
+    正式版与开发版采样要求见[版本检查](../development/v4-shared-cdc.md#version-check)。
+
 ## 让 AI 帮你安装
 
 > 请从仓库 [https://github.com/Aladdin-Wang/Mklink-AI-Probe](https://github.com/Aladdin-Wang/Mklink-AI-Probe) 或者 [https://gitee.com/Aladdin-Wang/Mklink-AI-Probe](https://gitee.com/Aladdin-Wang/Mklink-AI-Probe) 安装或更新 MKLink AI Probe。读取仓库内的 `Mklink-AI-Probe/SKILL.md` 和完整安装说明，将完整 Skill 安装到当前用户的用户级 Skill 目录，不能只复制 SKILL.md。安装 Web GUI、MCP 以及运行 MKLink 所需的全部依赖，并运行依赖导入检查、Skill 自检和 MKLink 自检。
@@ -26,6 +30,19 @@ MKLink 提供桌面应用和浏览器中的 Web GUI。想先手动使用，安�
 
 ![MKLink 配置页面](../../images/mklink/cases/hpm5301/web-config-device.png)
 
+## 让界面与 AI 共用设备
+
+确认上面的版本条件后，可以先在界面连接设备、加载当前 AXF/ELF，并开始 RTT 或
+SuperWatch，再让 AI 接入同一台下载器。多个窗口共享这台设备的工程、符号和采集
+设置；连接两台下载器时，先核对 USB 序列号或本机别名，明确选择要操作的一台。
+
+> 连接“控制板”，复用当前采集，读一下最近的变量和 RTT 日志。先不要停止采集、
+> 修改参数或重新下载程序。
+
+接下来可按任务进入[八路 RTT](../development/v4-shared-cdc.md#rtt-channels)、
+[变量采样](../development/v4-shared-cdc.md#sampling)或
+[下载后的恢复步骤](../development/v4-shared-cdc.md#dap-restart)。
+
 ## 遇到启动问题
 
 | 现象 | 怎么处理 |
@@ -34,6 +51,7 @@ MKLink 提供桌面应用和浏览器中的 Web GUI。想先手动使用，安�
 | 一直停在启动页 | 让 AI 检查本地服务，不只重新打开网页 |
 | 旧地址打不开 | 使用本次启动生成的地址 |
 | 页面正常但设备不在线 | 检查数据线、供电与是否被其他工具占用 |
+| 已连接但没有文档中的共享功能 | 核对硬件型号、固件、上位机和 Skill 是否为同一套配套版本 |
 
 > 网页没有正常打开，帮我检查安装和本地服务，修好后再打开。
 

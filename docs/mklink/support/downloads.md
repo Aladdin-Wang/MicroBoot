@@ -6,6 +6,16 @@
 
 本页集中提供 MKLink 开发资料、软件和源码入口。下载后先确认文件适用于自己的下载器型号和目标芯片，再按对应教程操作。
 
+## 先核对版本，再选安装包
+
+上位机公开下载以 [官方 Releases](https://github.com/MicroKeen/Mklink-AI-Probe/releases)
+的版本说明与附件为准。2026-11-07 核对的最新正式版为 v0.4.2；本站下载目录仍保留
+0.4.0 快照，不能用目录版本推断最新发布状态。共享功能按设备 MUX 能力启用，
+0.4.3 main 的新采样与 Bulk 需要配套开发固件。不要混用安装包、Skill 和设备固件。
+
+首次安装见 [安装上位机与 AI Skill](../getting-started/gui-install.md)；已有设备先看
+[配套版本检查](../development/v4-shared-cdc.md#version-check)，再决定是否升级。
+
 ## 官方资料包
 
 [下载 MKLink 开发资料](https://pan.baidu.com/s/1Dr8Ss16cBRWXtQpyOGrROg?pwd=zyo0)（提取码：`zyo0`）
