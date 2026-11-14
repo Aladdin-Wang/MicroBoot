@@ -71,7 +71,7 @@ function mount(target, releases, label, hardwareFamily) {
     if (hardwareFamily === 'MicroLink') {
       const figure = node('figure', undefined, 'product-visual hardware-visual');
       const photo = node('img');
-      photo.src = 'https://microkeenai.com/assets/mklink-v4.webp?v=v4-screen-20261007';
+      photo.src = 'https://microkeenai.com/assets/mklink-v4.webp?v=com-cmd-20261114';
       photo.alt = 'MicroLink V4 彩屏下载器实物，带显示屏与侧面接口';
       photo.width = 398; photo.height = 420; photo.loading = 'lazy'; photo.decoding = 'async';
       figure.append(photo, node('figcaption', 'MicroLink V4 · 实物图'));
@@ -79,7 +79,7 @@ function mount(target, releases, label, hardwareFamily) {
     } else if (hardwareFamily === 'HPMLink') {
       const figure = node('figure', undefined, 'product-visual hardware-visual');
       const photo = node('img');
-      photo.src = 'https://microkeenai.com/assets/hpmlink-v4-20261025.webp';
+      photo.src = 'https://microkeenai.com/assets/hpmlink-v4-20261025.webp?v=com-cmd-20261114';
       photo.alt = 'HPMLink V4 下载器外观示意图，基于 MKLink 图片生成，机身标识 HPMsLink';
       photo.width = 1221; photo.height = 1289; photo.loading = 'lazy'; photo.decoding = 'async';
       figure.append(photo, node('figcaption', 'HPMLink V4 · 外观示意图（AI 生成）'));

@@ -52,9 +52,9 @@ V2、V3、MicroLink V4 和上位机卡片复用官网已发布的真实图片；
 
 - V2：`https://microkeenai.com/assets/mklink-v2.webp`，来源 `docs/images/mklink/products/mklink-v2-front.png`。
 - V3：`https://microkeenai.com/assets/mklink-v3.webp`，来源 `docs/images/mklink/products/mklink-v3-front.png`。
-- MicroLink V4：`https://microkeenai.com/assets/mklink-v4.webp?v=v4-screen-20261007`，来源 `website/assets/mklink-v4-screen-20261007.png`。
+- MicroLink V4：`https://microkeenai.com/assets/mklink-v4.webp?v=com-cmd-20261114`，来源 `website/assets/mklink-v4-screen-20261007.png`。
 - 上位机：`https://microkeenai.com/docs/images/mklink/gui/online-flash.png`，官方 MKLink AI Probe 在线烧录界面示例，不随历史安装包选择冒充对应版本截图。
-- HPMLink V4：`https://microkeenai.com/assets/hpmlink-v4-20261025.webp`，来源 `website/assets/hpmlink-v4-20261025.png`，通过 `website/assets.json` 和官网现有构建生成。参考标识保留 `HPMsLink`，固件系列仍为 `HPMLink V4`；图片不是实拍，不作为型号兼容性证据，保留铭牌核对提示。
+- HPMLink V4：`https://microkeenai.com/assets/hpmlink-v4-20261025.webp?v=com-cmd-20261114`，来源 `website/assets/hpmlink-v4-20261025.png`，通过 `website/assets.json` 和官网现有构建生成。参考标识保留 `HPMsLink`，固件系列仍为 `HPMLink V4`；图片不是实拍，不作为型号兼容性证据，保留铭牌核对提示。
 
 图片保持自然比例、完整展示，不裁切硬件；硬件图片延迟加载并提供型号 alt 文本。图片展示代码独立于目录和下载链接。仅更换图片界面时部署前三个 UI 文件，`download-catalog.json` 不必重传。
 
