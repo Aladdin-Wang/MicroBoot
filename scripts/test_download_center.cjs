@@ -281,13 +281,13 @@ test('V4 families retain distinct correctly labeled images across all firmware v
       const photos = tags(group,'img');
       if (name === 'MicroLink V4') {
         assert.equal(photos.length,1);
-        assert.equal(photos[0].src,'https://microkeenai.com/assets/mklink-v4.webp?v=v4-screen-20261007');
+        assert.equal(photos[0].src,'https://microkeenai.com/assets/mklink-v4.webp?v=com-cmd-20261114');
         assert.match(photos[0].alt,/MicroLink V4/);
         assert.equal(photos[0].loading,'lazy');
       } else {
         assert.equal(name,'HPMLink V4');
         assert.equal(photos.length,1);
-        assert.equal(photos[0].src,'https://microkeenai.com/assets/hpmlink-v4-20261025.webp');
+        assert.equal(photos[0].src,'https://microkeenai.com/assets/hpmlink-v4-20261025.webp?v=com-cmd-20261114');
         assert.match(photos[0].alt,/HPMLink V4.*示意图.*HPMsLink/);
         assert.equal(photos[0].loading,'lazy');
         assert.match(tags(group,'figcaption')[0].textContent,/AI 生成/);
@@ -330,7 +330,7 @@ test('AI promo replaces category shortcuts and is shared before paired workflows
   assert.doesNotMatch(html, /AI 生成概念图 · 真实案例重排/);
   assert.match(html, /https:\/\/microkeenai.com\/assets\/mklink-joint-motor-automation-banner-20261025-v7.webp/);
   assert.match(html,/download-center.css\?v=20261025-ai-v7/);
-  assert.match(html,/download-center.js\?v=20261025-aligned-ui/);
+  assert.match(html,/download-center.js\?v=com-cmd-20261114/);
 });
 
 
